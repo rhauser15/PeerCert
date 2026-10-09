@@ -76,15 +76,15 @@
   .ph-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 12px; font-size: 14.5px; }
   .ph-head b { font-weight: 700; } .ph-head span.role { color: #6b6b6b; margin-left: 6px; }
   .ph-head .x { font-size: 20px; color: #444; line-height: 1; }
-  .video { margin: 0 20px; height: 188px; border-radius: 10px; position: relative; overflow: hidden; flex: none; background: #b98b6e; }
-  .video svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .video { margin: 0 20px; aspect-ratio: 818 / 452; border-radius: 10px; position: relative; overflow: hidden; flex: none; background: #b98b6e; }
+  .video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .video .glow { position: absolute; inset: 0; border-radius: 10px; box-shadow: inset 0 0 0 0 rgba(43,111,214,0); transition: box-shadow .3s; pointer-events: none; }
   .speaking .glow { box-shadow: inset 0 0 0 3px rgba(43,111,214,.85); }
-  .speaking .mouth { animation: talk .28s infinite alternate; transform-origin: 160px 101px; }
-  .speak { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); background: #2b6fd6; color: #fff; border: 0; border-radius: 4px;
+  /* The avatar image already shows the Speak with Piper button; this is an invisible click target over it. */
+  .speak { position: absolute; left: 50%; bottom: 5%; width: 40%; height: 14%; transform: translateX(-50%); background: transparent; color: transparent; opacity: 0; border: 0; border-radius: 4px;
            padding: 6px 12px; font: 500 13px Inter, -apple-system, Arial, sans-serif; display: flex; gap: 7px; align-items: center; cursor: pointer; white-space: nowrap; }
   .speak svg { width: 12px; height: 14px; position: static; }
-  .vbar { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); display: none; gap: 4px; background: rgba(255,255,255,.92); border-radius: 8px; padding: 4px; }
+  .vbar { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); display: none; gap: 4px; background: #fff; border-radius: 8px; padding: 7px 6px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
   .vbar span { font: 500 11.5px Inter, -apple-system, Arial, sans-serif; padding: 4px 9px; border-radius: 5px; color: #333; }
   .vbar span.on { background: #e8f0fc; color: #2b6fd6; } .vbar span.end { background: #e5484d; color: #fff; }
   .live .speak { display: none; } .live .vbar { display: flex; }
@@ -257,36 +257,7 @@
    <div class="pcard">
     <div class="ph-head"><div><b>Piper</b><span class="role">AI SDR Agent</span></div><span class="x">✕</span></div>
     <div class="video" id="video">
-      <!-- Illustrated stand-in for Piper's video avatar (office backdrop, blazer) -->
-      <svg viewBox="0 0 320 188" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <pattern id="brick" width="28" height="14" patternUnits="userSpaceOnUse">
-            <rect width="28" height="14" fill="#8a4f3a"/><path d="M0 13.5h28M14 0v7M0 7h28M0 7v7" stroke="#6f3d2c" stroke-width="1"/>
-          </pattern>
-          <linearGradient id="win" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9f1f5"/><stop offset="1" stop-color="#c9d9e2"/></linearGradient>
-          <linearGradient id="blazer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4cdb6"/><stop offset="1" stop-color="#cfb497"/></linearGradient>
-          <radialGradient id="skin" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#f6d5bf"/><stop offset="1" stop-color="#e2b298"/></radialGradient>
-        </defs>
-        <rect width="320" height="188" fill="url(#brick)"/>
-        <rect x="0" y="0" width="92" height="150" fill="#d7d2c8"/>
-        <rect x="8" y="10" width="76" height="130" fill="url(#win)"/>
-        <path d="M46 10v130M8 75h76" stroke="#d7d2c8" stroke-width="5"/>
-        <path d="M10 140c8-30 2-52 18-70 6 22 0 40 10 70z" fill="#4f7a4a" opacity=".85"/>
-        <rect x="262" y="0" width="58" height="150" fill="#cfc9be"/>
-        <rect x="268" y="8" width="46" height="132" fill="url(#win)"/>
-        <rect x="236" y="96" width="10" height="34" rx="3" fill="#3b3b3b"/><circle cx="241" cy="94" r="9" fill="#f3d38a" opacity=".9"/>
-        <rect x="0" y="150" width="320" height="38" fill="#9c7a63"/>
-        <path d="M104 188c4-42 22-62 56-66 34 4 52 24 56 66z" fill="url(#blazer)"/>
-        <path d="M146 124l14 26 14-26c-5-3-9-4-14-4s-9 1-14 4z" fill="#fbfbfb"/>
-        <path d="M146 124l14 64M174 124l-14 64" stroke="#b99c80" stroke-width="2"/>
-        <rect x="152" y="104" width="16" height="20" rx="6" fill="url(#skin)"/>
-        <ellipse cx="160" cy="84" rx="23" ry="28" fill="url(#skin)"/>
-        <path d="M136 84c-2-26 10-38 24-38s27 10 24 38c-2-14-8-22-24-24-14 2-22 10-24 24z" fill="#5a3a2a"/>
-        <ellipse cx="160" cy="49" rx="12" ry="7" fill="#5a3a2a"/>
-        <circle cx="151" cy="84" r="2.2" fill="#3a2a22"/><circle cx="169" cy="84" r="2.2" fill="#3a2a22"/>
-        <path d="M147 78q4-2 8 0M165 78q4-2 8 0" stroke="#5a3a2a" stroke-width="1.6" fill="none"/>
-        <ellipse class="mouth" cx="160" cy="101" rx="6" ry="2.2" fill="#c26d64"/>
-      </svg>
+      <img src="assets/piper-avatar.png" alt="Piper, AI SDR Agent">
       <div class="glow"></div>
       <button class="speak" id="speakBtn"><svg viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0M6 12.5V15"/></svg>Speak with Piper</button>
       <div class="vbar"><span class="on">Voice</span><span>Video</span><span>Mute</span><span class="end">End</span></div>
