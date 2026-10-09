@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Brand_Count__c</fullName>
+    <label>Brand Count</label>
+    <description>Distinct brands the owner operates.</description>
+    <inlineHelpText>Distinct brands the owner operates.</inlineHelpText>
+    <type>Number</type><precision>6</precision><scale>0</scale>
+</CustomField>

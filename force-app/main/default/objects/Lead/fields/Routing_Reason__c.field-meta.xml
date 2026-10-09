@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Routing_Reason__c</fullName>
+    <label>Routing Reason</label>
+    <description>Why the routing Flow sent this lead to a rep.</description>
+    <inlineHelpText>Why the routing Flow sent this lead to a rep.</inlineHelpText>
+    <type>Text</type><length>255</length>
+</CustomField>

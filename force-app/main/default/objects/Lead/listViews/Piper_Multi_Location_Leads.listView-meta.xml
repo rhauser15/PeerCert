@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Piper_Multi_Location_Leads</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>Location_Count__c</columns>
+    <columns>Brand_Count__c</columns>
+    <columns>Brands_Operated__c</columns>
+    <columns>Unrealized_Annual_Spend__c</columns>
+    <columns>Routing_Reason__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters><field>Multi_Location__c</field><operation>equals</operation><value>1</value></filters>
+    <label>Piper - Multi-Location Leads</label>
+</ListView>

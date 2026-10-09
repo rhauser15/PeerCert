@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unrealized_Annual_Spend__c</fullName>
+    <label>Unrealized Annual Spend</label>
+    <description>Dark locations x Yelp average revenue per location.</description>
+    <inlineHelpText>Dark locations x Yelp average revenue per location.</inlineHelpText>
+    <type>Currency</type><precision>12</precision><scale>0</scale>
+</CustomField>

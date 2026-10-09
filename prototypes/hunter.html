@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hunter | Salesforce</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root { --brand: #0176d3; --navy: #032d60; --bg: #f3f3f3; --line: #e5e5e5; --ink: #181818; --muted: #706e6b;
+          --agent: #5a1ba9; --agent-2: #8a3ffc; --ok: #2e844a; --warn: #a96404; --dark: #ba0517; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Salesforce Sans", "Helvetica Neue", Arial, sans-serif; color: var(--ink); background: var(--bg); font-size: 14px; }
+  .gh { height: 50px; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 16px; gap: 16px; }
+  .cloud { width: 44px; height: 30px; background: #00a1e0; border-radius: 15px; color: #fff; font-weight: 800; font-size: 11px; display: grid; place-items: center; }
+  .search { flex: 0 1 560px; margin: 0 auto; height: 32px; border: 1px solid #c9c9c9; border-radius: 4px; display: flex; align-items: center; padding: 0 12px; color: var(--muted); }
+  .gh .icons { display: flex; gap: 14px; color: var(--muted); align-items: center; }
+  .me { width: 30px; height: 30px; border-radius: 50%; background: #3e3e3c; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+  .nav { height: 40px; background: #fff; border-bottom: 3px solid var(--brand); display: flex; align-items: center; padding: 0 16px; gap: 22px; }
+  .nav .app { font-weight: 700; font-size: 16px; padding-right: 14px; border-right: 1px solid var(--line); }
+  .nav span.on { color: var(--brand); font-weight: 700; }
+  .shell { display: grid; grid-template-columns: 210px 1fr 340px; height: calc(100vh - 93px); }
+  .side { background: #fff; border-right: 1px solid var(--line); padding: 14px 10px; overflow: auto; }
+  .side .it { padding: 8px 10px; border-radius: 6px; color: #3e3e3c; }
+  .side .it.on { background: #f0e9fb; color: var(--agent); font-weight: 600; }
+  .side h5 { margin: 18px 10px 6px; color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+  .side .rc { display: flex; gap: 8px; align-items: center; padding: 6px 10px; font-size: 13px; color: #3e3e3c; }
+  .badge { width: 24px; height: 24px; border-radius: 6px; font-size: 10px; font-weight: 700; display: grid; place-items: center; color: #fff; background: #8e8e93; flex: none; }
+  .center { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  .feed { position: relative; flex: 1; min-height: 0; overflow-y: auto; padding: 26px 34px 20px; scroll-behavior: smooth; }
+  .composer { margin: 0 34px 18px; background: #fff; border: 1px solid #c9c9c9; border-radius: 12px; padding: 12px 14px; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
+  .composer textarea { width: 100%; border: 0; resize: none; font: inherit; height: 44px; outline: none; }
+  .composer .bar { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; }
+  .composer .send { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; background: var(--agent); color: #fff; display: grid; place-items: center; }
+  .pill { border: 1px solid var(--line); border-radius: 12px; padding: 2px 8px; }
+  .hello { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
+  .hunter-av { width: 44px; height: 44px; border-radius: 50%; background: conic-gradient(from 200deg, #5a1ba9, #0176d3, #8a3ffc, #5a1ba9); display: grid; place-items: center; color: #fff; font-weight: 800; flex: none; }
+  .hunter-av.sm { width: 28px; height: 28px; font-size: 12px; }
+  .hello h1 { font-size: 22px; margin: 0; }
+  .hello p { margin: 2px 0 0; color: var(--muted); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 12px 0; animation: rise .35s ease-out; }
+  .card h3 { margin: 0 0 8px; font-size: 15px; }
+  .card .k { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+  .btn { border: 1px solid var(--brand); color: var(--brand); background: #fff; border-radius: 4px; padding: 6px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+  .btn.primary { background: var(--agent); border-color: var(--agent); color: #fff; }
+  .msg { display: flex; gap: 10px; margin: 14px 0; animation: rise .3s ease-out; }
+  .msg.user { justify-content: flex-end; }
+  .msg.user .bub { background: #e8f1fb; border-radius: 14px 14px 4px 14px; padding: 10px 14px; max-width: 70%; }
+  .msg.agent .body { flex: 1; min-width: 0; }
+  .thinking { color: var(--muted); font-style: italic; display: flex; gap: 8px; align-items: center; }
+  .spinner { width: 14px; height: 14px; border: 2px solid #d8c8f3; border-top-color: var(--agent); border-radius: 50%; animation: spin .8s linear infinite; }
+  .tmpl { display: flex; gap: 12px; align-items: center; background: #fbf8ff; border: 1px dashed #c4a7f2; border-radius: 10px; padding: 10px 12px; margin: 10px 0; }
+  .tmpl .tag { background: var(--agent); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .plan ol { margin: 6px 0 0; padding-left: 20px; }
+  .plan li { margin: 6px 0; }
+  .src { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; background: #eef4ff; color: #0b5cab; margin-left: 4px; font-weight: 600; }
+  .src.bill { background: #fff4e5; color: #8c4b02; }
+  .src.dvg { background: #f0e9fb; color: var(--agent); }
+  .guard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+  .guard div { background: #f8f8f8; border-radius: 8px; padding: 8px 10px; font-size: 12.5px; }
+  .guard b { display: block; font-size: 12px; }
+  .run li { list-style: none; margin: 8px 0; display: flex; gap: 10px; align-items: center; }
+  .run ol { padding: 0; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #c9c9c9; flex: none; display: grid; place-items: center; font-size: 11px; color: #fff; }
+  .dot.done { background: var(--ok); border-color: var(--ok); }
+  .dot.live { border-color: var(--agent); border-top-color: transparent; animation: spin .8s linear infinite; }
+  .counter { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12.5px; }
+  .divider { text-align: center; color: var(--muted); font-size: 12px; margin: 22px 0 8px; display: flex; align-items: center; gap: 10px; }
+  .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 10px 0 14px; }
+  .kpi { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .kpi .v { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .kpi .l { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .kpi.hero { background: linear-gradient(135deg, #5a1ba9, #0176d3); color: #fff; border: 0; }
+  .kpi.hero .l { color: #e6dcff; }
+  .sigbars .r { display: grid; grid-template-columns: 210px 1fr 40px; gap: 10px; align-items: center; margin: 5px 0; font-size: 12.5px; }
+  .sigbars .t { height: 10px; background: #f0f0f0; border-radius: 5px; overflow: hidden; }
+  .sigbars .t i { display: block; height: 100%; background: var(--agent-2); border-radius: 5px; width: 0; transition: width 1s ease-out; }
+  .sigbars .r.bill .t i { background: #dd7a01; }
+  table.rank { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.rank th { text-align: left; color: var(--muted); font-weight: 600; font-size: 12px; padding: 8px; border-bottom: 1px solid var(--line); background: #fafaf9; }
+  table.rank td { padding: 8px; border-bottom: 1px solid #f3f3f3; }
+  table.rank tr.row { cursor: pointer; } table.rank tr.row:hover td { background: #f7f3fe; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .conf { display: inline-block; min-width: 40px; text-align: center; font-weight: 600; font-size: 12px; border-radius: 10px; padding: 1px 6px; background: #ebf7e6; color: var(--ok); }
+  .brandchip { display: inline-block; font-size: 11px; background: #f3f3f3; border-radius: 10px; padding: 1px 7px; margin: 1px 2px 1px 0; }
+  .more { color: var(--brand); cursor: pointer; font-weight: 600; padding: 10px 8px; display: inline-block; }
+  .done-list li { margin: 8px 0; list-style: none; display: flex; gap: 10px; }
+  .done-list ul { padding: 0; margin: 6px 0; }
+  .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .links a { text-decoration: none; }
+  .right { background: #fff; border-left: 1px solid var(--line); padding: 14px; overflow: auto; }
+  .right h4 { margin: 0 0 4px; font-size: 15px; }
+  .right .date { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+  .right h5 { margin: 14px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .wf { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 8px 0; animation: rise .3s; }
+  .wf .t { font-weight: 600; font-size: 13px; }
+  .wf .s { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .wf.ready { border-left: 3px solid var(--ok); } .wf.running { border-left: 3px solid var(--agent); } .wf.sched { border-left: 3px solid #c9c9c9; }
+  .prog { height: 4px; background: #eee; border-radius: 2px; margin-top: 8px; overflow: hidden; } .prog i { display: block; height: 100%; background: var(--agent); width: 0; transition: width .6s; }
+  .drawer { position: fixed; top: 93px; right: 0; bottom: 0; width: 620px; background: #fff; border-left: 1px solid var(--line); box-shadow: -12px 0 30px rgba(0,0,0,.12); transform: translateX(105%); transition: transform .35s; overflow: auto; z-index: 20; padding: 20px 24px; }
+  .drawer.show { transform: none; }
+  .drawer .x { position: absolute; right: 18px; top: 14px; cursor: pointer; color: var(--muted); font-size: 20px; }
+  .drawer h2 { margin: 0; font-size: 20px; }
+  .ev li { margin: 7px 0; list-style: none; display: grid; grid-template-columns: 22px 1fr; gap: 6px; }
+  .ev ul { padding: 0; }
+  .tree { font-size: 13px; }
+  .tree .op { font-weight: 700; }
+  .tree .br { margin: 6px 0 2px 14px; font-weight: 600; }
+  .tree .loc { margin-left: 30px; display: flex; gap: 8px; align-items: center; padding: 2px 0; }
+  .st { font-size: 11px; font-weight: 700; border-radius: 10px; padding: 0 7px; }
+  .st.pay { background: #ebf7e6; color: var(--ok); } .st.dark { background: #feded8; color: var(--dark); }
+  pre.brief { white-space: pre-wrap; font: 12.5px/1.45 -apple-system, Arial, sans-serif; background: #fafaf9; border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+  @keyframes rise { from { transform: translateY(8px); opacity: 0 } to { transform: none; opacity: 1 } }
+  @keyframes spin { to { transform: rotate(360deg) } }
+</style>
+</head>
+<body>
+<div class="gh">
+  <div class="cloud">SF</div>
+  <div class="search">🔍&nbsp; Search...</div>
+  <div class="icons"><span>★</span><span>＋</span><span>?</span><span>⚙</span><span>🔔</span><div class="me">MA</div></div>
+</div>
+<div class="nav"><span class="app">Sales</span><span>Home</span><span>Accounts</span><span>Leads</span><span>Opportunities</span><span class="on">Hunter</span></div>
+
+<div class="shell">
+  <aside class="side">
+    <div class="it on">✦ New chat</div><div class="it">◷ Scheduled</div><div class="it">⚡ Skills</div><div class="it">📖 Knowledge</div>
+    <h5>Recents</h5>
+    <div class="rc"><span class="badge" style="background:#5a1ba9">CO</span>Colorado operator discovery</div>
+    <div class="rc"><span class="badge" style="background:#2e844a">PC</span>Piper: confirmed patterns</div>
+    <div class="rc"><span class="badge">FN</span>Found new prospects</div>
+    <div class="rc"><span class="badge">EB</span>Executive Brief</div>
+    <div class="rc"><span class="badge">PS</span>Pipeline Snapshot</div>
+    <h5>Connections</h5>
+    <div class="rc">Salesforce · Billing · Data Vendor Gateway · Momentum</div>
+  </aside>
+
+  <section class="center">
+    <div class="feed" id="feed"></div>
+    <div class="composer">
+      <textarea id="composer" placeholder="Ask Hunter..." readonly></textarea>
+      <div class="bar"><span class="pill">Hunter ▾</span><span class="pill">＋ Skills</span><span>Salesforce · Billing · Data Vendor Gateway</span><span class="send">➤</span></div>
+    </div>
+  </section>
+
+  <aside class="right">
+    <h4>Hunter at work</h4>
+    <div class="date" id="today"></div>
+    <div id="work"></div>
+  </aside>
+</div>
+
+<div class="drawer" id="drawer"><span class="x" onclick="closeDrawer()">✕</span><div id="drawerBody"></div></div>
+<div class="presenter" id="presenter"></div>
+<div class="proto-note">Prototype for illustration. Hunter is not generally available; capabilities and UI will change.</div>
+
+<script src="data.js"></script>
+<script src="presenter.js"></script>
+<script>
+const D = YELP_DATA, T = D.territory, OPS = D.operators, P = D.piper;
+const fmt = n => "$" + Math.round(n).toLocaleString();
+const fmtM = n => "$" + (n / 1e6).toFixed(2).replace(/0$/, "") + "M";
+const feed = document.getElementById("feed"), work = document.getElementById("work");
+const REPS = { ccentral: "Cindy Central", vwest: "Vince West", bill: "Bill South", vcent: "Vanessa Central" };
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const OBJECTIVE = "Identify Colorado operators controlling three or more paying locations across different brand names, and rank them by unrealized spend.";
+const SIGNALS = [
+  ["Shared payment method across self-serve accounts", 241, "bill"],
+  ["Shared billing address or billing contact", 198, "bill"],
+  ["Same phone number routing across brands", 156, ""],
+  ["Same person answering reviews across brands", 112, ""],
+  ["Co-located openings in the same retail centers", 94, ""],
+  ["Entity + registered agent (Data Vendor Gateway)", 287, ""],
+];
+const link = (path, label, primary) => `<a class="btn ${primary ? "primary" : ""}" target="_blank" href="${D.org_url}${path}">${label}</a>`;
+document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, { weekday: "short", month: "long", day: "numeric" });
+
+function add(html, cls = "") {
+  const d = document.createElement("div"); d.className = cls; d.innerHTML = html; feed.appendChild(d);
+  feed.scrollTo({ top: Math.max(0, d.offsetTop - 70), behavior: "smooth" }); return d;
+}
+function agent(html) {
+  return add(`<div class="hunter-av sm">H</div><div class="body">${html}</div>`, "msg agent");
+}
+function setWork(items) {
+  work.innerHTML = items.map(([sec, list]) => `<h5>${sec}</h5>` + list.map(([cls, t, s, pct]) =>
+    `<div class="wf ${cls}"><div class="t">${t}</div><div class="s">${s}</div>${pct != null ? `<div class="prog"><i style="width:${pct}%"></i></div>` : ""}</div>`).join("")).join("");
+}
+const SCHEDULED = ["Scheduled", [["sched", "Pipeline Snapshot", "Daily · 7 AM"], ["sched", "Executive Brief", "Weekly · Fri"]]];
+async function think(text, ms, instant) {
+  if (instant) return;
+  const t = agent(`<div class="thinking"><span class="spinner"></span>${text}</div>`);
+  await sleep(ms); t.remove();
+}
+async function typeComposer(text, instant) {
+  const c = document.getElementById("composer");
+  if (!instant) for (let i = 1; i <= text.length; i += 3) { c.value = text.slice(0, i); await sleep(12); }
+  c.value = "";
+}
+async function count(el, to, ms, f = n => n.toLocaleString(), instant) {
+  if (instant) { el.textContent = f(to); return; }
+  const t0 = performance.now();
+  await new Promise(res => {
+    const tick = now => { const p = Math.min(1, (now - t0) / ms); el.textContent = f(Math.round(to * (1 - Math.pow(1 - p, 3)))); p < 1 ? requestAnimationFrame(tick) : res(); };
+    requestAnimationFrame(tick);
+  });
+}
+
+// ---------- step renderers ----------
+function home() {
+  add(`<div class="hello"><div class="hunter-av">H</div><div><h1>Good morning, Marcus</h1><p>I'm Hunter, your sales agent. Here's what came in overnight.</p></div></div>`);
+  add(`<div class="card">
+    <div class="k">New pattern confirmed by Piper · Tue 10:15 PM</div>
+    <h3 style="margin-top:6px">${P.company}: one owner, ${P.locations} locations, ${P.brands.length} brands</h3>
+    <div>Signed up for one ${P.signed_up_for} at ${fmt(P.monthly_spend)}/mo. In conversation, Piper learned he runs ${P.brand_breakdown["Dave's Hot Chicken"]} Dave's Hot Chicken and ${P.brand_breakdown["Jersey Mike's Subs"]} Jersey Mike's too, with one marketing budget and rights to ${P.future_locations} more.
+    <b>His name is on none of the 12 pages.</b> Routed to Cindy Central; meeting Thursday 10:00 AM.</div>
+    <div style="margin-top:10px;display:flex;gap:8px"><button class="btn primary">Find more owners like this</button><button class="btn">View lead</button></div>
+  </div>`);
+  setWork([["Ready", [["ready", "Piper: confirmed pattern", `${P.company} · ${P.locations} locations · 3 brands`]]], SCHEDULED]);
+}
+
+async function objective(instant) {
+  await typeComposer(OBJECTIVE, instant);
+  add(`<div class="bub">${OBJECTIVE}</div>`, "msg user");
+}
+
+async function plan(instant) {
+  await think("Reading the Whitaker Hospitality pattern and Colorado account data...", 1600, instant);
+  agent(`<div>Using the record Piper confirmed as my template. The useful signals live in <b>billing</b>, not the sales data model, so I'll read those too. Here's my plan:</div>
+  <div class="tmpl"><span class="tag">TEMPLATE</span><div><b>${P.company}</b>: ${P.locations} locations, 3 brands, pages claimed by store managers, owner on none of them. One payment method paid two of the self-serve accounts.</div></div>
+  <div class="card plan">
+    <div class="k">Plan · Colorado operator discovery</div>
+    <ol>
+      <li>Pull every Colorado business page and self-serve advertising account <span class="src">Salesforce</span> <span class="src bill">Billing</span></li>
+      <li>Link accounts in different brands that share a <b>payment method, billing address or billing contact</b> <span class="src bill">Billing</span></li>
+      <li>Link pages whose <b>phone numbers route</b> to the same line <span class="src">Business pages</span></li>
+      <li>Link brands where the <b>same person answers reviews</b> <span class="src">Reviews</span></li>
+      <li>Flag <b>co-located openings</b> in the same retail centers <span class="src">Locations</span></li>
+      <li>Confirm ownership with <b>entity and registered-agent records</b> <span class="src dvg">Data Vendor Gateway</span></li>
+      <li>Keep operators with <b>3+ locations across 2+ brands</b>; rank by dark locations × ${fmt(D.rev_per_location)}</li>
+      <li>Then work it: build parent-child hierarchy, sequence the dark locations, route the top 40 to Multi-Location reps with a brief</li>
+    </ol>
+    <div class="guard">
+      <div><b>Long-horizon runtime</b>Estimated 2 to 3 days. Runs in the background.</div>
+      <div><b>Inside platform limits</b>Batched reads; no burst on the Salesforce API.</div>
+      <div><b>Einstein Trust Layer</b>Every lookup and write is logged and auditable.</div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:8px"><button class="btn primary">Approve &amp; start</button><button class="btn">Edit plan</button></div>
+  </div>`);
+}
+
+const RUN_STEPS = [
+  ["Scanned Colorado business pages", T.pages_scanned],
+  ["Read self-serve advertising accounts", T.selfserve_accounts_scanned],
+  ["Linked accounts by payment method + billing contact", 1312],
+  ["Linked pages by phone routing and review responders", 846],
+  ["Confirmed entities via Data Vendor Gateway", 400],
+  ["Built operator hierarchies", T.operators],
+];
+async function running(instant) {
+  const card = agent(`<div class="card run"><div class="k">Running · Colorado operator discovery</div><ol>${RUN_STEPS.map(([t], n) =>
+    `<li><span class="dot" id="d${n}"></span>${t}<span class="counter" id="c${n}"></span></li>`).join("")}</ol></div>`);
+  setWork([["Running", [["running", "Colorado operator discovery", "Day 1 of 3 · Step 1 of 6", 8]]], ["Ready", [["ready", "Piper: confirmed pattern", P.company]]], SCHEDULED]);
+  for (let n = 0; n < RUN_STEPS.length; n++) {
+    const d = document.getElementById("d" + n);
+    d.className = "dot live";
+    if (n < 3 || instant) await count(document.getElementById("c" + n), RUN_STEPS[n][1], 900, undefined, instant);
+    else document.getElementById("c" + n).textContent = "queued";
+    if (n < 3 || instant) { d.className = "dot done"; d.textContent = "✓"; }
+    if (n >= 3 && !instant) break;
+    work.querySelector(".prog i").style.width = (n + 1) * 14 + "%";
+  }
+}
+
+async function results(instant) {
+  add(`<span>3 days later · Hunter finished overnight</span>`, "divider");
+  for (let n = 0; n < RUN_STEPS.length; n++) {
+    const d = document.getElementById("d" + n);
+    if (d) { d.className = "dot done"; d.textContent = "✓"; document.getElementById("c" + n).textContent = RUN_STEPS[n][1].toLocaleString(); }
+  }
+  await think("Summarizing results...", 900, instant);
+  const max = Math.max(...SIGNALS.map(s => s[1]));
+  const top10 = OPS.slice(0, 10);
+  agent(`<div>Done. In the Colorado pilot territory I found <b>${T.operators} operators</b> who control <b>${T.locations.toLocaleString()} locations</b> under different brand names. Yelp already bills ${T.paying_locations.toLocaleString()} of them as unrelated self-serve accounts. The other ${T.dark_locations} aren't advertising at all.</div>
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="k1">0</div><div class="l">Operators found</div></div>
+    <div class="kpi"><div class="v" id="k2">0</div><div class="l">Locations they control</div></div>
+    <div class="kpi"><div class="v" id="k3">0</div><div class="l">Already paying (self-serve)</div></div>
+    <div class="kpi"><div class="v" id="k4">0</div><div class="l">Dark locations</div></div>
+    <div class="kpi hero"><div class="v" id="k5">$0</div><div class="l">Net-new annual revenue</div></div>
+  </div>
+  <div class="card"><div class="k">Which signals connected them (operators linked, overlapping)</div><div class="sigbars" style="margin-top:8px">
+    ${SIGNALS.map(([l, v, c]) => `<div class="r ${c}"><span>${l}</span><span class="t"><i data-w="${v / max * 100}%"></i></span><b>${v}</b></div>`).join("")}
+  </div><div style="font-size:12px;color:var(--muted);margin-top:6px">Orange = billing data, which isn't in the sales data model today.</div></div>
+  <div class="card" style="padding:6px 6px 0"><div class="k" style="padding:10px 10px 4px">Ranked by unrealized spend · top 40 routed to reps</div>
+  <table class="rank"><thead><tr><th>#</th><th>Operator</th><th>Brands</th><th class="num">Locations</th><th class="num">Paying</th><th class="num">Dark</th><th class="num">Unrealized / yr</th><th>Confidence</th><th>Rep</th></tr></thead>
+  <tbody id="rankBody">${rows(top10)}</tbody></table>
+  <span class="more" onclick="document.getElementById('rankBody').innerHTML=rows(OPS);this.remove()">Show all 40 →</span></div>`);
+  const fx = [[1, T.operators], [2, T.locations], [3, T.paying_locations], [4, T.dark_locations]];
+  fx.forEach(([k, v]) => count(document.getElementById("k" + k), v, 1200, undefined, instant));
+  count(document.getElementById("k5"), T.unrealized_annual, 1400, fmtM, instant);
+  setTimeout(() => document.querySelectorAll(".sigbars i").forEach(i => i.style.width = i.dataset.w), instant ? 0 : 200);
+  setWork([["Ready", [["ready", "Colorado operator discovery", `${T.operators} operators · ${T.locations.toLocaleString()} locations · ${fmtM(T.unrealized_annual)}`]]], SCHEDULED]);
+}
+function rows(list) {
+  return list.map(o => `<tr class="row" onclick="openOp(${o.rank})"><td>${o.rank}</td><td><b>${o.name}</b><div style="color:var(--muted);font-size:12px">${o.first} ${o.last}</div></td>
+    <td>${o.brands.map(b => `<span class="brandchip">${b}</span>`).join("")}</td><td class="num">${o.location_count}</td><td class="num">${o.paying}</td><td class="num"><b>${o.dark}</b></td>
+    <td class="num"><b>${fmt(o.unrealized_annual)}</b></td><td><span class="conf">${o.confidence}%</span></td><td>${REPS[o.rep_alias]}</td></tr>`).join("");
+}
+
+const ICON = { billing: "💳", phone: "📞", reviews: "💬", colocation: "📍", entity: "🏛" };
+function openOp(rank) {
+  const o = OPS.find(x => x.rank === rank);
+  const byBrand = {};
+  o.locations.forEach(l => (byBrand[l.brand] ||= []).push(l));
+  document.getElementById("drawerBody").innerHTML = `
+    <div class="k" style="color:var(--muted);font-size:12px">OPERATOR #${o.rank} · ${o.confidence}% CONFIDENCE · ROUTED TO ${REPS[o.rep_alias].toUpperCase()}</div>
+    <h2>${o.name}</h2><div style="color:var(--muted);margin:2px 0 14px">${o.first} ${o.last}, ${o.title} · ${o.email}</div>
+    <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+      <div class="kpi"><div class="v">${o.location_count}</div><div class="l">Locations</div></div>
+      <div class="kpi"><div class="v">${o.paying}</div><div class="l">Paying today</div></div>
+      <div class="kpi"><div class="v">${o.dark}</div><div class="l">Dark</div></div>
+      <div class="kpi hero"><div class="v">${fmt(o.unrealized_annual)}</div><div class="l">Unrealized / yr</div></div>
+    </div>
+    <h3>Why I think this is one operator</h3>
+    <div class="ev"><ul>${o.signals.map(s => `<li><span>${ICON[s.type]}</span><span><b>${s.label}.</b> ${s.detail}</span></li>`).join("")}</ul></div>
+    <h3>Hierarchy I built in Salesforce</h3>
+    <div class="tree"><div class="op">🏢 ${o.name} <span style="color:var(--muted);font-weight:400">(parent account)</span></div>
+      ${Object.entries(byBrand).map(([b, ls]) => `<div class="br">${b} · ${ls.length}</div>` + ls.map(l =>
+        `<div class="loc">↳ ${l.name} <span class="st ${l.status === "Dark" ? "dark" : "pay"}">${l.status === "Dark" ? "DARK · in sequence" : "PAYING $" + l.monthly + "/mo"}</span></div>`).join("")).join("")}
+    </div>
+    <h3>Rep brief</h3><pre class="brief">${o.brief}</pre>
+    <div class="links">${link("/lightning/o/Account/list?filterName=Hunter_Colorado_Operators", "Open in Salesforce", true)}</div>`;
+  document.getElementById("drawer").classList.add("show");
+}
+function closeDrawer() { document.getElementById("drawer").classList.remove("show"); }
+
+async function worked(instant) {
+  closeDrawer();
+  await think("Working the list...", 1100, instant);
+  const t40 = D.top40;
+  agent(`<div class="card"><div class="k">Done · written back to Salesforce</div>
+    <div class="done-list"><ul>
+      <li>✅ <span><b>Parent-child hierarchy</b> built for ${T.operators} operators: every location account now rolls up to its owner.</span></li>
+      <li>✅ <span><b>Outbound sequences</b> started for the ${T.dark_locations} dark locations, in campaign <i>Hunter - Colorado Dark Location Outreach</i>.</span></li>
+      <li>✅ <span><b>Top 40 routed</b> to Multi-Location reps (10 each to Cindy, Vince, Bill and Vanessa), each with a brief task: ${t40.dark} dark locations, ${fmt(t40.unrealized_annual)}/yr.</span></li>
+      <li>✅ <span><b>10 opportunities</b> opened for the highest-value operators.</span></li>
+      <li>✅ <span><b>Learned</b>: the billing signals were the strongest predictor. I'll run this weekly and apply it to the next territory.</span></li>
+    </ul></div>
+    <div class="links">
+      ${link("/lightning/o/Account/list?filterName=Hunter_Colorado_Operators", "Ranked operators", true)}
+      ${link("/lightning/o/Account/list?filterName=Hunter_Dark_Locations", "Dark locations")}
+      ${link("/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads", "Piper leads")}
+      ${link("/lightning/o/Campaign/home", "Campaign")}
+      ${link("/lightning/o/Opportunity/home", "Opportunities")}
+    </div></div>
+    <div>Marcus, your 180 reps now have a ranked list of named owners instead of 10,000 undifferentiated pages.</div>`);
+  setWork([["Ready", [["ready", "Colorado operator discovery", `${T.operators} operators · ${fmtM(T.unrealized_annual)}`], ["ready", "Routed top 40 to reps", "40 briefs · 10 opportunities"]]],
+    ["Running", [["running", "Dark location sequences", `${T.dark_locations} locations · Day 1 of 21`, 5]]],
+    ["Scheduled", [["sched", "Weekly operator discovery", "Mondays · next territory: Arizona"], ...SCHEDULED[1]]]]);
+}
+
+const steps = [
+  ["Marcus opens Salesforce. Hunter surfaces the pattern Piper confirmed.", async () => home()],
+  ["Give Hunter the objective (not 'find businesses').", objective],
+  ["Hunter drafts the plan using Piper's record as the template.", plan],
+  ["Approve: Hunter starts the long-horizon run.", running],
+  ["Fast-forward three days: results.", results],
+  ["Open the #1 operator: evidence, hierarchy, brief.", async () => openOp(1)],
+  ["Hunter works the list and writes it all back to Salesforce.", worked],
+];
+Presenter.init(steps, () => { feed.innerHTML = ""; closeDrawer(); });
+</script>
+</body>
+</html>

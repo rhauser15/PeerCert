@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yelp_Segment__c</fullName>
+    <label>Yelp Segment</label>
+    <description>Sales segment.</description>
+    <inlineHelpText>Sales segment.</inlineHelpText>
+    <type>Picklist</type><valueSet><restricted>true</restricted><valueSetDefinition><sorted>false</sorted><value><fullName>Self-Serve</fullName><default>false</default><label>Self-Serve</label></value><value><fullName>Local</fullName><default>false</default><label>Local</label></value><value><fullName>Emerging</fullName><default>false</default><label>Emerging</label></value><value><fullName>Multi-Location</fullName><default>false</default><label>Multi-Location</label></value><value><fullName>Enterprise</fullName><default>false</default><label>Enterprise</label></value></valueSetDefinition></valueSet>
+</CustomField>

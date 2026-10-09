@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location_Count__c</fullName>
+    <label>Location Count</label>
+    <description>Total locations the owner operates, across all brands.</description>
+    <inlineHelpText>Total locations the owner operates, across all brands.</inlineHelpText>
+    <type>Number</type><precision>6</precision><scale>0</scale>
+</CustomField>

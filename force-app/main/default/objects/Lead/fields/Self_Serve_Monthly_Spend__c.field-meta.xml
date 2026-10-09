@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Self_Serve_Monthly_Spend__c</fullName>
+    <label>Self-Serve Monthly Spend</label>
+    <description>Monthly ad spend selected at self-serve checkout.</description>
+    <inlineHelpText>Monthly ad spend selected at self-serve checkout.</inlineHelpText>
+    <type>Currency</type><precision>12</precision><scale>0</scale>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Brands_Operated__c</fullName>
+    <label>Brands Operated</label>
+    <description>Brands the owner operates, semicolon separated.</description>
+    <inlineHelpText>Brands the owner operates, semicolon separated.</inlineHelpText>
+    <type>Text</type><length>255</length>
+</CustomField>

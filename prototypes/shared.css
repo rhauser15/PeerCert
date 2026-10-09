@@ -1,0 +1,12 @@
+/* Presenter strip shared by the demo mockups. */
+.presenter {
+  position: fixed; left: 50%; top: 10px; transform: translateX(-50%); z-index: 50;
+  background: rgba(17, 24, 39, .88); color: #f9fafb; font: 12.5px -apple-system, "Helvetica Neue", Arial, sans-serif;
+  padding: 7px 14px; border-radius: 18px; max-width: 70vw; cursor: pointer; display: flex; gap: 10px; align-items: center;
+}
+.presenter .keys { color: #9ca3af; white-space: nowrap; }
+.presenter.hidden { opacity: 0; }
+.presenter.hidden:hover { opacity: .9; }
+.proto-note {
+  position: fixed; left: 12px; bottom: 8px; font: 11px -apple-system, Arial, sans-serif; color: #9ca3af; z-index: 1;
+}

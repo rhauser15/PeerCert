@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multi_Location__c</fullName>
+    <label>Multi-Location</label>
+    <description>Set by the routing Flow when the owner controls 3+ locations or multiple brands.</description>
+    <inlineHelpText>Set by the routing Flow when the owner controls 3+ locations or multiple brands.</inlineHelpText>
+    <type>Checkbox</type><defaultValue>false</defaultValue>
+</CustomField>

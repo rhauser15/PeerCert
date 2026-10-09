@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Development_Rights_Through__c</fullName>
+    <label>Development Rights Through</label>
+    <description>Year the owner's development rights run through.</description>
+    <inlineHelpText>Year the owner's development rights run through.</inlineHelpText>
+    <type>Number</type><precision>4</precision><scale>0</scale>
+</CustomField>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>Find and Win demo. When an agent (Piper or Hunter) learns that a lead controls 3+ locations or operates other brands, flag it Multi-Location, route it to the Multi-Location rep, and create a brief task. Runs on-platform, no API calls.</description>
+    <label>Yelp - Multi-Location Lead Routing</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+    <interviewLabel>Yelp Multi-Location Routing {!$Flow.CurrentDateTime}</interviewLabel>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+    </processMetadataValues>
+
+    <constants>
+        <name>RepAlias</name>
+        <dataType>String</dataType>
+        <value><stringValue>ccentral</stringValue></value>
+    </constants>
+
+    <formulas>
+        <name>RoutingReason</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.Agent_Source__c}) &amp; &quot; found &quot; &amp; TEXT({!$Record.Location_Count__c}) &amp; &quot; locations across &quot; &amp; TEXT(BLANKVALUE({!$Record.Brand_Count__c}, 1)) &amp; &quot; brands. Routed to Multi-Location Sales.&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>TaskSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Agent brief: &quot; &amp; {!$Record.Company} &amp; &quot; (&quot; &amp; TEXT({!$Record.Location_Count__c}) &amp; &quot; locations)&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>Tomorrow</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() + 1</expression>
+    </formulas>
+
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector><targetReference>Get_Multi_Location_Rep</targetReference></connector>
+        <object>Lead</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>Location_Count__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value><numberValue>3.0</numberValue></value>
+        </filters>
+        <filters>
+            <field>Operates_Other_Brands__c</field>
+            <operator>EqualTo</operator>
+            <value><booleanValue>true</booleanValue></value>
+        </filters>
+        <filters>
+            <field>Multi_Location__c</field>
+            <operator>EqualTo</operator>
+            <value><booleanValue>false</booleanValue></value>
+        </filters>
+    </start>
+
+    <recordLookups>
+        <name>Get_Multi_Location_Rep</name>
+        <label>Get Multi-Location Rep</label>
+        <locationX>176</locationX>
+        <locationY>200</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector><targetReference>Rep_Found</targetReference></connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Alias</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>RepAlias</elementReference></value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value><booleanValue>true</booleanValue></value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <decisions>
+        <name>Rep_Found</name>
+        <label>Rep Found?</label>
+        <locationX>176</locationX>
+        <locationY>320</locationY>
+        <defaultConnector><targetReference>Flag_Lead_Keep_Owner</targetReference></defaultConnector>
+        <defaultConnectorLabel>No rep</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Rep</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Multi_Location_Rep.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue><booleanValue>false</booleanValue></rightValue>
+            </conditions>
+            <connector><targetReference>Flag_and_Route_Lead</targetReference></connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+
+    <recordUpdates>
+        <name>Flag_and_Route_Lead</name>
+        <label>Flag and Route Lead</label>
+        <locationX>50</locationX>
+        <locationY>440</locationY>
+        <connector><targetReference>Create_Brief_Task</targetReference></connector>
+        <inputAssignments><field>Multi_Location__c</field><value><booleanValue>true</booleanValue></value></inputAssignments>
+        <inputAssignments><field>OwnerId</field><value><elementReference>Get_Multi_Location_Rep.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>Rating</field><value><stringValue>Hot</stringValue></value></inputAssignments>
+        <inputAssignments><field>Status</field><value><stringValue>Qualified</stringValue></value></inputAssignments>
+        <inputAssignments><field>Routing_Reason__c</field><value><elementReference>RoutingReason</elementReference></value></inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+
+    <recordUpdates>
+        <name>Flag_Lead_Keep_Owner</name>
+        <label>Flag Lead (Keep Owner)</label>
+        <locationX>300</locationX>
+        <locationY>440</locationY>
+        <inputAssignments><field>Multi_Location__c</field><value><booleanValue>true</booleanValue></value></inputAssignments>
+        <inputAssignments><field>Rating</field><value><stringValue>Hot</stringValue></value></inputAssignments>
+        <inputAssignments><field>Routing_Reason__c</field><value><elementReference>RoutingReason</elementReference></value></inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+
+    <recordCreates>
+        <name>Create_Brief_Task</name>
+        <label>Create Brief Task</label>
+        <locationX>50</locationX>
+        <locationY>560</locationY>
+        <assignRecordIdToReference>BriefTaskId</assignRecordIdToReference>
+        <inputAssignments><field>Subject</field><value><elementReference>TaskSubject</elementReference></value></inputAssignments>
+        <inputAssignments><field>WhoId</field><value><elementReference>$Record.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>OwnerId</field><value><elementReference>Get_Multi_Location_Rep.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>ActivityDate</field><value><elementReference>Tomorrow</elementReference></value></inputAssignments>
+        <inputAssignments><field>Priority</field><value><stringValue>High</stringValue></value></inputAssignments>
+        <inputAssignments><field>Status</field><value><stringValue>Not Started</stringValue></value></inputAssignments>
+        <inputAssignments><field>Description</field><value><elementReference>$Record.Agent_Qualification_Summary__c</elementReference></value></inputAssignments>
+        <object>Task</object>
+    </recordCreates>
+
+    <variables>
+        <name>BriefTaskId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paying_Locations__c</fullName>
+    <label>Paying Locations</label>
+    <description>Locations already advertising (usually self-serve).</description>
+    <inlineHelpText>Locations already advertising (usually self-serve).</inlineHelpText>
+    <type>Number</type><precision>6</precision><scale>0</scale>
+</CustomField>

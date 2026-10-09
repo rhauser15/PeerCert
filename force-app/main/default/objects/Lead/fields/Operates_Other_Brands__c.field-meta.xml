@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Operates_Other_Brands__c</fullName>
+    <label>Operates Other Brands</label>
+    <description>Owner operates locations under brands other than the one that signed up.</description>
+    <inlineHelpText>Owner operates locations under brands other than the one that signed up.</inlineHelpText>
+    <type>Checkbox</type><defaultValue>false</defaultValue>
+</CustomField>

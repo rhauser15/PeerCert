@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Committed_Future_Locations__c</fullName>
+    <label>Committed Future Locations</label>
+    <description>Locations under development rights not yet open.</description>
+    <inlineHelpText>Locations under development rights not yet open.</inlineHelpText>
+    <type>Number</type><precision>6</precision><scale>0</scale>
+</CustomField>
