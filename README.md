@@ -22,6 +22,6 @@ python3 scripts/seed.py                                        # reset + load re
 python3 -m http.server 8787 --directory prototypes             # mockups at http://localhost:8787
 ```
 
-Mockup controls: **→ / Space** next · **←** back · **R** restart · **H** hide presenter strip.
+Mockup controls: **→ / Space** next · **←** back · **R** restart · **H** hide presenter strip · **B** fake Yelp browser bar · `?step=N` jump to a step.
 
 Piper and Hunter are mockups (Hunter is a pre-GA prototype). The Salesforce side is real.

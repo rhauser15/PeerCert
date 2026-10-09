@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23d32323'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='700' font-size='20' fill='white' text-anchor='middle'%3Ey%3C/text%3E%3C/svg%3E">
+<meta name="demo-url" content="biz.yelp.com/advertise/checkout?biz=smoothie-king-lakewood-belmar">
 <title>Yelp for Business - Advertise</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="shared.css">
@@ -10,7 +12,7 @@
   :root { --yelp: #d32323; --ink: #2d2e2f; --muted: #6e7072; --line: #e6e6e6; --piper: #0b5cab; --piper-2: #1b96ff; }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); background: #fff; height: 100vh; overflow: hidden; }
-  .layout { display: grid; grid-template-columns: 1fr 380px; height: 100vh; }
+  .layout { display: grid; grid-template-columns: 1fr 380px; height: calc(100vh - var(--frame-h)); }
 
   /* ---------- Website ---------- */
   .site { overflow-y: auto; background: #f7f7f7; position: relative; scroll-behavior: smooth; }
@@ -437,6 +439,7 @@ function goVoice(on) {
   voice = on; video.classList.toggle("live", on);
 }
 function page(name) {
+  Presenter.setUrl(name === "ml" ? "biz.yelp.com/advertise/multi-location" : "biz.yelp.com/advertise/checkout?biz=smoothie-king-lakewood-belmar");
   document.getElementById("v-checkout").classList.toggle("on", name === "checkout");
   document.getElementById("v-ml").classList.toggle("on", name === "ml");
   document.getElementById("nav-adv").classList.toggle("on", name === "checkout");

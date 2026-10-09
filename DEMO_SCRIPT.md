@@ -38,6 +38,14 @@
    6. Salesforce → **Pikes Peak Food Co.** (rank #1) → **View Account Hierarchy**
 4. In the mockups: **→ / Space / clicker** = next, **←** = back, **R** = restart, **H** = hide the presenter strip at the top. To rehearse a single beat, add `?step=N` to the URL (for example `piper.html?step=11`).
 5. Sign in as Rob: `sf org open -o trailsignup-429cdf`
+6. **Hide the real URL.** Open each mockup in Chrome app mode, which has no address bar or tabs:
+   ```bash
+   open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/piper.html?frame=1"
+   ```
+   ```bash
+   open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/hunter.html?frame=1"
+   ```
+   `?frame=1` (or pressing **B**) adds a fake Chrome tab and address bar. Piper shows `biz.yelp.com/advertise/checkout…`, then `…/multi-location` when Piper co-browses. Hunter shows `yelp.lightning.force.com/lightning/n/Hunter`. Press **⌃⌘F** for full screen. Your B choice is remembered.
 
 ---
 
