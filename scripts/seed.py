@@ -180,6 +180,8 @@ def main():
     if not a.piper:
         seed_hunter(data, users, rts)
     seed_piper(data, users, rts)
+    import links  # record IDs changed; refresh the links in DEMO_SCRIPT.md
+    links.main()
     print("Done.")
 
 
