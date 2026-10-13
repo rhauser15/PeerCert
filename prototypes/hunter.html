@@ -216,10 +216,10 @@ function home() {
     <div class="k">New pattern confirmed by Piper · Tue 10:15 PM</div>
     <h3 style="margin-top:6px">${P.company}: one owner, ${P.locations} locations, ${P.brands.length} brands</h3>
     <div>Signed up for one ${P.signed_up_for} at ${fmt(P.monthly_spend)}/mo. In conversation, Piper learned he runs ${P.brand_breakdown["Dave's Hot Chicken"]} Dave's Hot Chicken and ${P.brand_breakdown["Jersey Mike's Subs"]} Jersey Mike's too, with one marketing budget and rights to ${P.future_locations} more.
-    <b>His name is on none of the 12 pages.</b> Piper routed him to you and booked Thursday at 10:00 AM.</div>
+    <b>His name is on none of the 12 pages.</b> Piper booked him with Jordan (SDR) for Thursday at 10:00 AM and added you as territory lead.</div>
     <div style="margin-top:10px;display:flex;gap:8px"><button class="btn primary">Find more owners like this</button><button class="btn">View lead</button></div>
   </div>`);
-  setWork([["Ready", [["ready", "Piper: confirmed pattern", `${P.company} · ${P.locations} locations · 3 brands`]]], SCHEDULED]);
+  setWork([["Ready", [["ready", "Piper: owner in your territory", `${P.company} · ${P.locations} locations · SDR call Thu, you're invited`]]], SCHEDULED]);
 }
 
 async function objective(instant) {

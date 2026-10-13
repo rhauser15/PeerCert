@@ -45,6 +45,7 @@ FIELDS = {
         "Agent_Qualification_Summary__c": lta("Agent Qualification Summary", "What the agent learned in conversation."),
         "Routing_Reason__c": txt("Routing Reason", "Why the routing Flow sent this lead to a rep."),
     },
+    # Lead.Territory_Lead__c (User lookup) is hand-written in force-app; it's added to the permission set below.
     "Account": {
         "Location_Count__c": num("Location Count", "Total locations controlled by this operator."),
         "Paying_Locations__c": num("Paying Locations", "Locations already advertising (usually self-serve)."),
@@ -83,7 +84,7 @@ for obj, fields in FIELDS.items():
 
 # --- Permission set: field access for everything above ---
 MD = os.path.join(ROOT, "..")
-perms = []
+perms = ["    <fieldPermissions><editable>true</editable><field>Lead.Territory_Lead__c</field><readable>true</readable></fieldPermissions>"]
 for obj, fields in FIELDS.items():
     for name in fields:
         perms.append(
@@ -120,7 +121,7 @@ def list_view(obj, name, label, columns, filters, sort=None):
 
 list_view("Lead", "Piper_Multi_Location_Leads", "Piper - Multi-Location Leads",
     ["FULL_NAME", "LEAD.COMPANY", "Location_Count__c", "Brand_Count__c", "Brands_Operated__c",
-     "Unrealized_Annual_Spend__c", "Routing_Reason__c", "CORE.USERS.ALIAS", "LEAD.CREATED_DATE"],
+     "Unrealized_Annual_Spend__c", "Routing_Reason__c", "CORE.USERS.ALIAS", "Territory_Lead__c", "LEAD.CREATED_DATE"],
     [("Multi_Location__c", "equals", "1")])
 list_view("Account", "Hunter_Colorado_Operators", "Hunter - Colorado Operators (Ranked)",
     ["Hunter_Rank__c", "ACCOUNT.NAME", "Location_Count__c", "Paying_Locations__c", "Dark_Locations__c",

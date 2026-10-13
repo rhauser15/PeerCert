@@ -9,6 +9,7 @@
     <columns>Unrealized_Annual_Spend__c</columns>
     <columns>Routing_Reason__c</columns>
     <columns>CORE.USERS.ALIAS</columns>
+    <columns>Territory_Lead__c</columns>
     <columns>LEAD.CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <filters><field>Multi_Location__c</field><operation>equals</operation><value>1</value></filters>

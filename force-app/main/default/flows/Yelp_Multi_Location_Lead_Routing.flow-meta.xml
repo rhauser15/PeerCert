@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
-    <description>Find and Win demo. When an agent (Piper or Hunter) learns that a lead controls 3+ locations or operates other brands, flag it Multi-Location, route it to the Multi-Location rep, and create a brief task. Runs on-platform, no API calls.</description>
+    <description>Find and Win demo. When an agent (Piper or Hunter) learns that a lead controls 3+ locations or operates other brands: flag it Multi-Location, give it to the SDR for the first call with a brief, and set the territory AE as Territory Lead with an FYI task so they have visibility. Runs on-platform, no API calls.</description>
     <label>Yelp - Multi-Location Lead Routing</label>
     <processType>AutoLaunchedFlow</processType>
     <status>Active</status>
@@ -16,7 +16,12 @@
     </processMetadataValues>
 
     <constants>
-        <name>RepAlias</name>
+        <name>SdrAlias</name>
+        <dataType>String</dataType>
+        <value><stringValue>jreyes</stringValue></value>
+    </constants>
+    <constants>
+        <name>TerritoryLeadAlias</name>
         <dataType>String</dataType>
         <value><stringValue>tjones</stringValue></value>
     </constants>
@@ -24,12 +29,17 @@
     <formulas>
         <name>RoutingReason</name>
         <dataType>String</dataType>
-        <expression>TEXT({!$Record.Agent_Source__c}) &amp; &quot; found &quot; &amp; TEXT({!$Record.Location_Count__c}) &amp; &quot; locations across &quot; &amp; TEXT(BLANKVALUE({!$Record.Brand_Count__c}, 1)) &amp; &quot; brands. Routed to Multi-Location Sales.&quot;</expression>
+        <expression>TEXT({!$Record.Agent_Source__c}) &amp; &quot; found &quot; &amp; TEXT({!$Record.Location_Count__c}) &amp; &quot; locations across &quot; &amp; TEXT(BLANKVALUE({!$Record.Brand_Count__c}, 1)) &amp; &quot; brands. SDR first call; territory lead notified.&quot;</expression>
     </formulas>
     <formulas>
         <name>TaskSubject</name>
         <dataType>String</dataType>
         <expression>&quot;Agent brief: &quot; &amp; {!$Record.Company} &amp; &quot; (&quot; &amp; TEXT({!$Record.Location_Count__c}) &amp; &quot; locations)&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>FyiSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;FYI: multi-location owner in your territory: &quot; &amp; {!$Record.Company} &amp; &quot; (&quot; &amp; TEXT({!$Record.Location_Count__c}) &amp; &quot; locations)&quot;</expression>
     </formulas>
     <formulas>
         <name>Tomorrow</name>
@@ -40,7 +50,7 @@
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
-        <connector><targetReference>Get_Multi_Location_Rep</targetReference></connector>
+        <connector><targetReference>Get_SDR</targetReference></connector>
         <object>Lead</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
@@ -64,17 +74,40 @@
     </start>
 
     <recordLookups>
-        <name>Get_Multi_Location_Rep</name>
-        <label>Get Multi-Location Rep</label>
+        <name>Get_SDR</name>
+        <label>Get SDR</label>
         <locationX>176</locationX>
-        <locationY>200</locationY>
+        <locationY>160</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector><targetReference>Rep_Found</targetReference></connector>
+        <connector><targetReference>Get_Territory_Lead</targetReference></connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Alias</field>
             <operator>EqualTo</operator>
-            <value><elementReference>RepAlias</elementReference></value>
+            <value><elementReference>SdrAlias</elementReference></value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value><booleanValue>true</booleanValue></value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <recordLookups>
+        <name>Get_Territory_Lead</name>
+        <label>Get Territory Lead</label>
+        <locationX>176</locationX>
+        <locationY>280</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector><targetReference>Users_Found</targetReference></connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Alias</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>TerritoryLeadAlias</elementReference></value>
         </filters>
         <filters>
             <field>IsActive</field>
@@ -87,17 +120,22 @@
     </recordLookups>
 
     <decisions>
-        <name>Rep_Found</name>
-        <label>Rep Found?</label>
+        <name>Users_Found</name>
+        <label>SDR and Territory Lead Found?</label>
         <locationX>176</locationX>
-        <locationY>320</locationY>
+        <locationY>400</locationY>
         <defaultConnector><targetReference>Flag_Lead_Keep_Owner</targetReference></defaultConnector>
-        <defaultConnectorLabel>No rep</defaultConnectorLabel>
+        <defaultConnectorLabel>Missing user</defaultConnectorLabel>
         <rules>
-            <name>Yes_Rep</name>
+            <name>Both_Found</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Multi_Location_Rep.Id</leftValueReference>
+                <leftValueReference>Get_SDR.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue><booleanValue>false</booleanValue></rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Territory_Lead.Id</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue><booleanValue>false</booleanValue></rightValue>
             </conditions>
@@ -110,10 +148,11 @@
         <name>Flag_and_Route_Lead</name>
         <label>Flag and Route Lead</label>
         <locationX>50</locationX>
-        <locationY>440</locationY>
-        <connector><targetReference>Create_Brief_Task</targetReference></connector>
+        <locationY>520</locationY>
+        <connector><targetReference>Create_SDR_Brief</targetReference></connector>
         <inputAssignments><field>Multi_Location__c</field><value><booleanValue>true</booleanValue></value></inputAssignments>
-        <inputAssignments><field>OwnerId</field><value><elementReference>Get_Multi_Location_Rep.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>OwnerId</field><value><elementReference>Get_SDR.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>Territory_Lead__c</field><value><elementReference>Get_Territory_Lead.Id</elementReference></value></inputAssignments>
         <inputAssignments><field>Rating</field><value><stringValue>Hot</stringValue></value></inputAssignments>
         <inputAssignments><field>Status</field><value><stringValue>Qualified</stringValue></value></inputAssignments>
         <inputAssignments><field>Routing_Reason__c</field><value><elementReference>RoutingReason</elementReference></value></inputAssignments>
@@ -124,7 +163,7 @@
         <name>Flag_Lead_Keep_Owner</name>
         <label>Flag Lead (Keep Owner)</label>
         <locationX>300</locationX>
-        <locationY>440</locationY>
+        <locationY>520</locationY>
         <inputAssignments><field>Multi_Location__c</field><value><booleanValue>true</booleanValue></value></inputAssignments>
         <inputAssignments><field>Rating</field><value><stringValue>Hot</stringValue></value></inputAssignments>
         <inputAssignments><field>Routing_Reason__c</field><value><elementReference>RoutingReason</elementReference></value></inputAssignments>
@@ -132,14 +171,14 @@
     </recordUpdates>
 
     <recordCreates>
-        <name>Create_Brief_Task</name>
-        <label>Create Brief Task</label>
+        <name>Create_SDR_Brief</name>
+        <label>Create SDR Brief</label>
         <locationX>50</locationX>
-        <locationY>560</locationY>
-        <assignRecordIdToReference>BriefTaskId</assignRecordIdToReference>
+        <locationY>640</locationY>
+        <connector><targetReference>Create_Territory_Lead_FYI</targetReference></connector>
         <inputAssignments><field>Subject</field><value><elementReference>TaskSubject</elementReference></value></inputAssignments>
         <inputAssignments><field>WhoId</field><value><elementReference>$Record.Id</elementReference></value></inputAssignments>
-        <inputAssignments><field>OwnerId</field><value><elementReference>Get_Multi_Location_Rep.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>OwnerId</field><value><elementReference>Get_SDR.Id</elementReference></value></inputAssignments>
         <inputAssignments><field>ActivityDate</field><value><elementReference>Tomorrow</elementReference></value></inputAssignments>
         <inputAssignments><field>Priority</field><value><stringValue>High</stringValue></value></inputAssignments>
         <inputAssignments><field>Status</field><value><stringValue>Not Started</stringValue></value></inputAssignments>
@@ -147,11 +186,18 @@
         <object>Task</object>
     </recordCreates>
 
-    <variables>
-        <name>BriefTaskId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+    <recordCreates>
+        <name>Create_Territory_Lead_FYI</name>
+        <label>Create Territory Lead FYI</label>
+        <locationX>50</locationX>
+        <locationY>760</locationY>
+        <inputAssignments><field>Subject</field><value><elementReference>FyiSubject</elementReference></value></inputAssignments>
+        <inputAssignments><field>WhoId</field><value><elementReference>$Record.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>OwnerId</field><value><elementReference>Get_Territory_Lead.Id</elementReference></value></inputAssignments>
+        <inputAssignments><field>ActivityDate</field><value><elementReference>Tomorrow</elementReference></value></inputAssignments>
+        <inputAssignments><field>Priority</field><value><stringValue>Normal</stringValue></value></inputAssignments>
+        <inputAssignments><field>Status</field><value><stringValue>Not Started</stringValue></value></inputAssignments>
+        <inputAssignments><field>Description</field><value><elementReference>$Record.Agent_Qualification_Summary__c</elementReference></value></inputAssignments>
+        <object>Task</object>
+    </recordCreates>
 </Flow>

@@ -45,7 +45,8 @@ PIPER_LEAD = {
     "markets": "Denver metro and Colorado Springs",
     "future_locations": 4,
     "rights_through": 2028,
-    "rep_alias": "tjones",
+    "rep_alias": "jreyes",  # SDR takes the first call
+    "territory_lead_alias": "tjones",  # AE who owns Colorado; gets visibility
 }
 PIPER_LEAD["annual_as_signed"] = PIPER_LEAD["monthly_spend"] * 12  # $3,600
 PIPER_LEAD["annual_potential"] = PIPER_LEAD["locations"] * REV_PER_LOCATION  # $32,400
@@ -61,7 +62,7 @@ PIPER_LEAD["summary"] = (
     "Why Yelp missed him: the 12 pages share no name (brand matching returns nothing) and each is "
     "claimed by a store manager with a store email. His name is on none of them.\n"
     "Value: $3,600/yr as signed. ~$32,400/yr across 12 locations at Yelp average; 16 locations by 2028.\n"
-    "Next step: intro with Multi-Location rep booked for Thursday 10:00 AM MT."
+    "Next step: first call with SDR Jordan Reyes booked for Thursday 10:00 AM MT. Territory lead Tom Jones invited."
 )
 
 BRANDS = [

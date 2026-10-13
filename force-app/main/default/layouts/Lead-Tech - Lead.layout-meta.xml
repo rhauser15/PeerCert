@@ -135,6 +135,10 @@
                 <behavior>Edit</behavior>
                 <field>Routing_Reason__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Territory_Lead__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

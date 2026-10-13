@@ -78,7 +78,7 @@ def import_plan(steps):
 
 def ids():
     users = {u["Alias"]: u["Id"] for u in query(
-        "SELECT Id, Alias FROM User WHERE Alias IN ('tjones') AND IsActive = true")}
+        "SELECT Id, Alias FROM User WHERE Alias IN ('tjones','jreyes') AND IsActive = true")}
     rts = {r["DeveloperName"]: r["Id"] for r in query(
         "SELECT Id, DeveloperName FROM RecordType WHERE DeveloperName IN "
         "('SDO_Account_Simple','SDO_Lead_Default','SimpleOpportunity')")}
@@ -159,11 +159,12 @@ def seed_piper(data, users, rts):
         Development_Rights_Through__c=p["rights_through"], Agent_Qualification_Summary__c=p["summary"],
         Description=f"Signed up via self-serve checkout for {p['signed_up_for']} at ${p['monthly_spend']}/mo.")
     event = rec(
-        "Event", "Ev1", Subject=f"Intro: {p['company']} - 12-location plan (booked by Piper)",
+        "Event", "Ev1", Subject=f"Intro: {p['company']} - 12-location plan (booked by Piper, SDR call)",
         WhoId="@Piper1", OwnerId=users[p["rep_alias"]], StartDateTime=start.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         EndDateTime=(start + dt.timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         Location="Zoom", Description=p["summary"])
-    import_plan([("Lead", [lead]), ("Event", [event])])
+    invite = rec("EventRelation", "Inv1", EventId="@Ev1", RelationId=users[p["territory_lead_alias"]], IsInvitee=True)
+    import_plan([("Lead", [lead]), ("Event", [event]), ("EventRelation", [invite])])
 
 
 def main():

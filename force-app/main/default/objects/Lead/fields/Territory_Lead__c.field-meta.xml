@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Territory_Lead__c</fullName>
+    <label>Territory Lead</label>
+    <description>Account executive who owns the territory. Set by the routing Flow so they have visibility while an SDR works the lead.</description>
+    <inlineHelpText>Account executive who owns the territory. Set by the routing Flow so they have visibility while an SDR works the lead.</inlineHelpText>
+    <type>Lookup</type>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Territory_Leads</relationshipName>
+    <deleteConstraint>SetNull</deleteConstraint>
+</CustomField>

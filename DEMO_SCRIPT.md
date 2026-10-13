@@ -3,7 +3,8 @@
 **Segment:** Find → Win on the Agentic Revenue Lifecycle
 **Run time:** 24–27 minutes
 **Audience:** Nina (CRO), Dana (VP RevOps), Marcus (Sr Dir, Emerging & Multi-Location), Priya (Dir, Demand Gen), Alisha (VP Customer Success), Tom Jones (Sales Lead, Marcus's team, owns Colorado)
-**Story in one line:** Piper finds the invisible owner at 10:15 PM and hands him to Tom. Tom asks Hunter to find every owner like him. Leadership sees all of it in Salesforce the next morning.
+**Demo users in the org:** Tom Jones (territory AE), Jordan Reyes (SDR on Priya's team)
+**Story in one line:** Piper finds the invisible owner at 10:15 PM and books him with an SDR, with Tom looped in. Tom asks Hunter to find every owner like him. Leadership sees all of it in Salesforce the next morning.
 
 ---
 
@@ -74,12 +75,12 @@
 | 9–10 | → → | "And growth: development rights for four more through 2028." |
 | 11 | → (co-browse) | "Now Piper **co-browses**. She takes him to the multi-location page and pulls up the story that fits a multi-brand franchisee." |
 | 12 | → (reveal) | "Here's why Yelp could never find him. Twelve pages that share no name, so brand matching returns nothing. Each is claimed by a store manager under a store email. **His name is on none of them.** This is exactly Priya's 'single location that's really a chain.'" |
-| 13 | → (booker) | "Piper turns on tonight's ad so he's live this weekend, then opens the booker with the **right** rep: **Tom**, who owns Colorado." |
-| 14 | → (Thu 10:00 + note) | "He books Thursday at 10:00 and asks Piper to tell Tom what he wants. Piper passes it on. No SDR involved." |
+| 13 | → (booker) | "Piper turns on tonight's ad so he's live this weekend, then opens the booker with **Jordan**, an SDR on Priya's team. Priya, your SDRs stop triaging raw inbound. They only take meetings Piper has already qualified." |
+| 14 | → (Thu 10:00 + note) | "He books Thursday at 10:00 and asks Piper to pass on what he wants. Because he's a 12-location owner in Colorado, Piper also loops in **Tom**, who owns the territory. Nobody worked this lead by hand." |
 | 15 | → (recap email) | "The follow-up is instant, in the inbox. If he replies, Piper keeps going over email." |
-| 16 | → (write-back) | "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's average, and $43,000 at sixteen by 2028. Piper writes `operates_other_brands = true` and `location_count = 12`, tags it multi-location, and books Tom. Let's prove that's real." |
+| 16 | → (write-back) | "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's average, and $43,000 at sixteen by 2028. Piper writes `operates_other_brands = true` and `location_count = 12`, tags it multi-location, books Jordan, and tells Tom. Let's prove that's real." |
 
-**Lever callout (Priya):** speed to lead goes from 4 hours to zero, after hours, and the 60% of inbound no human works gets worked. Piper runs alongside the incumbent chat tool, so the March renewal doesn't block a pilot.
+**Lever callout (Priya):** speed to lead goes from 4 hours to zero, after hours, and the 60% of inbound no human works gets worked. Her 9 SDRs spend their time on qualified meetings instead of sorting raw signups. Piper runs alongside the incumbent chat tool, so the March renewal doesn't block a pilot.
 
 **Optional live beat:** Piper's voice, video, and multilingual features run live in the EDO (`edo.my.site.com/personalization`). Cut there for 60 seconds after step 4 if you want her speaking, then come back. Share your screen **with sound**.
 
@@ -93,9 +94,9 @@
 |---|---|
 | **Yelp Agent Signals** section: Agent Source = Piper, Location Count 12, Brand Count 3, Brands Operated, Committed Future Locations 4 (through 2028), Self-Serve Monthly Spend $300, Unrealized Annual Spend $29,700 | "Dana, this is the conversation as structured CRM fields. Nobody typed anything." |
 | **Agent Qualification Summary** | "What Piper learned, in plain language, on the record." |
-| **Owner = Tom Jones**, Status Qualified, Rating Hot, **Routing Reason** | "And it's already routed to Tom." |
-| Activity: **Task "Agent brief…"** and **Event "Intro… (booked by Piper)"** Thursday 10:00 | "Tom walks into Thursday with full context. That's his 'reps miss context heading into calls' problem, solved before he logs in." |
-| **Flow** tab | "This is the GTM Engineering box on the map. A record-triggered Flow: 3+ locations or other brands → flag multi-location, route to Tom, create the brief. It's on-platform, inside your API limits, and debuggable. Dana, that's the opposite of the enrichment job that ate your API limit before quarter close." |
+| **Owner = Jordan Reyes** (SDR), **Territory Lead = Tom Jones**, Status Qualified, Rating Hot, **Routing Reason** | "It's already routed: Jordan owns the first call, and Tom has visibility because it's his territory." |
+| Activity: **Task "Agent brief…"** for Jordan, **Task "FYI: multi-location owner in your territory"** for Tom, and **Event "Intro…"** Thursday 10:00 with Tom invited | "Jordan and Tom both walk into Thursday with full context. That's Tom's 'reps miss context heading into calls' problem, solved before anyone logs in." |
+| **Flow** tab | "This is the GTM Engineering box on the map. A record-triggered Flow: 3+ locations or other brands → flag multi-location, give the SDR the first call and the brief, and set the territory AE as Territory Lead with an FYI. It's on-platform, inside your API limits, and debuggable. Dana, that's the opposite of the enrichment job that ate your API limit before quarter close." |
 
 **Transition:**
 > One owner proves the pattern exists. Tom's next question is how many more Sams are hiding in Colorado.
@@ -108,7 +109,7 @@
 
 | Step | Do | Say |
 |---|---|---|
-| 0 | Page loads | "Wednesday morning. Tom opens Salesforce, not a second tool. Hunter shows him what came in overnight: the owner Piper found and routed to him." |
+| 0 | Page loads | "Wednesday morning. Tom opens Salesforce, not a second tool. Hunter shows him what came in overnight: a 12-location owner in his territory, already booked with Jordan for Thursday, with Tom invited. Tom doesn't have to chase it, so he can go find more." |
 | 1 | → (objective) | "Tom asks Hunter to **find more owners like him**: operators in his Colorado territory controlling three or more paying locations across different brand names, ranked by unrealized spend. Yelp already owns every business page, so the job isn't 'find businesses.' It's 'find who's behind them.'" |
 | 2 | → (plan) | "Hunter uses Sam's record as the template. The strongest signal is one Yelp already owns and doesn't use for prospecting, because it lives in **billing**: the same payment method, billing address or billing contact across single-location self-serve accounts in different brands. Plus phone routing, the same person answering reviews, co-located openings, and entity and registered-agent data through the **Data Vendor Gateway**." Point at the guardrails: "Long-horizon runtime, inside platform limits, every lookup logged through the Einstein Trust Layer." |
 | 3 | → (approve) | "Tom approves, and Hunter goes to work. This runs for days, not seconds." |
@@ -129,7 +130,7 @@
 |---|---|---|
 | **Nina** | Top tiles: **net-new annual revenue in Tom's top 40** (~$462K) and **dark locations owners already control** (171); donut **paying vs dark** | "Nina, that's your two priorities on one screen: new paid locations and more spend from customers you already have. This is Tom's top 40 alone. The full state is $1.6M, and Colorado is one state." |
 | **Marcus** | **Multi-location pipeline Hunter opened** (~$178K) and **pipeline by stage**; **Top 10 operators** bar | "Marcus, this is new pipeline in your weakest segment against the 2.1x coverage problem, and it's forecastable because it's in the CRM. Your best rep's method is now a governed workflow, not a private tool." |
-| **Priya** | **Multi-location value Piper found** | "Priya, every single-location signup that's really a chain now shows up here, worked within minutes, after hours." |
+| **Priya** | **Multi-location value Piper found** | "Priya, every single-location signup that's really a chain now shows up here, worked within minutes, after hours, and lands on an SDR's calendar already qualified." |
 | **Dana** | Click any bar into the report, then into **Pikes Peak Food Co.**: Yelp Agent Signals, Hunter Signals, **View Account Hierarchy**, the brief task, the opportunity | "Dana, every field Piper and Hunter wrote is on the record, with the evidence. One workflow, governed, auditable, and no data pasted into consumer AI. That's how field completeness goes up and Finance gets a forecast built on CRM evidence." |
 | **Tom** | **Accounts → "Hunter - Colorado Operators (Ranked)"** | "And Tom's view is just his list, ranked, with the work started." |
 
@@ -157,6 +158,7 @@
 | *Priya:* "My chat tool renews in March." | "Piper runs alongside it; a pilot on the after-hours window doesn't touch the renewal. Compare speed to lead and multi-location discovery side by side." |
 | *Dana:* "Will this eat our API limits?" | "The routing is a record-triggered Flow, on-platform. Hunter's reads are batched by the runtime. Neither is an external script hammering the API." |
 | *Dana:* "Is using billing data OK?" | "It stays inside Yelp's Salesforce trust boundary. Lookups and writes are logged through the Einstein Trust Layer, and admins control which fields agents can read." |
+| *Priya:* "What happens to my SDR team?" | "Same 9 people, higher-value work. Piper handles first-touch qualification 24/7, and your SDRs take the meetings it books and own the call steps in Hunter's cadences. The territory AE gets visibility automatically, so nothing falls between SDR and AE." |
 | *Tom:* "Is this another tool I have to learn?" | "No. It's in Salesforce, where you already work. That's the point: fewer places to look, not one more." |
 | *Marcus:* "How do I scale what my top reps built?" | "Hunter learns from your won deals and best reps, and the result is a shared, governed workflow. Tom's pattern went to you in Slack and can run in every territory." |
 | *Marcus:* "What if Hunter's wrong about an owner?" | "Every operator carries a confidence score and the evidence behind it. The rep confirms on the first call." |

@@ -3,6 +3,7 @@
     <label>Yelp Find and Win Demo</label>
     <description>Access to Piper and Hunter fields for the Yelp Find and Win demo.</description>
     <hasActivationRequired>false</hasActivationRequired>
+    <fieldPermissions><editable>true</editable><field>Lead.Territory_Lead__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Lead.Location_Count__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Lead.Brand_Count__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Lead.Brands_Operated__c</field><readable>true</readable></fieldPermissions>
