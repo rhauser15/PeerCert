@@ -12,7 +12,7 @@
             <colSpan>3</colSpan><columnIndex>0</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Account.Unrealized_Annual_Spend__c</column></chartSummary><indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Account.Unrealized_Annual_Spend__c</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
                 <componentType>Metric</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -27,7 +27,7 @@
             <colSpan>3</colSpan><columnIndex>3</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Account.Dark_Locations__c</column></chartSummary><indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Account.Dark_Locations__c</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
                 <componentType>Metric</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -42,7 +42,7 @@
             <colSpan>3</colSpan><columnIndex>6</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>AMOUNT</column></chartSummary><indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>AMOUNT</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
                 <componentType>Metric</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
@@ -57,7 +57,7 @@
             <colSpan>3</colSpan><columnIndex>9</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Lead.Unrealized_Annual_Spend__c</column></chartSummary><indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Lead.Unrealized_Annual_Spend__c</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
                 <componentType>Metric</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>

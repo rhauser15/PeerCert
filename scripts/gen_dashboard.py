@@ -106,6 +106,8 @@ def comp(ctype, rep, title, header, col, row, cs, rs, extra=""):
 
 
 CHART = "<chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart>"
+GREEN = ("<indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2>"
+         "<indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>")  # metric tiles always green
 INDICATORS = "<indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>"
 METRIC = "<chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>{}</column></chartSummary>"
 GAUGE = ("<chartSummary><axisBinding>y</axisBinding><column>FORMULA1</column></chartSummary>"
@@ -113,13 +115,13 @@ GAUGE = ("<chartSummary><axisBinding>y</axisBinding><column>FORMULA1</column></c
          "<indicatorBreakpoint1>2.0</indicatorBreakpoint1><indicatorBreakpoint2>3.0</indicatorBreakpoint2>" + INDICATORS)
 comps = "".join([
     comp("Metric", "Hunter_Book_Totals", "Net-new annual revenue in Tom's top 40", "Nina · CRO", 0, 0, 3, 4,
-         METRIC.format("Account.Unrealized_Annual_Spend__c") + INDICATORS),
+         METRIC.format("Account.Unrealized_Annual_Spend__c") + GREEN),
     comp("Metric", "Hunter_Book_Totals", "Dark locations owners already control", "Nina · CRO", 3, 0, 3, 4,
-         METRIC.format("Account.Dark_Locations__c") + INDICATORS),
+         METRIC.format("Account.Dark_Locations__c") + GREEN),
     comp("Metric", "Hunter_Pipeline_by_Stage", "Multi-location pipeline Hunter opened", "Marcus · Sales", 6, 0, 3, 4,
-         METRIC.format("AMOUNT") + INDICATORS),
+         METRIC.format("AMOUNT") + GREEN),
     comp("Metric", "Piper_Multi_Location_Leads", "Multi-location value Piper found", "Priya · Demand Gen", 9, 0, 3, 4,
-         METRIC.format("Lead.Unrealized_Annual_Spend__c") + INDICATORS),
+         METRIC.format("Lead.Unrealized_Annual_Spend__c") + GREEN),
     comp("Gauge", "Tom_Pipeline_Coverage", "Coverage vs 3.0x target (was 2.1x)", "Marcus · Pipeline coverage", 0, 4, 4, 8, GAUGE),
     comp("Bar", "Hunter_Operators_by_Unrealized_Spend", "Top 10 operators by unrealized spend", "Marcus + Tom · Where to work", 4, 4, 5, 8,
          CHART + METRIC.format("Account.Unrealized_Annual_Spend__c") + "<groupingColumn>ACCOUNT.NAME</groupingColumn>"),
