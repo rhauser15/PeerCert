@@ -175,7 +175,7 @@ const SIGNALS = [
   ["Co-located openings in the same retail centers", 94, ""],
   ["Entity + registered agent (Data Vendor Gateway)", 287, ""],
 ];
-const link = (path, label, primary) => `<a class="btn ${primary ? "primary" : ""}" target="_blank" href="${D.org_url}${path}">${label}</a>`;
+const link = (path, label, primary) => `<a class="btn ${primary ? "primary" : ""}" target="_blank" href="${D.org_url}${path}">${label}</a>`;  // opens in the current app; use Sales for Tech
 document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, { weekday: "short", month: "long", day: "numeric" });
 
 function add(html, cls = "") {

@@ -30,6 +30,9 @@
 - [Piper](https://rhauser15.github.io/PeerCert/piper.html?frame=1)
 - [Hunter](https://rhauser15.github.io/PeerCert/hunter.html?frame=1)
 
+**Start here**
+- [Open the Sales for Tech app](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/app/06mg800000AlQvwAAF) (click first; the links below then open inside it)
+
 **Section 2 · Piper write-back**
 - [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000HVUvkEAH/view)
 - [Routing Flow in Flow Builder](https://trailsignup-429cdfd78ec835.lightning.force.com/builder_platform_interaction/flowBuilder.app?flowId=301g8000012AduoAAC)
@@ -54,7 +57,7 @@
    python3 scripts/seed.py
    ```
    Run `python3 scripts/seed.py --piper` the morning of the demo if you only need the Thursday meeting to line up.
-2. **Sign in as Rob:** `sf org open -o trailsignup-429cdf`. Open the **leadership dashboard** and click **Refresh** so it's current.
+2. **Sign in as Rob:** `sf org open -o trailsignup-429cdf`, then click **Open the Sales for Tech app** in Direct links above. Everything in this demo lives in **Sales for Tech**, not Q Branch. Open the **leadership dashboard** and click **Refresh** so it's current.
 3. **Open the mockups in Chrome app mode** (no real address bar). `?frame=1` adds a fake Yelp tab and address bar:
    ```bash
    open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/piper.html?frame=1"
@@ -63,7 +66,7 @@
    open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/hunter.html?frame=1"
    ```
    Press **⌃⌘F** for full screen. Controls: **→ / Space / clicker** next, **←** back, **R** restart, **H** hide the presenter strip, **B** toggle the Yelp address bar, `?step=N` to rehearse one beat.
-4. **Queue these Salesforce tabs in order:**
+4. **Queue these Salesforce tabs in order** (all in Sales for Tech):
    1. **Leads → "Piper - Multi-Location Leads"** → **Sam Whitaker**
    2. **Setup → Flows → Yelp - Multi-Location Lead Routing**
    3. **Dashboards → Yelp Find and Win: Leadership View**

@@ -12,6 +12,7 @@ import subprocess
 ORG = os.environ.get("SF_ORG", "trailsignup-429cdf")
 BASE = "https://trailsignup-429cdfd78ec835.lightning.force.com"
 SITE = "https://rhauser15.github.io/PeerCert"
+APP_ID = "06mg800000AlQvwAAF"  # Sales for Tech (Tech_Sales_App)
 SCRIPT = os.path.join(os.path.dirname(__file__), "..", "DEMO_SCRIPT.md")
 START, END = "<!-- links:start -->", "<!-- links:end -->"
 
@@ -39,6 +40,9 @@ def build():
             f"[Launcher]({SITE}/)",
             f"[Piper]({SITE}/piper.html?frame=1)",
             f"[Hunter]({SITE}/hunter.html?frame=1)",
+        ]),
+        ("Start here", [
+            f"[Open the Sales for Tech app]({BASE}/lightning/app/{APP_ID}) (click first; the links below then open inside it)",
         ]),
         ("Section 2 · Piper write-back", [
             rec_link("Sam Whitaker lead", "Lead", "SELECT Id FROM Lead WHERE Agent_Source__c = 'Piper' LIMIT 1"),
