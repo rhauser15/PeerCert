@@ -50,7 +50,7 @@ def build():
             lv("Piper - Multi-Location Leads", "Lead", "Piper_Multi_Location_Leads"),
         ]),
         ("Section 4 · Leadership", [
-            rec_link("Leadership dashboard", "Dashboard",
+            rec_link("Is Agentic AI Working? dashboard", "Dashboard",
                      "SELECT Id FROM Dashboard WHERE DeveloperName = 'Find_and_Win_Leadership' LIMIT 1"),
             rec_link("Pikes Peak Food Co. (#1 operator)", "Account",
                      "SELECT Id FROM Account WHERE Hunter_Rank__c = 1 LIMIT 1"),

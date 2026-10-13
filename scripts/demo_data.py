@@ -66,17 +66,32 @@ PIPER_LEAD["summary"] = (
 )
 
 # Tom's existing (pre-Hunter) Colorado pipeline: established multi-location customers.
-# Sized so coverage is 2.1x on its own and ~3.3x once Hunter's opportunities land.
+# Sized so coverage is 2.1x on its own. Rep-entered and messy on purpose (no next step or type,
+# stale close dates) so the dashboard can contrast data hygiene with agent-created records.
 TOM_QUARTERLY_QUOTA = 150000
 BASELINE_PIPELINE = [
     # account, city, stage, amount, days to close
-    ("Rocky Mountain Pizza Partners", "Denver", "Proposal/Quote", 72000, 21),
-    ("Front Range Coffee Collective", "Boulder", "Discovery", 61000, 35),
-    ("Summit Fitness Group", "Colorado Springs", "Discovery", 55000, 42),
-    ("Mile High Dental Partners", "Aurora", "Qualification", 48000, 49),
-    ("Foothills Auto Care", "Lakewood", "Proposal/Quote", 42000, 28),
-    ("Cherry Creek Salon Group", "Denver", "Qualification", 37000, 56),
+    ("Rocky Mountain Pizza Partners", "Denver", "Proposal/Quote", 72000, -12),
+    ("Front Range Coffee Collective", "Boulder", "Discovery", 61000, -30),
+    ("Summit Fitness Group", "Colorado Springs", "Discovery", 55000, -8),
+    ("Mile High Dental Partners", "Aurora", "Qualification", 48000, -45),
+    ("Foothills Auto Care", "Lakewood", "Proposal/Quote", 42000, -21),
+    ("Cherry Creek Salon Group", "Denver", "Qualification", 37000, -60),
 ]  # $315,000 = 2.1x of $150,000
+
+# Other inbound multi-location owners Piper qualified in the last month (now opportunities for Tom).
+# account, city, brands, locations, dark locations
+PIPER_OPPS = [
+    ("Alpine Burger Group", "Littleton", "Smashburger; Rush Bowls", 9, 7),
+    ("Sunrise Bagel Partners", "Fort Collins", "Einstein Bros; Ziggi's Coffee", 8, 6),
+    ("Golden Plains Pizza Co.", "Greeley", "Marco's Pizza; Wingstop", 7, 5),
+    ("Mesa Fresh Restaurants", "Pueblo", "Tropical Smoothie Cafe; Firehouse Subs", 6, 4),
+    ("Highline Sweets LLC", "Highlands Ranch", "Crumbl Cookies; Nothing Bundt Cakes", 4, 3),
+]  # 25 dark locations x $2,700 = $67,500
+
+# Customer meetings per week for the 8 weeks before today. Agents went live 4 weeks ago.
+MEETINGS_PER_WEEK = [3, 4, 3, 4, 8, 10, 11, 13]
+OUTREACH_RESULTS = {"Meeting Booked": 9, "Replied": 8}  # of the 40 Hunter owners; the rest stay "Sent"
 
 BRANDS = [
     "Dave's Hot Chicken", "Jersey Mike's Subs", "Smoothie King", "Wingstop", "Crumbl Cookies",
@@ -196,7 +211,8 @@ def build():
         "dark": sum(o["dark"] for o in operators),
         "unrealized_annual": sum(o["unrealized_annual"] for o in operators),
     }
-    return {"org_url": ORG_URL, "rev_per_location": REV_PER_LOCATION, "quota": TOM_QUARTERLY_QUOTA, "baseline": BASELINE_PIPELINE, "territory": TERRITORY, "top40": top,
+    return {"org_url": ORG_URL, "rev_per_location": REV_PER_LOCATION, "quota": TOM_QUARTERLY_QUOTA, "baseline": BASELINE_PIPELINE, "piper_opps": PIPER_OPPS,
+            "meetings_per_week": MEETINGS_PER_WEEK, "outreach": OUTREACH_RESULTS, "territory": TERRITORY, "top40": top,
             "piper": PIPER_LEAD, "operators": operators}
 
 

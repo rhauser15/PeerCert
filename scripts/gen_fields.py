@@ -18,6 +18,11 @@ def txt(label, desc, length=255):
 def lta(label, desc, lines=6):
     return f"<type>LongTextArea</type><length>32768</length><visibleLines>{lines}</visibleLines>", label, desc
 
+def pct_formula(label, desc, formula):
+    return (f"<type>Percent</type><precision>18</precision><scale>0</scale><formula>{formula}</formula>"
+            "<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>"), label, desc
+
+
 def pick(label, desc, values):
     vals = "".join(
         f"<value><fullName>{v}</fullName><default>false</default><label>{v}</label></value>" for v in values
@@ -28,6 +33,8 @@ def pick(label, desc, values):
     ), label, desc
 
 AGENT_SOURCES = ["Piper", "Hunter", "Self-Serve Checkout"]
+COMPLETENESS = ("(IF(ISBLANK(NextStep), 0, 1) + IF(OR(ISBLANK(Amount), Amount &lt;= 0), 0, 1)"
+                " + IF(ISPICKVAL(Type, &quot;&quot;), 0, 1) + IF(CloseDate &lt; TODAY(), 0, 1)) / 4")
 SEGMENTS = ["Self-Serve", "Local", "Emerging", "Multi-Location", "Enterprise"]
 
 FIELDS = {
@@ -62,6 +69,12 @@ FIELDS = {
         "Yelp_Segment__c": pick("Yelp Segment", "Sales segment.", SEGMENTS),
         "Agent_Source__c": pick("Agent Source", "Which agent created or qualified this record.", AGENT_SOURCES),
     },
+    "Opportunity": {
+        "Agent_Source__c": pick("Agent Source", "Where this opportunity came from.", ["Piper", "Hunter", "Rep"]),
+        "Field_Completeness__c": pct_formula(
+            "Field Completeness", "Share of key fields filled in: next step, amount, type, and a close date that isn't stale.",
+            COMPLETENESS),
+    },
 }
 
 TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
@@ -86,9 +99,10 @@ for obj, fields in FIELDS.items():
 MD = os.path.join(ROOT, "..")
 perms = ["    <fieldPermissions><editable>true</editable><field>Lead.Territory_Lead__c</field><readable>true</readable></fieldPermissions>"]
 for obj, fields in FIELDS.items():
-    for name in fields:
+    for name, (body, _, _) in fields.items():
+        editable = "false" if "<formula>" in body else "true"
         perms.append(
-            f"    <fieldPermissions><editable>true</editable><field>{obj}.{name}</field><readable>true</readable></fieldPermissions>"
+            f"    <fieldPermissions><editable>{editable}</editable><field>{obj}.{name}</field><readable>true</readable></fieldPermissions>"
         )
 os.makedirs(os.path.join(MD, "permissionsets"), exist_ok=True)
 with open(os.path.join(MD, "permissionsets", "Yelp_Find_Win.permissionset-meta.xml"), "w") as f:

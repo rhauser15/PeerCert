@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Completeness__c</fullName>
+    <label>Field Completeness</label>
+    <description>Share of key fields filled in: next step, amount, type, and a close date that isn't stale.</description>
+    <inlineHelpText>Share of key fields filled in: next step, amount, type, and a close date that isn't stale.</inlineHelpText>
+    <type>Percent</type><precision>18</precision><scale>0</scale><formula>(IF(ISBLANK(NextStep), 0, 1) + IF(OR(ISBLANK(Amount), Amount &lt;= 0), 0, 1) + IF(ISPICKVAL(Type, &quot;&quot;), 0, 1) + IF(CloseDate &lt; TODAY(), 0, 1)) / 4</formula><formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

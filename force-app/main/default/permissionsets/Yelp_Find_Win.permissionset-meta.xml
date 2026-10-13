@@ -30,4 +30,6 @@
     <fieldPermissions><editable>true</editable><field>Account.Hunter_Signals__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Account.Yelp_Segment__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Account.Agent_Source__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Opportunity.Agent_Source__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Opportunity.Field_Completeness__c</field><readable>true</readable></fieldPermissions>
 </PermissionSet>

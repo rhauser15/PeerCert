@@ -49,6 +49,7 @@ def reset(piper_only=False):
     if not piper_only:
         code += (
             "delete [SELECT Id FROM Task WHERE Subject LIKE 'Hunter brief:%'];\n"
+            "delete [SELECT Id FROM Event WHERE Subject LIKE 'Yelp customer meeting:%'];\n"
             f"delete [SELECT Id FROM Campaign WHERE Name = '{CAMPAIGN}'];\n"
             "delete [SELECT Id FROM Account WHERE Yelp_Segment__c != null];\n"
         )
@@ -82,6 +83,14 @@ def ids():
         "SELECT Id, DeveloperName FROM RecordType WHERE DeveloperName IN "
         "('SDO_Account_Simple','SDO_Lead_Default','SimpleOpportunity')")}
     return users, rts
+
+
+def outreach_status(rank, results=demo_data.OUTREACH_RESULTS):
+    """Spread replies across the ranking: every other owner near the top replies or books."""
+    order = [r for r in range(1, 41) if r % 2 == 1] + [r for r in range(1, 41) if r % 2 == 0]
+    booked, replied = results["Meeting Booked"], results["Replied"]
+    pos = order.index(rank)
+    return "Meeting Booked" if pos < booked else "Replied" if pos < booked + replied else "Sent"
 
 
 def seed_hunter(data, users, rts):
@@ -121,14 +130,14 @@ def seed_hunter(data, users, rts):
             WhatId=f"@Op{r}", WhoId=f"@C{r}", OwnerId=owner, Priority="High" if r <= 10 else "Normal",
             Status="Not Started", ActivityDate=str(today + dt.timedelta(days=1 + r % 3)),
             Description=op["brief"]))
-        members.append(rec("CampaignMember", f"M{r}", CampaignId="@Camp", ContactId=f"@C{r}", Status="Sent"))
+        members.append(rec("CampaignMember", f"M{r}", CampaignId="@Camp", ContactId=f"@C{r}", Status=outreach_status(r)))
         if r <= 10:
             opps.append(rec(
                 "Opportunity", f"O{r}", Name=f"{op['name']} - Multi-Location Activation ({op['dark']} dark)",
                 AccountId=f"@Op{r}", OwnerId=owner, RecordTypeId=rts["SimpleOpportunity"],
                 StageName="Qualification", Amount=op["unrealized_annual"],
                 CloseDate=str(today + dt.timedelta(days=45 + r * 3)), Type="New Business",
-                NextStep="Hunter brief sent; book multi-location review",
+                NextStep="Hunter brief sent; book multi-location review", Agent_Source__c="Hunter",
                 Description=f"Activate {op['dark']} dark locations and consolidate {op['paying']} "
                             f"self-serve accounts into one multi-location package."))
     campaign = [rec("Campaign", "Camp", Name=CAMPAIGN, Type="Email", Status="In Progress", IsActive=True,
@@ -144,9 +153,38 @@ def seed_hunter(data, users, rts):
                            Yelp_Segment__c="Multi-Location"))
         opps.append(rec("Opportunity", f"BO{n}", Name=f"{acct} - Multi-Location Renewal + Expansion",
                         AccountId=f"@B{n}", OwnerId=tom, RecordTypeId=rts["SimpleOpportunity"], StageName=stage,
-                        Amount=amount, CloseDate=str(today + dt.timedelta(days=days)), Type="Add-On Business"))
+                        Amount=amount, CloseDate=str(today + dt.timedelta(days=days)), Agent_Source__c="Rep"))
+    # Other multi-location owners Piper qualified inbound over the last month.
+    for n, (acct, city, brands, locs, dark) in enumerate(data["piper_opps"]):
+        parents.append(rec("Account", f"P{n}", Name=acct, RecordTypeId=rts["SDO_Account_Simple"], OwnerId=tom,
+                           Type="Prospect", BillingCity=city, BillingState="Colorado", BillingCountry="United States",
+                           Yelp_Segment__c="Multi-Location", Agent_Source__c="Piper", Location_Count__c=locs,
+                           Dark_Locations__c=dark, Paying_Locations__c=locs - dark, Brands_Operated__c=brands,
+                           Unrealized_Annual_Spend__c=dark * data["rev_per_location"]))
+        opps.append(rec("Opportunity", f"PO{n}", Name=f"{acct} - Multi-Location Plan (Piper inbound)",
+                        AccountId=f"@P{n}", OwnerId=tom, RecordTypeId=rts["SimpleOpportunity"],
+                        StageName="Discovery" if n < 2 else "Qualification", Amount=dark * data["rev_per_location"],
+                        CloseDate=str(today + dt.timedelta(days=30 + n * 6)), Type="New Business",
+                        Agent_Source__c="Piper", NextStep="SDR call done; Tom to propose one plan across locations",
+                        Description=f"Qualified by Piper after hours. {locs} locations across {brands}."))
+    # Customer meetings per week, before and after the agents went live (for the dashboard trend).
+    meetings, names = [], [o["name"] for o in data["operators"]] + [p[0] for p in data["piper_opps"]]
+    tz = ZoneInfo("America/Denver")
+    for w, count in enumerate(data["meetings_per_week"]):
+        week_start = today - dt.timedelta(days=7 * (len(data["meetings_per_week"]) - w)) 
+        week_start -= dt.timedelta(days=week_start.weekday())
+        for k in range(count):
+            day = week_start + dt.timedelta(days=k % 5)
+            start = dt.datetime.combine(day, dt.time(9 + (k // 5) * 2, 0), tz).astimezone(dt.timezone.utc)
+            meetings.append(rec("Event", f"E{w}_{k}", Subject=f"Yelp customer meeting: {names[(w * 13 + k) % len(names)]}",
+                                OwnerId=tom if k % 3 else users["jreyes"],
+                                StartDateTime=start.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                                EndDateTime=(start + dt.timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%S.000Z")))
+    statuses = [rec("CampaignMemberStatus", f"S{n}", CampaignId="@Camp", Label=label, HasResponded=True, SortOrder=10 + n)
+                for n, label in enumerate(["Replied", "Meeting Booked"])]
     import_plan([("Account", parents), ("Account", children), ("Contact", contacts), ("Campaign", campaign),
-                 ("CampaignMember", members), ("Opportunity", opps), ("Task", tasks)])
+                 ("CampaignMemberStatus", statuses), ("CampaignMember", members), ("Opportunity", opps),
+                 ("Task", tasks), ("Event", meetings)])
 
 
 def seed_piper(data, users, rts):

@@ -14,7 +14,7 @@
 |---|---|---|
 | **Piper** | Mockup (`piper.html`). Piper can't be installed in this demo org. The real Piper runs in the EDO if you want a live voice moment. | "This is a recreation of Piper on a Yelp for Business page. The CRM write-back and routing you'll see next are real, running in Salesforce." |
 | **Hunter** | Mockup (`hunter.html`) modeled on the Hunter prototype. Hunter isn't generally available. | "Hunter is early. This is a prototype; the experience and naming will change. The only call to action today is the beta waitlist." **Don't quote a date or promise beta acceptance.** |
-| **Salesforce** | **Real.** Custom fields, the routing Flow, the Piper lead with its task and meeting, 40 operators with 362 location accounts, contacts, campaign, 10 Hunter opportunities, 40 brief tasks, Tom's 6 existing pipeline opportunities, and the leadership dashboard. Coverage uses a $150K quarterly quota for Tom (set in the report formula). | "Everything from here on is live in the org." |
+| **Salesforce** | **Real.** Custom fields, the routing Flow, the Piper lead with its task and meeting, 40 operators with 362 location accounts, contacts, campaign, 10 Hunter and 5 Piper opportunities, 40 brief tasks, Tom's 6 rep-entered opportunities (deliberately incomplete), outreach replies, 8 weeks of meeting history, and the dashboard. Coverage uses a $150K quarterly quota for Tom (set in the report formula). | "Everything from here on is live in the org." |
 | **Numbers** | The territory totals (400 / 1,700 / 1,100 / 600 / $1.62M) come from the demo narrative. The 40 operators in the org are generated data. $2,700 per location is derived from Yelp's public figures (advertising revenue ÷ ~510,000 paying locations). | Treat as illustrative. |
 
 ---
@@ -34,17 +34,17 @@
 - [Open the Sales for Tech app](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/app/06mg800000AlQvwAAF) (click first; the links below then open inside it)
 
 **Section 2 · Piper write-back**
-- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000HVmzREAT/view)
+- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000HW6bZEAT/view)
 - [Routing Flow in Flow Builder](https://trailsignup-429cdfd78ec835.lightning.force.com/builder_platform_interaction/flowBuilder.app?flowId=301g8000012AduoAAC)
 - [Piper - Multi-Location Leads](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads)
 
 **Section 4 · Leadership**
-- [Leadership dashboard](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Dashboard/01Zg8000004BuMLEA0/view)
-- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g80000129DIxAAM/view)
-- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009bkbNAAQ/view)
+- [Is Agentic AI Working? dashboard](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Dashboard/01Zg8000004BuMLEA0/view)
+- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g8000012CWgoAAG/view)
+- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009bwHZAAY/view)
 - [Hunter - Colorado Operators (Ranked)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Colorado_Operators)
 - [Hunter - Dark Locations (In Sequence)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Dark_Locations)
-- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g80000127oUgAAI/view)
+- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g8000012DFVqAAO/view)
 
 <!-- links:end -->
 
@@ -57,7 +57,7 @@
    python3 scripts/seed.py
    ```
    Run `python3 scripts/seed.py --piper` the morning of the demo if you only need the Thursday meeting to line up.
-2. **Sign in as Rob:** `sf org open -o trailsignup-429cdf`, then click **Open the Sales for Tech app** in Direct links above. Everything in this demo lives in **Sales for Tech**, not Q Branch. Open the **leadership dashboard** and click **Refresh** so it's current.
+2. **Sign in as Rob:** `sf org open -o trailsignup-429cdf`, then click **Open the Sales for Tech app** in Direct links above. Everything in this demo lives in **Sales for Tech**, not Q Branch. Open the **Is Agentic AI Working?** dashboard and click **Refresh** so it's current.
 3. **Open the mockups in Chrome app mode** (no real address bar). `?frame=1` adds a fake Yelp tab and address bar:
    ```bash
    open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/piper.html?frame=1"
@@ -69,7 +69,7 @@
 4. **Queue these Salesforce tabs in order** (all in Sales for Tech):
    1. **Leads → "Piper - Multi-Location Leads"** → **Sam Whitaker**
    2. **Setup → Flows → Yelp - Multi-Location Lead Routing**
-   3. **Dashboards → Yelp Find and Win: Leadership View**
+   3. **Dashboards → Is Agentic AI Working? Find and Win (Colorado)**
    4. **Accounts → "Hunter - Colorado Operators (Ranked)"** → **Pikes Peak Food Co.**
 
 ---
@@ -151,17 +151,19 @@
 
 ---
 
-## 4 · Leadership: what lands in Salesforce (4 min)
+## 4 · Leadership: is agentic AI working? (4 min)
 
-**Tab:** **Dashboards → Yelp Find and Win: Leadership View** (each tile is labeled with the leader it's for)
+**Tab:** **Dashboards → Is Agentic AI Working? Find and Win (Colorado)**. It's built to answer Nina's question in one screen; everyone else in the room sees their part.
 
-| Who | Show | Say |
+| Nina's question | Show | Say |
 |---|---|---|
-| **Nina** | Top tiles: **net-new annual revenue in Tom's top 40** (~$462K) and **dark locations owners already control** (171); donut **paying vs dark** | "Nina, that's your two priorities on one screen: new paid locations and more spend from customers you already have. This is Tom's top 40 alone. The full state is $1.6M, and Colorado is one state." |
-| **Marcus** | **Coverage gauge** (green, **3.3x** vs the 3.0x target, was 2.1x); donut **existing vs Hunter**; **Multi-location pipeline Hunter opened** (~$178K); **Top 10 operators** bar | "Marcus, Tom was sitting at 2.1x coverage, your number from discovery. Hunter added $178K of multi-location pipeline, and he's at **3.3x**, past the 3x target, without a new hire. It's forecastable because it's in the CRM, and your best rep's method is now a governed workflow, not a private tool." |
-| **Priya** | **Multi-location value Piper found** | "Priya, every single-location signup that's really a chain now shows up here, worked within minutes, after hours, and lands on an SDR's calendar already qualified." |
-| **Dana** | Click any bar into the report, then into **Pikes Peak Food Co.**: Yelp Agent Signals, Hunter Signals, **View Account Hierarchy**, the brief task, the opportunity | "Dana, every field Piper and Hunter wrote is on the record, with the evidence. One workflow, governed, auditable, and no data pasted into consumer AI. That's how field completeness goes up and Finance gets a forecast built on CRM evidence." |
-| **Tom** | **Accounts → "Hunter - Colorado Operators (Ranked)"** | "And Tom's view is just his list, ranked, with the work started." |
+| **Is it creating pipeline?** | **Coverage gauge**: green, **3.7x** vs the 3.0x target (was 2.1x); donut **Where the pipeline came from** | "Nina, Tom was at 2.1x coverage, the number Marcus gave us in discovery. He's now at **3.7x**, past the target, with no new hire. The donut shows why: **$315K** he already had, **$178K** Hunter found, and **$67.5K** Piper qualified after hours." |
+| **1 · What did Piper and Hunter find?** | **Pipeline sourced by Piper** ($67,500); **Dark locations Hunter uncovered** (171) | "Piper turned five 'single-location' signups into multi-location pipeline. Hunter found 171 locations that owners we already bill aren't advertising, and that's just Tom's top 40." |
+| **2 · Is the planning and outreach working?** | **Account plans built by Hunter** (40); **Owners who replied to outreach** (17); bar **Hunter outreach: 40 owners contacted** (9 meetings booked, 8 replied, 23 no reply yet) | "Hunter built 40 account plans Tom didn't have to research. **17 of 40 owners replied, 9 booked a meeting.** That's a 42% response rate on outreach that leads with what they already pay for." |
+| **3 · Is the data getting better?** | Bar **Field completeness: agents vs reps**: Piper **100%**, Hunter **100%**, rep-entered **25%** | "Dana, this is your field-completeness problem. Rep-entered opportunities are at 25%: no next step, stale close dates. Everything the agents create is complete, because they write it as they work. That's what Finance needs to forecast from the CRM." |
+| **4 · Are reps in front of more customers?** | Column **Customer meetings per week**: 3–4 a week before, then **8 → 10 → 11 → 13** after launch | "And the outcome Nina cares about: customer meetings went from three or four a week to **13**, without adding anyone. Tom's time went back to selling." |
+
+**If someone wants proof:** click any chart into its report, then into **Pikes Peak Food Co.** to show the Yelp Agent Signals and the brief on the record.
 
 ---
 
@@ -170,7 +172,7 @@
 1. **Piper proves the pattern** on one owner, in conversation, at 10:15 PM, and hands him to Tom.
 2. **That record becomes the template.**
 3. **Hunter applies it across Tom's territory** over days.
-4. **Leadership sees all of it in Salesforce**: pipeline, value and evidence, without another tool or another hire.
+4. **Nina can see it's working**: coverage from 2.1x to 3.7x, 17 of 40 owners replying, complete data, and meetings up from 3–4 a week to 13.
 
 **Value (Nina):**
 > Colorado alone surfaced 600 dark locations controlled by owners Yelp already bills, about $1.6M a year at Yelp's own average, with no added headcount. That's new paid locations and more spend from existing customers, the two levers you named, in one pilot state.
