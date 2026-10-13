@@ -65,6 +65,19 @@ PIPER_LEAD["summary"] = (
     "Next step: first call with SDR Jordan Reyes booked for Thursday 10:00 AM MT. Territory lead Tom Jones invited."
 )
 
+# Tom's existing (pre-Hunter) Colorado pipeline: established multi-location customers.
+# Sized so coverage is 2.1x on its own and ~3.3x once Hunter's opportunities land.
+TOM_QUARTERLY_QUOTA = 150000
+BASELINE_PIPELINE = [
+    # account, city, stage, amount, days to close
+    ("Rocky Mountain Pizza Partners", "Denver", "Proposal/Quote", 72000, 21),
+    ("Front Range Coffee Collective", "Boulder", "Discovery", 61000, 35),
+    ("Summit Fitness Group", "Colorado Springs", "Discovery", 55000, 42),
+    ("Mile High Dental Partners", "Aurora", "Qualification", 48000, 49),
+    ("Foothills Auto Care", "Lakewood", "Proposal/Quote", 42000, 28),
+    ("Cherry Creek Salon Group", "Denver", "Qualification", 37000, 56),
+]  # $315,000 = 2.1x of $150,000
+
 BRANDS = [
     "Dave's Hot Chicken", "Jersey Mike's Subs", "Smoothie King", "Wingstop", "Crumbl Cookies",
     "Tropical Smoothie Cafe", "Firehouse Subs", "Jimmy John's", "Ziggi's Coffee", "Teriyaki Madness",
@@ -183,7 +196,7 @@ def build():
         "dark": sum(o["dark"] for o in operators),
         "unrealized_annual": sum(o["unrealized_annual"] for o in operators),
     }
-    return {"org_url": ORG_URL, "rev_per_location": REV_PER_LOCATION, "territory": TERRITORY, "top40": top,
+    return {"org_url": ORG_URL, "rev_per_location": REV_PER_LOCATION, "quota": TOM_QUARTERLY_QUOTA, "baseline": BASELINE_PIPELINE, "territory": TERRITORY, "top40": top,
             "piper": PIPER_LEAD, "operators": operators}
 
 

@@ -50,8 +50,7 @@ def reset(piper_only=False):
         code += (
             "delete [SELECT Id FROM Task WHERE Subject LIKE 'Hunter brief:%'];\n"
             f"delete [SELECT Id FROM Campaign WHERE Name = '{CAMPAIGN}'];\n"
-            "delete [SELECT Id FROM Account WHERE Agent_Source__c IN ('Hunter','Self-Serve Checkout') "
-            "AND Yelp_Segment__c != null];\n"
+            "delete [SELECT Id FROM Account WHERE Yelp_Segment__c != null];\n"
         )
     apex(code)
 
@@ -137,6 +136,15 @@ def seed_hunter(data, users, rts):
                     Description=f"Hunter outbound sequences against {data['territory']['dark_locations']} "
                                 f"dark locations controlled by {data['territory']['operators']} Colorado "
                                 f"operators. Principals of the top 40 operators shown as members.")]
+    # Tom's existing pipeline (not from Hunter), so the dashboard can show coverage before and after.
+    tom = users["tjones"]
+    for n, (acct, city, stage, amount, days) in enumerate(data["baseline"]):
+        parents.append(rec("Account", f"B{n}", Name=acct, RecordTypeId=rts["SDO_Account_Simple"], OwnerId=tom,
+                           Type="Customer", BillingCity=city, BillingState="Colorado", BillingCountry="United States",
+                           Yelp_Segment__c="Multi-Location"))
+        opps.append(rec("Opportunity", f"BO{n}", Name=f"{acct} - Multi-Location Renewal + Expansion",
+                        AccountId=f"@B{n}", OwnerId=tom, RecordTypeId=rts["SimpleOpportunity"], StageName=stage,
+                        Amount=amount, CloseDate=str(today + dt.timedelta(days=days)), Type="Add-On Business"))
     import_plan([("Account", parents), ("Account", children), ("Contact", contacts), ("Campaign", campaign),
                  ("CampaignMember", members), ("Opportunity", opps), ("Task", tasks)])
 

@@ -69,7 +69,22 @@
             <rowIndex>0</rowIndex><rowSpan>4</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>6</colSpan><columnIndex>0</columnIndex>
+            <colSpan>4</colSpan><columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartSummary><axisBinding>y</axisBinding><column>FORMULA1</column></chartSummary><gaugeMax>4.0</gaugeMax><gaugeMin>0.0</gaugeMin><indicatorBreakpoint1>2.0</indicatorBreakpoint1><indicatorBreakpoint2>3.0</indicatorBreakpoint2><indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+                <componentType>Gauge</componentType>
+                <displayUnits>Auto</displayUnits>
+                <groupingSortProperties/>
+                <header>Marcus · Pipeline coverage</header>
+                <report>Yelp_Find_and_Win/Tom_Pipeline_Coverage</report>
+                <showRange>false</showRange>
+                <title>Coverage vs 3.0x target (was 2.1x)</title>
+            </dashboardComponent>
+            <rowIndex>4</rowIndex><rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>5</colSpan><columnIndex>4</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart><chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Account.Unrealized_Annual_Spend__c</column></chartSummary><groupingColumn>ACCOUNT.NAME</groupingColumn>
@@ -84,7 +99,7 @@
             <rowIndex>4</rowIndex><rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>3</colSpan><columnIndex>6</columnIndex>
+            <colSpan>3</colSpan><columnIndex>9</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart><chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><groupingColumn>Account.Location_Status__c</groupingColumn>
@@ -99,19 +114,34 @@
             <rowIndex>4</rowIndex><rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>3</colSpan><columnIndex>9</columnIndex>
+            <colSpan>6</colSpan><columnIndex>0</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart><chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>AMOUNT</column></chartSummary><groupingColumn>STAGE_NAME</groupingColumn>
                 <componentType>Column</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
-                <header>Marcus · Coverage</header>
+                <header>Marcus · Hunter pipeline</header>
                 <report>Yelp_Find_and_Win/Hunter_Pipeline_by_Stage</report>
                 <showRange>false</showRange>
                 <title>Hunter pipeline by stage</title>
             </dashboardComponent>
-            <rowIndex>4</rowIndex><rowSpan>8</rowSpan>
+            <rowIndex>12</rowIndex><rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan><columnIndex>6</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart><chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>AMOUNT</column></chartSummary><groupingColumn>TYPE</groupingColumn>
+                <componentType>Donut</componentType>
+                <displayUnits>Auto</displayUnits>
+                <groupingSortProperties/>
+                <header>Marcus + Tom · Where coverage came from</header>
+                <report>Yelp_Find_and_Win/Tom_Pipeline_Coverage</report>
+                <showRange>false</showRange>
+                <title>Tom's pipeline: existing vs Hunter</title>
+            </dashboardComponent>
+            <rowIndex>12</rowIndex><rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <numberOfColumns>12</numberOfColumns>
         <rowHeight>36</rowHeight>

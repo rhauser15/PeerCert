@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates><calculatedFormula>AMOUNT:SUM/150000</calculatedFormula><datatype>number</datatype><developerName>FORMULA1</developerName><isActive>true</isActive><isCrossBlock>false</isCrossBlock><masterLabel>Pipeline Coverage (x quota)</masterLabel><scale>1</scale></aggregates>
+    <columns><aggregateTypes>Sum</aggregateTypes><field>AMOUNT</field></columns><columns><field>OPPORTUNITY_NAME</field></columns><columns><field>ACCOUNT_NAME</field></columns><columns><field>STAGE_NAME</field></columns>
+    <description>Tom's open pipeline vs a $150,000 quarterly quota. Add-On Business = existing; New Business = Hunter.</description>
+    <filter><criteriaItems><column>FULL_NAME</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>equals</operator><value>Tom Jones</value></criteriaItems><criteriaItems><column>CLOSED</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>equals</operator><value>False</value></criteriaItems><criteriaItems><column>OPPORTUNITY_NAME</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>contains</operator><value>Multi-Location</value></criteriaItems></filter>
+    <format>Summary</format>
+    <groupingsDown><dateGranularity>Day</dateGranularity><field>TYPE</field><sortOrder>Asc</sortOrder></groupingsDown>
+    <name>Tom: Colorado Pipeline Coverage</name>
+    <params><name>co</name><value>1</value></params>
+    <reportType>Opportunity</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    
+    <timeFrameFilter><dateColumn>CLOSE_DATE</dateColumn><interval>INTERVAL_CUSTOM</interval></timeFrameFilter>
+</Report>

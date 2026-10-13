@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    
     <columns><aggregateTypes>Sum</aggregateTypes><field>AMOUNT</field></columns><columns><field>OPPORTUNITY_NAME</field></columns><columns><field>ACCOUNT_NAME</field></columns>
     <description>Opportunities Hunter opened for top operators.</description>
     <filter><criteriaItems><column>OPPORTUNITY_NAME</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>contains</operator><value>Multi-Location Activation</value></criteriaItems></filter>

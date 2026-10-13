@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    
     <columns><aggregateTypes>Sum</aggregateTypes><field>Lead.Unrealized_Annual_Spend__c</field></columns><columns><aggregateTypes>Sum</aggregateTypes><field>Lead.Location_Count__c</field></columns><columns><field>FIRST_NAME</field></columns><columns><field>LAST_NAME</field></columns><columns><field>COMPANY</field></columns><columns><field>Lead.Brands_Operated__c</field></columns>
     <description>Inbound leads Piper qualified as multi-location.</description>
     <filter><criteriaItems><column>Lead.Multi_Location__c</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>equals</operator><value>1</value></criteriaItems></filter>

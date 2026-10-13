@@ -16,13 +16,18 @@ def crit(col, op, val):
     return f"<criteriaItems><column>{col}</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>{op}</operator><value>{val}</value></criteriaItems>"
 
 
-def report(name, label, rtype, cols, criteria, group, sort_by=None, date_col="CREATED_DATE", desc="", scope="organization"):
+def report(name, label, rtype, cols, criteria, group, sort_by=None, date_col="CREATED_DATE", desc="", scope="organization", formulas=()):
     columns = "".join(
         f"<columns>{''.join(f'<aggregateTypes>{a}</aggregateTypes>' for a in aggs)}<field>{c}</field></columns>"
         for c, aggs in cols)
     sort = f"<sortColumn>{sort_by}</sortColumn><sortOrder>Desc</sortOrder>" if sort_by else ""
+    aggs = "".join(
+        f"<aggregates><calculatedFormula>{f}</calculatedFormula><datatype>number</datatype><developerName>{dev}</developerName>"
+        f"<isActive>true</isActive><isCrossBlock>false</isCrossBlock><masterLabel>{lbl}</masterLabel><scale>1</scale></aggregates>"
+        for dev, lbl, f in formulas)
     write(os.path.join(BASE, "reports", FOLDER, f"{name}.report-meta.xml"), f"""
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    {aggs}
     {columns}
     <description>{desc}</description>
     <filter>{''.join(crit(*c) for c in criteria)}</filter>
@@ -64,6 +69,13 @@ report("Piper_Multi_Location_Leads", "Piper: Multi-Location Leads Found", "LeadL
        [("Lead.Multi_Location__c", "equals", "1")], "Lead.Agent_Source__c",
        desc="Inbound leads Piper qualified as multi-location.", scope="org")
 
+QUOTA = 150000  # Tom's quarterly quota (matches scripts/demo_data.py TOM_QUARTERLY_QUOTA)
+report("Tom_Pipeline_Coverage", "Tom: Colorado Pipeline Coverage", "Opportunity",
+       [("AMOUNT", ["Sum"]), ("OPPORTUNITY_NAME", []), ("ACCOUNT_NAME", []), ("STAGE_NAME", [])],
+       [("FULL_NAME", "equals", "Tom Jones"), ("CLOSED", "equals", "False"), ("OPPORTUNITY_NAME", "contains", "Multi-Location")], "TYPE", date_col="CLOSE_DATE",
+       desc=f"Tom's open pipeline vs a ${QUOTA:,} quarterly quota. Add-On Business = existing; New Business = Hunter.",
+       formulas=[("FORMULA1", "Pipeline Coverage (x quota)", f"AMOUNT:SUM/{QUOTA}")])
+
 write(os.path.join(BASE, "reports", f"{FOLDER}.reportFolder-meta.xml"), f"""
 <ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
     <accessType>Public</accessType><name>Yelp Find and Win</name><publicFolderAccess>ReadWrite</publicFolderAccess>
@@ -96,6 +108,9 @@ def comp(ctype, rep, title, header, col, row, cs, rs, extra=""):
 CHART = "<chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart>"
 INDICATORS = "<indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>"
 METRIC = "<chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>{}</column></chartSummary>"
+GAUGE = ("<chartSummary><axisBinding>y</axisBinding><column>FORMULA1</column></chartSummary>"
+         "<gaugeMax>4.0</gaugeMax><gaugeMin>0.0</gaugeMin>"
+         "<indicatorBreakpoint1>2.0</indicatorBreakpoint1><indicatorBreakpoint2>3.0</indicatorBreakpoint2>" + INDICATORS)
 comps = "".join([
     comp("Metric", "Hunter_Book_Totals", "Net-new annual revenue in Tom's top 40", "Nina · CRO", 0, 0, 3, 4,
          METRIC.format("Account.Unrealized_Annual_Spend__c") + INDICATORS),
@@ -105,12 +120,15 @@ comps = "".join([
          METRIC.format("AMOUNT") + INDICATORS),
     comp("Metric", "Piper_Multi_Location_Leads", "Multi-location value Piper found", "Priya · Demand Gen", 9, 0, 3, 4,
          METRIC.format("Lead.Unrealized_Annual_Spend__c") + INDICATORS),
-    comp("Bar", "Hunter_Operators_by_Unrealized_Spend", "Top 10 operators by unrealized spend", "Marcus + Tom · Where to work", 0, 4, 6, 8,
+    comp("Gauge", "Tom_Pipeline_Coverage", "Coverage vs 3.0x target (was 2.1x)", "Marcus · Pipeline coverage", 0, 4, 4, 8, GAUGE),
+    comp("Bar", "Hunter_Operators_by_Unrealized_Spend", "Top 10 operators by unrealized spend", "Marcus + Tom · Where to work", 4, 4, 5, 8,
          CHART + METRIC.format("Account.Unrealized_Annual_Spend__c") + "<groupingColumn>ACCOUNT.NAME</groupingColumn>"),
-    comp("Donut", "Location_Status", "Paying vs dark locations", "Nina · Paid locations", 6, 4, 3, 8,
+    comp("Donut", "Location_Status", "Paying vs dark locations", "Nina · Paid locations", 9, 4, 3, 8,
          CHART + "<chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><groupingColumn>Account.Location_Status__c</groupingColumn>"),
-    comp("Column", "Hunter_Pipeline_by_Stage", "Hunter pipeline by stage", "Marcus · Coverage", 9, 4, 3, 8,
+    comp("Column", "Hunter_Pipeline_by_Stage", "Hunter pipeline by stage", "Marcus · Hunter pipeline", 0, 12, 6, 8,
          CHART + METRIC.format("AMOUNT") + "<groupingColumn>STAGE_NAME</groupingColumn>"),
+    comp("Donut", "Tom_Pipeline_Coverage", "Tom's pipeline: existing vs Hunter", "Marcus + Tom · Where coverage came from", 6, 12, 6, 8,
+         CHART + METRIC.format("AMOUNT") + "<groupingColumn>TYPE</groupingColumn>"),
 ])
 write(os.path.join(BASE, "dashboards", f"{FOLDER}_Dashboards", "Find_and_Win_Leadership.dashboard-meta.xml"), f"""
 <Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">

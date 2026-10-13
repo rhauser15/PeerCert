@@ -14,7 +14,7 @@
 |---|---|---|
 | **Piper** | Mockup (`piper.html`). Piper can't be installed in this demo org. The real Piper runs in the EDO if you want a live voice moment. | "This is a recreation of Piper on a Yelp for Business page. The CRM write-back and routing you'll see next are real, running in Salesforce." |
 | **Hunter** | Mockup (`hunter.html`) modeled on the Hunter prototype. Hunter isn't generally available. | "Hunter is early. This is a prototype; the experience and naming will change. The only call to action today is the beta waitlist." **Don't quote a date or promise beta acceptance.** |
-| **Salesforce** | **Real.** Custom fields, the routing Flow, the Piper lead with its task and meeting, 40 operators with 362 location accounts, contacts, campaign, 10 opportunities, 40 brief tasks, and the leadership dashboard. | "Everything from here on is live in the org." |
+| **Salesforce** | **Real.** Custom fields, the routing Flow, the Piper lead with its task and meeting, 40 operators with 362 location accounts, contacts, campaign, 10 Hunter opportunities, 40 brief tasks, Tom's 6 existing pipeline opportunities, and the leadership dashboard. Coverage uses a $150K quarterly quota for Tom (set in the report formula). | "Everything from here on is live in the org." |
 | **Numbers** | The territory totals (400 / 1,700 / 1,100 / 600 / $1.62M) come from the demo narrative. The 40 operators in the org are generated data. $2,700 per location is derived from Yelp's public figures (advertising revenue ÷ ~510,000 paying locations). | Treat as illustrative. |
 
 ---
@@ -34,17 +34,17 @@
 - [Open the Sales for Tech app](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/app/06mg800000AlQvwAAF) (click first; the links below then open inside it)
 
 **Section 2 · Piper write-back**
-- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000HVUvkEAH/view)
+- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000HVmzREAT/view)
 - [Routing Flow in Flow Builder](https://trailsignup-429cdfd78ec835.lightning.force.com/builder_platform_interaction/flowBuilder.app?flowId=301g8000012AduoAAC)
 - [Piper - Multi-Location Leads](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads)
 
 **Section 4 · Leadership**
 - [Leadership dashboard](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Dashboard/01Zg8000004BuMLEA0/view)
-- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g80000129QrHAAU/view)
-- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009bRNRAA2/view)
+- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g80000129DIxAAM/view)
+- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009bkbNAAQ/view)
 - [Hunter - Colorado Operators (Ranked)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Colorado_Operators)
 - [Hunter - Dark Locations (In Sequence)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Dark_Locations)
-- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g8000012AfOmAAK/view)
+- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g80000127oUgAAI/view)
 
 <!-- links:end -->
 
@@ -160,7 +160,7 @@
 | Who | Show | Say |
 |---|---|---|
 | **Nina** | Top tiles: **net-new annual revenue in Tom's top 40** (~$462K) and **dark locations owners already control** (171); donut **paying vs dark** | "Nina, that's your two priorities on one screen: new paid locations and more spend from customers you already have. This is Tom's top 40 alone. The full state is $1.6M, and Colorado is one state." |
-| **Marcus** | **Multi-location pipeline Hunter opened** (~$178K) and **pipeline by stage**; **Top 10 operators** bar | "Marcus, this is new pipeline in your weakest segment against the 2.1x coverage problem, and it's forecastable because it's in the CRM. Your best rep's method is now a governed workflow, not a private tool." |
+| **Marcus** | **Coverage gauge** (green, **3.3x** vs the 3.0x target, was 2.1x); donut **existing vs Hunter**; **Multi-location pipeline Hunter opened** (~$178K); **Top 10 operators** bar | "Marcus, Tom was sitting at 2.1x coverage, your number from discovery. Hunter added $178K of multi-location pipeline, and he's at **3.3x**, past the 3x target, without a new hire. It's forecastable because it's in the CRM, and your best rep's method is now a governed workflow, not a private tool." |
 | **Priya** | **Multi-location value Piper found** | "Priya, every single-location signup that's really a chain now shows up here, worked within minutes, after hours, and lands on an SDR's calendar already qualified." |
 | **Dana** | Click any bar into the report, then into **Pikes Peak Food Co.**: Yelp Agent Signals, Hunter Signals, **View Account Hierarchy**, the brief task, the opportunity | "Dana, every field Piper and Hunter wrote is on the record, with the evidence. One workflow, governed, auditable, and no data pasted into consumer AI. That's how field completeness goes up and Finance gets a forecast built on CRM evidence." |
 | **Tom** | **Accounts → "Hunter - Colorado Operators (Ranked)"** | "And Tom's view is just his list, ranked, with the work started." |
