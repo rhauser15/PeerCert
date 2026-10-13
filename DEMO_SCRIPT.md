@@ -1,9 +1,9 @@
 # Yelp · Find & Win: Demo Flow and Script
 
 **Segment:** Find → Win on the Agentic Revenue Lifecycle
-**Run time:** 23–26 minutes
-**Audience:** Nina (CRO), Dana (VP RevOps), Marcus (Sr Dir, Emerging & Multi-Location), Priya (Dir, Demand Gen)
-**Story in one line:** Piper finds the invisible owner in one conversation. Hunter uses that record as the template to find all of them. Salesforce keeps the record, and Flow routes it.
+**Run time:** 24–27 minutes
+**Audience:** Nina (CRO), Dana (VP RevOps), Marcus (Sr Dir, Emerging & Multi-Location), Priya (Dir, Demand Gen), Alisha (VP Customer Success), Tom Jones (Sales Lead, Marcus's team, owns Colorado)
+**Story in one line:** Piper finds the invisible owner at 10:15 PM and hands him to Tom. Tom asks Hunter to find every owner like him. Leadership sees all of it in Salesforce the next morning.
 
 ---
 
@@ -11,52 +11,47 @@
 
 | Item | What's real | What to say |
 |---|---|---|
-| **Piper** | Mockup (`prototypes/piper.html`). Piper can't be installed in this demo org. The real Piper runs in the EDO if you want a live voice moment. | "What you're seeing is a recreation of Piper on a Yelp for Business page. The CRM write-back and routing you'll see next are real, running in Salesforce." |
-| **Hunter** | Mockup (`prototypes/hunter.html`) modeled on the Hunter prototype. Hunter isn't generally available. | "Hunter is early. This is a prototype; the experience and naming will change. The only call to action today is the beta waitlist." **Don't quote a date or promise beta acceptance.** |
-| **Salesforce** | **Real.** Custom fields, the record-triggered Flow, the Lead, Task, Event, the 40-operator hierarchy (402 accounts), contacts, campaign, 10 opportunities, and 40 brief tasks. | "Everything from here on is live in the org." |
-| **Numbers** | The territory totals (400 / 1,700 / 1,100 / 600 / $1.62M) come from the demo narrative. The top 40 operators in the org are generated data. The $2,700 revenue per location is Yelp's derived public figure. | Treat as illustrative. |
+| **Piper** | Mockup (`piper.html`). Piper can't be installed in this demo org. The real Piper runs in the EDO if you want a live voice moment. | "This is a recreation of Piper on a Yelp for Business page. The CRM write-back and routing you'll see next are real, running in Salesforce." |
+| **Hunter** | Mockup (`hunter.html`) modeled on the Hunter prototype. Hunter isn't generally available. | "Hunter is early. This is a prototype; the experience and naming will change. The only call to action today is the beta waitlist." **Don't quote a date or promise beta acceptance.** |
+| **Salesforce** | **Real.** Custom fields, the routing Flow, the Piper lead with its task and meeting, 40 operators with 362 location accounts, contacts, campaign, 10 opportunities, 40 brief tasks, and the leadership dashboard. | "Everything from here on is live in the org." |
+| **Numbers** | The territory totals (400 / 1,700 / 1,100 / 600 / $1.62M) come from the demo narrative. The 40 operators in the org are generated data. $2,700 per location is derived from Yelp's public figures (advertising revenue ÷ ~510,000 paying locations). | Treat as illustrative. |
 
 ---
 
 ## Before the demo
 
-1. Reset the data (about 1 minute). This also re-fires the routing Flow on the Piper lead:
+1. **Reset the data** (about 1 minute). This re-fires the routing Flow on the Piper lead:
    ```bash
    python3 scripts/seed.py
    ```
-   If you only want to re-fire the Piper lead (for example, right before the call), run `python3 scripts/seed.py --piper`.
-2. Serve the mockups:
-   ```bash
-   python3 -m http.server 8787 --directory prototypes
-   ```
-3. Open full-screen tabs **in this order**, then swipe between them:
-   1. `http://localhost:8787/piper.html`
-   2. Salesforce → **Leads → "Piper - Multi-Location Leads"**, then open **Sam Whitaker**
-   3. Salesforce → **Setup → Flows → Yelp - Multi-Location Lead Routing** (canvas view)
-   4. `http://localhost:8787/hunter.html`
-   5. Salesforce → **Accounts → "Hunter - Colorado Operators (Ranked)"**
-   6. Salesforce → **Pikes Peak Food Co.** (rank #1) → **View Account Hierarchy**
-4. In the mockups: **→ / Space / clicker** = next, **←** = back, **R** = restart, **H** = hide the presenter strip at the top. To rehearse a single beat, add `?step=N` to the URL (for example `piper.html?step=11`).
-5. Sign in as Rob: `sf org open -o trailsignup-429cdf`
-6. **Hide the real URL.** Open each mockup in Chrome app mode, which has no address bar or tabs:
+   Run `python3 scripts/seed.py --piper` the morning of the demo if you only need the Thursday meeting to line up.
+2. **Sign in as Rob:** `sf org open -o trailsignup-429cdf`. Open the **leadership dashboard** and click **Refresh** so it's current.
+3. **Open the mockups in Chrome app mode** (no real address bar). `?frame=1` adds a fake Yelp tab and address bar:
    ```bash
    open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/piper.html?frame=1"
    ```
    ```bash
    open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/hunter.html?frame=1"
    ```
-   `?frame=1` (or pressing **B**) adds a fake Chrome tab and address bar. Piper shows `biz.yelp.com/advertise/checkout…`, then `…/multi-location` when Piper co-browses. Hunter shows `yelp.lightning.force.com/lightning/n/Hunter`. Press **⌃⌘F** for full screen. Your B choice is remembered.
+   Press **⌃⌘F** for full screen. Controls: **→ / Space / clicker** next, **←** back, **R** restart, **H** hide the presenter strip, **B** toggle the Yelp address bar, `?step=N` to rehearse one beat.
+4. **Queue these Salesforce tabs in order:**
+   1. **Leads → "Piper - Multi-Location Leads"** → **Sam Whitaker**
+   2. **Setup → Flows → Yelp - Multi-Location Lead Routing**
+   3. **Dashboards → Yelp Find and Win: Leadership View**
+   4. **Accounts → "Hunter - Colorado Operators (Ranked)"** → **Pikes Peak Food Co.**
 
 ---
 
 ## 0 · Open: frame the problem (2 min)
 
 **Say:**
-> Nina, you've told the board AI changes the paying-locations trajectory. Today I want to show you where the first locations come from, without a single new hire.
+> Nina, revenue grew 1% last year and paying locations are down 5% to about 510,000, with no new headcount coming. Your priorities are more paid locations, more spend from the locations already paying, and moving upmarket into multi-location chains.
 >
-> Dana's hypothesis from our last call is that Yelp is missing qualified multi-location owners because the signals are siloed. Priya's chat tool books meetings during business hours. Marcus's reps research a franchise group by hand for a day. And the data that would connect these owners lives in **billing**, not in the sales data model.
+> Priya told us something that ties all three together: many leads come in as a **single location** but are really part of a larger chain or franchise. Nobody can see that today, so the upside goes to self-serve.
 >
-> On our lifecycle map, this is **Find and Win**: Piper on your inbound, Hunter on prospecting and the long tail, and Flow keeping the top of the funnel accurate. The PRIME levers it moves are **Pipeline Velocity, CAC Reduction, and Automate Outreach**.
+> Tom, you're the top rep on Marcus's team and you own Colorado. You told us you spend your day jumping between tools to piece together a customer, on work that isn't selling.
+>
+> On our lifecycle map, this is **Find and Win**: Piper on inbound, Hunter on prospecting and the long tail, and Flow keeping the top of the funnel accurate. Everything lands in Salesforce, so Dana gets one governed workflow instead of reps pasting data into consumer AI tools.
 
 **Show:** the lifecycle slide, with Find → Win highlighted.
 
@@ -68,93 +63,90 @@
 
 | Step | Do | Say |
 |---|---|---|
-| 0 | Page loads | "Tuesday, 10:15 PM. Priya's chat tool has been off for four hours. A man is signing up to advertise one Smoothie King in Lakewood at $300 a month. Notice Piper isn't a chat bubble in the corner. She's **pinned** to the Yelp for Business site as an always-on ride-along, and she's already greeted him in context: his claimed page, his plan." |
-| 1 | → (Yelp's signals card) | "Here's what Yelp's own data says: one location, 60 reviews, opened 2024. Long tail, self-serve, no rep. **The system is right on the data and wrong on the opportunity.**" |
-| 2 | → (Piper's buyer profile) | "Meanwhile Piper is building a buyer profile from Salesforce and his web activity. He's looked at the multi-location page twice this week. That doesn't match a one-store buyer." |
+| 0 | Page loads | "Tuesday, 10:15 PM. Priya's chat tool has been off for four hours. A man is signing up to advertise one Smoothie King in Lakewood at $300 a month. Piper isn't a chat bubble in the corner. She's **pinned** to the Yelp for Business site, and she's already greeted him in context: his claimed page, his plan." |
+| 1 | → (Yelp's signals) | "Here's what Yelp's own data says: one location, 60 reviews, opened 2024. Long tail, self-serve, no rep. **The system is right on the data and wrong on the opportunity.**" |
+| 2 | → (buyer profile) | "Meanwhile Piper is building a buyer profile from Salesforce and his web activity. He's looked at the multi-location page twice this week. That doesn't fit a one-store buyer." |
 | 3 | → | "So Piper nudges him based on what he's actually doing." |
-| 4 | → (Speak with Piper) | "He switches to voice. Local owners research at night, from the car, between shifts. Piper meets them in whatever mode they want." |
-| 5 | → (highlighted question) | "Piper asks the question no form asks: **'Is this your only location, or do you operate others?'**" *(pause)* |
+| 4 | → (Speak with Piper) | "He switches to voice. Local owners research at night, between shifts. Piper meets them in whatever mode they want." |
+| 5 | → (highlighted) | "Piper asks the question no form asks: **'Is this your only location, or do you operate others?'**" *(pause)* |
 | 6 | → | "Seven Dave's Hot Chicken, four Jersey Mike's, Denver metro and Colorado Springs, plus this Smoothie King." |
 | 7–8 | → → | "Piper qualifies who controls the budget: him, for all of them." |
 | 9–10 | → → | "And growth: development rights for four more through 2028." |
-| 11 | → (co-browse) | "Now Piper **co-browses**. She knows every corner of the site, so she takes him to the multi-location page and pulls up the story that fits a multi-brand franchisee. He doesn't have to hunt for it." |
-| 12 | → (reveal) | "Here's why Yelp could never find him. Twelve pages that share no name, so brand matching returns nothing. Each is claimed by a store manager under a store email. **His name is on none of them.**" |
-| 13 | → (meeting booker) | "Piper doesn't upsell him a bigger self-serve plan. She turns on tonight's ad so he's live this weekend, then opens the booker with the **right** rep, Cindy on Marcus's team, using Salesforce routing." |
-| 14 | → (Thu 10:00 + note) | "He books Thursday at 10:00 and asks Piper to tell the team what he wants. Piper relays it to the rep. At 10:15 on a Tuesday night, with no SDR involved." |
-| 15 | → (recap email) | "Then the follow-up is instant, and it happens in the other channel that matters for inbound: the inbox. The recap isn't generic; it's this conversation. If he replies, Piper keeps going over email." |
-| 16 | → (write-back panel) | "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's own average, and $43,000 at sixteen by 2028. Piper writes `operates_other_brands = true`, `location_count = 12`, tags it multi-location, and books the rep. Let's prove that's real." |
+| 11 | → (co-browse) | "Now Piper **co-browses**. She takes him to the multi-location page and pulls up the story that fits a multi-brand franchisee." |
+| 12 | → (reveal) | "Here's why Yelp could never find him. Twelve pages that share no name, so brand matching returns nothing. Each is claimed by a store manager under a store email. **His name is on none of them.** This is exactly Priya's 'single location that's really a chain.'" |
+| 13 | → (booker) | "Piper turns on tonight's ad so he's live this weekend, then opens the booker with the **right** rep: **Tom**, who owns Colorado." |
+| 14 | → (Thu 10:00 + note) | "He books Thursday at 10:00 and asks Piper to tell Tom what he wants. Piper passes it on. No SDR involved." |
+| 15 | → (recap email) | "The follow-up is instant, in the inbox. If he replies, Piper keeps going over email." |
+| 16 | → (write-back) | "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's average, and $43,000 at sixteen by 2028. Piper writes `operates_other_brands = true` and `location_count = 12`, tags it multi-location, and books Tom. Let's prove that's real." |
 
-**Lever callout (Priya):** speed to lead goes from 4 hours to zero, after hours, and the 60% of inbound no human works gets worked. Piper also runs alongside the incumbent chat tool, so the March renewal isn't a blocker for a pilot.
+**Lever callout (Priya):** speed to lead goes from 4 hours to zero, after hours, and the 60% of inbound no human works gets worked. Piper runs alongside the incumbent chat tool, so the March renewal doesn't block a pilot.
 
-**Optional live beat:** Piper's voice, video, and multilingual features run live in the EDO (`edo.my.site.com/personalization`). If you want to show her speaking, cut there for 60 seconds after step 4 (*"Parlez-vous français?"* works well; for Yelp, try Spanish for a store manager). Then come back to the Yelp mockup for the story. Share your screen **with sound**.
+**Optional live beat:** Piper's voice, video, and multilingual features run live in the EDO (`edo.my.site.com/personalization`). Cut there for 60 seconds after step 4 if you want her speaking, then come back. Share your screen **with sound**.
 
 ---
 
-## 2 · Proof, part 1: written back to Salesforce (4 min)
+## 2 · Proof, part 1: written back to Salesforce (3 min)
 
 **Tab:** Salesforce Lead **Sam Whitaker**
 
 | Do | Say |
 |---|---|
-| Show the **Yelp Agent Signals** section: Agent Source = Piper, Location Count 12, Brand Count 3, Brands Operated, Committed Future Locations 4 (through 2028), Self-Serve Monthly Spend $300, Unrealized Annual Spend $29,700 | "Dana, this is the conversation as structured CRM fields. No rep typed anything." |
-| Show **Agent Qualification Summary** | "Here's what Piper learned, in plain language, on the record." |
-| Point at **Owner = Cindy Central**, Status Qualified, Rating Hot, **Routing Reason** | "And it's already routed." |
-| Activity: **Task "Agent brief…"** due tomorrow and **Event "Intro… (booked by Piper)"** Thursday 10:00 | "Cindy walks into Thursday knowing everything. Sam doesn't repeat himself." |
-| Switch to the **Flow** tab | "This is the GTM Engineering box on the map. A record-triggered Flow: 3+ locations or other brands → flag multi-location, route to Marcus's team, create the brief. It runs on-platform, inside your API limits, and it's debuggable. That's the opposite of the enrichment workflow that ate your API limit before quarter close." |
-| Optional: Leads list view **"Piper - Multi-Location Leads"** | "Every agent-qualified multi-location lead lands in one place." |
+| **Yelp Agent Signals** section: Agent Source = Piper, Location Count 12, Brand Count 3, Brands Operated, Committed Future Locations 4 (through 2028), Self-Serve Monthly Spend $300, Unrealized Annual Spend $29,700 | "Dana, this is the conversation as structured CRM fields. Nobody typed anything." |
+| **Agent Qualification Summary** | "What Piper learned, in plain language, on the record." |
+| **Owner = Tom Jones**, Status Qualified, Rating Hot, **Routing Reason** | "And it's already routed to Tom." |
+| Activity: **Task "Agent brief…"** and **Event "Intro… (booked by Piper)"** Thursday 10:00 | "Tom walks into Thursday with full context. That's his 'reps miss context heading into calls' problem, solved before he logs in." |
+| **Flow** tab | "This is the GTM Engineering box on the map. A record-triggered Flow: 3+ locations or other brands → flag multi-location, route to Tom, create the brief. It's on-platform, inside your API limits, and debuggable. Dana, that's the opposite of the enrichment job that ate your API limit before quarter close." |
 
 **Transition:**
-> One owner. That proves the pattern exists. Marcus's question is how many more Sams there are. That's Hunter's job.
+> One owner proves the pattern exists. Tom's next question is how many more Sams are hiding in Colorado.
 
 ---
 
-## 3 · Hunter: find all of them (7 min)
+## 3 · Hunter: Tom finds all of them (7 min)
 
-**Tab:** `hunter.html` · **Steps 0–6**
+**Tab:** `hunter.html` · **Steps 0–7**
 
 | Step | Do | Say |
 |---|---|---|
-| 0 | Page loads | "Marcus logs in. Hunter is already showing him the pattern Piper confirmed overnight." |
-| 1 | → (objective types in) | "Here's the pivot. Yelp already owns every business page in America, so Hunter's objective isn't 'find businesses.' It's this: **identify Colorado operators controlling three or more paying locations across different brand names, and rank them by unrealized spend.**" |
-| 2 | → (plan) | "Hunter uses Sam's record as the template. The signal that matters is one Yelp already owns and doesn't use for prospecting, because it lives in **billing**: the same payment method, billing address or billing contact across single-location self-serve accounts in different brands. Plus phone routing, the same person answering reviews, co-located openings, and entity and registered-agent data through the **Data Vendor Gateway**." Point at the guardrails: "Long-horizon runtime, inside platform limits, and every lookup logged through the Einstein Trust Layer. Dana, that's your audit trail, not reps pasting advertiser data into consumer AI tools." |
-| 3 | → (Approve & start) | "This isn't a chat answer. It runs for days, which is what the long-horizon runtime is for." |
-| 4 | → (3 days later) | "Colorado pilot territory: **about 400 operators controlling 1,700 locations.** Around **1,100 are already paying, at self-serve rates**, as unrelated accounts. The other **600 aren't advertising at all.** At Yelp's average revenue per location, that's **$1.6M of net-new annual revenue in one state**, inside the existing customer base, from accounts Yelp has billed for years without knowing they were connected." Point at the orange bars: "The strongest signals came from billing." |
-| 5 | → (operator #1 drawer) | "Pikes Peak Food Co.: 18 locations, 2 brands, 10 dark. Here's the evidence, the hierarchy Hunter built, and the brief the rep gets." |
-| 6 | → (worked it) | "Then Hunter works it: outbound sequences against the 600 dark locations, a parent-child hierarchy for each operator, and the top 40 by value routed to Marcus's reps with a brief. **Marcus's 180 reps stop staring at 10,000 undifferentiated business pages and start working a ranked list of named owners.**" |
+| 0 | Page loads | "Wednesday morning. Tom opens Salesforce, not a second tool. Hunter shows him what came in overnight: the owner Piper found and routed to him." |
+| 1 | → (objective) | "Tom asks Hunter to **find more owners like him**: operators in his Colorado territory controlling three or more paying locations across different brand names, ranked by unrealized spend. Yelp already owns every business page, so the job isn't 'find businesses.' It's 'find who's behind them.'" |
+| 2 | → (plan) | "Hunter uses Sam's record as the template. The strongest signal is one Yelp already owns and doesn't use for prospecting, because it lives in **billing**: the same payment method, billing address or billing contact across single-location self-serve accounts in different brands. Plus phone routing, the same person answering reviews, co-located openings, and entity and registered-agent data through the **Data Vendor Gateway**." Point at the guardrails: "Long-horizon runtime, inside platform limits, every lookup logged through the Einstein Trust Layer." |
+| 3 | → (approve) | "Tom approves, and Hunter goes to work. This runs for days, not seconds." |
+| 4 | → (3 days later) | "Colorado: **about 400 operators controlling 1,700 locations.** Around **1,100 already pay, at self-serve rates**, as unrelated accounts. **600 aren't advertising at all.** At Yelp's average revenue per location, that's **$1.6M of net-new annual revenue in one state**, from owners Yelp already bills." Point at the orange bars: "The strongest signals came from billing." |
+| 5 | → (#1 operator) | "Pikes Peak Food Co.: 18 locations, 2 brands, 10 dark. The evidence, the hierarchy Hunter built, and Tom's brief. That's the day of manual research Marcus described, done before Tom asks." |
+| 6 | → (first-touch email) | "And the repetitive part is done too. Hunter drafted Tom's first touch to Kim, the owner, in the way Tom's won deals open: what she already pays for, then the 10 dark locations. It's a four-step cadence. Tom approves it, edits it, or adds context by voice." |
+| 7 | → (worked it) | "Then Hunter works the rest: a parent-child hierarchy for every operator, sequences against all 600 dark locations, the **top 40 in Tom's book** with briefs and drafts, 10 opportunities, and a summary **shared with Marcus in Slack**, so the pattern runs in every other territory. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
 
-**Lever callout (Marcus):** a day of manual research per franchise group becomes a brief that's waiting for the rep, and his top reps' private AI workflows become a governed team-wide motion.
-
----
-
-## 4 · Proof, part 2: the rep's view in Salesforce (4 min)
-
-| Do | Say |
-|---|---|
-| **Accounts → "Hunter - Colorado Operators (Ranked)"**: sort by Hunter Rank | "The top 40 operators, ranked: locations, paying, dark, unrealized spend, confidence, owner." |
-| Open **Pikes Peak Food Co.** → **Yelp Agent Signals** + **Hunter Signals** | "The evidence is on the record, so the rep can see why." |
-| **View Account Hierarchy** | "Eighteen location accounts under one owner. Before Hunter, these were eighteen strangers." |
-| Activity: **"Hunter brief: …"** task | "The brief: who the principal is, what they pay today, what's dark, and a suggested opener." |
-| Related: **Opportunity "Multi-Location Activation"** | "Pipeline Marcus can forecast. Hunter opened ten of them." |
-| **Accounts → "Hunter - Dark Locations (In Sequence)"** | "The dark locations Hunter is sequencing." |
-| Optional: **Campaign "Hunter - Colorado Dark Location Outreach"** | "And the outreach is attributable." |
-
-**Say (Dana / Thomas):**
-> Every field Piper and Hunter wrote is in the CRM, not in a warehouse model or a rep's ChatGPT tab. That's what moves field completeness up from under 25% and gives Finance a rollup it can use.
+**Lever callout (Tom):** one place to work instead of five tools, the repetitive research and first drafts done for him, and his best approach shared with the team instead of living in a private tool.
 
 ---
 
-## 5 · Close: why the two belong in one flow (2 min)
+## 4 · Leadership: what lands in Salesforce (4 min)
 
-1. **Piper proves the pattern** on one owner, in conversation, at 10:15 PM.
-2. **That confirmed record becomes the template.**
-3. **Hunter applies it across the state** over days, which is what the long-horizon runtime is for.
-4. **Marcus's reps work a ranked list of named owners**, and every step is written back to Salesforce.
+**Tab:** **Dashboards → Yelp Find and Win: Leadership View** (each tile is labeled with the leader it's for)
 
-**Value (Nina / Thomas):**
-> At about $2,700 per location, the $605K program pays for itself at around 225 locations. Colorado alone surfaced 600 dark locations controlled by owners Yelp already bills. That's more than two and a half times the payback threshold in a single pilot state, before Piper's inbound and before the next territory.
+| Who | Show | Say |
+|---|---|---|
+| **Nina** | Top tiles: **net-new annual revenue in Tom's top 40** (~$462K) and **dark locations owners already control** (171); donut **paying vs dark** | "Nina, that's your two priorities on one screen: new paid locations and more spend from customers you already have. This is Tom's top 40 alone. The full state is $1.6M, and Colorado is one state." |
+| **Marcus** | **Multi-location pipeline Hunter opened** (~$178K) and **pipeline by stage**; **Top 10 operators** bar | "Marcus, this is new pipeline in your weakest segment against the 2.1x coverage problem, and it's forecastable because it's in the CRM. Your best rep's method is now a governed workflow, not a private tool." |
+| **Priya** | **Multi-location value Piper found** | "Priya, every single-location signup that's really a chain now shows up here, worked within minutes, after hours." |
+| **Dana** | Click any bar into the report, then into **Pikes Peak Food Co.**: Yelp Agent Signals, Hunter Signals, **View Account Hierarchy**, the brief task, the opportunity | "Dana, every field Piper and Hunter wrote is on the record, with the evidence. One workflow, governed, auditable, and no data pasted into consumer AI. That's how field completeness goes up and Finance gets a forecast built on CRM evidence." |
+| **Tom** | **Accounts → "Hunter - Colorado Operators (Ranked)"** | "And Tom's view is just his list, ranked, with the work started." |
 
-**Name the gap (scores in Cert 1):**
-> One thing we haven't covered: everything today is acquisition. Paying locations are also falling because of churn, and nobody in discovery has raised Service, Success or retention. I'd like 30 minutes with Alisha, and with Thomas on the pilot gate, so we can cover the Keep half of this map.
+---
+
+## 5 · Close (2 min)
+
+1. **Piper proves the pattern** on one owner, in conversation, at 10:15 PM, and hands him to Tom.
+2. **That record becomes the template.**
+3. **Hunter applies it across Tom's territory** over days.
+4. **Leadership sees all of it in Salesforce**: pipeline, value and evidence, without another tool or another hire.
+
+**Value (Nina):**
+> Colorado alone surfaced 600 dark locations controlled by owners Yelp already bills, about $1.6M a year at Yelp's own average, with no added headcount. That's new paid locations and more spend from existing customers, the two levers you named, in one pilot state.
+
+**Name the gap (Alisha):**
+> Everything today was acquisition. Alisha, you told us reps and support are both stuck on simple questions after the sale, and there's no health scoring, so churn shows up as a cancellation request. That's the Keep half of this map, and I'd like to cover it with you next.
 
 ---
 
@@ -162,12 +154,13 @@
 
 | Question | Answer |
 |---|---|
-| *Priya:* "My chat tool renews in March." | "Piper runs alongside it; a pilot on the after-hours window doesn't touch the renewal. Measure speed to lead and multi-location discovery rate side by side." |
+| *Priya:* "My chat tool renews in March." | "Piper runs alongside it; a pilot on the after-hours window doesn't touch the renewal. Compare speed to lead and multi-location discovery side by side." |
 | *Dana:* "Will this eat our API limits?" | "The routing is a record-triggered Flow, on-platform. Hunter's reads are batched by the runtime. Neither is an external script hammering the API." |
-| *Dana:* "Is using billing data OK?" | "It stays inside Yelp's Salesforce trust boundary. Lookups and writes are logged through the Einstein Trust Layer, and governance on which fields agents can read is admin-controlled." |
-| "When can we have Hunter?" | "It's not GA and we're not committing to a date. I can put you on the beta waitlist; I can't promise acceptance." |
-| *Marcus:* "What if Hunter's wrong about an owner?" | "Every operator carries a confidence score and the evidence behind it. Reps confirm on the first call, and corrections become training signal." |
-| *Thomas:* "How do I gate a pilot?" | "One territory, one metric: dark locations activated per month among Hunter-identified operators, against the 225-location payback line." |
+| *Dana:* "Is using billing data OK?" | "It stays inside Yelp's Salesforce trust boundary. Lookups and writes are logged through the Einstein Trust Layer, and admins control which fields agents can read." |
+| *Tom:* "Is this another tool I have to learn?" | "No. It's in Salesforce, where you already work. That's the point: fewer places to look, not one more." |
+| *Marcus:* "How do I scale what my top reps built?" | "Hunter learns from your won deals and best reps, and the result is a shared, governed workflow. Tom's pattern went to you in Slack and can run in every territory." |
+| *Marcus:* "What if Hunter's wrong about an owner?" | "Every operator carries a confidence score and the evidence behind it. The rep confirms on the first call." |
+| "When can we have Hunter?" | "It's not GA and we're not committing to a date. I can add you to the beta waitlist; I can't promise acceptance." |
 
 ---
 
@@ -176,7 +169,7 @@
 | Diagram box | Where it shows up |
 |---|---|
 | **Agentic Marketing (Piper)** | Section 1: after-hours qualification on Yelp for Business |
-| **Prospecting (Hunter)** | Section 3: operator discovery across billing and other signals |
-| **SDR Agent (Hunter)** | Section 3, step 6: sequences against 600 dark locations |
+| **Prospecting (Hunter)** | Section 3: Tom's operator discovery across billing and other signals |
+| **SDR Agent (Hunter)** | Section 3, steps 6–7: first-touch drafts and sequences against 600 dark locations |
 | **GTM Engineering (Flow)** | Section 2: `Yelp - Multi-Location Lead Routing` |
-| **Win** | Sections 4–5: routed reps, briefs, opportunities, value math |
+| **Win** | Sections 4–5: leadership dashboard, pipeline, value |

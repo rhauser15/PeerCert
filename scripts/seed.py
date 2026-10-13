@@ -78,7 +78,7 @@ def import_plan(steps):
 
 def ids():
     users = {u["Alias"]: u["Id"] for u in query(
-        "SELECT Id, Alias FROM User WHERE Alias IN ('ccentral','vwest','bill','vcent') AND IsActive = true")}
+        "SELECT Id, Alias FROM User WHERE Alias IN ('tjones') AND IsActive = true")}
     rts = {r["DeveloperName"]: r["Id"] for r in query(
         "SELECT Id, DeveloperName FROM RecordType WHERE DeveloperName IN "
         "('SDO_Account_Simple','SDO_Lead_Default','SimpleOpportunity')")}

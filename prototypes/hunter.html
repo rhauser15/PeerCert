@@ -121,7 +121,7 @@
 <div class="gh">
   <div class="cloud">SF</div>
   <div class="search">🔍&nbsp; Search...</div>
-  <div class="icons"><span>★</span><span>＋</span><span>?</span><span>⚙</span><span>🔔</span><div class="me">MA</div></div>
+  <div class="icons"><span>★</span><span>＋</span><span>?</span><span>⚙</span><span>🔔</span><div class="me">TJ</div></div>
 </div>
 <div class="nav"><span class="app">Sales</span><span>Home</span><span>Accounts</span><span>Leads</span><span>Opportunities</span><span class="on">Hunter</span></div>
 
@@ -164,9 +164,9 @@ const D = YELP_DATA, T = D.territory, OPS = D.operators, P = D.piper;
 const fmt = n => "$" + Math.round(n).toLocaleString();
 const fmtM = n => "$" + (n / 1e6).toFixed(2).replace(/0$/, "") + "M";
 const feed = document.getElementById("feed"), work = document.getElementById("work");
-const REPS = { ccentral: "Cindy Central", vwest: "Vince West", bill: "Bill South", vcent: "Vanessa Central" };
+const REPS = { tjones: "Tom Jones" };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-const OBJECTIVE = "Identify Colorado operators controlling three or more paying locations across different brand names, and rank them by unrealized spend.";
+const OBJECTIVE = "Find more owners like him. Identify operators in my Colorado territory controlling three or more paying locations across different brand names, and rank them by unrealized spend.";
 const SIGNALS = [
   ["Shared payment method across self-serve accounts", 241, "bill"],
   ["Shared billing address or billing contact", 198, "bill"],
@@ -211,12 +211,12 @@ async function count(el, to, ms, f = n => n.toLocaleString(), instant) {
 
 // ---------- step renderers ----------
 function home() {
-  add(`<div class="hello"><div class="hunter-av">H</div><div><h1>Good morning, Marcus</h1><p>I'm Hunter, your sales agent. Here's what came in overnight.</p></div></div>`);
+  add(`<div class="hello"><div class="hunter-av">H</div><div><h1>Good morning, Tom</h1><p>I'm Hunter, your sales agent. Here's what came in overnight in your Colorado territory.</p></div></div>`);
   add(`<div class="card">
     <div class="k">New pattern confirmed by Piper · Tue 10:15 PM</div>
     <h3 style="margin-top:6px">${P.company}: one owner, ${P.locations} locations, ${P.brands.length} brands</h3>
     <div>Signed up for one ${P.signed_up_for} at ${fmt(P.monthly_spend)}/mo. In conversation, Piper learned he runs ${P.brand_breakdown["Dave's Hot Chicken"]} Dave's Hot Chicken and ${P.brand_breakdown["Jersey Mike's Subs"]} Jersey Mike's too, with one marketing budget and rights to ${P.future_locations} more.
-    <b>His name is on none of the 12 pages.</b> Routed to Cindy Central; meeting Thursday 10:00 AM.</div>
+    <b>His name is on none of the 12 pages.</b> Piper routed him to you and booked Thursday at 10:00 AM.</div>
     <div style="margin-top:10px;display:flex;gap:8px"><button class="btn primary">Find more owners like this</button><button class="btn">View lead</button></div>
   </div>`);
   setWork([["Ready", [["ready", "Piper: confirmed pattern", `${P.company} · ${P.locations} locations · 3 brands`]]], SCHEDULED]);
@@ -241,7 +241,7 @@ async function plan(instant) {
       <li>Flag <b>co-located openings</b> in the same retail centers <span class="src">Locations</span></li>
       <li>Confirm ownership with <b>entity and registered-agent records</b> <span class="src dvg">Data Vendor Gateway</span></li>
       <li>Keep operators with <b>3+ locations across 2+ brands</b>; rank by dark locations × ${fmt(D.rev_per_location)}</li>
-      <li>Then work it: build parent-child hierarchy, sequence the dark locations, route the top 40 to Multi-Location reps with a brief</li>
+      <li>Then work it: build parent-child hierarchy, sequence the dark locations, put the top 40 in your book with a brief and a first-touch email</li>
     </ol>
     <div class="guard">
       <div><b>Long-horizon runtime</b>Estimated 2 to 3 days. Runs in the background.</div>
@@ -295,8 +295,8 @@ async function results(instant) {
   <div class="card"><div class="k">Which signals connected them (operators linked, overlapping)</div><div class="sigbars" style="margin-top:8px">
     ${SIGNALS.map(([l, v, c]) => `<div class="r ${c}"><span>${l}</span><span class="t"><i data-w="${v / max * 100}%"></i></span><b>${v}</b></div>`).join("")}
   </div><div style="font-size:12px;color:var(--muted);margin-top:6px">Orange = billing data, which isn't in the sales data model today.</div></div>
-  <div class="card" style="padding:6px 6px 0"><div class="k" style="padding:10px 10px 4px">Ranked by unrealized spend · top 40 routed to reps</div>
-  <table class="rank"><thead><tr><th>#</th><th>Operator</th><th>Brands</th><th class="num">Locations</th><th class="num">Paying</th><th class="num">Dark</th><th class="num">Unrealized / yr</th><th>Confidence</th><th>Rep</th></tr></thead>
+  <div class="card" style="padding:6px 6px 0"><div class="k" style="padding:10px 10px 4px">Ranked by unrealized spend · top 40 added to your book</div>
+  <table class="rank"><thead><tr><th>#</th><th>Operator</th><th>Brands</th><th class="num">Locations</th><th class="num">Paying</th><th class="num">Dark</th><th class="num">Unrealized / yr</th><th>Confidence</th></tr></thead>
   <tbody id="rankBody">${rows(top10)}</tbody></table>
   <span class="more" onclick="document.getElementById('rankBody').innerHTML=rows(OPS);this.remove()">Show all 40 →</span></div>`);
   const fx = [[1, T.operators], [2, T.locations], [3, T.paying_locations], [4, T.dark_locations]];
@@ -308,7 +308,7 @@ async function results(instant) {
 function rows(list) {
   return list.map(o => `<tr class="row" onclick="openOp(${o.rank})"><td>${o.rank}</td><td><b>${o.name}</b><div style="color:var(--muted);font-size:12px">${o.first} ${o.last}</div></td>
     <td>${o.brands.map(b => `<span class="brandchip">${b}</span>`).join("")}</td><td class="num">${o.location_count}</td><td class="num">${o.paying}</td><td class="num"><b>${o.dark}</b></td>
-    <td class="num"><b>${fmt(o.unrealized_annual)}</b></td><td><span class="conf">${o.confidence}%</span></td><td>${REPS[o.rep_alias]}</td></tr>`).join("");
+    <td class="num"><b>${fmt(o.unrealized_annual)}</b></td><td><span class="conf">${o.confidence}%</span></td></tr>`).join("");
 }
 
 const ICON = { billing: "💳", phone: "📞", reviews: "💬", colocation: "📍", entity: "🏛" };
@@ -317,7 +317,7 @@ function openOp(rank) {
   const byBrand = {};
   o.locations.forEach(l => (byBrand[l.brand] ||= []).push(l));
   document.getElementById("drawerBody").innerHTML = `
-    <div class="k" style="color:var(--muted);font-size:12px">OPERATOR #${o.rank} · ${o.confidence}% CONFIDENCE · ROUTED TO ${REPS[o.rep_alias].toUpperCase()}</div>
+    <div class="k" style="color:var(--muted);font-size:12px">OPERATOR #${o.rank} · ${o.confidence}% CONFIDENCE · IN YOUR BOOK</div>
     <h2>${o.name}</h2><div style="color:var(--muted);margin:2px 0 14px">${o.first} ${o.last}, ${o.title} · ${o.email}</div>
     <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
       <div class="kpi"><div class="v">${o.location_count}</div><div class="l">Locations</div></div>
@@ -338,6 +338,24 @@ function openOp(rank) {
 }
 function closeDrawer() { document.getElementById("drawer").classList.remove("show"); }
 
+async function firstTouch(instant) {
+  closeDrawer();
+  const o = OPS[0];
+  await think(`Drafting outreach to ${o.first} ${o.last}...`, 1000, instant);
+  agent(`<div>Here's the first touch for <b>${o.name}</b>. I wrote it the way your won deals open: lead with what they already pay for, then the dark locations.</div>
+  <div class="card">
+    <div class="k">Draft · Email 1 of 4 · to ${o.first} ${o.last} &lt;${o.email}&gt;</div>
+    <h3 style="margin-top:8px">Your ${o.location_count} Colorado locations, in one place</h3>
+    <div style="line-height:1.55">Hi ${o.first},<br><br>
+      You're already advertising <b>${o.paying} of your locations</b> with Yelp, but they're set up as ${o.paying} separate self-serve plans, so you're seeing ${o.paying} sets of numbers instead of one.<br><br>
+      The other <b>${o.dark}</b> (${[...new Set(o.locations.filter(l => l.status === "Dark").map(l => l.brand))].join(" and ")}) aren't showing up in Yelp ads at all. Owners running several brands usually move to one multi-location plan: one dashboard, one bill, every store live.<br><br>
+      Worth 20 minutes next week? I can show you all ${o.location_count} side by side.<br><br>
+      Tom Jones<br><span style="color:var(--muted)">Multi-Location Sales, Yelp</span></div>
+    <div style="margin-top:12px;font-size:12.5px;color:var(--muted)">Cadence: <b>Day 1</b> email · <b>Day 3</b> call task · <b>Day 6</b> email with a location-by-location view · <b>Day 10</b> call task</div>
+    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn primary">Approve cadence</button><button class="btn">Edit</button><button class="btn">🎙 Add context</button></div>
+  </div>`);
+}
+
 async function worked(instant) {
   closeDrawer();
   await think("Working the list...", 1100, instant);
@@ -346,8 +364,9 @@ async function worked(instant) {
     <div class="done-list"><ul>
       <li>✅ <span><b>Parent-child hierarchy</b> built for ${T.operators} operators: every location account now rolls up to its owner.</span></li>
       <li>✅ <span><b>Outbound sequences</b> started for the ${T.dark_locations} dark locations, in campaign <i>Hunter - Colorado Dark Location Outreach</i>.</span></li>
-      <li>✅ <span><b>Top 40 routed</b> to Multi-Location reps (10 each to Cindy, Vince, Bill and Vanessa), each with a brief task: ${t40.dark} dark locations, ${fmt(t40.unrealized_annual)}/yr.</span></li>
-      <li>✅ <span><b>10 opportunities</b> opened for the highest-value operators.</span></li>
+      <li>✅ <span><b>Top 40 in your book</b>, each with a brief and a first-touch email ready to approve: ${t40.dark} dark locations, ${fmt(t40.unrealized_annual)}/yr.</span></li>
+      <li>✅ <span><b>10 opportunities</b> opened for the highest-value operators, with next steps filled in.</span></li>
+      <li>✅ <span><b>Shared with Marcus</b> in Slack: the ranked list, the signals that worked, and the pattern so other territories can run it.</span></li>
       <li>✅ <span><b>Learned</b>: the billing signals were the strongest predictor. I'll run this weekly and apply it to the next territory.</span></li>
     </ul></div>
     <div class="links">
@@ -356,20 +375,22 @@ async function worked(instant) {
       ${link("/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads", "Piper leads")}
       ${link("/lightning/o/Campaign/home", "Campaign")}
       ${link("/lightning/o/Opportunity/home", "Opportunities")}
+      ${link("/lightning/r/Dashboard/01Zg8000004BuMLEA0/view", "Leadership dashboard")}
     </div></div>
-    <div>Marcus, your 180 reps now have a ranked list of named owners instead of 10,000 undifferentiated pages.</div>`);
-  setWork([["Ready", [["ready", "Colorado operator discovery", `${T.operators} operators · ${fmtM(T.unrealized_annual)}`], ["ready", "Routed top 40 to reps", "40 briefs · 10 opportunities"]]],
+    <div>Tom, you're working a ranked list of named owners instead of 10,000 undifferentiated pages, and none of it needed a second system.</div>`);
+  setWork([["Ready", [["ready", "Colorado operator discovery", `${T.operators} operators · ${fmtM(T.unrealized_annual)}`], ["ready", "Top 40 added to your book", "40 briefs · 40 drafts · 10 opportunities"]]],
     ["Running", [["running", "Dark location sequences", `${T.dark_locations} locations · Day 1 of 21`, 5]]],
     ["Scheduled", [["sched", "Weekly operator discovery", "Mondays · next territory: Arizona"], ...SCHEDULED[1]]]]);
 }
 
 const steps = [
-  ["Marcus opens Salesforce. Hunter surfaces the pattern Piper confirmed.", async () => home()],
-  ["Give Hunter the objective (not 'find businesses').", objective],
+  ["Tom opens Salesforce. Hunter surfaces the owner Piper found and routed to him.", async () => home()],
+  ["Tom gives Hunter the objective: find more owners like him.", objective],
   ["Hunter drafts the plan using Piper's record as the template.", plan],
   ["Approve: Hunter starts the long-horizon run.", running],
   ["Fast-forward three days: results.", results],
   ["Open the #1 operator: evidence, hierarchy, brief.", async () => openOp(1)],
+  ["Hunter already drafted Tom's first touch, in his voice.", firstTouch],
   ["Hunter works the list and writes it all back to Salesforce.", worked],
 ];
 Presenter.init(steps, () => { feed.innerHTML = ""; closeDrawer(); });

@@ -45,7 +45,7 @@ PIPER_LEAD = {
     "markets": "Denver metro and Colorado Springs",
     "future_locations": 4,
     "rights_through": 2028,
-    "rep_alias": "ccentral",
+    "rep_alias": "tjones",
 }
 PIPER_LEAD["annual_as_signed"] = PIPER_LEAD["monthly_spend"] * 12  # $3,600
 PIPER_LEAD["annual_potential"] = PIPER_LEAD["locations"] * REV_PER_LOCATION  # $32,400
@@ -97,7 +97,7 @@ FIRST = ["Priya", "Daniel", "Monica", "Luis", "Jenna", "Andre", "Kim", "Tomas", 
          "Hector", "Nadia", "Grant", "Lena", "Victor", "Carla", "Devin", "Aisha", "Wes"]
 LAST = ["Patel", "Nguyen", "Alvarez", "Brooks", "Kowalski", "Haddad", "Ortiz", "Lindqvist", "Okafor", "Reyes",
         "Sutton", "Moreno", "Chen", "Fischer", "Kaur", "Delgado", "Novak", "Barrett", "Ibrahim", "Larsen"]
-REPS = ["ccentral", "vwest", "bill", "vcent"]
+REPS = ["tjones"]  # Tom Jones owns all of Colorado
 
 
 def _signals(rng, op, locs, brands):

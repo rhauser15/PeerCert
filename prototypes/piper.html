@@ -309,13 +309,13 @@
   <div class="panel mail">
     <div class="bar"><b style="color:#d93025">M</b> Inbox · sam@whitakerhospitality.example.com <span style="margin-left:auto">10:21 PM</span></div>
     <div class="hd">
-      <h3>Your 12 locations + Thursday with Cindy</h3>
+      <h3>Your 12 locations + Thursday with Tom</h3>
       <div class="from"><b>Piper</b> &lt;piper@biz.yelp.example.com&gt; to Sam</div>
     </div>
     <div class="bd">
       Hi Sam,<br><br>
       Thanks for the chat tonight. Your <b>Smoothie King at Belmar is live</b>, so you'll show up in Lakewood searches this weekend.<br><br>
-      Here's what I passed to Cindy Central on our Multi-Location team for <b>Thursday at 10:00 AM MT</b>:
+      Here's what I passed to Tom Jones on our Multi-Location team for <b>Thursday at 10:00 AM MT</b>:
       <ul style="margin:6px 0">
         <li>12 locations across 3 brands: 7 Dave's Hot Chicken, 4 Jersey Mike's, 1 Smoothie King</li>
         <li>Denver metro and Colorado Springs, one marketing budget that you manage</li>
@@ -341,7 +341,7 @@
           <ol style="margin:0;padding-left:18px">
             <li>Entry: <code>Location_Count__c ≥ 3</code> or <code>Operates_Other_Brands__c = true</code></li>
             <li>Set <b>Multi-Location = true</b>, Rating <b>Hot</b>, Status <b>Qualified</b></li>
-            <li>Owner → <b>Cindy Central</b>, Multi-Location Sales</li>
+            <li>Owner → <b>Tom Jones</b>, Multi-Location Sales</li>
             <li>Create task: <b>Agent brief</b>, due tomorrow</li>
             <li>Event: <b>Thursday 10:00 AM MT</b>, booked by Piper</li>
           </ol>
@@ -389,7 +389,7 @@ const fieldRows = [
   ["Unrealized_Annual_Spend__c", fmt(P.unrealized_annual)],
   ["Agent_Qualification_Summary__c", "Full conversation summary + transcript"],
   ["Multi_Location__c", "true  ← set by Flow"],
-  ["Owner", "Cindy Central  ← set by Flow"],
+  ["Owner", "Tom Jones  ← set by Flow"],
 ];
 document.getElementById("v12").textContent = `${fmt(P.annual_potential)} across 12 locations at Yelp average`;
 document.getElementById("v16").textContent = `${fmt((P.locations + P.future_locations) * R)} at 16 locations by ${P.rights_through}`;
@@ -484,7 +484,7 @@ const steps = [
     await piper(`Your Smoothie King ad is on, so you're live this weekend. Want 30 minutes with our multi-location team to put all 12 on one plan?`, i);
     const b = document.createElement("div"); b.className = "booker"; b.id = "booker";
     b.innerHTML = `<div class="top"><span>Schedule a meeting</span><span>✕</span></div>
-      <div class="rep"><i>CC</i><div><small>You'll meet with</small><b>Cindy Central</b> <em>· Multi-Location Sales</em></div></div>
+      <div class="rep"><i>TJ</i><div><small>You'll meet with</small><b>Tom Jones</b> <em>· Multi-Location Sales</em></div></div>
       <div class="mon"><span>${MEET.toLocaleDateString("en-US", { month: "long", year: "numeric" })} ▾</span><span>← →</span></div>
       <div class="days">${bookerDays()}</div>
       <div class="tz"><span>-06:00 - Mountain Time (... ⌄</span><span>← →</span></div>
@@ -497,10 +497,10 @@ const steps = [
     document.getElementById("s10")?.classList.add("on");
     const b = document.getElementById("booker");
     if (b) { b.classList.add("done"); document.getElementById("go").textContent = "✓ Booked";
-      b.insertAdjacentHTML("beforeend", `<div class="note"><b>Shared with Cindy:</b> 12 locations, 3 brands, one budget, 4 more by 2028. Wants one plan and one bill.</div>`); }
+      b.insertAdjacentHTML("beforeend", `<div class="note"><b>Shared with Tom:</b> 12 locations, 3 brands, one budget, 4 more by 2028. Wants one plan and one bill.</div>`); }
     msgs.scrollTop = msgs.scrollHeight;
     await sam("Can you let her know I want one plan for everything, including the new stores?", i);
-    await piper(`Done. Cindy will have all of it for <b>Thursday at 10:00 AM MT</b>, so you won't have to repeat yourself. I'll send you a recap now.`, i);
+    await piper(`Done. Tom will have all of it for <b>Thursday at 10:00 AM MT</b>, so you won't have to repeat yourself. I'll send you a recap now.`, i);
   }],
   ["Omnichannel: instant recap in his inbox. He can reply and Piper keeps going.", async () => { goVoice(false); show("email", true); }],
   ["Show the CRM write-back and Flow routing.", async () => {
