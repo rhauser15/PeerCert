@@ -91,7 +91,7 @@
 
 ## 1 · Piper: the invisible owner (7 min)
 
-**Tab:** `piper.html` · **Steps 0–16** · Click path adapted from the *Qualified 10-Click Piper Demo [EDO]* guide (pinned mode, buyer profile, voice, co-browse, meeting booker, omnichannel follow-up), retold for Yelp.
+**Tab:** `piper.html` · **Steps 0–14** · Click path adapted from the *Qualified 10-Click Piper Demo [EDO]* guide (pinned mode, buyer profile, voice, co-browse, meeting booker), retold for Yelp.
 
 | Step | Do | Say |
 |---|---|---|
@@ -107,9 +107,7 @@
 | 11 | → (co-browse) | "Now Piper **co-browses**. She takes him to the multi-location page and pulls up the story that fits a multi-brand franchisee." |
 | 12 | → (reveal) | "Here's why Yelp could never find him. Twelve pages that share no name, so brand matching returns nothing. Each is claimed by a store manager under a store email. **His name is on none of them.** This is exactly Priya's 'single location that's really a chain.'" |
 | 13 | → (booker) | "Piper turns on tonight's ad so he's live this weekend, then opens the booker with **Jordan**, an SDR on Priya's team. Priya, your SDRs stop triaging raw inbound. They only take meetings Piper has already qualified." |
-| 14 | → (Thu 10:00 + note) | "He books Thursday at 10:00 and asks Piper to pass on what he wants. Because he's a 12-location owner in Colorado, Piper also loops in **Tom**, who owns the territory. Nobody worked this lead by hand." |
-| 15 | → (recap email) | "The follow-up is instant, in the inbox. If he replies, Piper keeps going over email." |
-| 16 | → (write-back) | "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's average, and $43,000 at sixteen by 2028. Piper writes `operates_other_brands = true` and `location_count = 12`, tags it multi-location, books Jordan, and tells Tom. Let's prove that's real." |
+| 14 | → (Thu 10:00 + note) | "He books Thursday at 10:00 and asks Piper to pass on what he wants. Because he's a 12-location owner in Colorado, Piper also loops in **Tom**, who owns the territory. Nobody worked this lead by hand. And Piper's recap is already in his inbox; if he replies, she keeps the conversation going over email." Then, as you switch to Salesforce: "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's average, and $43,000 at sixteen by 2028. Let's see what Piper wrote back." |
 
 **Lever callout (Priya):** speed to lead goes from 4 hours to zero, after hours, and the 60% of inbound no human works gets worked. Her 9 SDRs spend their time on qualified meetings instead of sorting raw signups. Piper runs alongside the incumbent chat tool, so the March renewal doesn't block a pilot.
 

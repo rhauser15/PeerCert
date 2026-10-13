@@ -152,29 +152,6 @@
   .page .claim { color: var(--muted); }
   .page.sk { border-color: var(--yelp); background: #fff5f5; }
   .owner-line { margin-top: 16px; padding: 12px 14px; background: #fef3c7; border-radius: 8px; font-size: 14px; }
-  .mail { width: min(760px, 92vw); padding: 0; overflow: hidden; }
-  .mail .bar { background: #f2f6fc; padding: 10px 18px; font-size: 13px; color: var(--muted); display: flex; gap: 10px; }
-  .mail .hd { padding: 16px 22px 0; }
-  .mail .hd h3 { margin: 0 0 8px; font-size: 19px; }
-  .mail .from { font-size: 13px; color: var(--muted); }
-  .mail .bd { padding: 14px 22px 22px; font-size: 14px; line-height: 1.5; }
-  .mail .bd a { color: var(--piper); }
-  .mail .chips2 { display: flex; gap: 8px; margin-top: 10px; } .mail .chips2 span { border: 1px solid #c9d6ea; border-radius: 14px; padding: 4px 10px; font-size: 12.5px; color: var(--piper); }
-  .wb { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; }
-  .sf-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-  .sf-cloud { width: 34px; height: 24px; background: #00a1e0; border-radius: 12px; color: #fff; font-size: 10px; font-weight: 800; display: grid; place-items: center; }
-  .fields { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .fields td { padding: 7px 8px; border-bottom: 1px solid #f0f0f0; }
-  .fields td:first-child { font-family: ui-monospace, Menlo, monospace; color: #374151; font-size: 12px; }
-  .fields td:last-child { font-weight: 600; }
-  .fields tr { opacity: 0; animation: fade .3s forwards; }
-  .flow { border: 1px solid #c7d2fe; background: #eef2ff; border-radius: 10px; padding: 14px; font-size: 13px; }
-  .flow h4 { margin: 0 0 8px; color: #3730a3; }
-  .flow li { margin: 4px 0; }
-  .value { margin-top: 16px; }
-  .bar2 { display: flex; align-items: center; gap: 10px; margin: 8px 0; font-size: 13px; }
-  .bar2 .b { flex: none; height: 22px; border-radius: 4px; background: var(--yelp); transition: width 1s; }
-  .bar2 .b.g { background: #9ca3af; } .bar2 .b.p { background: var(--piper); }
   @keyframes pop { from { transform: translateY(6px); opacity: 0 } to { transform: none; opacity: 1 } }
   @keyframes blink { 0%, 100% { opacity: .3 } 50% { opacity: 1 } }
   @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
@@ -305,59 +282,6 @@
   </div>
 </div>
 
-<div class="reveal" id="email">
-  <div class="panel mail">
-    <div class="bar"><b style="color:#d93025">M</b> Inbox · sam@whitakerhospitality.example.com <span style="margin-left:auto">10:21 PM</span></div>
-    <div class="hd">
-      <h3>Your 12 locations + Thursday with Jordan</h3>
-      <div class="from"><b>Piper</b> &lt;piper@biz.yelp.example.com&gt; to Sam</div>
-    </div>
-    <div class="bd">
-      Hi Sam,<br><br>
-      Thanks for the chat tonight. Your <b>Smoothie King at Belmar is live</b>, so you'll show up in Lakewood searches this weekend.<br><br>
-      Here's what I passed to Jordan Reyes on our team for <b>Thursday at 10:00 AM MT</b>. Tom Jones, who covers multi-location owners in Colorado, is invited too:
-      <ul style="margin:6px 0">
-        <li>12 locations across 3 brands: 7 Dave's Hot Chicken, 4 Jersey Mike's, 1 Smoothie King</li>
-        <li>Denver metro and Colorado Springs, one marketing budget that you manage</li>
-        <li>4 more Dave's coming under development rights through 2028</li>
-        <li>You want one plan and one bill, and your new stores live on day one</li>
-      </ul>
-      Before Thursday: <a href="#">see how multi-location plans work</a>. If anything changes, just reply to this email and I'll take care of it.<br><br>
-      Piper, Yelp for Business
-      <div class="chips2"><span>Thanks!</span><span>Can we do Friday instead?</span><span>Add my ops manager</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="reveal" id="writeback">
-  <div class="panel">
-    <div class="sf-head"><div class="sf-cloud">SF</div><h2>Piper wrote it back to Salesforce</h2></div>
-    <p class="lede">The full conversation, the lead data and the meeting go into the CRM. Flow routes it in seconds. No form, no rep, no copy and paste.</p>
-    <div class="wb">
-      <div><table class="fields" id="fields"></table></div>
-      <div>
-        <div class="flow">
-          <h4>Flow: Yelp - Multi-Location Lead Routing</h4>
-          <ol style="margin:0;padding-left:18px">
-            <li>Entry: <code>Location_Count__c ≥ 3</code> or <code>Operates_Other_Brands__c = true</code></li>
-            <li>Set <b>Multi-Location = true</b>, Rating <b>Hot</b>, Status <b>Qualified</b></li>
-            <li>Owner → <b>Jordan Reyes</b> (SDR) for the first call</li>
-            <li>Territory Lead → <b>Tom Jones</b>: invited + FYI task</li>
-            <li>Tasks: <b>Agent brief</b> for Jordan, <b>FYI</b> for Tom</li>
-            <li>Event: <b>Thursday 10:00 AM MT</b>, booked by Piper, Tom invited</li>
-          </ol>
-        </div>
-        <div class="value">
-          <b style="font-size:14px">Annual value</b>
-          <div class="bar2"><div class="b g" style="width:0" data-w="8%"></div><span>$3,600 as signed (1 location, self-serve)</span></div>
-          <div class="bar2"><div class="b" style="width:0" data-w="64%"></div><span id="v12"></span></div>
-          <div class="bar2"><div class="b p" style="width:0" data-w="86%"></div><span id="v16"></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="presenter" id="presenter"></div>
 <div class="proto-note">Recreation of Piper (Qualified) for demo purposes.</div>
 
@@ -379,22 +303,6 @@ const stores = [
 document.getElementById("pages").innerHTML = stores.map(([b, c, e, sk]) =>
   `<div class="page ${sk ? "sk" : ""}"><b>${b}</b>${c}<div class="claim">Claimed by: ${e}</div></div>`).join("");
 
-const fieldRows = [
-  ["Agent_Source__c", "Piper"],
-  ["Operates_Other_Brands__c", "true"],
-  ["Location_Count__c", P.locations],
-  ["Brand_Count__c", P.brands.length],
-  ["Brands_Operated__c", "7 Dave's Hot Chicken; 4 Jersey Mike's Subs; 1 Smoothie King"],
-  ["Committed_Future_Locations__c", `${P.future_locations} (rights through ${P.rights_through})`],
-  ["Self_Serve_Monthly_Spend__c", fmt(P.monthly_spend)],
-  ["Unrealized_Annual_Spend__c", fmt(P.unrealized_annual)],
-  ["Agent_Qualification_Summary__c", "Full conversation summary + transcript"],
-  ["Multi_Location__c", "true  ← set by Flow"],
-  ["Owner", "Jordan Reyes (SDR)  ← set by Flow"],
-  ["Territory_Lead__c", "Tom Jones  ← set by Flow"],
-];
-document.getElementById("v12").textContent = `${fmt(P.annual_potential)} across 12 locations at Yelp average`;
-document.getElementById("v16").textContent = `${fmt((P.locations + P.future_locations) * R)} at 16 locations by ${P.rights_through}`;
 
 // Booker shows the week of the next Thursday (matches scripts/seed.py), with Thursday selected.
 const MEET = (() => { const t = new Date(); t.setHours(0, 0, 0, 0); t.setDate(t.getDate() + ((4 - t.getDay() + 7) % 7 || 7)); return t; })();
@@ -504,18 +412,12 @@ const steps = [
     await sam("Can you let her know I want one plan for everything, including the new stores?", i);
     await piper(`Done. Jordan will have all of it for <b>Thursday at 10:00 AM MT</b>, and I've looped in Tom, who covers multi-location owners in Colorado. You won't have to repeat yourself. I'll send you a recap now.`, i);
   }],
-  ["Omnichannel: instant recap in his inbox. He can reply and Piper keeps going.", async () => { goVoice(false); show("email", true); }],
-  ["Show the CRM write-back and Flow routing.", async () => {
-    show("email", false); show("writeback", true);
-    document.getElementById("fields").innerHTML = fieldRows.map(([k, v], n) => `<tr style="animation-delay:${n * 0.12}s"><td>${k}</td><td>${v}</td></tr>`).join("");
-    setTimeout(() => document.querySelectorAll(".bar2 .b").forEach(b => b.style.width = b.dataset.w), 300);
-  }],
 ];
 
 function reset() {
   msgs.innerHTML = ""; goVoice(false); page("checkout"); video.classList.remove("speaking");
   document.getElementById("case").classList.remove("spot");
-  ["signals", "profile", "invisible", "email", "writeback"].forEach(id => show(id, false));
+  ["signals", "profile", "invisible"].forEach(id => show(id, false));
 }
 document.getElementById("speakBtn").addEventListener("click", () => Presenter.next());
 Presenter.init(steps, reset);
