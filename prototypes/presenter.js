@@ -3,7 +3,7 @@
 //   R: restart                                    H: show/hide presenter notes (hidden by default)
 //   B: toggle a fake browser bar with a realistic URL (or ?frame=1)
 //   ?step=N in the URL jumps to step N
-const TYPING_WPM = 200;
+const TYPING_WPM = 300;
 window.Presenter = {
   msPerChar: 60000 / (TYPING_WPM * 5),
   init(steps, reset) {
