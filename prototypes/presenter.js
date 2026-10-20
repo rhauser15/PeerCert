@@ -1,6 +1,6 @@
 // Presenter controls shared by the demo mockups.
 //   → / Space / PageDown (clicker): next step     ← / PageUp: previous step
-//   R: restart                                    H: hide/show presenter notes
+//   R: restart                                    H: show/hide presenter notes (hidden by default)
 //   B: toggle a fake browser bar with a realistic URL (or ?frame=1)
 //   ?step=N in the URL jumps to step N
 window.Presenter = {
@@ -26,12 +26,13 @@ window.Presenter = {
       else if (e.key.toLowerCase() === "b") this.frame(!document.documentElement.classList.contains("framed"));
     });
     box.addEventListener("click", next);
+    box.classList.add("hidden");  // keep the screen clean for the audience; H shows notes
     const bar = document.createElement("div");
     bar.className = "fakebar";
     const icon = document.querySelector('link[rel="icon"]')?.href || "";
     bar.innerHTML = `<div class="fb-tabs"><span class="fb-lights"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span>
         <span class="fb-tab">${icon ? `<img src="${icon}" alt="">` : ""}<span class="fb-t">${document.title}</span><span class="fb-x">✕</span></span><span class="fb-plus">＋</span></div>
-      <div class="fb-bar"><span class="fb-nav">← → ↻</span><span class="fb-url"><span class="fb-lock">🔒</span><span class="fb-host"></span><span class="fb-path"></span></span><span class="fb-me">${document.querySelector(".avatar, .me")?.textContent || ""}</span></div>`;
+      <div class="fb-bar"><span class="fb-nav"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 3 5 8l5 5"/></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m6 3 5 5-5 5"/></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 8a5 5 0 1 1-1.5-3.5M13 2.5V5h-2.5"/></svg></span><span class="fb-url"><svg class="fb-lock" viewBox="0 0 12 14" width="11" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="6" width="9" height="7" rx="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2"/></svg><span class="fb-host"></span><span class="fb-path"></span></span><span class="fb-me">${document.querySelector(".avatar, .me")?.textContent || ""}</span></div>`;
     document.body.prepend(bar);
     const meta = document.querySelector('meta[name="demo-url"]');
     if (meta) this.setUrl(meta.content);

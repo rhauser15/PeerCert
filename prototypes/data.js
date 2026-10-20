@@ -2,6 +2,102 @@
 window.YELP_DATA = {
  "org_url": "https://trailsignup-429cdfd78ec835.lightning.force.com",
  "rev_per_location": 2700,
+ "quota": 150000,
+ "baseline": [
+  [
+   "Rocky Mountain Pizza Partners",
+   "Denver",
+   "Proposal/Quote",
+   72000,
+   -12
+  ],
+  [
+   "Front Range Coffee Collective",
+   "Boulder",
+   "Discovery",
+   61000,
+   -30
+  ],
+  [
+   "Summit Fitness Group",
+   "Colorado Springs",
+   "Discovery",
+   55000,
+   -8
+  ],
+  [
+   "Mile High Dental Partners",
+   "Aurora",
+   "Qualification",
+   48000,
+   -45
+  ],
+  [
+   "Foothills Auto Care",
+   "Lakewood",
+   "Proposal/Quote",
+   42000,
+   -21
+  ],
+  [
+   "Cherry Creek Salon Group",
+   "Denver",
+   "Qualification",
+   37000,
+   -60
+  ]
+ ],
+ "piper_opps": [
+  [
+   "Alpine Burger Group",
+   "Littleton",
+   "Smashburger; Rush Bowls",
+   9,
+   7
+  ],
+  [
+   "Sunrise Bagel Partners",
+   "Fort Collins",
+   "Einstein Bros; Ziggi's Coffee",
+   8,
+   6
+  ],
+  [
+   "Golden Plains Pizza Co.",
+   "Greeley",
+   "Marco's Pizza; Wingstop",
+   7,
+   5
+  ],
+  [
+   "Mesa Fresh Restaurants",
+   "Pueblo",
+   "Tropical Smoothie Cafe; Firehouse Subs",
+   6,
+   4
+  ],
+  [
+   "Highline Sweets LLC",
+   "Highlands Ranch",
+   "Crumbl Cookies; Nothing Bundt Cakes",
+   4,
+   3
+  ]
+ ],
+ "meetings_per_week": [
+  3,
+  4,
+  3,
+  4,
+  8,
+  10,
+  11,
+  13
+ ],
+ "outreach": {
+  "Meeting Booked": 9,
+  "Replied": 8
+ },
  "territory": {
   "state": "Colorado",
   "operators": 400,
@@ -48,11 +144,12 @@ window.YELP_DATA = {
   "markets": "Denver metro and Colorado Springs",
   "future_locations": 4,
   "rights_through": 2028,
-  "rep_alias": "ccentral",
+  "rep_alias": "jreyes",
+  "territory_lead_alias": "tjones",
   "annual_as_signed": 3600,
   "annual_potential": 32400,
   "unrealized_annual": 29700,
-  "summary": "Piper conversation, Tuesday 10:15 PM, Yelp for Business checkout.\nSigned up to advertise one Smoothie King (Lakewood, Belmar) at $300/month. Self-serve signals: 1 location, 60 reviews, opened 2024.\nPiper asked: 'Is this your only location, or do you operate others?'\nOwner operates 12 locations across 3 brands: 7 Dave's Hot Chicken, 4 Jersey Mike's Subs, 1 Smoothie King, in Denver metro and Colorado Springs. Controls one marketing budget himself. Holds development rights for 4 more locations through 2028.\nWhy Yelp missed him: the 12 pages share no name (brand matching returns nothing) and each is claimed by a store manager with a store email. His name is on none of them.\nValue: $3,600/yr as signed. ~$32,400/yr across 12 locations at Yelp average; 16 locations by 2028.\nNext step: intro with Multi-Location rep booked for Thursday 10:00 AM MT."
+  "summary": "Piper conversation, Tuesday 10:15 PM, Yelp for Business checkout.\nSigned up to advertise one Smoothie King (Lakewood, Belmar) at $300/month. Self-serve signals: 1 location, 60 reviews, opened 2024.\nPiper asked: 'Is this your only location, or do you operate others?'\nOwner operates 12 locations across 3 brands: 7 Dave's Hot Chicken, 4 Jersey Mike's Subs, 1 Smoothie King, in Denver metro and Colorado Springs. Controls one marketing budget himself. Holds development rights for 4 more locations through 2028.\nWhy Yelp missed him: the 12 pages share no name (brand matching returns nothing) and each is claimed by a store manager with a store email. His name is on none of them.\nValue: $3,600/yr as signed. ~$32,400/yr across 12 locations at Yelp average; 16 locations by 2028.\nNext step: first call with SDR Jordan Reyes booked for Thursday 10:00 AM MT. Territory lead Tom Jones invited."
  },
  "operators": [
   {
@@ -221,39 +318,39 @@ window.YELP_DATA = {
    "confidence": 87,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1393) pays 4 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact kim@pikespeakfoodco.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @pikespeakfoodco.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "18 Colorado LLCs share registered agent and principal address; managing member Kim Alvarez"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0184 forwards from 8 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "18 locations roll up to Pikes Peak Food Co. as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Kim A.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Kim Alvarez, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Flatiron Crossing"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Flatiron Crossing"
     }
    ],
    "rank": 1,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Pikes Peak Food Co. (rank #1 in Colorado)\nPrincipal: Kim Alvarez, Owner / Managing Member | kim@pikespeakfoodco.example.com | (303) 555-0184\n\nControls 18 locations across 2 brands (Scooter's Coffee, Tropical Smoothie Cafe). 8 already pay self-serve ($1,775/mo combined, billed as unrelated accounts). 10 are dark.\nUnrealized: $27,000/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (87% confidence):\n- Shared payment method: Same card (Visa ending 1393) pays 4 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact kim@pikespeakfoodco.example.com on 3 accounts\n- Entity + registered agent (Data Vendor Gateway): 18 Colorado LLCs share registered agent and principal address; managing member Kim Alvarez\n- Phone routing: (303) 555-0184 forwards from 8 pages in different brands\n- Same review responder: 'Kim A.' replies to reviews on 2 unrelated brands\n- Co-located openings: 2 brands opened within 9 months at Flatiron Crossing\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Kim, you're already advertising 8 of your locations with us on separate self-serve plans. We'd like to show you all 18 in one view and what the other 10 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Pikes Peak Food Co. (rank #1 in Colorado)\nPrincipal: Kim Alvarez, Owner / Managing Member | kim@pikespeakfoodco.example.com | (303) 555-0184\n\nControls 18 locations across 2 brands (Scooter's Coffee, Tropical Smoothie Cafe). 8 already pay self-serve ($1,775/mo combined, billed as unrelated accounts). 10 are dark.\nUnrealized: $27,000/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @pikespeakfoodco.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n- Corporate family (D&B): 18 locations roll up to Pikes Peak Food Co. as the parent company\n- Owner identified (ZoomInfo): Kim Alvarez, Owner / Managing Member, with a verified email and direct line\n- Recent openings: 2 locations opened in the last 12 months, including at Flatiron Crossing\n\nSuggested opener: \"Kim, you're already advertising 8 of your locations with us on separate self-serve plans. We'd like to show you all 18 in one view and what the other 10 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Summit Brands Colorado",
@@ -398,39 +495,39 @@ window.YELP_DATA = {
    "confidence": 93,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 2424) pays 6 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "6 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact luis@summitbrandscolora.example.com on 5 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 5 accounts use @summitbrandscolora.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0131 forwards from 5 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "15 locations roll up to Summit Brands Colorado as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Flatiron Crossing"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Flatiron Crossing"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "15 Colorado LLCs share registered agent and principal address; managing member Luis Nguyen"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Luis N.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Luis Nguyen, Owner / Managing Member, with a verified email and direct line"
     }
    ],
    "rank": 2,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Summit Brands Colorado (rank #2 in Colorado)\nPrincipal: Luis Nguyen, Owner / Managing Member | luis@summitbrandscolora.example.com | (720) 555-0131\n\nControls 15 locations across 3 brands (Jimmy John's, Dave's Hot Chicken, Wingstop). 7 already pay self-serve ($1,450/mo combined, billed as unrelated accounts). 8 are dark.\nUnrealized: $21,600/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (93% confidence):\n- Shared payment method: Same card (Visa ending 2424) pays 6 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact luis@summitbrandscolora.example.com on 5 accounts\n- Phone routing: (720) 555-0131 forwards from 5 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Flatiron Crossing\n- Entity + registered agent (Data Vendor Gateway): 15 Colorado LLCs share registered agent and principal address; managing member Luis Nguyen\n- Same review responder: 'Luis N.' replies to reviews on 3 unrelated brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Luis, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 15 in one view and what the other 8 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Summit Brands Colorado (rank #2 in Colorado)\nPrincipal: Luis Nguyen, Owner / Managing Member | luis@summitbrandscolora.example.com | (720) 555-0131\n\nControls 15 locations across 3 brands (Jimmy John's, Dave's Hot Chicken, Wingstop). 7 already pay self-serve ($1,450/mo combined, billed as unrelated accounts). 8 are dark.\nUnrealized: $21,600/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 6 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 5 accounts use @summitbrandscolora.example.com\n- Corporate family (D&B): 15 locations roll up to Summit Brands Colorado as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Flatiron Crossing\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Owner identified (ZoomInfo): Luis Nguyen, Owner / Managing Member, with a verified email and direct line\n\nSuggested opener: \"Luis, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 15 in one view and what the other 8 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Mile High QSR Holdings",
@@ -566,29 +663,29 @@ window.YELP_DATA = {
    "confidence": 91,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 3118) pays 5 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "5 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact monica@milehighqsrholding.example.com on 4 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 4 accounts use @milehighqsrholding.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0143 forwards from 5 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "14 locations roll up to Mile High QSR Holdings as the parent company"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "14 Colorado LLCs share registered agent and principal address; managing member Monica Kaur"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     }
    ],
    "rank": 3,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Mile High QSR Holdings (rank #3 in Colorado)\nPrincipal: Monica Kaur, Owner / Managing Member | monica@milehighqsrholding.example.com | (303) 555-0143\n\nControls 14 locations across 2 brands (Wingstop, Marco's Pizza). 6 already pay self-serve ($1,225/mo combined, billed as unrelated accounts). 8 are dark.\nUnrealized: $21,600/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (91% confidence):\n- Shared payment method: Same card (Visa ending 3118) pays 5 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact monica@milehighqsrholding.example.com on 4 accounts\n- Phone routing: (303) 555-0143 forwards from 5 pages in different brands\n- Entity + registered agent (Data Vendor Gateway): 14 Colorado LLCs share registered agent and principal address; managing member Monica Kaur\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Monica, you're already advertising 6 of your locations with us on separate self-serve plans. We'd like to show you all 14 in one view and what the other 8 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Mile High QSR Holdings (rank #3 in Colorado)\nPrincipal: Monica Kaur, Owner / Managing Member | monica@milehighqsrholding.example.com | (303) 555-0143\n\nControls 14 locations across 2 brands (Wingstop, Marco's Pizza). 6 already pay self-serve ($1,225/mo combined, billed as unrelated accounts). 8 are dark.\nUnrealized: $21,600/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 5 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 4 accounts use @milehighqsrholding.example.com\n- Corporate family (D&B): 14 locations roll up to Mile High QSR Holdings as the parent company\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n\nSuggested opener: \"Monica, you're already advertising 6 of your locations with us on separate self-serve plans. We'd like to show you all 14 in one view and what the other 8 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Foothills Franchise Co.",
@@ -718,34 +815,34 @@ window.YELP_DATA = {
    "confidence": 95,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 2057) pays 4 self-serve accounts across 4 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 4 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact rachel@foothillsfranchise.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @foothillsfranchise.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Rachel N.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Rachel Novak, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(970) 555-0185 forwards from 8 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "13 locations roll up to Foothills Franchise Co. as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Colorado Mills"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Colorado Mills"
     }
    ],
    "rank": 4,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Foothills Franchise Co. (rank #4 in Colorado)\nPrincipal: Rachel Novak, Owner / Managing Member | rachel@foothillsfranchise.example.com | (970) 555-0185\n\nControls 13 locations across 4 brands (Dave's Hot Chicken, Wingstop, Teriyaki Madness, Rush Bowls). 7 already pay self-serve ($1,350/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (95% confidence):\n- Shared payment method: Same card (Visa ending 2057) pays 4 self-serve accounts across 4 brands\n- Shared billing contact: Billing contact rachel@foothillsfranchise.example.com on 3 accounts\n- Same review responder: 'Rachel N.' replies to reviews on 3 unrelated brands\n- Phone routing: (970) 555-0185 forwards from 8 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Colorado Mills\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Rachel, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Foothills Franchise Co. (rank #4 in Colorado)\nPrincipal: Rachel Novak, Owner / Managing Member | rachel@foothillsfranchise.example.com | (970) 555-0185\n\nControls 13 locations across 4 brands (Dave's Hot Chicken, Wingstop, Teriyaki Madness, Rush Bowls). 7 already pay self-serve ($1,350/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 4 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @foothillsfranchise.example.com\n- Owner identified (ZoomInfo): Rachel Novak, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 13 locations roll up to Foothills Franchise Co. as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Colorado Mills\n\nSuggested opener: \"Rachel, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "High Plains QSR",
@@ -874,34 +971,34 @@ window.YELP_DATA = {
    "confidence": 96,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 9750) pays 4 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact grant@highplainsqsr.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @highplainsqsr.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "13 Colorado LLCs share registered agent and principal address; managing member Grant Moreno"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Grant M.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Grant Moreno, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Twenty Ninth Street"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Twenty Ninth Street"
     }
    ],
    "rank": 5,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: High Plains QSR (rank #5 in Colorado)\nPrincipal: Grant Moreno, Owner / Managing Member | grant@highplainsqsr.example.com | (303) 555-0162\n\nControls 13 locations across 3 brands (Teriyaki Madness, Marco's Pizza, Wingstop). 7 already pay self-serve ($1,775/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (96% confidence):\n- Shared payment method: Same card (Visa ending 9750) pays 4 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact grant@highplainsqsr.example.com on 3 accounts\n- Entity + registered agent (Data Vendor Gateway): 13 Colorado LLCs share registered agent and principal address; managing member Grant Moreno\n- Same review responder: 'Grant M.' replies to reviews on 3 unrelated brands\n- Co-located openings: 2 brands opened within 9 months at Twenty Ninth Street\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Grant, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: High Plains QSR (rank #5 in Colorado)\nPrincipal: Grant Moreno, Owner / Managing Member | grant@highplainsqsr.example.com | (303) 555-0162\n\nControls 13 locations across 3 brands (Teriyaki Madness, Marco's Pizza, Wingstop). 7 already pay self-serve ($1,775/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @highplainsqsr.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Owner identified (ZoomInfo): Grant Moreno, Owner / Managing Member, with a verified email and direct line\n- Recent openings: 2 locations opened in the last 12 months, including at Twenty Ninth Street\n\nSuggested opener: \"Grant, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Blue Spruce Brands",
@@ -1015,29 +1112,29 @@ window.YELP_DATA = {
    "confidence": 93,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 8282) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact omar@bluesprucebrands.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @bluesprucebrands.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Omar B.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Omar Brooks, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0113 forwards from 5 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "11 locations roll up to Blue Spruce Brands as the parent company"
     }
    ],
    "rank": 6,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Blue Spruce Brands (rank #6 in Colorado)\nPrincipal: Omar Brooks, Owner / Managing Member | omar@bluesprucebrands.example.com | (720) 555-0113\n\nControls 11 locations across 4 brands (Ziggi's Coffee, Nothing Bundt Cakes, Jersey Mike's Subs, Smoothie King). 5 already pay self-serve ($1,150/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (93% confidence):\n- Shared payment method: Same card (Visa ending 8282) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact omar@bluesprucebrands.example.com on 2 accounts\n- Same review responder: 'Omar B.' replies to reviews on 3 unrelated brands\n- Phone routing: (720) 555-0113 forwards from 5 pages in different brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Omar, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 11 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Blue Spruce Brands (rank #6 in Colorado)\nPrincipal: Omar Brooks, Owner / Managing Member | omar@bluesprucebrands.example.com | (720) 555-0113\n\nControls 11 locations across 4 brands (Ziggi's Coffee, Nothing Bundt Cakes, Jersey Mike's Subs, Smoothie King). 5 already pay self-serve ($1,150/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @bluesprucebrands.example.com\n- Owner identified (ZoomInfo): Omar Brooks, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 11 locations roll up to Blue Spruce Brands as the parent company\n\nSuggested opener: \"Omar, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 11 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Sangre Holdings",
@@ -1142,29 +1239,29 @@ window.YELP_DATA = {
    "confidence": 92,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1942) pays 4 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact carla@sangreholdings.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @sangreholdings.example.com"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Orchard Town Center"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Orchard Town Center"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Carla C.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Carla Chen, Owner / Managing Member, with a verified email and direct line"
     }
    ],
    "rank": 7,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Sangre Holdings (rank #7 in Colorado)\nPrincipal: Carla Chen, Owner / Managing Member | carla@sangreholdings.example.com | (303) 555-0163\n\nControls 10 locations across 3 brands (Tropical Smoothie Cafe, Ziggi's Coffee, Dave's Hot Chicken). 4 already pay self-serve ($875/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (92% confidence):\n- Shared payment method: Same card (Visa ending 1942) pays 4 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact carla@sangreholdings.example.com on 3 accounts\n- Co-located openings: 3 brands opened within 9 months at Orchard Town Center\n- Same review responder: 'Carla C.' replies to reviews on 3 unrelated brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Carla, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Sangre Holdings (rank #7 in Colorado)\nPrincipal: Carla Chen, Owner / Managing Member | carla@sangreholdings.example.com | (303) 555-0163\n\nControls 10 locations across 3 brands (Tropical Smoothie Cafe, Ziggi's Coffee, Dave's Hot Chicken). 4 already pay self-serve ($875/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @sangreholdings.example.com\n- Recent openings: 3 locations opened in the last 12 months, including at Orchard Town Center\n- Owner identified (ZoomInfo): Carla Chen, Owner / Managing Member, with a verified email and direct line\n\nSuggested opener: \"Carla, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Tabletop Franchise Co.",
@@ -1268,34 +1365,34 @@ window.YELP_DATA = {
    "confidence": 87,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 7626) pays 4 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact victor@tabletopfranchisec.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @tabletopfranchisec.example.com"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Twenty Ninth Street"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Twenty Ninth Street"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Victor H.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Victor Haddad, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0164 forwards from 7 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "10 locations roll up to Tabletop Franchise Co. as the parent company"
     }
    ],
    "rank": 8,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Tabletop Franchise Co. (rank #8 in Colorado)\nPrincipal: Victor Haddad, Owner / Managing Member | victor@tabletopfranchisec.example.com | (720) 555-0164\n\nControls 10 locations across 2 brands (Scooter's Coffee, Rush Bowls). 4 already pay self-serve ($775/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (87% confidence):\n- Shared payment method: Same card (Visa ending 7626) pays 4 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact victor@tabletopfranchisec.example.com on 3 accounts\n- Co-located openings: 3 brands opened within 9 months at Twenty Ninth Street\n- Same review responder: 'Victor H.' replies to reviews on 2 unrelated brands\n- Phone routing: (720) 555-0164 forwards from 7 pages in different brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Victor, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Tabletop Franchise Co. (rank #8 in Colorado)\nPrincipal: Victor Haddad, Owner / Managing Member | victor@tabletopfranchisec.example.com | (720) 555-0164\n\nControls 10 locations across 2 brands (Scooter's Coffee, Rush Bowls). 4 already pay self-serve ($775/mo combined, billed as unrelated accounts). 6 are dark.\nUnrealized: $16,200/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @tabletopfranchisec.example.com\n- Recent openings: 3 locations opened in the last 12 months, including at Twenty Ninth Street\n- Owner identified (ZoomInfo): Victor Haddad, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 10 locations roll up to Tabletop Franchise Co. as the parent company\n\nSuggested opener: \"Victor, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 6 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Granite Peak Hospitality",
@@ -1400,34 +1497,34 @@ window.YELP_DATA = {
    "confidence": 99,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 5430) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact jenna@granitepeakhospita.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @granitepeakhospita.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Jenna O.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Jenna Okafor, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0184 forwards from 6 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "10 locations roll up to Granite Peak Hospitality as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Southlands"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Southlands"
     }
    ],
    "rank": 9,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Granite Peak Hospitality (rank #9 in Colorado)\nPrincipal: Jenna Okafor, Owner / Managing Member | jenna@granitepeakhospita.example.com | (303) 555-0184\n\nControls 10 locations across 3 brands (Jimmy John's, Rush Bowls, Teriyaki Madness). 5 already pay self-serve ($925/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (99% confidence):\n- Shared payment method: Same card (Visa ending 5430) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact jenna@granitepeakhospita.example.com on 2 accounts\n- Same review responder: 'Jenna O.' replies to reviews on 3 unrelated brands\n- Phone routing: (303) 555-0184 forwards from 6 pages in different brands\n- Co-located openings: 3 brands opened within 9 months at Southlands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Jenna, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Granite Peak Hospitality (rank #9 in Colorado)\nPrincipal: Jenna Okafor, Owner / Managing Member | jenna@granitepeakhospita.example.com | (303) 555-0184\n\nControls 10 locations across 3 brands (Jimmy John's, Rush Bowls, Teriyaki Madness). 5 already pay self-serve ($925/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @granitepeakhospita.example.com\n- Owner identified (ZoomInfo): Jenna Okafor, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 10 locations roll up to Granite Peak Hospitality as the parent company\n- Recent openings: 3 locations opened in the last 12 months, including at Southlands\n\nSuggested opener: \"Jenna, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Bear Creek Franchise Group",
@@ -1524,39 +1621,39 @@ window.YELP_DATA = {
    "confidence": 98,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 5767) pays 4 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact victor@bearcreekfranchise.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @bearcreekfranchise.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "9 Colorado LLCs share registered agent and principal address; managing member Victor Haddad"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Victor H.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Victor Haddad, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0145 forwards from 5 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "9 locations roll up to Bear Creek Franchise Group as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Park Meadows"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Park Meadows"
     }
    ],
    "rank": 10,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Bear Creek Franchise Group (rank #10 in Colorado)\nPrincipal: Victor Haddad, Owner / Managing Member | victor@bearcreekfranchise.example.com | (720) 555-0145\n\nControls 9 locations across 3 brands (Tropical Smoothie Cafe, Rush Bowls, Teriyaki Madness). 4 already pay self-serve ($800/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (98% confidence):\n- Shared payment method: Same card (Visa ending 5767) pays 4 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact victor@bearcreekfranchise.example.com on 3 accounts\n- Entity + registered agent (Data Vendor Gateway): 9 Colorado LLCs share registered agent and principal address; managing member Victor Haddad\n- Same review responder: 'Victor H.' replies to reviews on 3 unrelated brands\n- Phone routing: (720) 555-0145 forwards from 5 pages in different brands\n- Co-located openings: 3 brands opened within 9 months at Park Meadows\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Victor, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 9 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Bear Creek Franchise Group (rank #10 in Colorado)\nPrincipal: Victor Haddad, Owner / Managing Member | victor@bearcreekfranchise.example.com | (720) 555-0145\n\nControls 9 locations across 3 brands (Tropical Smoothie Cafe, Rush Bowls, Teriyaki Madness). 4 already pay self-serve ($800/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @bearcreekfranchise.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Owner identified (ZoomInfo): Victor Haddad, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 9 locations roll up to Bear Creek Franchise Group as the parent company\n- Recent openings: 3 locations opened in the last 12 months, including at Park Meadows\n\nSuggested opener: \"Victor, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 9 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Timberline QSR",
@@ -1652,39 +1749,39 @@ window.YELP_DATA = {
    "confidence": 93,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 7803) pays 3 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact kim@timberlineqsr.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @timberlineqsr.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "9 Colorado LLCs share registered agent and principal address; managing member Kim Alvarez"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Kim A.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Kim Alvarez, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(719) 555-0151 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "9 locations roll up to Timberline QSR as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Southlands"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Southlands"
     }
    ],
    "rank": 11,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Timberline QSR (rank #11 in Colorado)\nPrincipal: Kim Alvarez, Owner / Managing Member | kim@timberlineqsr.example.com | (719) 555-0151\n\nControls 9 locations across 2 brands (Rush Bowls, Jersey Mike's Subs). 4 already pay self-serve ($1,025/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (93% confidence):\n- Shared payment method: Same card (Visa ending 7803) pays 3 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact kim@timberlineqsr.example.com on 2 accounts\n- Entity + registered agent (Data Vendor Gateway): 9 Colorado LLCs share registered agent and principal address; managing member Kim Alvarez\n- Same review responder: 'Kim A.' replies to reviews on 2 unrelated brands\n- Phone routing: (719) 555-0151 forwards from 3 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Southlands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Kim, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 9 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Timberline QSR (rank #11 in Colorado)\nPrincipal: Kim Alvarez, Owner / Managing Member | kim@timberlineqsr.example.com | (719) 555-0151\n\nControls 9 locations across 2 brands (Rush Bowls, Jersey Mike's Subs). 4 already pay self-serve ($1,025/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @timberlineqsr.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n- Owner identified (ZoomInfo): Kim Alvarez, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 9 locations roll up to Timberline QSR as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Southlands\n\nSuggested opener: \"Kim, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 9 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Larimer Square Eats",
@@ -1780,39 +1877,39 @@ window.YELP_DATA = {
    "confidence": 90,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 7263) pays 4 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact wes@larimersquareeats.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @larimersquareeats.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Wes F.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Wes Fischer, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "9 Colorado LLCs share registered agent and principal address; managing member Wes Fischer"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0120 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "9 locations roll up to Larimer Square Eats as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Promenade Shops at Briargate"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Promenade Shops at Briargate"
     }
    ],
    "rank": 12,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Larimer Square Eats (rank #12 in Colorado)\nPrincipal: Wes Fischer, Owner / Managing Member | wes@larimersquareeats.example.com | (303) 555-0120\n\nControls 9 locations across 2 brands (Jersey Mike's Subs, Marco's Pizza). 4 already pay self-serve ($1,000/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (90% confidence):\n- Shared payment method: Same card (Visa ending 7263) pays 4 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact wes@larimersquareeats.example.com on 3 accounts\n- Same review responder: 'Wes F.' replies to reviews on 2 unrelated brands\n- Entity + registered agent (Data Vendor Gateway): 9 Colorado LLCs share registered agent and principal address; managing member Wes Fischer\n- Phone routing: (303) 555-0120 forwards from 3 pages in different brands\n- Co-located openings: 3 brands opened within 9 months at Promenade Shops at Briargate\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Wes, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 9 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Larimer Square Eats (rank #12 in Colorado)\nPrincipal: Wes Fischer, Owner / Managing Member | wes@larimersquareeats.example.com | (303) 555-0120\n\nControls 9 locations across 2 brands (Jersey Mike's Subs, Marco's Pizza). 4 already pay self-serve ($1,000/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @larimersquareeats.example.com\n- Owner identified (ZoomInfo): Wes Fischer, Owner / Managing Member, with a verified email and direct line\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n- Corporate family (D&B): 9 locations roll up to Larimer Square Eats as the parent company\n- Recent openings: 3 locations opened in the last 12 months, including at Promenade Shops at Briargate\n\nSuggested opener: \"Wes, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 9 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Platte River Eats",
@@ -1902,39 +1999,39 @@ window.YELP_DATA = {
    "confidence": 94,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 5243) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact hector@platterivereats.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @platterivereats.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "8 Colorado LLCs share registered agent and principal address; managing member Hector Barrett"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0126 forwards from 4 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Platte River Eats as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Park Meadows"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Park Meadows"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Hector B.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Hector Barrett, Owner / Managing Member, with a verified email and direct line"
     }
    ],
    "rank": 13,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Platte River Eats (rank #13 in Colorado)\nPrincipal: Hector Barrett, Owner / Managing Member | hector@platterivereats.example.com | (720) 555-0126\n\nControls 8 locations across 4 brands (Tropical Smoothie Cafe, Dave's Hot Chicken, Wingstop, Nothing Bundt Cakes). 3 already pay self-serve ($525/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (94% confidence):\n- Shared payment method: Same card (Visa ending 5243) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact hector@platterivereats.example.com on 2 accounts\n- Entity + registered agent (Data Vendor Gateway): 8 Colorado LLCs share registered agent and principal address; managing member Hector Barrett\n- Phone routing: (720) 555-0126 forwards from 4 pages in different brands\n- Co-located openings: 3 brands opened within 9 months at Park Meadows\n- Same review responder: 'Hector B.' replies to reviews on 3 unrelated brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Hector, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Platte River Eats (rank #13 in Colorado)\nPrincipal: Hector Barrett, Owner / Managing Member | hector@platterivereats.example.com | (720) 555-0126\n\nControls 8 locations across 4 brands (Tropical Smoothie Cafe, Dave's Hot Chicken, Wingstop, Nothing Bundt Cakes). 3 already pay self-serve ($525/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @platterivereats.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Corporate family (D&B): 8 locations roll up to Platte River Eats as the parent company\n- Recent openings: 3 locations opened in the last 12 months, including at Park Meadows\n- Owner identified (ZoomInfo): Hector Barrett, Owner / Managing Member, with a verified email and direct line\n\nSuggested opener: \"Hector, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Ute Pass Restaurant Group",
@@ -2024,34 +2121,34 @@ window.YELP_DATA = {
    "confidence": 99,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1876) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact aisha@utepassrestaurantg.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @utepassrestaurantg.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Aisha O.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Aisha Ortiz, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0180 forwards from 6 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Ute Pass Restaurant Group as the parent company"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "8 Colorado LLCs share registered agent and principal address; managing member Aisha Ortiz"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 4 brands in public franchise filings"
     }
    ],
    "rank": 14,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Ute Pass Restaurant Group (rank #14 in Colorado)\nPrincipal: Aisha Ortiz, Owner / Managing Member | aisha@utepassrestaurantg.example.com | (303) 555-0180\n\nControls 8 locations across 4 brands (Ziggi's Coffee, Jimmy John's, Rush Bowls, Smoothie King). 3 already pay self-serve ($700/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (99% confidence):\n- Shared payment method: Same card (Visa ending 1876) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact aisha@utepassrestaurantg.example.com on 2 accounts\n- Same review responder: 'Aisha O.' replies to reviews on 3 unrelated brands\n- Phone routing: (303) 555-0180 forwards from 6 pages in different brands\n- Entity + registered agent (Data Vendor Gateway): 8 Colorado LLCs share registered agent and principal address; managing member Aisha Ortiz\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Aisha, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Ute Pass Restaurant Group (rank #14 in Colorado)\nPrincipal: Aisha Ortiz, Owner / Managing Member | aisha@utepassrestaurantg.example.com | (303) 555-0180\n\nControls 8 locations across 4 brands (Ziggi's Coffee, Jimmy John's, Rush Bowls, Smoothie King). 3 already pay self-serve ($700/mo combined, billed as unrelated accounts). 5 are dark.\nUnrealized: $13,500/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @utepassrestaurantg.example.com\n- Owner identified (ZoomInfo): Aisha Ortiz, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 8 locations roll up to Ute Pass Restaurant Group as the parent company\n- Franchise filings: Listed as a multi-unit franchisee for 4 brands in public franchise filings\n\nSuggested opener: \"Aisha, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 5 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Red Rocks Restaurant Group",
@@ -2179,29 +2276,29 @@ window.YELP_DATA = {
    "confidence": 99,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 5227) pays 3 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact andre@redrocksrestaurant.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @redrocksrestaurant.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0171 forwards from 4 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "13 locations roll up to Red Rocks Restaurant Group as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Colorado Mills"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Colorado Mills"
     }
    ],
    "rank": 15,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Red Rocks Restaurant Group (rank #15 in Colorado)\nPrincipal: Andre Delgado, Owner / Managing Member | andre@redrocksrestaurant.example.com | (303) 555-0171\n\nControls 13 locations across 2 brands (Firehouse Subs, Teriyaki Madness). 9 already pay self-serve ($2,125/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (99% confidence):\n- Shared payment method: Same card (Visa ending 5227) pays 3 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact andre@redrocksrestaurant.example.com on 2 accounts\n- Phone routing: (303) 555-0171 forwards from 4 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Colorado Mills\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Andre, you're already advertising 9 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Red Rocks Restaurant Group (rank #15 in Colorado)\nPrincipal: Andre Delgado, Owner / Managing Member | andre@redrocksrestaurant.example.com | (303) 555-0171\n\nControls 13 locations across 2 brands (Firehouse Subs, Teriyaki Madness). 9 already pay self-serve ($2,125/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @redrocksrestaurant.example.com\n- Corporate family (D&B): 13 locations roll up to Red Rocks Restaurant Group as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Colorado Mills\n\nSuggested opener: \"Andre, you're already advertising 9 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Columbine Restaurant Partners",
@@ -2330,29 +2427,29 @@ window.YELP_DATA = {
    "confidence": 87,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 9178) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact beth@columbinerestauran.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @columbinerestauran.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "13 Colorado LLCs share registered agent and principal address; managing member Beth Sutton"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(970) 555-0163 forwards from 6 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "13 locations roll up to Columbine Restaurant Partners as the parent company"
     }
    ],
    "rank": 16,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Columbine Restaurant Partners (rank #16 in Colorado)\nPrincipal: Beth Sutton, Owner / Managing Member | beth@columbinerestauran.example.com | (970) 555-0163\n\nControls 13 locations across 3 brands (Marco's Pizza, Jersey Mike's Subs, Rush Bowls). 9 already pay self-serve ($2,000/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (87% confidence):\n- Shared payment method: Same card (Visa ending 9178) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact beth@columbinerestauran.example.com on 2 accounts\n- Entity + registered agent (Data Vendor Gateway): 13 Colorado LLCs share registered agent and principal address; managing member Beth Sutton\n- Phone routing: (970) 555-0163 forwards from 6 pages in different brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Beth, you're already advertising 9 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Columbine Restaurant Partners (rank #16 in Colorado)\nPrincipal: Beth Sutton, Owner / Managing Member | beth@columbinerestauran.example.com | (970) 555-0163\n\nControls 13 locations across 3 brands (Marco's Pizza, Jersey Mike's Subs, Rush Bowls). 9 already pay self-serve ($2,000/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @columbinerestauran.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Corporate family (D&B): 13 locations roll up to Columbine Restaurant Partners as the parent company\n\nSuggested opener: \"Beth, you're already advertising 9 of your locations with us on separate self-serve plans. We'd like to show you all 13 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Centennial Eats",
@@ -2473,34 +2570,34 @@ window.YELP_DATA = {
    "confidence": 84,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 3596) pays 4 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact jenna@centennialeats.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @centennialeats.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Jenna O.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Jenna Okafor, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0130 forwards from 4 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "12 locations roll up to Centennial Eats as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Twenty Ninth Street"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Twenty Ninth Street"
     }
    ],
    "rank": 17,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Centennial Eats (rank #17 in Colorado)\nPrincipal: Jenna Okafor, Owner / Managing Member | jenna@centennialeats.example.com | (303) 555-0130\n\nControls 12 locations across 3 brands (Crumbl Cookies, Rocky Mountain Chocolate Factory, Wingstop). 8 already pay self-serve ($1,750/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (84% confidence):\n- Shared payment method: Same card (Visa ending 3596) pays 4 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact jenna@centennialeats.example.com on 3 accounts\n- Same review responder: 'Jenna O.' replies to reviews on 3 unrelated brands\n- Phone routing: (303) 555-0130 forwards from 4 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Twenty Ninth Street\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Jenna, you're already advertising 8 of your locations with us on separate self-serve plans. We'd like to show you all 12 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Centennial Eats (rank #17 in Colorado)\nPrincipal: Jenna Okafor, Owner / Managing Member | jenna@centennialeats.example.com | (303) 555-0130\n\nControls 12 locations across 3 brands (Crumbl Cookies, Rocky Mountain Chocolate Factory, Wingstop). 8 already pay self-serve ($1,750/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @centennialeats.example.com\n- Owner identified (ZoomInfo): Jenna Okafor, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 12 locations roll up to Centennial Eats as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Twenty Ninth Street\n\nSuggested opener: \"Jenna, you're already advertising 8 of your locations with us on separate self-serve plans. We'd like to show you all 12 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Cherry Creek Hospitality",
@@ -2612,39 +2709,39 @@ window.YELP_DATA = {
    "confidence": 90,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 4370) pays 4 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact tomas@cherrycreekhospita.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @cherrycreekhospita.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Tomas R.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Tomas Reyes, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0152 forwards from 8 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "11 locations roll up to Cherry Creek Hospitality as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Twenty Ninth Street"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Twenty Ninth Street"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "11 Colorado LLCs share registered agent and principal address; managing member Tomas Reyes"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     }
    ],
    "rank": 18,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Cherry Creek Hospitality (rank #18 in Colorado)\nPrincipal: Tomas Reyes, Owner / Managing Member | tomas@cherrycreekhospita.example.com | (720) 555-0152\n\nControls 11 locations across 2 brands (Wingstop, Ziggi's Coffee). 7 already pay self-serve ($1,550/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (90% confidence):\n- Shared payment method: Same card (Visa ending 4370) pays 4 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact tomas@cherrycreekhospita.example.com on 3 accounts\n- Same review responder: 'Tomas R.' replies to reviews on 2 unrelated brands\n- Phone routing: (720) 555-0152 forwards from 8 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Twenty Ninth Street\n- Entity + registered agent (Data Vendor Gateway): 11 Colorado LLCs share registered agent and principal address; managing member Tomas Reyes\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Tomas, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 11 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Cherry Creek Hospitality (rank #18 in Colorado)\nPrincipal: Tomas Reyes, Owner / Managing Member | tomas@cherrycreekhospita.example.com | (720) 555-0152\n\nControls 11 locations across 2 brands (Wingstop, Ziggi's Coffee). 7 already pay self-serve ($1,550/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @cherrycreekhospita.example.com\n- Owner identified (ZoomInfo): Tomas Reyes, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 11 locations roll up to Cherry Creek Hospitality as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Twenty Ninth Street\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n\nSuggested opener: \"Tomas, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 11 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Silver Plume Partners",
@@ -2749,34 +2846,34 @@ window.YELP_DATA = {
    "confidence": 91,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 2376) pays 5 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "5 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact luis@silverplumepartner.example.com on 4 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 4 accounts use @silverplumepartner.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0186 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "10 locations roll up to Silver Plume Partners as the parent company"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "10 Colorado LLCs share registered agent and principal address; managing member Luis Nguyen"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Front Range Village"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Front Range Village"
     }
    ],
    "rank": 19,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Silver Plume Partners (rank #19 in Colorado)\nPrincipal: Luis Nguyen, Owner / Managing Member | luis@silverplumepartner.example.com | (720) 555-0186\n\nControls 10 locations across 3 brands (Crumbl Cookies, Nothing Bundt Cakes, Tropical Smoothie Cafe). 6 already pay self-serve ($1,475/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (91% confidence):\n- Shared payment method: Same card (Visa ending 2376) pays 5 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact luis@silverplumepartner.example.com on 4 accounts\n- Phone routing: (720) 555-0186 forwards from 3 pages in different brands\n- Entity + registered agent (Data Vendor Gateway): 10 Colorado LLCs share registered agent and principal address; managing member Luis Nguyen\n- Co-located openings: 2 brands opened within 9 months at Front Range Village\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Luis, you're already advertising 6 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Silver Plume Partners (rank #19 in Colorado)\nPrincipal: Luis Nguyen, Owner / Managing Member | luis@silverplumepartner.example.com | (720) 555-0186\n\nControls 10 locations across 3 brands (Crumbl Cookies, Nothing Bundt Cakes, Tropical Smoothie Cafe). 6 already pay self-serve ($1,475/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 5 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 4 accounts use @silverplumepartner.example.com\n- Corporate family (D&B): 10 locations roll up to Silver Plume Partners as the parent company\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n- Recent openings: 2 locations opened in the last 12 months, including at Front Range Village\n\nSuggested opener: \"Luis, you're already advertising 6 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Longs Peak Brands",
@@ -2864,39 +2961,39 @@ window.YELP_DATA = {
    "confidence": 97,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 7148) pays 4 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact lena@longspeakbrands.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @longspeakbrands.example.com"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Front Range Village"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Front Range Village"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0179 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Longs Peak Brands as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Lena I.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Lena Ibrahim, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "8 Colorado LLCs share registered agent and principal address; managing member Lena Ibrahim"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     }
    ],
    "rank": 20,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Longs Peak Brands (rank #20 in Colorado)\nPrincipal: Lena Ibrahim, Owner / Managing Member | lena@longspeakbrands.example.com | (720) 555-0179\n\nControls 8 locations across 2 brands (Jimmy John's, Smoothie King). 4 already pay self-serve ($1,025/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (97% confidence):\n- Shared payment method: Same card (Visa ending 7148) pays 4 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact lena@longspeakbrands.example.com on 3 accounts\n- Co-located openings: 2 brands opened within 9 months at Front Range Village\n- Phone routing: (720) 555-0179 forwards from 3 pages in different brands\n- Same review responder: 'Lena I.' replies to reviews on 2 unrelated brands\n- Entity + registered agent (Data Vendor Gateway): 8 Colorado LLCs share registered agent and principal address; managing member Lena Ibrahim\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Lena, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Longs Peak Brands (rank #20 in Colorado)\nPrincipal: Lena Ibrahim, Owner / Managing Member | lena@longspeakbrands.example.com | (720) 555-0179\n\nControls 8 locations across 2 brands (Jimmy John's, Smoothie King). 4 already pay self-serve ($1,025/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @longspeakbrands.example.com\n- Recent openings: 2 locations opened in the last 12 months, including at Front Range Village\n- Corporate family (D&B): 8 locations roll up to Longs Peak Brands as the parent company\n- Owner identified (ZoomInfo): Lena Ibrahim, Owner / Managing Member, with a verified email and direct line\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n\nSuggested opener: \"Lena, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Arapahoe Eats Collective",
@@ -2984,34 +3081,34 @@ window.YELP_DATA = {
    "confidence": 99,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 3517) pays 4 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact monica@arapahoeeatscollec.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @arapahoeeatscollec.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0136 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Arapahoe Eats Collective as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Monica K.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Monica Kaur, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Southlands"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Southlands"
     }
    ],
    "rank": 21,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Arapahoe Eats Collective (rank #21 in Colorado)\nPrincipal: Monica Kaur, Owner / Managing Member | monica@arapahoeeatscollec.example.com | (720) 555-0136\n\nControls 8 locations across 2 brands (Rocky Mountain Chocolate Factory, Jimmy John's). 4 already pay self-serve ($925/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (99% confidence):\n- Shared payment method: Same card (Visa ending 3517) pays 4 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact monica@arapahoeeatscollec.example.com on 3 accounts\n- Phone routing: (720) 555-0136 forwards from 3 pages in different brands\n- Same review responder: 'Monica K.' replies to reviews on 2 unrelated brands\n- Co-located openings: 3 brands opened within 9 months at Southlands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Monica, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Arapahoe Eats Collective (rank #21 in Colorado)\nPrincipal: Monica Kaur, Owner / Managing Member | monica@arapahoeeatscollec.example.com | (720) 555-0136\n\nControls 8 locations across 2 brands (Rocky Mountain Chocolate Factory, Jimmy John's). 4 already pay self-serve ($925/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @arapahoeeatscollec.example.com\n- Corporate family (D&B): 8 locations roll up to Arapahoe Eats Collective as the parent company\n- Owner identified (ZoomInfo): Monica Kaur, Owner / Managing Member, with a verified email and direct line\n- Recent openings: 3 locations opened in the last 12 months, including at Southlands\n\nSuggested opener: \"Monica, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Mesa Verde Eats",
@@ -3100,29 +3197,29 @@ window.YELP_DATA = {
    "confidence": 88,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1344) pays 4 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact omar@mesaverdeeats.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @mesaverdeeats.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(719) 555-0181 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Mesa Verde Eats as the parent company"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "8 Colorado LLCs share registered agent and principal address; managing member Omar Brooks"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     }
    ],
    "rank": 22,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Mesa Verde Eats (rank #22 in Colorado)\nPrincipal: Omar Brooks, Owner / Managing Member | omar@mesaverdeeats.example.com | (719) 555-0181\n\nControls 8 locations across 3 brands (Jimmy John's, Firehouse Subs, Crumbl Cookies). 4 already pay self-serve ($825/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (88% confidence):\n- Shared payment method: Same card (Visa ending 1344) pays 4 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact omar@mesaverdeeats.example.com on 3 accounts\n- Phone routing: (719) 555-0181 forwards from 3 pages in different brands\n- Entity + registered agent (Data Vendor Gateway): 8 Colorado LLCs share registered agent and principal address; managing member Omar Brooks\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Omar, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Mesa Verde Eats (rank #22 in Colorado)\nPrincipal: Omar Brooks, Owner / Managing Member | omar@mesaverdeeats.example.com | (719) 555-0181\n\nControls 8 locations across 3 brands (Jimmy John's, Firehouse Subs, Crumbl Cookies). 4 already pay self-serve ($825/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @mesaverdeeats.example.com\n- Corporate family (D&B): 8 locations roll up to Mesa Verde Eats as the parent company\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n\nSuggested opener: \"Omar, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Canyon Wind Eats",
@@ -3211,39 +3308,39 @@ window.YELP_DATA = {
    "confidence": 91,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 5822) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact grant@canyonwindeats.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @canyonwindeats.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "8 Colorado LLCs share registered agent and principal address; managing member Grant Moreno"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Belmar"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Belmar"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(970) 555-0129 forwards from 8 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Canyon Wind Eats as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Grant M.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Grant Moreno, Owner / Managing Member, with a verified email and direct line"
     }
    ],
    "rank": 23,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Canyon Wind Eats (rank #23 in Colorado)\nPrincipal: Grant Moreno, Owner / Managing Member | grant@canyonwindeats.example.com | (970) 555-0129\n\nControls 8 locations across 3 brands (Tropical Smoothie Cafe, Smoothie King, Wingstop). 4 already pay self-serve ($700/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (91% confidence):\n- Shared payment method: Same card (Visa ending 5822) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact grant@canyonwindeats.example.com on 2 accounts\n- Entity + registered agent (Data Vendor Gateway): 8 Colorado LLCs share registered agent and principal address; managing member Grant Moreno\n- Co-located openings: 2 brands opened within 9 months at Belmar\n- Phone routing: (970) 555-0129 forwards from 8 pages in different brands\n- Same review responder: 'Grant M.' replies to reviews on 3 unrelated brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Grant, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Canyon Wind Eats (rank #23 in Colorado)\nPrincipal: Grant Moreno, Owner / Managing Member | grant@canyonwindeats.example.com | (970) 555-0129\n\nControls 8 locations across 3 brands (Tropical Smoothie Cafe, Smoothie King, Wingstop). 4 already pay self-serve ($700/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @canyonwindeats.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Recent openings: 2 locations opened in the last 12 months, including at Belmar\n- Corporate family (D&B): 8 locations roll up to Canyon Wind Eats as the parent company\n- Owner identified (ZoomInfo): Grant Moreno, Owner / Managing Member, with a verified email and direct line\n\nSuggested opener: \"Grant, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Peak Provisions Group",
@@ -3324,34 +3421,34 @@ window.YELP_DATA = {
    "confidence": 87,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1659) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact daniel@peakprovisionsgrou.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @peakprovisionsgrou.example.com"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Flatiron Crossing"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Flatiron Crossing"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "7 Colorado LLCs share registered agent and principal address; managing member Daniel Lindqvist"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0164 forwards from 4 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "7 locations roll up to Peak Provisions Group as the parent company"
     }
    ],
    "rank": 24,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Peak Provisions Group (rank #24 in Colorado)\nPrincipal: Daniel Lindqvist, Owner / Managing Member | daniel@peakprovisionsgrou.example.com | (303) 555-0164\n\nControls 7 locations across 3 brands (Scooter's Coffee, Nothing Bundt Cakes, Smoothie King). 3 already pay self-serve ($675/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (87% confidence):\n- Shared payment method: Same card (Visa ending 1659) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact daniel@peakprovisionsgrou.example.com on 2 accounts\n- Co-located openings: 3 brands opened within 9 months at Flatiron Crossing\n- Entity + registered agent (Data Vendor Gateway): 7 Colorado LLCs share registered agent and principal address; managing member Daniel Lindqvist\n- Phone routing: (303) 555-0164 forwards from 4 pages in different brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Daniel, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 7 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Peak Provisions Group (rank #24 in Colorado)\nPrincipal: Daniel Lindqvist, Owner / Managing Member | daniel@peakprovisionsgrou.example.com | (303) 555-0164\n\nControls 7 locations across 3 brands (Scooter's Coffee, Nothing Bundt Cakes, Smoothie King). 3 already pay self-serve ($675/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @peakprovisionsgrou.example.com\n- Recent openings: 3 locations opened in the last 12 months, including at Flatiron Crossing\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Corporate family (D&B): 7 locations roll up to Peak Provisions Group as the parent company\n\nSuggested opener: \"Daniel, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 7 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Saddleback Restaurant Group",
@@ -3432,34 +3529,34 @@ window.YELP_DATA = {
    "confidence": 98,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1945) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact nadia@saddlebackrestaura.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @saddlebackrestaura.example.com"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Northfield Stapleton"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Northfield Stapleton"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(970) 555-0114 forwards from 6 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "7 locations roll up to Saddleback Restaurant Group as the parent company"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "7 Colorado LLCs share registered agent and principal address; managing member Nadia Kowalski"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     }
    ],
    "rank": 25,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Saddleback Restaurant Group (rank #25 in Colorado)\nPrincipal: Nadia Kowalski, Owner / Managing Member | nadia@saddlebackrestaura.example.com | (970) 555-0114\n\nControls 7 locations across 3 brands (Jersey Mike's Subs, Marco's Pizza, Dave's Hot Chicken). 3 already pay self-serve ($550/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (98% confidence):\n- Shared payment method: Same card (Visa ending 1945) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact nadia@saddlebackrestaura.example.com on 2 accounts\n- Co-located openings: 3 brands opened within 9 months at Northfield Stapleton\n- Phone routing: (970) 555-0114 forwards from 6 pages in different brands\n- Entity + registered agent (Data Vendor Gateway): 7 Colorado LLCs share registered agent and principal address; managing member Nadia Kowalski\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Nadia, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 7 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Saddleback Restaurant Group (rank #25 in Colorado)\nPrincipal: Nadia Kowalski, Owner / Managing Member | nadia@saddlebackrestaura.example.com | (970) 555-0114\n\nControls 7 locations across 3 brands (Jersey Mike's Subs, Marco's Pizza, Dave's Hot Chicken). 3 already pay self-serve ($550/mo combined, billed as unrelated accounts). 4 are dark.\nUnrealized: $10,800/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @saddlebackrestaura.example.com\n- Recent openings: 3 locations opened in the last 12 months, including at Northfield Stapleton\n- Corporate family (D&B): 7 locations roll up to Saddleback Restaurant Group as the parent company\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n\nSuggested opener: \"Nadia, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 7 in one view and what the other 4 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Larkspur Food Group",
@@ -3564,39 +3661,39 @@ window.YELP_DATA = {
    "confidence": 93,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 4448) pays 4 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "4 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact daniel@larkspurfoodgroup.example.com on 3 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 3 accounts use @larkspurfoodgroup.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0181 forwards from 6 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "10 locations roll up to Larkspur Food Group as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Orchard Town Center"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Orchard Town Center"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "10 Colorado LLCs share registered agent and principal address; managing member Daniel Lindqvist"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Daniel L.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Daniel Lindqvist, Owner / Managing Member, with a verified email and direct line"
     }
    ],
    "rank": 26,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Larkspur Food Group (rank #26 in Colorado)\nPrincipal: Daniel Lindqvist, Owner / Managing Member | daniel@larkspurfoodgroup.example.com | (303) 555-0181\n\nControls 10 locations across 3 brands (Nothing Bundt Cakes, Scooter's Coffee, Jimmy John's). 7 already pay self-serve ($1,650/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (93% confidence):\n- Shared payment method: Same card (Visa ending 4448) pays 4 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact daniel@larkspurfoodgroup.example.com on 3 accounts\n- Phone routing: (303) 555-0181 forwards from 6 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Orchard Town Center\n- Entity + registered agent (Data Vendor Gateway): 10 Colorado LLCs share registered agent and principal address; managing member Daniel Lindqvist\n- Same review responder: 'Daniel L.' replies to reviews on 3 unrelated brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Daniel, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Larkspur Food Group (rank #26 in Colorado)\nPrincipal: Daniel Lindqvist, Owner / Managing Member | daniel@larkspurfoodgroup.example.com | (303) 555-0181\n\nControls 10 locations across 3 brands (Nothing Bundt Cakes, Scooter's Coffee, Jimmy John's). 7 already pay self-serve ($1,650/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 4 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 3 accounts use @larkspurfoodgroup.example.com\n- Corporate family (D&B): 10 locations roll up to Larkspur Food Group as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Orchard Town Center\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Owner identified (ZoomInfo): Daniel Lindqvist, Owner / Managing Member, with a verified email and direct line\n\nSuggested opener: \"Daniel, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Juniper Lane Hospitality",
@@ -3701,29 +3798,29 @@ window.YELP_DATA = {
    "confidence": 94,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 5245) pays 6 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "6 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact beth@juniperlanehospita.example.com on 5 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 5 accounts use @juniperlanehospita.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(970) 555-0120 forwards from 7 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "10 locations roll up to Juniper Lane Hospitality as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Beth S.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Beth Sutton, Owner / Managing Member, with a verified email and direct line"
     }
    ],
    "rank": 27,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Juniper Lane Hospitality (rank #27 in Colorado)\nPrincipal: Beth Sutton, Owner / Managing Member | beth@juniperlanehospita.example.com | (970) 555-0120\n\nControls 10 locations across 3 brands (Nothing Bundt Cakes, Marco's Pizza, Rocky Mountain Chocolate Factory). 7 already pay self-serve ($1,450/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (94% confidence):\n- Shared payment method: Same card (Visa ending 5245) pays 6 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact beth@juniperlanehospita.example.com on 5 accounts\n- Phone routing: (970) 555-0120 forwards from 7 pages in different brands\n- Same review responder: 'Beth S.' replies to reviews on 3 unrelated brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Beth, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Juniper Lane Hospitality (rank #27 in Colorado)\nPrincipal: Beth Sutton, Owner / Managing Member | beth@juniperlanehospita.example.com | (970) 555-0120\n\nControls 10 locations across 3 brands (Nothing Bundt Cakes, Marco's Pizza, Rocky Mountain Chocolate Factory). 7 already pay self-serve ($1,450/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 6 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 5 accounts use @juniperlanehospita.example.com\n- Corporate family (D&B): 10 locations roll up to Juniper Lane Hospitality as the parent company\n- Owner identified (ZoomInfo): Beth Sutton, Owner / Managing Member, with a verified email and direct line\n\nSuggested opener: \"Beth, you're already advertising 7 of your locations with us on separate self-serve plans. We'd like to show you all 10 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Front Range Franchise Partners",
@@ -3812,39 +3909,39 @@ window.YELP_DATA = {
    "confidence": 86,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 3114) pays 5 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "5 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact priya@frontrangefranchis.example.com on 4 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 4 accounts use @frontrangefranchis.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0125 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Front Range Franchise Partners as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Orchard Town Center"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Orchard Town Center"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Priya P.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Priya Patel, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "8 Colorado LLCs share registered agent and principal address; managing member Priya Patel"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     }
    ],
    "rank": 28,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Front Range Franchise Partners (rank #28 in Colorado)\nPrincipal: Priya Patel, Owner / Managing Member | priya@frontrangefranchis.example.com | (303) 555-0125\n\nControls 8 locations across 3 brands (Dave's Hot Chicken, Jimmy John's, Wingstop). 5 already pay self-serve ($1,000/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (86% confidence):\n- Shared payment method: Same card (Visa ending 3114) pays 5 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact priya@frontrangefranchis.example.com on 4 accounts\n- Phone routing: (303) 555-0125 forwards from 3 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Orchard Town Center\n- Same review responder: 'Priya P.' replies to reviews on 3 unrelated brands\n- Entity + registered agent (Data Vendor Gateway): 8 Colorado LLCs share registered agent and principal address; managing member Priya Patel\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Priya, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Front Range Franchise Partners (rank #28 in Colorado)\nPrincipal: Priya Patel, Owner / Managing Member | priya@frontrangefranchis.example.com | (303) 555-0125\n\nControls 8 locations across 3 brands (Dave's Hot Chicken, Jimmy John's, Wingstop). 5 already pay self-serve ($1,000/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 5 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 4 accounts use @frontrangefranchis.example.com\n- Corporate family (D&B): 8 locations roll up to Front Range Franchise Partners as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Orchard Town Center\n- Owner identified (ZoomInfo): Priya Patel, Owner / Managing Member, with a verified email and direct line\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n\nSuggested opener: \"Priya, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Aspen Ridge Hospitality",
@@ -3933,29 +4030,29 @@ window.YELP_DATA = {
    "confidence": 91,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 3577) pays 5 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "5 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact nadia@aspenridgehospital.example.com on 4 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 4 accounts use @aspenridgehospital.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0154 forwards from 8 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Aspen Ridge Hospitality as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Front Range Village"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Front Range Village"
     }
    ],
    "rank": 29,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Aspen Ridge Hospitality (rank #29 in Colorado)\nPrincipal: Nadia Kowalski, Owner / Managing Member | nadia@aspenridgehospital.example.com | (720) 555-0154\n\nControls 8 locations across 3 brands (Firehouse Subs, Tropical Smoothie Cafe, Teriyaki Madness). 5 already pay self-serve ($975/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (91% confidence):\n- Shared payment method: Same card (Visa ending 3577) pays 5 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact nadia@aspenridgehospital.example.com on 4 accounts\n- Phone routing: (720) 555-0154 forwards from 8 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Front Range Village\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Nadia, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Aspen Ridge Hospitality (rank #29 in Colorado)\nPrincipal: Nadia Kowalski, Owner / Managing Member | nadia@aspenridgehospital.example.com | (720) 555-0154\n\nControls 8 locations across 3 brands (Firehouse Subs, Tropical Smoothie Cafe, Teriyaki Madness). 5 already pay self-serve ($975/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 5 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 4 accounts use @aspenridgehospital.example.com\n- Corporate family (D&B): 8 locations roll up to Aspen Ridge Hospitality as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Front Range Village\n\nSuggested opener: \"Nadia, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Crestone Brands",
@@ -4045,34 +4142,34 @@ window.YELP_DATA = {
    "confidence": 96,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 6090) pays 5 self-serve accounts across 4 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "5 Salesforce accounts across 4 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact andre@crestonebrands.example.com on 4 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 4 accounts use @crestonebrands.example.com"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Flatiron Crossing"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Flatiron Crossing"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Andre D.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Andre Delgado, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0148 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Crestone Brands as the parent company"
     }
    ],
    "rank": 30,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Crestone Brands (rank #30 in Colorado)\nPrincipal: Andre Delgado, Owner / Managing Member | andre@crestonebrands.example.com | (303) 555-0148\n\nControls 8 locations across 4 brands (Teriyaki Madness, Tropical Smoothie Cafe, Rocky Mountain Chocolate Factory, Smoothie King). 5 already pay self-serve ($1,075/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (96% confidence):\n- Shared payment method: Same card (Visa ending 6090) pays 5 self-serve accounts across 4 brands\n- Shared billing contact: Billing contact andre@crestonebrands.example.com on 4 accounts\n- Co-located openings: 2 brands opened within 9 months at Flatiron Crossing\n- Same review responder: 'Andre D.' replies to reviews on 3 unrelated brands\n- Phone routing: (303) 555-0148 forwards from 3 pages in different brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Andre, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Crestone Brands (rank #30 in Colorado)\nPrincipal: Andre Delgado, Owner / Managing Member | andre@crestonebrands.example.com | (303) 555-0148\n\nControls 8 locations across 4 brands (Teriyaki Madness, Tropical Smoothie Cafe, Rocky Mountain Chocolate Factory, Smoothie King). 5 already pay self-serve ($1,075/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 5 Salesforce accounts across 4 brands share a billing address and main phone\n- Shared contact domain: Contacts on 4 accounts use @crestonebrands.example.com\n- Recent openings: 2 locations opened in the last 12 months, including at Flatiron Crossing\n- Owner identified (ZoomInfo): Andre Delgado, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 8 locations roll up to Crestone Brands as the parent company\n\nSuggested opener: \"Andre, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Wildflower Brands",
@@ -4161,39 +4258,39 @@ window.YELP_DATA = {
    "confidence": 85,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 2839) pays 5 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "5 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact carla@wildflowerbrands.example.com on 4 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 4 accounts use @wildflowerbrands.example.com"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Twenty Ninth Street"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Twenty Ninth Street"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0142 forwards from 5 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "8 locations roll up to Wildflower Brands as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Carla C.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Carla Chen, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "8 Colorado LLCs share registered agent and principal address; managing member Carla Chen"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     }
    ],
    "rank": 31,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Wildflower Brands (rank #31 in Colorado)\nPrincipal: Carla Chen, Owner / Managing Member | carla@wildflowerbrands.example.com | (303) 555-0142\n\nControls 8 locations across 3 brands (Smoothie King, Scooter's Coffee, Jersey Mike's Subs). 5 already pay self-serve ($975/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (85% confidence):\n- Shared payment method: Same card (Visa ending 2839) pays 5 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact carla@wildflowerbrands.example.com on 4 accounts\n- Co-located openings: 2 brands opened within 9 months at Twenty Ninth Street\n- Phone routing: (303) 555-0142 forwards from 5 pages in different brands\n- Same review responder: 'Carla C.' replies to reviews on 3 unrelated brands\n- Entity + registered agent (Data Vendor Gateway): 8 Colorado LLCs share registered agent and principal address; managing member Carla Chen\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Carla, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Wildflower Brands (rank #31 in Colorado)\nPrincipal: Carla Chen, Owner / Managing Member | carla@wildflowerbrands.example.com | (303) 555-0142\n\nControls 8 locations across 3 brands (Smoothie King, Scooter's Coffee, Jersey Mike's Subs). 5 already pay self-serve ($975/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 5 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 4 accounts use @wildflowerbrands.example.com\n- Recent openings: 2 locations opened in the last 12 months, including at Twenty Ninth Street\n- Corporate family (D&B): 8 locations roll up to Wildflower Brands as the parent company\n- Owner identified (ZoomInfo): Carla Chen, Owner / Managing Member, with a verified email and direct line\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n\nSuggested opener: \"Carla, you're already advertising 5 of your locations with us on separate self-serve plans. We'd like to show you all 8 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Elk Ridge Brands",
@@ -4274,34 +4371,34 @@ window.YELP_DATA = {
    "confidence": 92,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1953) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact priya@elkridgebrands.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @elkridgebrands.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(970) 555-0112 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "7 locations roll up to Elk Ridge Brands as the parent company"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "7 Colorado LLCs share registered agent and principal address; managing member Priya Patel"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Flatiron Crossing"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Flatiron Crossing"
     }
    ],
    "rank": 32,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Elk Ridge Brands (rank #32 in Colorado)\nPrincipal: Priya Patel, Owner / Managing Member | priya@elkridgebrands.example.com | (970) 555-0112\n\nControls 7 locations across 3 brands (Firehouse Subs, Dave's Hot Chicken, Crumbl Cookies). 4 already pay self-serve ($925/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (92% confidence):\n- Shared payment method: Same card (Visa ending 1953) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact priya@elkridgebrands.example.com on 2 accounts\n- Phone routing: (970) 555-0112 forwards from 3 pages in different brands\n- Entity + registered agent (Data Vendor Gateway): 7 Colorado LLCs share registered agent and principal address; managing member Priya Patel\n- Co-located openings: 2 brands opened within 9 months at Flatiron Crossing\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Priya, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 7 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Elk Ridge Brands (rank #32 in Colorado)\nPrincipal: Priya Patel, Owner / Managing Member | priya@elkridgebrands.example.com | (970) 555-0112\n\nControls 7 locations across 3 brands (Firehouse Subs, Dave's Hot Chicken, Crumbl Cookies). 4 already pay self-serve ($925/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @elkridgebrands.example.com\n- Corporate family (D&B): 7 locations roll up to Elk Ridge Brands as the parent company\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n- Recent openings: 2 locations opened in the last 12 months, including at Flatiron Crossing\n\nSuggested opener: \"Priya, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 7 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Golden Spike Hospitality",
@@ -4373,34 +4470,34 @@ window.YELP_DATA = {
    "confidence": 85,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 9619) pays 3 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact wes@goldenspikehospita.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @goldenspikehospita.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Wes F.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Wes Fischer, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0131 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "6 locations roll up to Golden Spike Hospitality as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Streets at SouthGlenn"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Streets at SouthGlenn"
     }
    ],
    "rank": 33,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Golden Spike Hospitality (rank #33 in Colorado)\nPrincipal: Wes Fischer, Owner / Managing Member | wes@goldenspikehospita.example.com | (303) 555-0131\n\nControls 6 locations across 2 brands (Marco's Pizza, Ziggi's Coffee). 3 already pay self-serve ($700/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (85% confidence):\n- Shared payment method: Same card (Visa ending 9619) pays 3 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact wes@goldenspikehospita.example.com on 2 accounts\n- Same review responder: 'Wes F.' replies to reviews on 2 unrelated brands\n- Phone routing: (303) 555-0131 forwards from 3 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Streets at SouthGlenn\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Wes, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 6 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Golden Spike Hospitality (rank #33 in Colorado)\nPrincipal: Wes Fischer, Owner / Managing Member | wes@goldenspikehospita.example.com | (303) 555-0131\n\nControls 6 locations across 2 brands (Marco's Pizza, Ziggi's Coffee). 3 already pay self-serve ($700/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @goldenspikehospita.example.com\n- Owner identified (ZoomInfo): Wes Fischer, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 6 locations roll up to Golden Spike Hospitality as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Streets at SouthGlenn\n\nSuggested opener: \"Wes, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 6 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Big Thompson Restaurant Co.",
@@ -4473,29 +4570,29 @@ window.YELP_DATA = {
    "confidence": 94,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 9646) pays 3 self-serve accounts across 3 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 3 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact tomas@bigthompsonrestaur.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @bigthompsonrestaur.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "6 Colorado LLCs share registered agent and principal address; managing member Tomas Reyes"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0118 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "6 locations roll up to Big Thompson Restaurant Co. as the parent company"
     }
    ],
    "rank": 34,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Big Thompson Restaurant Co. (rank #34 in Colorado)\nPrincipal: Tomas Reyes, Owner / Managing Member | tomas@bigthompsonrestaur.example.com | (303) 555-0118\n\nControls 6 locations across 3 brands (Rocky Mountain Chocolate Factory, Crumbl Cookies, Marco's Pizza). 3 already pay self-serve ($575/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (94% confidence):\n- Shared payment method: Same card (Visa ending 9646) pays 3 self-serve accounts across 3 brands\n- Shared billing contact: Billing contact tomas@bigthompsonrestaur.example.com on 2 accounts\n- Entity + registered agent (Data Vendor Gateway): 6 Colorado LLCs share registered agent and principal address; managing member Tomas Reyes\n- Phone routing: (303) 555-0118 forwards from 3 pages in different brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Tomas, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 6 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Big Thompson Restaurant Co. (rank #34 in Colorado)\nPrincipal: Tomas Reyes, Owner / Managing Member | tomas@bigthompsonrestaur.example.com | (303) 555-0118\n\nControls 6 locations across 3 brands (Rocky Mountain Chocolate Factory, Crumbl Cookies, Marco's Pizza). 3 already pay self-serve ($575/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 3 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @bigthompsonrestaur.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n- Corporate family (D&B): 6 locations roll up to Big Thompson Restaurant Co. as the parent company\n\nSuggested opener: \"Tomas, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 6 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Monarch Restaurant Group",
@@ -4560,34 +4657,34 @@ window.YELP_DATA = {
    "confidence": 97,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 4980) pays 2 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "2 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact aisha@monarchrestaurantg.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @monarchrestaurantg.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0177 forwards from 4 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "5 locations roll up to Monarch Restaurant Group as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Aisha O.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Aisha Ortiz, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "5 Colorado LLCs share registered agent and principal address; managing member Aisha Ortiz"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     }
    ],
    "rank": 35,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Monarch Restaurant Group (rank #35 in Colorado)\nPrincipal: Aisha Ortiz, Owner / Managing Member | aisha@monarchrestaurantg.example.com | (720) 555-0177\n\nControls 5 locations across 3 brands (Crumbl Cookies, Tropical Smoothie Cafe, Dave's Hot Chicken). 2 already pay self-serve ($500/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (97% confidence):\n- Shared payment method: Same card (Visa ending 4980) pays 2 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact aisha@monarchrestaurantg.example.com on 2 accounts\n- Phone routing: (720) 555-0177 forwards from 4 pages in different brands\n- Same review responder: 'Aisha O.' replies to reviews on 3 unrelated brands\n- Entity + registered agent (Data Vendor Gateway): 5 Colorado LLCs share registered agent and principal address; managing member Aisha Ortiz\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Aisha, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 5 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Monarch Restaurant Group (rank #35 in Colorado)\nPrincipal: Aisha Ortiz, Owner / Managing Member | aisha@monarchrestaurantg.example.com | (720) 555-0177\n\nControls 5 locations across 3 brands (Crumbl Cookies, Tropical Smoothie Cafe, Dave's Hot Chicken). 2 already pay self-serve ($500/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 2 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @monarchrestaurantg.example.com\n- Corporate family (D&B): 5 locations roll up to Monarch Restaurant Group as the parent company\n- Owner identified (ZoomInfo): Aisha Ortiz, Owner / Managing Member, with a verified email and direct line\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n\nSuggested opener: \"Aisha, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 5 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Fourteener Franchise Group",
@@ -4651,34 +4748,34 @@ window.YELP_DATA = {
    "confidence": 88,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 7152) pays 2 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "2 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact rachel@fourteenerfranchis.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @fourteenerfranchis.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0140 forwards from 3 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "5 locations roll up to Fourteener Franchise Group as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Northfield Stapleton"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Northfield Stapleton"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "5 Colorado LLCs share registered agent and principal address; managing member Rachel Novak"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     }
    ],
    "rank": 36,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Fourteener Franchise Group (rank #36 in Colorado)\nPrincipal: Rachel Novak, Owner / Managing Member | rachel@fourteenerfranchis.example.com | (720) 555-0140\n\nControls 5 locations across 2 brands (Scooter's Coffee, Crumbl Cookies). 2 already pay self-serve ($400/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (88% confidence):\n- Shared payment method: Same card (Visa ending 7152) pays 2 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact rachel@fourteenerfranchis.example.com on 2 accounts\n- Phone routing: (720) 555-0140 forwards from 3 pages in different brands\n- Co-located openings: 2 brands opened within 9 months at Northfield Stapleton\n- Entity + registered agent (Data Vendor Gateway): 5 Colorado LLCs share registered agent and principal address; managing member Rachel Novak\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Rachel, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 5 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Fourteener Franchise Group (rank #36 in Colorado)\nPrincipal: Rachel Novak, Owner / Managing Member | rachel@fourteenerfranchis.example.com | (720) 555-0140\n\nControls 5 locations across 2 brands (Scooter's Coffee, Crumbl Cookies). 2 already pay self-serve ($400/mo combined, billed as unrelated accounts). 3 are dark.\nUnrealized: $8,100/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 2 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @fourteenerfranchis.example.com\n- Corporate family (D&B): 5 locations roll up to Fourteener Franchise Group as the parent company\n- Recent openings: 2 locations opened in the last 12 months, including at Northfield Stapleton\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n\nSuggested opener: \"Rachel, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 5 in one view and what the other 3 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Clear Creek Eats",
@@ -4750,29 +4847,29 @@ window.YELP_DATA = {
    "confidence": 99,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 1946) pays 3 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact devin@clearcreekeats.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @clearcreekeats.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0178 forwards from 6 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "6 locations roll up to Clear Creek Eats as the parent company"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Chapel Hills"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Chapel Hills"
     }
    ],
    "rank": 37,
-   "rep_alias": "ccentral",
-   "brief": "Hunter brief: Clear Creek Eats (rank #37 in Colorado)\nPrincipal: Devin Larsen, Owner / Managing Member | devin@clearcreekeats.example.com | (303) 555-0178\n\nControls 6 locations across 2 brands (Teriyaki Madness, Jersey Mike's Subs). 4 already pay self-serve ($700/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (99% confidence):\n- Shared payment method: Same card (Visa ending 1946) pays 3 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact devin@clearcreekeats.example.com on 2 accounts\n- Phone routing: (303) 555-0178 forwards from 6 pages in different brands\n- Co-located openings: 3 brands opened within 9 months at Chapel Hills\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Devin, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 6 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Clear Creek Eats (rank #37 in Colorado)\nPrincipal: Devin Larsen, Owner / Managing Member | devin@clearcreekeats.example.com | (303) 555-0178\n\nControls 6 locations across 2 brands (Teriyaki Madness, Jersey Mike's Subs). 4 already pay self-serve ($700/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @clearcreekeats.example.com\n- Corporate family (D&B): 6 locations roll up to Clear Creek Eats as the parent company\n- Recent openings: 3 locations opened in the last 12 months, including at Chapel Hills\n\nSuggested opener: \"Devin, you're already advertising 4 of your locations with us on separate self-serve plans. We'd like to show you all 6 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Quarry Street Hospitality",
@@ -4836,39 +4933,39 @@ window.YELP_DATA = {
    "confidence": 98,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 2026) pays 3 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "3 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact devin@quarrystreethospit.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @quarrystreethospit.example.com"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(720) 555-0137 forwards from 4 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "5 locations roll up to Quarry Street Hospitality as the parent company"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Devin L.' replies to reviews on 2 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Devin Larsen, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "5 Colorado LLCs share registered agent and principal address; managing member Devin Larsen"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 2 brands in public franchise filings"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "2 brands opened within 9 months at Flatiron Crossing"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "2 locations opened in the last 12 months, including at Flatiron Crossing"
     }
    ],
    "rank": 38,
-   "rep_alias": "vwest",
-   "brief": "Hunter brief: Quarry Street Hospitality (rank #38 in Colorado)\nPrincipal: Devin Larsen, Owner / Managing Member | devin@quarrystreethospit.example.com | (720) 555-0137\n\nControls 5 locations across 2 brands (Crumbl Cookies, Nothing Bundt Cakes). 3 already pay self-serve ($900/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (98% confidence):\n- Shared payment method: Same card (Visa ending 2026) pays 3 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact devin@quarrystreethospit.example.com on 2 accounts\n- Phone routing: (720) 555-0137 forwards from 4 pages in different brands\n- Same review responder: 'Devin L.' replies to reviews on 2 unrelated brands\n- Entity + registered agent (Data Vendor Gateway): 5 Colorado LLCs share registered agent and principal address; managing member Devin Larsen\n- Co-located openings: 2 brands opened within 9 months at Flatiron Crossing\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Devin, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 5 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Quarry Street Hospitality (rank #38 in Colorado)\nPrincipal: Devin Larsen, Owner / Managing Member | devin@quarrystreethospit.example.com | (720) 555-0137\n\nControls 5 locations across 2 brands (Crumbl Cookies, Nothing Bundt Cakes). 3 already pay self-serve ($900/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 3 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @quarrystreethospit.example.com\n- Corporate family (D&B): 5 locations roll up to Quarry Street Hospitality as the parent company\n- Owner identified (ZoomInfo): Devin Larsen, Owner / Managing Member, with a verified email and direct line\n- Franchise filings: Listed as a multi-unit franchisee for 2 brands in public franchise filings\n- Recent openings: 2 locations opened in the last 12 months, including at Flatiron Crossing\n\nSuggested opener: \"Devin, you're already advertising 3 of your locations with us on separate self-serve plans. We'd like to show you all 5 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Highline Canal Brands",
@@ -4926,29 +5023,29 @@ window.YELP_DATA = {
    "confidence": 98,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 4418) pays 2 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "2 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact hector@highlinecanalbrand.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @highlinecanalbrand.example.com"
     },
     {
-     "type": "entity",
-     "label": "Entity + registered agent (Data Vendor Gateway)",
-     "detail": "4 Colorado LLCs share registered agent and principal address; managing member Hector Barrett"
+     "type": "web",
+     "label": "Franchise filings",
+     "detail": "Listed as a multi-unit franchisee for 3 brands in public franchise filings"
     },
     {
-     "type": "colocation",
-     "label": "Co-located openings",
-     "detail": "3 brands opened within 9 months at Promenade Shops at Briargate"
+     "type": "web",
+     "label": "Recent openings",
+     "detail": "3 locations opened in the last 12 months, including at Promenade Shops at Briargate"
     }
    ],
    "rank": 39,
-   "rep_alias": "bill",
-   "brief": "Hunter brief: Highline Canal Brands (rank #39 in Colorado)\nPrincipal: Hector Barrett, Owner / Managing Member | hector@highlinecanalbrand.example.com | (720) 555-0126\n\nControls 4 locations across 4 brands (Teriyaki Madness, Jersey Mike's Subs, Jimmy John's, Smoothie King). 2 already pay self-serve ($525/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (98% confidence):\n- Shared payment method: Same card (Visa ending 4418) pays 2 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact hector@highlinecanalbrand.example.com on 2 accounts\n- Entity + registered agent (Data Vendor Gateway): 4 Colorado LLCs share registered agent and principal address; managing member Hector Barrett\n- Co-located openings: 3 brands opened within 9 months at Promenade Shops at Briargate\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Hector, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 4 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Highline Canal Brands (rank #39 in Colorado)\nPrincipal: Hector Barrett, Owner / Managing Member | hector@highlinecanalbrand.example.com | (720) 555-0126\n\nControls 4 locations across 4 brands (Teriyaki Madness, Jersey Mike's Subs, Jimmy John's, Smoothie King). 2 already pay self-serve ($525/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 2 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @highlinecanalbrand.example.com\n- Franchise filings: Listed as a multi-unit franchisee for 3 brands in public franchise filings\n- Recent openings: 3 locations opened in the last 12 months, including at Promenade Shops at Briargate\n\nSuggested opener: \"Hector, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 4 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   },
   {
    "name": "Sunlight Peak Holdings",
@@ -5005,29 +5102,29 @@ window.YELP_DATA = {
    "confidence": 89,
    "signals": [
     {
-     "type": "billing",
-     "label": "Shared payment method",
-     "detail": "Same card (Visa ending 4275) pays 2 self-serve accounts across 2 brands"
+     "type": "crm",
+     "label": "Same billing address and phone",
+     "detail": "2 Salesforce accounts across 2 brands share a billing address and main phone"
     },
     {
-     "type": "billing",
-     "label": "Shared billing contact",
-     "detail": "Billing contact lena@sunlightpeakholdin.example.com on 2 accounts"
+     "type": "crm",
+     "label": "Shared contact domain",
+     "detail": "Contacts on 2 accounts use @sunlightpeakholdin.example.com"
     },
     {
-     "type": "reviews",
-     "label": "Same review responder",
-     "detail": "'Lena I.' replies to reviews on 3 unrelated brands"
+     "type": "vendor",
+     "label": "Owner identified (ZoomInfo)",
+     "detail": "Lena Ibrahim, Owner / Managing Member, with a verified email and direct line"
     },
     {
-     "type": "phone",
-     "label": "Phone routing",
-     "detail": "(303) 555-0147 forwards from 4 pages in different brands"
+     "type": "vendor",
+     "label": "Corporate family (D&B)",
+     "detail": "4 locations roll up to Sunlight Peak Holdings as the parent company"
     }
    ],
    "rank": 40,
-   "rep_alias": "vcent",
-   "brief": "Hunter brief: Sunlight Peak Holdings (rank #40 in Colorado)\nPrincipal: Lena Ibrahim, Owner / Managing Member | lena@sunlightpeakholdin.example.com | (303) 555-0147\n\nControls 4 locations across 3 brands (Nothing Bundt Cakes, Ziggi's Coffee, Marco's Pizza). 2 already pay self-serve ($450/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy Hunter thinks this is one operator (89% confidence):\n- Shared payment method: Same card (Visa ending 4275) pays 2 self-serve accounts across 2 brands\n- Shared billing contact: Billing contact lena@sunlightpeakholdin.example.com on 2 accounts\n- Same review responder: 'Lena I.' replies to reviews on 3 unrelated brands\n- Phone routing: (303) 555-0147 forwards from 4 pages in different brands\n\nPattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, pages claimed by store managers, owner on none of them.\n\nSuggested opener: \"Lena, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 4 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
+   "rep_alias": "tjones",
+   "brief": "Hunter brief: Sunlight Peak Holdings (rank #40 in Colorado)\nPrincipal: Lena Ibrahim, Owner / Managing Member | lena@sunlightpeakholdin.example.com | (303) 555-0147\n\nControls 4 locations across 3 brands (Nothing Bundt Cakes, Ziggi's Coffee, Marco's Pizza). 2 already pay self-serve ($450/mo combined, billed as unrelated accounts). 2 are dark.\nUnrealized: $5,400/yr at Yelp average revenue per location.\n\nWhy this prospect:\n- Same billing address and phone: 2 Salesforce accounts across 2 brands share a billing address and main phone\n- Shared contact domain: Contacts on 2 accounts use @sunlightpeakholdin.example.com\n- Owner identified (ZoomInfo): Lena Ibrahim, Owner / Managing Member, with a verified email and direct line\n- Corporate family (D&B): 4 locations roll up to Sunlight Peak Holdings as the parent company\n\nSuggested opener: \"Lena, you're already advertising 2 of your locations with us on separate self-serve plans. We'd like to show you all 4 in one view and what the other 2 could be doing.\"\nNext step: book a multi-location review and propose one package across all locations."
   }
  ]
 };

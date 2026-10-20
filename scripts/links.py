@@ -38,8 +38,8 @@ def build():
     rows = [
         ("Mockups", [
             f"[Launcher]({SITE}/)",
-            f"[Piper]({SITE}/piper.html?frame=1)",
-            f"[Hunter]({SITE}/hunter.html?frame=1)",
+            f"[Piper]({SITE}/piper.html)",
+            f"[Hunter]({SITE}/hunter.html)",
         ]),
         ("Start here", [
             f"[Open the Sales for Tech app]({BASE}/lightning/app/{APP_ID}) (click first; the links below then open inside it)",

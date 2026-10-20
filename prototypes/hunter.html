@@ -104,7 +104,7 @@
   .drawer.show { transform: none; }
   .drawer .x { position: absolute; right: 18px; top: 14px; cursor: pointer; color: var(--muted); font-size: 20px; }
   .drawer h2 { margin: 0; font-size: 20px; }
-  .ev li { margin: 7px 0; list-style: none; display: grid; grid-template-columns: 22px 1fr; gap: 6px; }
+  .ev li { margin: 7px 0; list-style: none; display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: start; }
   .ev ul { padding: 0; }
   .tree { font-size: 13px; }
   .tree .op { font-weight: 700; }
@@ -120,29 +120,29 @@
 <body>
 <div class="gh">
   <div class="cloud">SF</div>
-  <div class="search">🔍&nbsp; Search...</div>
-  <div class="icons"><span>★</span><span>＋</span><span>?</span><span>⚙</span><span>🔔</span><div class="me">TJ</div></div>
+  <div class="search"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="9" r="5.5"/><path d="m13.5 13.5 3.5 3.5"/></svg>&nbsp; Search...</div>
+  <div class="icons"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m10 3 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2-4.2 2.2.8-4.7L3.2 8l4.7-.7z"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M8 8a2 2 0 1 1 2.5 1.9c-.4.2-.5.5-.5.9v.7M10 14h0"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="2.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 1.5h-13zM8 17a2 2 0 0 0 4 0"/></svg><div class="me">TJ</div></div>
 </div>
 <div class="nav"><span class="app">Sales</span><span>Home</span><span>Accounts</span><span>Leads</span><span>Opportunities</span><span class="on">Hunter</span></div>
 
 <div class="shell">
   <aside class="side">
-    <div class="it on">✦ New chat</div><div class="it">◷ Scheduled</div><div class="it">⚡ Skills</div><div class="it">📖 Knowledge</div>
+    <div class="it on">New chat</div><div class="it">Scheduled</div><div class="it">Skills</div><div class="it">Knowledge</div>
     <h5>Recents</h5>
     <div class="rc"><span class="badge" style="background:#5a1ba9">CO</span>Colorado operator discovery</div>
-    <div class="rc"><span class="badge" style="background:#2e844a">PC</span>Piper: confirmed patterns</div>
+    <div class="rc"><span class="badge" style="background:#2e844a">NL</span>New leads in your territory</div>
     <div class="rc"><span class="badge">FN</span>Found new prospects</div>
     <div class="rc"><span class="badge">EB</span>Executive Brief</div>
     <div class="rc"><span class="badge">PS</span>Pipeline Snapshot</div>
     <h5>Connections</h5>
-    <div class="rc">Salesforce · Billing · Data Vendor Gateway · Momentum</div>
+    <div class="rc">Salesforce · Data Vendor Gateway · Momentum</div>
   </aside>
 
   <section class="center">
     <div class="feed" id="feed"></div>
     <div class="composer">
       <textarea id="composer" placeholder="Ask Hunter..." readonly></textarea>
-      <div class="bar"><span class="pill">Hunter ▾</span><span class="pill">＋ Skills</span><span>Salesforce · Billing · Data Vendor Gateway</span><span class="send">➤</span></div>
+      <div class="bar"><span class="pill">Hunter ▾</span><span class="pill">＋ Skills</span><span>Salesforce · Data Vendor Gateway</span><span class="send"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 10h13M11 5l5 5-5 5"/></svg></span></div>
     </div>
   </section>
 
@@ -153,9 +153,7 @@
   </aside>
 </div>
 
-<div class="drawer" id="drawer"><span class="x" onclick="closeDrawer()">✕</span><div id="drawerBody"></div></div>
 <div class="presenter" id="presenter"></div>
-<div class="proto-note">Prototype for illustration. Hunter is not generally available; capabilities and UI will change.</div>
 
 <script src="data.js"></script>
 <script src="presenter.js"></script>
@@ -168,13 +166,13 @@ const REPS = { tjones: "Tom Jones" };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const OBJECTIVE = "Find more owners like him. Identify operators in my Colorado territory controlling three or more paying locations across different brand names, and rank them by unrealized spend.";
 const SIGNALS = [
-  ["Shared payment method across self-serve accounts", 241, "bill"],
-  ["Shared billing address or billing contact", 198, "bill"],
-  ["Same phone number routing across brands", 156, ""],
-  ["Same person answering reviews across brands", 112, ""],
-  ["Co-located openings in the same retail centers", 94, ""],
-  ["Entity + registered agent (Data Vendor Gateway)", 287, ""],
+  ["Same billing address or phone (Salesforce)", 298],
+  ["Shared contact email domain (Salesforce)", 214],
+  ["Corporate family match (D&B)", 256],
+  ["Recent openings and franchise filings (web)", 133],
 ];
+const SOURCE = { crm: "Salesforce", vendor: "Data Vendor Gateway", web: "Web research" };
+const CHECK = '<svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="8" fill="#2e844a"/><path d="m4.5 8.2 2.3 2.3 4.7-4.8" fill="none" stroke="#fff" stroke-width="1.8"/></svg>';
 const link = (path, label, primary) => `<a class="btn ${primary ? "primary" : ""}" target="_blank" href="${D.org_url}${path}">${label}</a>`;  // opens in the current app; use Sales for Tech
 document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, { weekday: "short", month: "long", day: "numeric" });
 
@@ -213,13 +211,13 @@ async function count(el, to, ms, f = n => n.toLocaleString(), instant) {
 function home() {
   add(`<div class="hello"><div class="hunter-av">H</div><div><h1>Good morning, Tom</h1><p>I'm Hunter, your sales agent. Here's what came in overnight in your Colorado territory.</p></div></div>`);
   add(`<div class="card">
-    <div class="k">New pattern confirmed by Piper · Tue 10:15 PM</div>
+    <div class="k">New multi-location lead in your territory · Tue 10:15 PM</div>
     <h3 style="margin-top:6px">${P.company}: one owner, ${P.locations} locations, ${P.brands.length} brands</h3>
-    <div>Signed up for one ${P.signed_up_for} at ${fmt(P.monthly_spend)}/mo. In conversation, Piper learned he runs ${P.brand_breakdown["Dave's Hot Chicken"]} Dave's Hot Chicken and ${P.brand_breakdown["Jersey Mike's Subs"]} Jersey Mike's too, with one marketing budget and rights to ${P.future_locations} more.
-    <b>His name is on none of the 12 pages.</b> Piper booked him with Jordan (SDR) for Thursday at 10:00 AM and added you as territory lead.</div>
+    <div>${P.first_name} ${P.last_name} signed up for one ${P.signed_up_for} at ${fmt(P.monthly_spend)}/mo. In a conversation on the Yelp for Business site, he said he also runs ${P.brand_breakdown["Dave's Hot Chicken"]} Dave's Hot Chicken and ${P.brand_breakdown["Jersey Mike's Subs"]} Jersey Mike's, with one marketing budget and rights to ${P.future_locations} more.
+    Each store was set up as its own account, so none of them pointed back to him. Jordan (SDR) meets him Thursday at 10:00 AM, and you're invited.</div>
     <div style="margin-top:10px;display:flex;gap:8px"><button class="btn primary">Find more owners like this</button><button class="btn">View lead</button></div>
   </div>`);
-  setWork([["Ready", [["ready", "Piper: owner in your territory", `${P.company} · ${P.locations} locations · SDR call Thu, you're invited`]]], SCHEDULED]);
+  setWork([["Ready", [["ready", "New lead in your territory", `${P.company} · ${P.locations} locations · SDR call Thu, you're invited`]]], SCHEDULED]);
 }
 
 async function objective(instant) {
@@ -228,42 +226,36 @@ async function objective(instant) {
 }
 
 async function plan(instant) {
-  await think("Reading the Whitaker Hospitality pattern and Colorado account data...", 1600, instant);
-  agent(`<div>Using the record Piper confirmed as my template. The useful signals live in <b>billing</b>, not the sales data model, so I'll read those too. Here's my plan:</div>
-  <div class="tmpl"><span class="tag">TEMPLATE</span><div><b>${P.company}</b>: ${P.locations} locations, 3 brands, pages claimed by store managers, owner on none of them. One payment method paid two of the self-serve accounts.</div></div>
+  await think("Reading Sam's lead and your Colorado accounts...", 1600, instant);
+  agent(`<div>I'll use Sam's lead as the example: one owner running several brands, with each store set up as a separate account. Here's my plan:</div>
+  <div class="tmpl"><span class="tag">EXAMPLE</span><div><b>${P.company}</b>: ${P.locations} locations across ${P.brands.length} brands, each store its own account, one owner behind all of them.</div></div>
   <div class="card plan">
-    <div class="k">Plan · Colorado operator discovery</div>
+    <div class="k">Plan · Colorado multi-brand owners</div>
     <ol>
-      <li>Pull every Colorado business page and self-serve advertising account <span class="src">Salesforce</span> <span class="src bill">Billing</span></li>
-      <li>Link accounts in different brands that share a <b>payment method, billing address or billing contact</b> <span class="src bill">Billing</span></li>
-      <li>Link pages whose <b>phone numbers route</b> to the same line <span class="src">Business pages</span></li>
-      <li>Link brands where the <b>same person answers reviews</b> <span class="src">Reviews</span></li>
-      <li>Flag <b>co-located openings</b> in the same retail centers <span class="src">Locations</span></li>
-      <li>Confirm ownership with <b>entity and registered-agent records</b> <span class="src dvg">Data Vendor Gateway</span></li>
-      <li>Keep operators with <b>3+ locations across 2+ brands</b>; rank by dark locations × ${fmt(D.rev_per_location)}</li>
-      <li>Then work it: build parent-child hierarchy, sequence the dark locations, put the top 40 in your book with a brief and a first-touch email</li>
+      <li>Pull Colorado advertiser accounts and contacts <span class="src">Salesforce</span></li>
+      <li>Group accounts in different brands that share a <b>billing address, main phone or contact email domain</b> <span class="src">Salesforce</span></li>
+      <li>Confirm ownership with <b>corporate family</b> data <span class="src dvg">Data Vendor Gateway · D&amp;B</span></li>
+      <li>Find the <b>owner and decision-makers</b> <span class="src dvg">Data Vendor Gateway · ZoomInfo</span></li>
+      <li>Check <b>recent openings and franchise filings</b> <span class="src">Web research</span></li>
+      <li>Keep owners with <b>3+ locations across 2+ brands</b>; rank by locations not advertising × ${fmt(D.rev_per_location)}</li>
+      <li>Then work it: add the top 40 to your book with a brief and a first-touch email, and start sequences for the rest</li>
     </ol>
-    <div class="guard">
-      <div><b>Long-horizon runtime</b>Estimated 2 to 3 days. Runs in the background.</div>
-      <div><b>Inside platform limits</b>Batched reads; no burst on the Salesforce API.</div>
-      <div><b>Einstein Trust Layer</b>Every lookup and write is logged and auditable.</div>
-    </div>
     <div style="margin-top:14px;display:flex;gap:8px"><button class="btn primary">Approve &amp; start</button><button class="btn">Edit plan</button></div>
   </div>`);
 }
 
 const RUN_STEPS = [
-  ["Scanned Colorado business pages", T.pages_scanned],
-  ["Read self-serve advertising accounts", T.selfserve_accounts_scanned],
-  ["Linked accounts by payment method + billing contact", 1312],
-  ["Linked pages by phone routing and review responders", 846],
-  ["Confirmed entities via Data Vendor Gateway", 400],
-  ["Built operator hierarchies", T.operators],
+  ["Read Colorado advertiser accounts", T.selfserve_accounts_scanned],
+  ["Grouped accounts by billing address, phone and contact domain", 1312],
+  ["Matched corporate families (D&B)", 846],
+  ["Found owners and decision-makers (ZoomInfo)", T.operators],
+  ["Checked openings and franchise filings", T.operators],
+  ["Ranked owners by locations not advertising", T.operators],
 ];
 async function running(instant) {
   const card = agent(`<div class="card run"><div class="k">Running · Colorado operator discovery</div><ol>${RUN_STEPS.map(([t], n) =>
     `<li><span class="dot" id="d${n}"></span>${t}<span class="counter" id="c${n}"></span></li>`).join("")}</ol></div>`);
-  setWork([["Running", [["running", "Colorado operator discovery", "Day 1 of 3 · Step 1 of 6", 8]]], ["Ready", [["ready", "Piper: confirmed pattern", P.company]]], SCHEDULED]);
+  setWork([["Running", [["running", "Colorado multi-brand owners", "Step 1 of 6", 8]]], ["Ready", [["ready", "New lead in your territory", P.company]]], SCHEDULED]);
   for (let n = 0; n < RUN_STEPS.length; n++) {
     const d = document.getElementById("d" + n);
     d.className = "dot live";
@@ -276,7 +268,7 @@ async function running(instant) {
 }
 
 async function results(instant) {
-  add(`<span>3 days later · Hunter finished overnight</span>`, "divider");
+  add(`<span>Next morning · Hunter finished overnight</span>`, "divider");
   for (let n = 0; n < RUN_STEPS.length; n++) {
     const d = document.getElementById("d" + n);
     if (d) { d.className = "dot done"; d.textContent = "✓"; document.getElementById("c" + n).textContent = RUN_STEPS[n][1].toLocaleString(); }
@@ -284,62 +276,59 @@ async function results(instant) {
   await think("Summarizing results...", 900, instant);
   const max = Math.max(...SIGNALS.map(s => s[1]));
   const top10 = OPS.slice(0, 10);
-  agent(`<div>Done. In the Colorado pilot territory I found <b>${T.operators} operators</b> who control <b>${T.locations.toLocaleString()} locations</b> under different brand names. Yelp already bills ${T.paying_locations.toLocaleString()} of them as unrelated self-serve accounts. The other ${T.dark_locations} aren't advertising at all.</div>
+  agent(`<div>Done. In your Colorado territory I found <b>${T.operators} owners</b> who control <b>${T.locations.toLocaleString()} locations</b> under different brand names. ${T.paying_locations.toLocaleString()} of those locations already advertise, each on its own self-serve account. The other ${T.dark_locations} aren't advertising.</div>
   <div class="kpis">
-    <div class="kpi"><div class="v" id="k1">0</div><div class="l">Operators found</div></div>
+    <div class="kpi"><div class="v" id="k1">0</div><div class="l">Owners found</div></div>
     <div class="kpi"><div class="v" id="k2">0</div><div class="l">Locations they control</div></div>
     <div class="kpi"><div class="v" id="k3">0</div><div class="l">Already paying (self-serve)</div></div>
     <div class="kpi"><div class="v" id="k4">0</div><div class="l">Dark locations</div></div>
     <div class="kpi hero"><div class="v" id="k5">$0</div><div class="l">Net-new annual revenue</div></div>
   </div>
-  <div class="card"><div class="k">Which signals connected them (operators linked, overlapping)</div><div class="sigbars" style="margin-top:8px">
-    ${SIGNALS.map(([l, v, c]) => `<div class="r ${c}"><span>${l}</span><span class="t"><i data-w="${v / max * 100}%"></i></span><b>${v}</b></div>`).join("")}
-  </div><div style="font-size:12px;color:var(--muted);margin-top:6px">Orange = billing data, which isn't in the sales data model today.</div></div>
+  <div class="card"><div class="k">How owners were identified (an owner can match more than one)</div><div class="sigbars" style="margin-top:8px">
+    ${SIGNALS.map(([l, v]) => `<div class="r"><span>${l}</span><span class="t"><i data-w="${v / max * 100}%"></i></span><b>${v}</b></div>`).join("")}
+  </div></div>
   <div class="card" style="padding:6px 6px 0"><div class="k" style="padding:10px 10px 4px">Ranked by unrealized spend · top 40 added to your book</div>
-  <table class="rank"><thead><tr><th>#</th><th>Operator</th><th>Brands</th><th class="num">Locations</th><th class="num">Paying</th><th class="num">Dark</th><th class="num">Unrealized / yr</th><th>Confidence</th></tr></thead>
+  <table class="rank"><thead><tr><th>#</th><th>Operator</th><th>Brands</th><th class="num">Locations</th><th class="num">Paying</th><th class="num">Dark</th><th class="num">Unrealized / yr</th></tr></thead>
   <tbody id="rankBody">${rows(top10)}</tbody></table>
   <span class="more" onclick="document.getElementById('rankBody').innerHTML=rows(OPS);this.remove()">Show all 40 →</span></div>`);
   const fx = [[1, T.operators], [2, T.locations], [3, T.paying_locations], [4, T.dark_locations]];
   fx.forEach(([k, v]) => count(document.getElementById("k" + k), v, 1200, undefined, instant));
   count(document.getElementById("k5"), T.unrealized_annual, 1400, fmtM, instant);
   setTimeout(() => document.querySelectorAll(".sigbars i").forEach(i => i.style.width = i.dataset.w), instant ? 0 : 200);
-  setWork([["Ready", [["ready", "Colorado operator discovery", `${T.operators} operators · ${T.locations.toLocaleString()} locations · ${fmtM(T.unrealized_annual)}`]]], SCHEDULED]);
+  setWork([["Ready", [["ready", "Colorado multi-brand owners", `${T.operators} owners · ${T.locations.toLocaleString()} locations · ${fmtM(T.unrealized_annual)}`]]], SCHEDULED]);
 }
 function rows(list) {
   return list.map(o => `<tr class="row" onclick="openOp(${o.rank})"><td>${o.rank}</td><td><b>${o.name}</b><div style="color:var(--muted);font-size:12px">${o.first} ${o.last}</div></td>
     <td>${o.brands.map(b => `<span class="brandchip">${b}</span>`).join("")}</td><td class="num">${o.location_count}</td><td class="num">${o.paying}</td><td class="num"><b>${o.dark}</b></td>
-    <td class="num"><b>${fmt(o.unrealized_annual)}</b></td><td><span class="conf">${o.confidence}%</span></td></tr>`).join("");
+    <td class="num"><b>${fmt(o.unrealized_annual)}</b></td></tr>`).join("");
 }
 
-const ICON = { billing: "💳", phone: "📞", reviews: "💬", colocation: "📍", entity: "🏛" };
 function openOp(rank) {
   const o = OPS.find(x => x.rank === rank);
   const byBrand = {};
   o.locations.forEach(l => (byBrand[l.brand] ||= []).push(l));
-  document.getElementById("drawerBody").innerHTML = `
-    <div class="k" style="color:var(--muted);font-size:12px">OPERATOR #${o.rank} · ${o.confidence}% CONFIDENCE · IN YOUR BOOK</div>
-    <h2>${o.name}</h2><div style="color:var(--muted);margin:2px 0 14px">${o.first} ${o.last}, ${o.title} · ${o.email}</div>
+  agent(`<div class="card">
+    <div class="k">#${o.rank} in your book</div>
+    <h3 style="margin:4px 0 2px;font-size:18px">${o.name}</h3>
+    <div style="color:var(--muted);margin-bottom:10px">${o.first} ${o.last}, ${o.title} · ${o.email}</div>
     <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
       <div class="kpi"><div class="v">${o.location_count}</div><div class="l">Locations</div></div>
-      <div class="kpi"><div class="v">${o.paying}</div><div class="l">Paying today</div></div>
-      <div class="kpi"><div class="v">${o.dark}</div><div class="l">Dark</div></div>
+      <div class="kpi"><div class="v">${o.paying}</div><div class="l">Advertising today</div></div>
+      <div class="kpi"><div class="v">${o.dark}</div><div class="l">Not advertising</div></div>
       <div class="kpi hero"><div class="v">${fmt(o.unrealized_annual)}</div><div class="l">Unrealized / yr</div></div>
     </div>
-    <h3>Why I think this is one operator</h3>
-    <div class="ev"><ul>${o.signals.map(s => `<li><span>${ICON[s.type]}</span><span><b>${s.label}.</b> ${s.detail}</span></li>`).join("")}</ul></div>
-    <h3>Hierarchy I built in Salesforce</h3>
-    <div class="tree"><div class="op">🏢 ${o.name} <span style="color:var(--muted);font-weight:400">(parent account)</span></div>
-      ${Object.entries(byBrand).map(([b, ls]) => `<div class="br">${b} · ${ls.length}</div>` + ls.map(l =>
-        `<div class="loc">↳ ${l.name} <span class="st ${l.status === "Dark" ? "dark" : "pay"}">${l.status === "Dark" ? "DARK · in sequence" : "PAYING $" + l.monthly + "/mo"}</span></div>`).join("")).join("")}
+    <div class="k" style="margin-top:12px">Why this prospect</div>
+    <div class="ev"><ul>${o.signals.map(s => `<li><span class="src ${s.type === "vendor" ? "dvg" : ""}" style="margin:0;white-space:nowrap">${SOURCE[s.type]}</span><span><b>${s.label}.</b> ${s.detail}</span></li>`).join("")}</ul></div>
+    <div class="k" style="margin-top:12px">Locations</div>
+    <div class="tree">${Object.entries(byBrand).map(([b, ls]) => `<div class="br">${b} · ${ls.length}</div>` + ls.map(l =>
+        `<div class="loc">${l.name} <span class="st ${l.status === "Dark" ? "dark" : "pay"}">${l.status === "Dark" ? "Not advertising" : "Advertising · $" + l.monthly + "/mo"}</span></div>`).join("")).join("")}
     </div>
-    <h3>Rep brief</h3><pre class="brief">${o.brief}</pre>
-    <div class="links">${link("/lightning/o/Account/list?filterName=Hunter_Colorado_Operators", "Open in Salesforce", true)}</div>`;
-  document.getElementById("drawer").classList.add("show");
+    <div class="k" style="margin-top:12px">Brief</div><pre class="brief">${o.brief}</pre>
+    <div class="links">${link("/lightning/o/Account/list?filterName=Hunter_Colorado_Operators", "Open in Salesforce", true)}</div>
+  </div>`);
 }
-function closeDrawer() { document.getElementById("drawer").classList.remove("show"); }
 
 async function firstTouch(instant) {
-  closeDrawer();
   const o = OPS[0];
   await think(`Drafting outreach to ${o.first} ${o.last}...`, 1000, instant);
   agent(`<div>Here's the first touch for <b>${o.name}</b>. I wrote it the way your won deals open: lead with what they already pay for, then the dark locations.</div>
@@ -352,21 +341,19 @@ async function firstTouch(instant) {
       Worth 20 minutes next week? I can show you all ${o.location_count} side by side.<br><br>
       Tom Jones<br><span style="color:var(--muted)">Multi-Location Sales, Yelp</span></div>
     <div style="margin-top:12px;font-size:12.5px;color:var(--muted)">Cadence: <b>Day 1</b> email · <b>Day 3</b> call task · <b>Day 6</b> email with a location-by-location view · <b>Day 10</b> call task</div>
-    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn primary">Approve cadence</button><button class="btn">Edit</button><button class="btn">🎙 Add context</button></div>
+    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn primary">Approve cadence</button><button class="btn">Edit</button><button class="btn">Add context</button></div>
   </div>`);
 }
 
 async function worked(instant) {
-  closeDrawer();
   await think("Working the list...", 1100, instant);
   const t40 = D.top40;
   agent(`<div class="card"><div class="k">Done · written back to Salesforce</div>
     <div class="done-list"><ul>
-      <li>✅ <span><b>Outbound sequences</b> started for the ${T.dark_locations} dark locations, in campaign <i>Hunter - Colorado Dark Location Outreach</i>.</span></li>
-      <li>✅ <span><b>Top 40 in your book</b>, each with a brief and a first-touch email ready to approve: ${t40.dark} dark locations, ${fmt(t40.unrealized_annual)}/yr.</span></li>
-      <li>✅ <span><b>10 opportunities</b> opened for the highest-value operators, with next steps filled in.</span></li>
-      <li>✅ <span><b>Shared with Marcus</b> in Slack: the ranked list, the signals that worked, and the pattern so other territories can run it.</span></li>
-      <li>✅ <span><b>Learned</b>: the billing signals were the strongest predictor. I'll run this weekly and apply it to the next territory.</span></li>
+      <li>${CHECK}<span><b>Top 40 in your book</b>, each with a brief and a first-touch email ready to approve: ${t40.dark} locations not advertising, ${fmt(t40.unrealized_annual)}/yr.</span></li>
+      <li>${CHECK}<span><b>Sequences</b> started for the other owners' ${T.dark_locations} locations that aren't advertising, in campaign <i>Hunter - Colorado Dark Location Outreach</i>.</span></li>
+      <li>${CHECK}<span><b>10 opportunities</b> created for the highest-value owners, with next steps filled in.</span></li>
+      <li>${CHECK}<span><b>Scheduled</b>: I'll rerun this every Monday and add new owners to your book.</span></li>
     </ul></div>
     <div class="links">
       ${link("/lightning/o/Account/list?filterName=Hunter_Colorado_Operators", "Ranked operators", true)}
@@ -374,25 +361,25 @@ async function worked(instant) {
       ${link("/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads", "Piper leads")}
       ${link("/lightning/o/Campaign/home", "Campaign")}
       ${link("/lightning/o/Opportunity/home", "Opportunities")}
-      ${link("/lightning/r/Dashboard/01Zg8000004BuMLEA0/view", "Leadership dashboard")}
+      ${link("/lightning/r/Dashboard/01Zg8000004BuMLEA0/view", "Dashboard")}
     </div></div>
     <div>Tom, you're working a ranked list of named owners instead of 10,000 undifferentiated pages, and none of it needed a second system.</div>`);
-  setWork([["Ready", [["ready", "Colorado operator discovery", `${T.operators} operators · ${fmtM(T.unrealized_annual)}`], ["ready", "Top 40 added to your book", "40 briefs · 40 drafts · 10 opportunities"]]],
-    ["Running", [["running", "Dark location sequences", `${T.dark_locations} locations · Day 1 of 21`, 5]]],
-    ["Scheduled", [["sched", "Weekly operator discovery", "Mondays · next territory: Arizona"], ...SCHEDULED[1]]]]);
+  setWork([["Ready", [["ready", "Colorado multi-brand owners", `${T.operators} owners · ${fmtM(T.unrealized_annual)}`], ["ready", "Top 40 added to your book", "40 briefs · 40 drafts · 10 opportunities"]]],
+    ["Running", [["running", "Outreach sequences", `${T.dark_locations} locations · Day 1 of 21`, 5]]],
+    ["Scheduled", [["sched", "Colorado multi-brand owners", "Weekly · Mon"], ...SCHEDULED[1]]]]);
 }
 
 const steps = [
-  ["Tom opens Salesforce. Hunter surfaces the owner Piper found and routed to him.", async () => home()],
-  ["Tom gives Hunter the objective: find more owners like him.", objective],
-  ["Hunter drafts the plan using Piper's record as the template.", plan],
-  ["Approve: Hunter starts the long-horizon run.", running],
-  ["Fast-forward three days: results.", results],
-  ["Open the #1 operator: evidence, hierarchy, brief.", async () => openOp(1)],
+  ["Tom opens Salesforce. Hunter shows the new multi-location lead in his territory.", async () => home()],
+  ["Tom asks Hunter to find more owners like him.", objective],
+  ["Hunter drafts a plan using Sam's lead as the example.", plan],
+  ["Tom approves; Hunter works in the background.", running],
+  ["Next morning: results.", results],
+  ["Open the #1 owner: why this prospect, locations, brief.", async () => openOp(1)],
   ["Hunter already drafted Tom's first touch, in his voice.", firstTouch],
   ["Hunter works the list and writes it all back to Salesforce.", worked],
 ];
-Presenter.init(steps, () => { feed.innerHTML = ""; closeDrawer(); });
+Presenter.init(steps, () => { feed.innerHTML = ""; });
 </script>
 </body>
 </html>

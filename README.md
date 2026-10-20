@@ -7,7 +7,7 @@ Target org alias: `trailsignup-429cdf`
 
 | Path | What it is |
 |---|---|
-| [DEMO_SCRIPT.md](DEMO_SCRIPT.md) | 22–25 minute talk track, click path, limitations, Q&A |
+| [DEMO_SCRIPT.md](DEMO_SCRIPT.md) | 22–25 minute talk track, click path, limitations, Q&A, direct links |
 | `prototypes/` | Click-through mockups: `piper.html`, `hunter.html`, and `index.html` (launcher) |
 | `force-app/` | Salesforce metadata: Lead and Account fields, routing Flow, permission set, list views, layout sections, leadership reports and dashboard |
 | `scripts/demo_data.py` | Single source of demo data. Run it to regenerate `prototypes/data.js` |
@@ -22,6 +22,6 @@ python3 scripts/seed.py                                        # reset + load re
 python3 -m http.server 8787 --directory prototypes             # mockups at http://localhost:8787
 ```
 
-Mockup controls: **→ / Space** next · **←** back · **R** restart · **H** hide presenter strip · **B** fake Yelp browser bar · `?step=N` jump to a step.
+Mockup controls: **→ / Space** next · **←** back · **R** restart · **H** show presenter notes (hidden by default) · **B** simulated address bar (optional) · `?step=N` jump to a step.
 
 Piper and Hunter are mockups (Hunter is a pre-GA prototype). The Salesforce side is real.

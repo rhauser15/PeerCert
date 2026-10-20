@@ -130,24 +130,30 @@ REPS = ["tjones"]  # Tom Jones owns all of Colorado
 
 
 def _signals(rng, op, locs, brands):
+    """'Why this prospect' evidence, limited to sources Hunter can use: Salesforce data,
+    Data Vendor Gateway enrichment, and public web signals.
+
+    Makes the same random draws, in the same order, as the original generator so the
+    rest of the dataset (rankings, counts, dollars) stays identical."""
     paying = [l for l in locs if l["status"] != "Dark"]
-    n_pay = max(2, min(len(paying), rng.randint(3, 6)))
-    card = rng.randint(1000, 9999)
+    n_acc = max(2, min(len(paying), rng.randint(3, 6)))
+    rng.randint(1000, 9999)  # placeholder draw (kept for stable output)
     center = rng.choice(CENTERS)
-    phone_n = rng.randint(3, min(8, len(locs)))
+    n_domain = rng.randint(3, min(8, len(locs)))
+    domain = op["email"].split("@")[1]
     sigs = [
-        {"type": "billing", "label": "Shared payment method",
-         "detail": f"Same card (Visa ending {card}) pays {n_pay} self-serve accounts across {min(len(brands), n_pay)} brands"},
-        {"type": "billing", "label": "Shared billing contact",
-         "detail": f"Billing contact {op['email']} on {max(2, n_pay - 1)} accounts"},
-        {"type": "phone", "label": "Phone routing",
-         "detail": f"{op['phone']} forwards from {phone_n} pages in different brands"},
-        {"type": "reviews", "label": "Same review responder",
-         "detail": f"'{op['first']} {op['last'][0]}.' replies to reviews on {min(len(brands), 3)} unrelated brands"},
-        {"type": "colocation", "label": "Co-located openings",
-         "detail": f"{rng.randint(2, 3)} brands opened within 9 months at {center}"},
-        {"type": "entity", "label": "Entity + registered agent (Data Vendor Gateway)",
-         "detail": f"{len(locs)} Colorado LLCs share registered agent and principal address; managing member {op['first']} {op['last']}"},
+        {"type": "crm", "label": "Same billing address and phone",
+         "detail": f"{n_acc} Salesforce accounts across {min(len(brands), n_acc)} brands share a billing address and main phone"},
+        {"type": "crm", "label": "Shared contact domain",
+         "detail": f"Contacts on {max(2, n_acc - 1)} accounts use @{domain}"},
+        {"type": "vendor", "label": "Corporate family (D&B)",
+         "detail": f"{len(locs)} locations roll up to {op['name']} as the parent company"},
+        {"type": "vendor", "label": "Owner identified (ZoomInfo)",
+         "detail": f"{op['first']} {op['last']}, {op['title']}, with a verified email and direct line"},
+        {"type": "web", "label": "Recent openings",
+         "detail": f"{rng.randint(2, 3)} locations opened in the last 12 months, including at {center}"},
+        {"type": "web", "label": "Franchise filings",
+         "detail": f"Listed as a multi-unit franchisee for {min(len(brands), max(2, n_domain - 1))} brands in public franchise filings"},
     ]
     k = rng.randint(4, 6)
     return sigs[:2] + rng.sample(sigs[2:], k - 2)
@@ -225,9 +231,7 @@ def brief(op):
         f"({', '.join(op['brands'])}). {op['paying']} already pay self-serve "
         f"(${op['monthly_spend']:,}/mo combined, billed as unrelated accounts). {op['dark']} are dark.\n"
         f"Unrealized: ${op['unrealized_annual']:,}/yr at Yelp average revenue per location.\n\n"
-        f"Why Hunter thinks this is one operator ({op['confidence']}% confidence):\n{sig_lines}\n\n"
-        f"Pattern match: same shape as Whitaker Hospitality (confirmed by Piper): multi-brand franchisee, "
-        f"pages claimed by store managers, owner on none of them.\n\n"
+        f"Why this prospect:\n{sig_lines}\n\n"
         f"Suggested opener: \"{op['first']}, you're already advertising {op['paying']} of your locations with us "
         f"on separate self-serve plans. We'd like to show you all {op['location_count']} in one view and what "
         f"the other {op['dark']} could be doing.\"\n"

@@ -53,23 +53,10 @@
   .ml-grid .card h3 { margin: 0 0 6px; font-size: 16px; }
   .ml-grid .card p { margin: 0; color: var(--muted); font-size: 14px; }
   .case { max-width: 924px; margin: 0 auto 30px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .case.spot { box-shadow: 0 0 0 3px var(--piper-2); transition: box-shadow .4s; }
   .case .q { font-size: 18px; line-height: 1.4; }
   .case .who { color: var(--muted); font-size: 13px; margin-top: 10px; }
   .case .stat { font-size: 30px; font-weight: 800; color: var(--yelp); }
   .case .stat small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
-  .illus { font-size: 11px; color: var(--muted); margin-top: 10px; }
-
-  /* Yelp's own signals (presenter overlay) */
-  .signals { position: fixed; left: 24px; bottom: 24px; width: 370px; background: #1f2937; color: #e5e7eb; border-radius: 10px; padding: 16px 18px; font-size: 13px; box-shadow: 0 10px 30px rgba(0,0,0,.25); transform: translateY(20px); opacity: 0; transition: .35s; pointer-events: none; z-index: 6; }
-  .signals.show { transform: none; opacity: 1; }
-  .signals h4 { margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: #9ca3af; }
-  .signals .kv { display: flex; justify-content: space-between; padding: 3px 0; }
-  .signals .verdict { margin-top: 10px; padding: 8px 10px; border-radius: 6px; background: #374151; font-weight: 700; }
-  .signals .verdict b { color: #fca5a5; }
-  .profile { left: auto; right: 404px; width: 360px; background: #0b2447; }
-  .profile .src { display: inline-block; font-size: 10.5px; background: #1b3a66; color: #9ecbff; padding: 1px 7px; border-radius: 9px; margin-left: 6px; }
-  .profile .kv b.hot { color: #fde68a; }
 
   /* ---------- Piper pinned panel (matches Qualified's pinned mode) ---------- */
   .pinned { background: #f3f3f3; padding: 12px 12px 12px 0; display: flex; min-height: 0; }
@@ -95,7 +82,6 @@
   .m { font-size: 14.5px; line-height: 1.5; animation: pop .25s ease-out; }
   .m.piper { align-self: stretch; }
   .m.me { align-self: flex-end; max-width: 84%; background: #f1f1f1; border-radius: 8px; padding: 12px 16px; }
-  .m.hl { background: #fff8db; box-shadow: 0 0 0 6px #fff8db; border-radius: 4px; }
   .attach { display: flex; gap: 10px; align-items: center; border: 1px solid #e3e3e3; border-radius: 8px; padding: 8px 10px; margin-top: 8px; }
   .attach .th { width: 46px; height: 34px; border-radius: 4px; background: linear-gradient(120deg, #2d2e2f, #5b1d1d); flex: none; }
   .typing { align-self: flex-start; display: flex; gap: 4px; padding: 6px 0; }
@@ -137,21 +123,8 @@
   .speaking-me .wave i { animation: wave .6s infinite ease-in-out; }
   .wave i:nth-child(2) { animation-delay: .1s } .wave i:nth-child(3) { animation-delay: .2s } .wave i:nth-child(4) { animation-delay: .3s }
   .privacy { text-align: center; font-size: 11.5px; color: #6b6b6b; padding: 8px 0 12px; text-decoration: underline; }
-  .nightclock { background: #1f2937; color: #e5e7eb; font: 600 12px -apple-system, Arial, sans-serif; padding: 5px 10px; border-radius: 12px; }
   @keyframes talk { from { transform: scaleY(.6) } to { transform: scaleY(1.5) } }
 
-  /* ---------- Presenter panels ---------- */
-  .reveal { position: fixed; inset: 0; background: rgba(17,24,39,.72); display: none; align-items: center; justify-content: center; z-index: 10; }
-  .reveal.show { display: flex; animation: fade .3s; }
-  .panel { background: #fff; border-radius: 14px; width: min(1040px, 92vw); max-height: 88vh; overflow: auto; padding: 26px 28px; }
-  .panel h2 { margin: 0 0 4px; }
-  .panel .lede { color: var(--muted); margin: 0 0 18px; }
-  .pages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .page { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; }
-  .page b { display: block; font-size: 13px; margin-bottom: 4px; }
-  .page .claim { color: var(--muted); }
-  .page.sk { border-color: var(--yelp); background: #fff5f5; }
-  .owner-line { margin-top: 16px; padding: 12px 14px; background: #fef3c7; border-radius: 8px; font-size: 14px; }
   @keyframes pop { from { transform: translateY(6px); opacity: 0 } to { transform: none; opacity: 1 } }
   @keyframes blink { 0%, 100% { opacity: .3 } 50% { opacity: 1 } }
   @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
@@ -166,7 +139,7 @@
     <div class="topbar">
       <div class="wordmark">yelp<small>for business</small></div>
       <nav><span>Home</span><span id="nav-adv" class="on">Advertise</span><span id="nav-ml">Multi-location</span><span>Reviews</span></nav>
-      <div class="right"><span class="nightclock">🌙 Tue 10:15 PM</span><span>Help</span><div class="avatar">SW</div></div>
+      <div class="right"><span>Help</span><div class="avatar">SW</div></div>
     </div>
 
     <div class="view on" id="v-checkout">
@@ -219,7 +192,6 @@
           <div style="font-size:12px;font-weight:700;color:var(--yelp);letter-spacing:.06em">CUSTOMER STORY</div>
           <div class="q">“We had nine store managers each running their own Yelp plan. Putting all 14 locations on one plan gave me one number to manage, and the new stores were live on day one.”</div>
           <div class="who">Multi-brand franchisee, Southwest US · 14 locations, 3 brands</div>
-          <div class="illus">Illustrative customer story for demo purposes.</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:center">
           <div class="stat">14<small>locations on one plan</small></div>
@@ -253,37 +225,7 @@
   </aside>
 </div>
 
-<div class="signals" id="signals">
-  <h4>What Yelp's data says about this signup</h4>
-  <div class="kv"><span>Locations on account</span><b>1</b></div>
-  <div class="kv"><span>Reviews</span><b>60</b></div>
-  <div class="kv"><span>Opened</span><b>2024</b></div>
-  <div class="kv"><span>Brand match to other pages</span><b>None</b></div>
-  <div class="kv"><span>Lead score</span><b>Low · long tail</b></div>
-  <div class="verdict">Route: <b>Self-serve. No rep.</b></div>
-</div>
-
-<div class="signals profile" id="profile">
-  <h4>Piper's live buyer profile</h4>
-  <div class="kv"><span>Claimed page: Smoothie King Lakewood <span class="src">Salesforce</span></span><b>Self-serve</b></div>
-  <div class="kv"><span>Checkout: $300/mo plan selected <span class="src">Web</span></span><b>Now</b></div>
-  <div class="kv"><span>Viewed "Multi-location" page <span class="src">Web</span></span><b class="hot">2× this week</b></div>
-  <div class="kv"><span>Time on pricing <span class="src">Web</span></span><b>6 min</b></div>
-  <div class="kv"><span>Visit time <span class="src">Web</span></span><b>10:15 PM, after hours</b></div>
-  <div class="verdict" style="background:#1b3a66">Piper: <b style="color:#fde68a">Intent doesn't match a one-store buyer. Ask.</b></div>
-</div>
-
-<div class="reveal" id="invisible">
-  <div class="panel">
-    <h2>Why Yelp could never find him</h2>
-    <p class="lede">Twelve pages. No shared name, so brand matching returns nothing. Every page was claimed by a store manager with a store email.</p>
-    <div class="pages" id="pages"></div>
-    <div class="owner-line"><b>Sam Whitaker</b> controls all twelve, holds one marketing budget, and has rights to four more. His name is on <b>none</b> of the pages.</div>
-  </div>
-</div>
-
 <div class="presenter" id="presenter"></div>
-<div class="proto-note">Recreation of Piper (Qualified) for demo purposes.</div>
 
 <script src="data.js"></script>
 <script src="presenter.js"></script>
@@ -293,15 +235,6 @@ const fmt = n => "$" + n.toLocaleString();
 const msgs = document.getElementById("msgs"), piperEl = document.getElementById("piper"), video = document.getElementById("video");
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-const stores = [
-  ["Smoothie King", "Lakewood (Belmar)", "lakewood.mgr@smoothieking-co.example.com", true],
-  ...["Aurora", "Littleton", "Centennial", "Westminster", "Arvada", "Colorado Springs (Briargate)", "Colorado Springs (Powers)"]
-    .map(c => ["Dave's Hot Chicken", c, `gm.${c.split(" ")[0].toLowerCase()}@daves-store.example.com`]),
-  ...[["Highlands Ranch", 214], ["Lone Tree", 377], ["Golden", 452], ["Colorado Springs (Chapel Hills)", 518]]
-    .map(([c, n]) => ["Jersey Mike's Subs", c, `store${n}@jm-franchise.example.com`]),
-];
-document.getElementById("pages").innerHTML = stores.map(([b, c, e, sk]) =>
-  `<div class="page ${sk ? "sk" : ""}"><b>${b}</b>${c}<div class="claim">Claimed by: ${e}</div></div>`).join("");
 
 
 // Booker shows the week of the next Thursday (matches scripts/seed.py), with Thursday selected.
@@ -344,7 +277,6 @@ async function sam(text, instant) {
   }
   say("me", text);
 }
-const show = (id, on) => document.getElementById(id).classList.toggle("show", on);
 function goVoice(on) {
   voice = on; video.classList.toggle("live", on);
 }
@@ -362,10 +294,7 @@ const steps = [
   ["Tuesday 10:15 PM. Piper is pinned to the Yelp for Business site and greets him in context.", async i => {
     await piper(`Hi there! Setting up ads for <b>Smoothie King at Belmar</b>? Great spot. I can help you pick the right plan before you check out.`, true);
   }],
-  ["What Yelp's own data says: long tail, self-serve, no rep.", async () => show("signals", true)],
-  ["Piper's live buyer profile: Salesforce + web activity. Something doesn't fit.", async () => { show("signals", false); show("profile", true); }],
   ["Piper nudges, based on what he's browsing.", async i => {
-    show("profile", false);
     await piper(`I noticed you've looked at our multi-location page a couple of times. Happy to answer questions by voice if that's easier.`, i);
   }],
   ["He clicks 'Speak with Piper' (voice).", async i => {
@@ -373,7 +302,7 @@ const steps = [
     if (!i) { video.classList.add("speaking"); await sleep(600); video.classList.remove("speaking"); }
     await sam("Yeah, sure. I just want to get this one store running before the weekend.", i);
   }],
-  ["Piper asks the question no form asks.", async i => piper(`Easy, I'll get you live tonight. One question so I set this up right: <b>is this your only location, or do you operate others?</b>`, i, { hl: true })],
+  ["Piper asks the question no form asks.", async i => piper(`Happy to help. One question so I point you to the right plan: <b>is this your only location, or do you operate others?</b>`, i)],
   ["The answer.", async i => sam("Ha, not exactly. I've got seven Dave's Hot Chicken and four Jersey Mike's too. Denver metro and the Springs.", i)],
   ["Piper qualifies who controls the budget.", async i => piper(`So that's <b>12 locations across 3 brands</b>. Do you run marketing for all of them, or does each store handle its own?`, i)],
   ["", async i => sam("I do. It's one budget. The store managers just claimed the pages.", i)],
@@ -384,14 +313,12 @@ const steps = [
     page("ml");
     if (!i) await sleep(500);
     const site = document.getElementById("site"), cs = document.getElementById("case");
-    site.scrollTop = cs.offsetTop - 80; cs.classList.add("spot");
+    site.scrollTop = cs.offsetTop - 80;
     await piper(`This is a 14-location, 3-brand franchisee: <b>one dashboard, one bill</b>, new stores live on day one.
       <div class="attach"><span class="th"></span><span><b>Multi-location plans</b><br><span style="color:#6e7072;font-size:12px">Yelp for Business · 2 min read</span></span></div>`, i);
   }],
-  ["Reveal: why Yelp could never find him.", async () => show("invisible", true)],
-  ["Piper turns on tonight's ad and opens the meeting booker with the right team.", async i => {
-    show("invisible", false);
-    await piper(`Your Smoothie King ad is on, so you're live this weekend. Want 30 minutes with our multi-location team to put all 12 on one plan?`, i);
+  ["Piper offers a meeting and opens the booker with the right rep.", async i => {
+    await piper(`You can still finish checkout for the Smoothie King tonight and be live this weekend. Want 30 minutes with our team to look at all 12 locations together?`, i);
     const b = document.createElement("div"); b.className = "booker"; b.id = "booker";
     b.innerHTML = `<div class="top"><span>Schedule a meeting</span><span>✕</span></div>
       <div class="rep"><i>JR</i><div><small>You'll meet with</small><b>Jordan Reyes</b> <em>· Business Development</em></div></div>
@@ -407,17 +334,15 @@ const steps = [
     document.getElementById("s10")?.classList.add("on");
     const b = document.getElementById("booker");
     if (b) { b.classList.add("done"); document.getElementById("go").textContent = "✓ Booked";
-      b.insertAdjacentHTML("beforeend", `<div class="note"><b>Shared with Jordan and Tom (territory lead):</b> 12 locations, 3 brands, one budget, 4 more by 2028. Wants one plan and one bill.</div>`); }
+      b.insertAdjacentHTML("beforeend", `<div class="note"><b>Shared with Jordan:</b> 12 locations, 3 brands, one budget, 4 more by 2028. Wants one plan and one bill.</div>`); }
     msgs.scrollTop = msgs.scrollHeight;
-    await sam("Can you let her know I want one plan for everything, including the new stores?", i);
-    await piper(`Done. Jordan will have all of it for <b>Thursday at 10:00 AM MT</b>, and I've looped in Tom, who covers multi-location owners in Colorado. You won't have to repeat yourself. I'll send you a recap now.`, i);
+    await sam("Can you let Jordan know I want one plan for everything, including the new stores?", i);
+    await piper(`Done. Jordan will have all of it for <b>Thursday at 10:00 AM MT</b>, and Tom, who covers multi-location owners in Colorado, is on the invite. I'll email you a recap now.`, i);
   }],
 ];
 
 function reset() {
   msgs.innerHTML = ""; goVoice(false); page("checkout"); video.classList.remove("speaking");
-  document.getElementById("case").classList.remove("spot");
-  ["signals", "profile", "invisible"].forEach(id => show(id, false));
 }
 document.getElementById("speakBtn").addEventListener("click", () => Presenter.next());
 Presenter.init(steps, reset);
