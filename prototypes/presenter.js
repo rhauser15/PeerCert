@@ -3,7 +3,7 @@
 //   R: restart                                    H: show/hide presenter notes (hidden by default)
 //   B: toggle a fake browser bar with a realistic URL (or ?frame=1)
 //   ?step=N in the URL jumps to step N
-const TYPING_WPM = 300;
+const TYPING_WPM = 400;
 window.Presenter = {
   msPerChar: 60000 / (TYPING_WPM * 5),
   init(steps, reset) {
@@ -48,14 +48,18 @@ window.Presenter = {
   },
   // Types into an input at a steady TYPING_WPM (a word = 5 characters), like a macro key.
   async type(input, text) {
-    const wait = ms => new Promise(r => setTimeout(r, ms));
-    input.value = "";
-    for (const ch of text) {
-      input.value += ch;
-      input.scrollTop = input.scrollHeight;
-      await wait(this.msPerChar);
-    }
-    await wait(200);
+    // Characters shown are computed from elapsed time, so the speed is exact even if the browser delays timers.
+    await new Promise(done => {
+      const start = performance.now();
+      const tick = now => {
+        const n = Math.min(text.length, Math.floor((now - start) / this.msPerChar) + 1);
+        input.value = text.slice(0, n);
+        input.scrollTop = input.scrollHeight;
+        n < text.length ? requestAnimationFrame(tick) : done();
+      };
+      requestAnimationFrame(tick);
+    });
+    await new Promise(r => setTimeout(r, 200));
   },
   // Brief pressed state on a button, as if clicked.
   async press(el) {
