@@ -31,3 +31,6 @@ html.framed body { padding-top: 76px; box-sizing: border-box; }
 .fakebar .fb-url .fb-host { color: #202124; } .fakebar .fb-url .fb-path { color: #5f6368; margin-left: -10px; }
 .fakebar .fb-me { width: 24px; height: 24px; border-radius: 50%; background: #3b6e8f; color: #fff; font-size: 10px; font-weight: 700; display: grid; place-items: center; }
 html.framed .presenter { top: 84px; }
+
+/* Click feedback used by Presenter.press() */
+.pressed { transform: scale(.94); filter: brightness(.88); transition: transform .08s, filter .08s; }

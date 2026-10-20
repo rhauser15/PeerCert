@@ -68,15 +68,10 @@
   .video { margin: 0 20px; aspect-ratio: 818 / 452; border-radius: 10px; position: relative; overflow: hidden; flex: none; background: #b98b6e; }
   .video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .video .glow { position: absolute; inset: 0; border-radius: 10px; box-shadow: inset 0 0 0 0 rgba(43,111,214,0); transition: box-shadow .3s; pointer-events: none; }
-  .speaking .glow { box-shadow: inset 0 0 0 3px rgba(43,111,214,.85); }
   /* The avatar image already shows the Speak with Piper button; this is an invisible click target over it. */
   .speak { position: absolute; left: 50%; bottom: 5%; width: 40%; height: 14%; transform: translateX(-50%); background: transparent; color: transparent; opacity: 0; border: 0; border-radius: 4px;
            padding: 6px 12px; font: 500 13px Inter, -apple-system, Arial, sans-serif; display: flex; gap: 7px; align-items: center; cursor: pointer; white-space: nowrap; }
   .speak svg { width: 12px; height: 14px; position: static; }
-  .vbar { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); display: none; gap: 4px; background: #fff; border-radius: 8px; padding: 7px 6px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
-  .vbar span { font: 500 11.5px Inter, -apple-system, Arial, sans-serif; padding: 4px 9px; border-radius: 5px; color: #333; }
-  .vbar span.on { background: #e8f0fc; color: #2b6fd6; } .vbar span.end { background: #e5484d; color: #fff; }
-  .live .speak { display: none; } .live .vbar { display: flex; }
   .msgs { flex: 1; overflow-y: auto; padding: 16px 20px 8px; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
   .msgs > * { flex: none; }
   .m { font-size: 14.5px; line-height: 1.5; animation: pop .25s ease-out; }
@@ -117,11 +112,6 @@
   .composer input::placeholder { color: #777; }
   .composer .mic { width: 14px; height: 18px; color: #333; }
   .composer .send { width: 28px; height: 26px; border-radius: 4px; background: #ededed; color: #9a9a9a; display: grid; place-items: center; font-size: 14px; }
-  .wave { display: none; gap: 2px; align-items: center; height: 16px; }
-  .live .wave { display: flex; }
-  .wave i { width: 3px; background: #2b6fd6; border-radius: 2px; height: 4px; }
-  .speaking-me .wave i { animation: wave .6s infinite ease-in-out; }
-  .wave i:nth-child(2) { animation-delay: .1s } .wave i:nth-child(3) { animation-delay: .2s } .wave i:nth-child(4) { animation-delay: .3s }
   .privacy { text-align: center; font-size: 11.5px; color: #6b6b6b; padding: 8px 0 12px; text-decoration: underline; }
   @keyframes talk { from { transform: scaleY(.6) } to { transform: scaleY(1.5) } }
 
@@ -129,7 +119,6 @@
   @keyframes blink { 0%, 100% { opacity: .3 } 50% { opacity: 1 } }
   @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
   @keyframes ring { 0% { transform: scale(1); opacity: .8 } 100% { transform: scale(1.7); opacity: 0 } }
-  @keyframes wave { 0%, 100% { height: 4px } 50% { height: 15px } }
 </style>
 </head>
 <body>
@@ -211,14 +200,12 @@
       <img src="assets/piper-avatar.png" alt="Piper, AI SDR Agent">
       <div class="glow"></div>
       <button class="speak" id="speakBtn"><svg viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0M6 12.5V15"/></svg>Speak with Piper</button>
-      <div class="vbar"><span class="on">Voice</span><span>Video</span><span>Mute</span><span class="end">End</span></div>
     </div>
     <div class="msgs" id="msgs"></div>
     <div class="actions"><button class="bm">Book a meeting</button></div>
     <div class="composer" id="composerBox">
-      <span class="wave"><i></i><i></i><i></i><i></i></span>
       <input id="composer" placeholder="Ask Piper a question" readonly>
-      <span class="mic"><svg viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0M6 12.5V15"/></svg></span><span class="send">→</span>
+      <span class="mic"><svg viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0M6 12.5V15"/></svg></span><span class="send" id="sendBtn">→</span>
     </div>
     <div class="privacy">Privacy Policy</div>
    </div>
@@ -249,10 +236,9 @@ function bookerDays() {
   }
   return out.join("");
 }
-let voice = false;
-function say(who, html, opts = {}) {
+function say(who, html) {
   const d = document.createElement("div");
-  d.className = `m ${who}` + (opts.hl ? " hl" : "");
+  d.className = `m ${who}`;
   d.innerHTML = html;
   msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
   return d;
@@ -264,22 +250,33 @@ function typing(ms) {
     setTimeout(() => { t.remove(); res(); }, ms);
   });
 }
-async function piper(html, instant, opts) {
-  if (!instant) { await typing(voice ? 700 : 900); video.classList.add("speaking"); }
-  say("piper", html, opts);
-  if (!instant) setTimeout(() => video.classList.remove("speaking"), 1800);
+// Piper replies on her own: typing dots, then the message streams in. `extra` (e.g. an attachment) appears after.
+async function piper(html, instant, extra = "") {
+  if (instant) { say("piper", html + extra); return; }
+  await typing(800 + Math.random() * 500);
+  const d = say("piper", html);
+  const nodes = [];
+  const walk = n => n.childNodes.forEach(c => c.nodeType === 3 ? nodes.push([c, c.textContent]) : walk(c));
+  walk(d);
+  nodes.forEach(([n]) => n.textContent = "");
+  for (const [n, full] of nodes) {
+    for (let i = 0; i < full.length; i += 2) { n.textContent = full.slice(0, i + 2); msgs.scrollTop = msgs.scrollHeight; await sleep(14); }
+  }
+  if (extra) { d.insertAdjacentHTML("beforeend", extra); msgs.scrollTop = msgs.scrollHeight; }
+  await sleep(250);
 }
+// Sam types into the chat box, presses send, and the message posts.
 async function sam(text, instant) {
-  const c = document.getElementById("composer"), box = document.getElementById("composerBox");
+  const c = document.getElementById("composer");
   if (!instant) {
-    if (voice) { box.classList.add("speaking-me"); box.parentElement.classList.add("live"); c.placeholder = "Listening..."; await sleep(1100); box.classList.remove("speaking-me"); box.parentElement.classList.remove("live"); c.placeholder = "Ask Piper a question"; }
-    else { for (let i = 1; i <= text.length; i += 2) { c.value = text.slice(0, i); await sleep(14); } await sleep(200); c.value = ""; }
+    await sleep(300);
+    await Presenter.type(c, text);
+    await Presenter.press(document.getElementById("sendBtn"));
+    c.value = "";
   }
   say("me", text);
 }
-function goVoice(on) {
-  voice = on; video.classList.toggle("live", on);
-}
+const exchange = (text, reply, extra) => async i => { await sam(text, i); await piper(reply, i, extra); };
 function page(name) {
   Presenter.setUrl(name === "ml" ? "biz.yelp.com/advertise/multi-location" : "biz.yelp.com/advertise/checkout?biz=smoothie-king-lakewood-belmar");
   document.getElementById("v-checkout").classList.toggle("on", name === "checkout");
@@ -290,37 +287,8 @@ function page(name) {
 }
 
 // Each step: [presenter note, async fn(instant)]
-const steps = [
-  ["Tuesday 10:15 PM. Piper is pinned to the Yelp for Business site and greets him in context.", async i => {
-    await piper(`Hi there! Setting up ads for <b>Smoothie King at Belmar</b>? Great spot. I can help you pick the right plan before you check out.`, true);
-  }],
-  ["Piper nudges, based on what he's browsing.", async i => {
-    await piper(`I noticed you've looked at our multi-location page a couple of times. Happy to answer questions by voice if that's easier.`, i);
-  }],
-  ["He clicks 'Speak with Piper' (voice).", async i => {
-    goVoice(true);
-    if (!i) { video.classList.add("speaking"); await sleep(600); video.classList.remove("speaking"); }
-    await sam("Yeah, sure. I just want to get this one store running before the weekend.", i);
-  }],
-  ["Piper asks the question no form asks.", async i => piper(`Happy to help. One question so I point you to the right plan: <b>is this your only location, or do you operate others?</b>`, i)],
-  ["The answer.", async i => sam("Ha, not exactly. I've got seven Dave's Hot Chicken and four Jersey Mike's too. Denver metro and the Springs.", i)],
-  ["Piper qualifies who controls the budget.", async i => piper(`So that's <b>12 locations across 3 brands</b>. Do you run marketing for all of them, or does each store handle its own?`, i)],
-  ["", async i => sam("I do. It's one budget. The store managers just claimed the pages.", i)],
-  ["Piper asks about growth.", async i => piper(`Got it. Any new locations on the way?`, i)],
-  ["", async i => sam("Four more Dave's. I've got development rights through 2028.", i)],
-  ["Co-browse: Piper takes him to the multi-location page and pulls up a relevant story.", async i => {
-    await piper(`Then a single-store plan undersells you. Let me show you what owners like you use instead.`, i);
-    page("ml");
-    if (!i) await sleep(500);
-    const site = document.getElementById("site"), cs = document.getElementById("case");
-    site.scrollTop = cs.offsetTop - 80;
-    await piper(`This is a 14-location, 3-brand franchisee: <b>one dashboard, one bill</b>, new stores live on day one.
-      <div class="attach"><span class="th"></span><span><b>Multi-location plans</b><br><span style="color:#6e7072;font-size:12px">Yelp for Business · 2 min read</span></span></div>`, i);
-  }],
-  ["Piper offers a meeting and opens the booker with the right rep.", async i => {
-    await piper(`You can still finish checkout for the Smoothie King tonight and be live this weekend. Want 30 minutes with our team to look at all 12 locations together?`, i);
-    const b = document.createElement("div"); b.className = "booker"; b.id = "booker";
-    b.innerHTML = `<div class="top"><span>Schedule a meeting</span><span>✕</span></div>
+const ATTACH = `<div class="attach"><span class="th"></span><span><b>Multi-location plans</b><br><span style="color:#6e7072;font-size:12px">Yelp for Business · 2 min read</span></span></div>`;
+const BOOKER = () => `<div class="top"><span>Schedule a meeting</span><span>✕</span></div>
       <div class="rep"><i>JR</i><div><small>You'll meet with</small><b>Jordan Reyes</b> <em>· Business Development</em></div></div>
       <div class="mon"><span>${MEET.toLocaleDateString("en-US", { month: "long", year: "numeric" })} ▾</span><span>← →</span></div>
       <div class="days">${bookerDays()}</div>
@@ -328,12 +296,45 @@ const steps = [
       <div class="slots"><span>8:30 AM</span><span>9:00 AM</span><span>9:30 AM</span><span id="s10">10:00 AM</span><span>10:30 AM</span><span>11:00 AM</span>
         <span>11:30 AM</span><span>12:00 PM</span><span>12:30 PM</span><span>1:00 PM</span><span>1:30 PM</span><span>2:00 PM</span></div>
       <div class="foot"><span>◷ 30 minutes</span><span class="cancel">Cancel</span><span class="go" id="go">Continue</span></div>`;
+
+// Each step: [presenter note, async fn(instant)]. One → = one turn of the conversation.
+const steps = [
+  ["Tuesday 10:15 PM. Piper is pinned to the Yelp for Business site and greets him in context.", async i => {
+    await piper(`Hi there! Setting up ads for <b>Smoothie King at Belmar</b>? Great spot. I can help you pick the right plan before you check out.`, true);
+  }],
+  ["Piper nudges, based on what he's browsing.", async i =>
+    piper(`I noticed you've looked at our multi-location page a couple of times this week. Anything I can help you figure out?`, i)],
+  ["Sam replies. Piper asks the question no form asks.", exchange(
+    "Yeah, I just want to get this one store running before the weekend.",
+    `Happy to help. One question so I point you to the right plan: <b>is this your only location, or do you operate others?</b>`)],
+  ["The answer: 12 locations, 3 brands. Piper qualifies the budget owner.", exchange(
+    "Ha, not exactly. I've got seven Dave's Hot Chicken and four Jersey Mike's too. Denver metro and the Springs.",
+    `So that's <b>12 locations across 3 brands</b>. Do you run marketing for all of them, or does each store handle its own?`)],
+  ["One budget; store managers claimed the pages. Piper asks about growth.", exchange(
+    "I do. It's one budget. The store managers just claimed the pages.",
+    `Got it. Any new locations on the way?`)],
+  ["Development rights for 4 more. Piper co-browses to the multi-location page.", async i => {
+    await sam("Four more Dave's. I've got development rights through 2028.", i);
+    await piper(`Then a single-store plan undersells you. Let me show you what owners like you use instead.`, i);
+    page("ml");
+    if (!i) await sleep(600);
+    const site = document.getElementById("site"), cs = document.getElementById("case");
+    site.scrollTop = cs.offsetTop - 80;
+    await piper(`This is a 14-location, 3-brand franchisee: <b>one dashboard, one bill</b>, new stores live on day one.`, i, ATTACH);
+  }],
+  ["Sam's interested. Piper offers a meeting with the right rep.", async i => {
+    await sam("That's what I need. How do I set that up?", i);
+    await piper(`You can still finish checkout for the Smoothie King tonight and be live this weekend. For all 12, let's get you 30 minutes with our team. Pick a time that works:`, i);
+    const b = document.createElement("div"); b.className = "booker"; b.id = "booker";
+    b.innerHTML = BOOKER();
     msgs.appendChild(b); msgs.scrollTop = msgs.scrollHeight;
   }],
-  ["He picks Thursday 10:00. Piper relays the details to the rep.", async i => {
-    document.getElementById("s10")?.classList.add("on");
-    const b = document.getElementById("booker");
-    if (b) { b.classList.add("done"); document.getElementById("go").textContent = "✓ Booked";
+  ["Sam books Thursday 10:00 and asks Piper to pass on what he wants.", async i => {
+    const slot = document.getElementById("s10"), go = document.getElementById("go"), b = document.getElementById("booker");
+    if (!i) { await sleep(400); await Presenter.press(slot); }
+    slot?.classList.add("on");
+    if (!i) { await sleep(500); await Presenter.press(go); }
+    if (b) { b.classList.add("done"); go.textContent = "✓ Booked";
       b.insertAdjacentHTML("beforeend", `<div class="note"><b>Shared with Jordan:</b> 12 locations, 3 brands, one budget, 4 more by 2028. Wants one plan and one bill.</div>`); }
     msgs.scrollTop = msgs.scrollHeight;
     await sam("Can you let Jordan know I want one plan for everything, including the new stores?", i);
@@ -342,9 +343,8 @@ const steps = [
 ];
 
 function reset() {
-  msgs.innerHTML = ""; goVoice(false); page("checkout"); video.classList.remove("speaking");
+  msgs.innerHTML = ""; document.getElementById("composer").value = ""; page("checkout");
 }
-document.getElementById("speakBtn").addEventListener("click", () => Presenter.next());
 Presenter.init(steps, reset);
 </script>
 </body>

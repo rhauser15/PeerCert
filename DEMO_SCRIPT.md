@@ -92,24 +92,22 @@
 
 ## 1 · Piper: the invisible owner (6 min)
 
-**Tab:** `piper.html` · **Steps 0–11** · Follows the *Qualified 10-Click Piper Demo [EDO]* guide (pinned mode, contextual greeting, nudges from browsing, voice, co-browsing, meeting booker with Salesforce routing), retold for Yelp. Everything Piper does here is in that guide.
+**Tab:** `piper.html` · **Steps 0–7** · Follows the *Qualified 10-Click Piper Demo [EDO]* guide (pinned mode, contextual greeting, nudges from browsing, co-browsing, meeting booker with Salesforce routing), retold for Yelp. Each → plays one turn: Sam types and sends, and Piper replies on her own.
 
 | Step | Do | Say |
 |---|---|---|
 | 0 | Page loads | "Tuesday, 10:15 PM. Priya's chat tool has been off for four hours. A man is signing up to advertise one Smoothie King in Lakewood at $300 a month. One location, 60 reviews, opened 2024: by every signal Yelp has, that's a self-serve signup with no rep. Piper is **pinned** to the Yelp for Business site, and she's already greeted him in context: his page, his plan." |
-| 1 | → | "Piper sees what he's browsing. He's looked at the multi-location page twice this week, which doesn't fit a one-store buyer, so she nudges him." |
-| 2 | → (voice) | "He switches to voice. Local owners research at night, between shifts. Piper meets them in whatever mode they want." |
-| 3 | → | "Piper asks the question no form asks: **'Is this your only location, or do you operate others?'**" *(pause)* |
-| 4 | → | "Seven Dave's Hot Chicken, four Jersey Mike's, Denver metro and Colorado Springs, plus this Smoothie King." |
-| 5–6 | → → | "Piper qualifies who controls the budget: him, for all of them. And here's why Yelp never saw it: each store's page was claimed by a store manager, so none of the twelve point back to him. This is exactly Priya's 'single location that's really a chain.'" |
-| 7–8 | → → | "And growth: development rights for four more through 2028." |
-| 9 | → (co-browse) | "Now Piper **co-browses**. She takes him to the multi-location page and pulls up the story that fits a multi-brand franchisee." |
-| 10 | → (booker) | "Piper offers a meeting and opens the booker with **Jordan**, an SDR on Priya's team, chosen by Salesforce routing. Priya, your SDRs stop triaging raw inbound. They take meetings Piper has already qualified." |
-| 11 | → (Thu 10:00 + note) | "He books Thursday at 10:00 and asks Piper to pass on what he wants. Piper hands the details to Jordan, and because he's a 12-location owner in Colorado, Tom is on the invite. Piper's recap email goes out now, and if he replies, she keeps the conversation going over email." Then, as you switch to Salesforce: "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's average, and $43,000 at sixteen by 2028. Let's see what Piper wrote back." |
+| 1 | → (Piper nudges) | "Piper sees what he's browsing. He's looked at the multi-location page twice this week, which doesn't fit a one-store buyer, so she nudges him." Call out voice here: "He's typing, but owners can also talk to Piper by voice or video with the Speak with Piper button." |
+| 2 | → | "He just wants to get one store live. And Piper asks the question no form asks: **'Is this your only location, or do you operate others?'**" *(pause)* |
+| 3 | → | "Seven Dave's Hot Chicken, four Jersey Mike's, Denver metro and Colorado Springs, plus this Smoothie King. Piper qualifies who controls the budget." |
+| 4 | → | "Him, for all of them. And here's why Yelp never saw it: each store's page was claimed by a store manager, so none of the twelve point back to him. This is exactly Priya's 'single location that's really a chain.'" |
+| 5 | → (co-browse) | "Four more locations coming through 2028. Now Piper **co-browses**: she takes him to the multi-location page and pulls up the story that fits a multi-brand franchisee." |
+| 6 | → (booker) | "Piper offers a meeting and opens the booker with **Jordan**, an SDR on Priya's team, chosen by Salesforce routing. Priya, your SDRs stop triaging raw inbound. They take meetings Piper has already qualified." |
+| 7 | → (books Thu 10:00) | "He books Thursday at 10:00 and asks Piper to pass on what he wants. Piper hands the details to Jordan, and because he's a 12-location owner in Colorado, Tom is on the invite. Piper's recap email goes out now, and if he replies, she keeps the conversation going over email." Then, as you switch to Salesforce: "$3,600 a year as signed. About $32,000 across twelve locations at Yelp's average, and $43,000 at sixteen by 2028. Let's see what Piper wrote back." |
 
 **Lever callout (Priya):** speed to lead goes from 4 hours to zero, after hours, and the 60% of inbound no human works gets worked. Her 9 SDRs spend their time on qualified meetings instead of sorting raw signups. Piper runs alongside the incumbent chat tool, so the March renewal doesn't block a pilot.
 
-**Optional live beat:** Piper's voice, video, and multilingual features run live in the EDO (`edo.my.site.com/personalization`). Cut there for 60 seconds after step 4 if you want her speaking, then come back. Share your screen **with sound**.
+**Optional live beat:** the mockup is typed only. If you want to show Piper speaking, her voice, video and multilingual features run live in the EDO (`edo.my.site.com/personalization`). Cut there for 60 seconds after step 1, then come back. Share your screen **with sound**.
 
 ---
 
@@ -132,18 +130,17 @@
 
 ## 3 · Hunter: Tom finds all of them (6 min)
 
-**Tab:** `hunter.html` · **Steps 0–7** · Uses only what the *Hunter Demo Guide* shows: a proactive home screen, prospect research with enrichment through the Data Vendor Gateway, "why this prospect", emails drafted in the rep's voice, multi-step cadences, opportunity creation, and scheduled workflows.
+**Tab:** `hunter.html` · **Steps 0–6** · Uses only what the *Hunter Demo Guide* shows: a proactive home screen, prospect research with enrichment through the Data Vendor Gateway, "why this prospect", emails drafted in the rep's voice, multi-step cadences, opportunity creation, and scheduled workflows. Each → is one action by Tom (a typed prompt or a click), and Hunter responds on its own.
 
 | Step | Do | Say |
 |---|---|---|
 | 0 | Page loads | "Wednesday morning. Tom opens Salesforce, not a second tool. Hunter shows him what came in overnight: a 12-location owner in his territory, already booked with Jordan for Thursday, with Tom invited. Tom doesn't have to chase it, so he can go find more." |
-| 1 | → (objective) | "Tom asks Hunter to **find more owners like him**: operators in his territory controlling three or more locations across different brands, ranked by what they're not yet spending." |
-| 2 | → (plan) | "Hunter uses Sam's lead as the example and lays out a plan. It starts with what's already in Salesforce: accounts in different brands that share a billing address, a main phone, or a contact email domain. Then it confirms ownership and finds the owner through the **Data Vendor Gateway**, with D&B corporate family data and ZoomInfo contacts, no extra contracts. And it checks public signals like recent openings and franchise filings." |
-| 3 | → (approve) | "Tom approves, and Hunter works in the background while he sells." |
-| 4 | → (next morning) | "Colorado: **about 400 owners controlling 1,700 locations.** Around **1,100 of those locations already advertise**, each on its own self-serve account. **600 aren't advertising.** At Yelp's average revenue per location, that's **$1.6M of net-new annual revenue in one state**, from owners Yelp already works with." |
-| 5 | → (#1 owner) | "Pikes Peak Food Co.: 18 locations, 2 brands, 10 not advertising. Here's **why this prospect**, with the source for each signal, plus the locations and Tom's brief. That's the day of manual research Marcus described, done before Tom asks." |
-| 6 | → (first-touch email) | "And the repetitive part is done too. Hunter drafted Tom's first touch to Kim, the owner, in the way Tom's won deals open: what she already advertises, then the 10 locations that aren't. It's a four-step cadence. Tom approves it, edits it, or adds context." |
-| 7 | → (worked it) | "Then Hunter works the rest: the **top 40 in Tom's book** with briefs and drafts, sequences for the other owners, 10 opportunities with next steps filled in, and it reruns every Monday. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
+| 1 | → (Tom types the objective; Hunter plans) | "Tom asks Hunter to **find more owners like him**: operators in his territory controlling three or more locations across different brands, ranked by what they're not yet spending. Hunter uses Sam's lead as the example and lays out a plan. It starts with what's already in Salesforce: accounts in different brands that share a billing address, a main phone, or a contact email domain. Then it confirms ownership and finds the owner through the **Data Vendor Gateway**, with D&B corporate family data and ZoomInfo contacts, no extra contracts. And it checks public signals like recent openings and franchise filings." |
+| 2 | → (Tom approves) | "Tom approves, and Hunter works in the background while he sells." |
+| 3 | → (next morning: "What did you find?") | "Colorado: **about 400 owners controlling 1,700 locations.** Around **1,100 of those locations already advertise**, each on its own self-serve account. **600 aren't advertising.** At Yelp's average revenue per location, that's **$1.6M of net-new annual revenue in one state**, from owners Yelp already works with." |
+| 4 | → ("Tell me more about Pikes Peak") | "Pikes Peak Food Co.: 18 locations, 2 brands, 10 not advertising. Here's **why this prospect**, with the source for each signal, plus the locations and Tom's brief. That's the day of manual research Marcus described, done before Tom asks." |
+| 5 | → ("Draft my first email to Kim") | "And the repetitive part is done too. Hunter drafts Tom's first touch to Kim, the owner, in the way Tom's won deals open: what she already advertises, then the 10 locations that aren't. It's a four-step cadence. Tom can approve it, edit it, or add context." |
+| 6 | → (Tom approves the cadence) | "Then Hunter works the rest: the **top 40 in Tom's book** with briefs and drafts, sequences for the other owners, 10 opportunities with next steps filled in, and it reruns every Monday. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
 
 **Lever callout (Tom):** one place to work instead of five tools, the repetitive research and first drafts done for him, and his best approach shared with the team instead of living in a private tool.
 

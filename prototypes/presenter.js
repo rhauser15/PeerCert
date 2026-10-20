@@ -44,6 +44,28 @@ window.Presenter = {
     const jump = parseInt(new URLSearchParams(location.search).get("step"), 10);
     if (jump > 0) (async () => { for (let n = 1; n <= Math.min(jump, steps.length - 1); n++) await run(n, true); i = Math.min(jump, steps.length - 1); render(); })();
   },
+  // Types into an input the way a person does: uneven pace, short pauses after punctuation.
+  async type(input, text) {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    input.value = "";
+    for (const ch of text) {
+      input.value += ch;
+      input.scrollTop = input.scrollHeight;
+      let ms = 35 + Math.random() * 55;
+      if (ch === " ") ms += Math.random() * 45;
+      if (",.?!".includes(ch)) ms += 140 + Math.random() * 160;
+      if (Math.random() < 0.03) ms += 250;  // the occasional hesitation
+      await wait(ms);
+    }
+    await wait(350);
+  },
+  // Brief pressed state on a button, as if clicked.
+  async press(el) {
+    if (!el) return;
+    el.classList.add("pressed");
+    await new Promise(r => setTimeout(r, 180));
+    el.classList.remove("pressed");
+  },
   // Show or hide the fake browser bar; the choice is remembered between pages.
   frame(on) {
     document.documentElement.classList.toggle("framed", on);

@@ -142,7 +142,7 @@
     <div class="feed" id="feed"></div>
     <div class="composer">
       <textarea id="composer" placeholder="Ask Hunter..." readonly></textarea>
-      <div class="bar"><span class="pill">Hunter ▾</span><span class="pill">＋ Skills</span><span>Salesforce · Data Vendor Gateway</span><span class="send"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 10h13M11 5l5 5-5 5"/></svg></span></div>
+      <div class="bar"><span class="pill">Hunter ▾</span><span class="pill">＋ Skills</span><span>Salesforce · Data Vendor Gateway</span><span class="send" id="sendBtn"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 10h13M11 5l5 5-5 5"/></svg></span></div>
     </div>
   </section>
 
@@ -193,10 +193,22 @@ async function think(text, ms, instant) {
   const t = agent(`<div class="thinking"><span class="spinner"></span>${text}</div>`);
   await sleep(ms); t.remove();
 }
-async function typeComposer(text, instant) {
+// Tom types a prompt, presses send, and it posts to the chat.
+async function tom(text, instant) {
   const c = document.getElementById("composer");
-  if (!instant) for (let i = 1; i <= text.length; i += 3) { c.value = text.slice(0, i); await sleep(12); }
-  c.value = "";
+  if (!instant) {
+    await sleep(300);
+    await Presenter.type(c, text);
+    await Presenter.press(document.getElementById("sendBtn"));
+    c.value = "";
+  }
+  add(`<div class="bub">${text}</div>`, "msg user");
+}
+// Tom clicks a button in Hunter's last card.
+async function click(id, instant) {
+  const b = document.getElementById(id);
+  if (!instant) { await sleep(400); await Presenter.press(b); }
+  if (b) { b.disabled = true; b.textContent = "✓ " + b.textContent.replace(/^✓ /, ""); }
 }
 async function count(el, to, ms, f = n => n.toLocaleString(), instant) {
   if (instant) { el.textContent = f(to); return; }
@@ -220,10 +232,7 @@ function home() {
   setWork([["Ready", [["ready", "New lead in your territory", `${P.company} · ${P.locations} locations · SDR call Thu, you're invited`]]], SCHEDULED]);
 }
 
-async function objective(instant) {
-  await typeComposer(OBJECTIVE, instant);
-  add(`<div class="bub">${OBJECTIVE}</div>`, "msg user");
-}
+
 
 async function plan(instant) {
   await think("Reading Sam's lead and your Colorado accounts...", 1600, instant);
@@ -240,7 +249,7 @@ async function plan(instant) {
       <li>Keep owners with <b>3+ locations across 2+ brands</b>; rank by locations not advertising × ${fmt(D.rev_per_location)}</li>
       <li>Then work it: add the top 40 to your book with a brief and a first-touch email, and start sequences for the rest</li>
     </ol>
-    <div style="margin-top:14px;display:flex;gap:8px"><button class="btn primary">Approve &amp; start</button><button class="btn">Edit plan</button></div>
+    <div style="margin-top:14px;display:flex;gap:8px"><button class="btn primary" id="approvePlan">Approve &amp; start</button><button class="btn">Edit plan</button></div>
   </div>`);
 }
 
@@ -273,6 +282,7 @@ async function results(instant) {
     const d = document.getElementById("d" + n);
     if (d) { d.className = "dot done"; d.textContent = "✓"; document.getElementById("c" + n).textContent = RUN_STEPS[n][1].toLocaleString(); }
   }
+  await tom("What did you find?", instant);
   await think("Summarizing results...", 900, instant);
   const max = Math.max(...SIGNALS.map(s => s[1]));
   const top10 = OPS.slice(0, 10);
@@ -341,7 +351,7 @@ async function firstTouch(instant) {
       Worth 20 minutes next week? I can show you all ${o.location_count} side by side.<br><br>
       Tom Jones<br><span style="color:var(--muted)">Multi-Location Sales, Yelp</span></div>
     <div style="margin-top:12px;font-size:12.5px;color:var(--muted)">Cadence: <b>Day 1</b> email · <b>Day 3</b> call task · <b>Day 6</b> email with a location-by-location view · <b>Day 10</b> call task</div>
-    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn primary">Approve cadence</button><button class="btn">Edit</button><button class="btn">Add context</button></div>
+    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn primary" id="approveCadence">Approve cadence</button><button class="btn">Edit</button><button class="btn">Add context</button></div>
   </div>`);
 }
 
@@ -369,15 +379,15 @@ async function worked(instant) {
     ["Scheduled", [["sched", "Colorado multi-brand owners", "Weekly · Mon"], ...SCHEDULED[1]]]]);
 }
 
+// One → = one action by Tom (a prompt or a click); Hunter answers on its own.
 const steps = [
   ["Tom opens Salesforce. Hunter shows the new multi-location lead in his territory.", async () => home()],
-  ["Tom asks Hunter to find more owners like him.", objective],
-  ["Hunter drafts a plan using Sam's lead as the example.", plan],
-  ["Tom approves; Hunter works in the background.", running],
-  ["Next morning: results.", results],
-  ["Open the #1 owner: why this prospect, locations, brief.", async () => openOp(1)],
-  ["Hunter already drafted Tom's first touch, in his voice.", firstTouch],
-  ["Hunter works the list and writes it all back to Salesforce.", worked],
+  ["Tom asks Hunter to find more owners like Sam. Hunter drafts a plan.", async i => { await tom(OBJECTIVE, i); await plan(i); }],
+  ["Tom approves the plan. Hunter starts working in the background.", async i => { await click("approvePlan", i); await running(i); }],
+  ["Next morning: Tom asks what Hunter found.", results],
+  ["Tom asks about the #1 owner.", async i => { await tom("Tell me more about Pikes Peak Food Co.", i); await think("Pulling the account...", 800, i); openOp(1); }],
+  ["Tom asks for a first email to the owner.", async i => { await tom("Draft my first email to Kim.", i); await firstTouch(i); }],
+  ["Tom approves the cadence. Hunter works the rest of the list.", async i => { await click("approveCadence", i); await worked(i); }],
 ];
 Presenter.init(steps, () => { feed.innerHTML = ""; });
 </script>
