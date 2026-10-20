@@ -2,10 +2,10 @@
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     
     <columns><field>SUBJECT</field></columns><columns><field>ASSIGNED</field></columns>
-    <description>Customer meetings held by the Colorado team, by week.</description>
+    <description>Customer meetings held by the Colorado team, by week and by who booked them.</description>
     <filter><criteriaItems><column>SUBJECT</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>startsWith</operator><value>Yelp customer meeting</value></criteriaItems></filter>
     <format>Summary</format>
-    <groupingsDown><dateGranularity>Week</dateGranularity><field>DUE_DATE</field><sortOrder>Asc</sortOrder></groupingsDown>
+    <groupingsDown><dateGranularity>Week</dateGranularity><field>DUE_DATE</field><sortOrder>Asc</sortOrder></groupingsDown><groupingsDown><dateGranularity>Day</dateGranularity><field>Activity.Agent_Source__c</field><sortOrder>Asc</sortOrder></groupingsDown>
     <name>Customer Meetings per Week</name>
     <params><name>co</name><value>1</value></params><params><name>closed</name><value>all</value></params><params><name>type</name><value>e</value></params>
     <reportType>Activity</reportType>

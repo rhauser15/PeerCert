@@ -176,6 +176,7 @@
         <locationX>50</locationX>
         <locationY>640</locationY>
         <connector><targetReference>Create_Territory_Lead_FYI</targetReference></connector>
+        <inputAssignments><field>Agent_Source__c</field><value><elementReference>$Record.Agent_Source__c</elementReference></value></inputAssignments>
         <inputAssignments><field>Subject</field><value><elementReference>TaskSubject</elementReference></value></inputAssignments>
         <inputAssignments><field>WhoId</field><value><elementReference>$Record.Id</elementReference></value></inputAssignments>
         <inputAssignments><field>OwnerId</field><value><elementReference>Get_SDR.Id</elementReference></value></inputAssignments>
@@ -191,6 +192,7 @@
         <label>Create Territory Lead FYI</label>
         <locationX>50</locationX>
         <locationY>760</locationY>
+        <inputAssignments><field>Agent_Source__c</field><value><elementReference>$Record.Agent_Source__c</elementReference></value></inputAssignments>
         <inputAssignments><field>Subject</field><value><elementReference>FyiSubject</elementReference></value></inputAssignments>
         <inputAssignments><field>WhoId</field><value><elementReference>$Record.Id</elementReference></value></inputAssignments>
         <inputAssignments><field>OwnerId</field><value><elementReference>Get_Territory_Lead.Id</elementReference></value></inputAssignments>

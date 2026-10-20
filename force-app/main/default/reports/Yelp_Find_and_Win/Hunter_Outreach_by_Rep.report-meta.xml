@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <columns><field>SUBJECT</field></columns><columns><field>DUE_DATE</field></columns>
+    <description>Hunter outreach touches by rep (usage), split by outcome (effectiveness).</description>
+    <filter><criteriaItems><column>SUBJECT</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>startsWith</operator><value>Hunter outreach</value></criteriaItems></filter>
+    <format>Summary</format>
+    <groupingsDown><dateGranularity>Day</dateGranularity><field>ASSIGNED</field><sortOrder>Asc</sortOrder></groupingsDown><groupingsDown><dateGranularity>Day</dateGranularity><field>Activity.Outreach_Result__c</field><sortOrder>Asc</sortOrder></groupingsDown>
+    <name>Hunter Outreach by Rep</name>
+    <params><name>co</name><value>1</value></params><params><name>closed</name><value>all</value></params><params><name>type</name><value>t</value></params>
+    <reportType>Activity</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    
+    <timeFrameFilter><dateColumn>DUE_DATE</dateColumn><interval>INTERVAL_CUSTOM</interval></timeFrameFilter>
+</Report>

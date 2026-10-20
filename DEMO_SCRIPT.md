@@ -15,7 +15,7 @@
 | **Piper** | Mockup (`piper.html`). Piper can't be installed in this demo org. The real Piper runs in the EDO if you want a live voice moment. | "This is a recreation of Piper on a Yelp for Business page. The CRM write-back and routing you'll see next are real, running in Salesforce." |
 | **Hunter** | Mockup (`hunter.html`) modeled on the Hunter prototype. Hunter isn't generally available. | "Hunter is early. This is a prototype; the experience and naming will change. The only call to action today is the beta waitlist." **Don't quote a date or promise beta acceptance.** |
 | **Stay inside current functionality** | Both mockups only show capabilities in the Qualified and Hunter guides. | **Don't claim:** Piper activating ads or completing purchases; Hunter reading Yelp's billing system, payment methods, phone routing or review data (that data isn't in Salesforce, and Data 360 isn't deployed); confidence scores; Hunter posting to Slack. If asked about Yelp-only data: "If it's in Salesforce or Data 360, Hunter can use it. That's a Data 360 conversation." |
-| **Salesforce** | **Real.** Custom fields, the routing Flow, the Piper lead with its task and meeting, 40 operators with 362 location accounts, contacts, campaign, 10 Hunter and 5 Piper opportunities, 40 brief tasks, Tom's 6 rep-entered opportunities (deliberately incomplete), outreach replies, 8 weeks of meeting history, and the dashboard. Coverage uses a $150K quarterly quota for Tom (set in the report formula). | "Everything from here on is live in the org." |
+| **Salesforce** | **Real.** Custom fields, the routing Flow, the Piper lead with its task and meeting, 40 operators with 362 location accounts, contacts, campaign, 10 Hunter and 5 Piper opportunities, 40 brief tasks, Tom's 6 rep-entered opportunities (deliberately incomplete), outreach replies, Hunter outreach touches for four reps on Marcus's team, 8 weeks of meeting history, Agent Source stamps on activities, and the dashboard. Coverage uses a $150K quarterly quota for Tom (set in the report formula). | "Everything from here on is live in the org." |
 | **Numbers** | The territory totals (400 / 1,700 / 1,100 / 600 / $1.62M) come from the demo narrative. The 40 operators in the org are generated data. $2,700 per location is derived from Yelp's public figures (advertising revenue ÷ ~510,000 paying locations). | Treat as illustrative. |
 
 ---
@@ -36,17 +36,18 @@
 - [Open the Sales for Tech app](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/app/06mg800000AlQvwAAF) (click first; the links below then open inside it)
 
 **Section 2 · Piper write-back**
-- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000IAasfEAD/view)
-- [Routing Flow in Flow Builder](https://trailsignup-429cdfd78ec835.lightning.force.com/builder_platform_interaction/flowBuilder.app?flowId=301g8000012AduoAAC)
+- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000IB7F7EAL/view)
+- [Routing Flow in Flow Builder](https://trailsignup-429cdfd78ec835.lightning.force.com/builder_platform_interaction/flowBuilder.app?flowId=301g8000014nRPFAA2)
 - [Piper - Multi-Location Leads](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads)
 
 **Section 4 · Leadership**
 - [Is Agentic AI Working? dashboard](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Dashboard/01Zg8000004BuMLEA0/view)
-- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g8000014lXXBAA2/view)
-- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009xhJtAAI/view)
+- [Activity by Source: Agents vs Reps (attribution report)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Report/00Og8000009D6FJEA0/view)
+- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g8000014nZhlAAE/view)
+- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009xvczAAA/view)
 - [Hunter - Colorado Operators (Ranked)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Colorado_Operators)
 - [Hunter - Dark Locations (In Sequence)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Dark_Locations)
-- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g8000014lPD4AAM/view)
+- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g8000014lG0tAAE/view)
 
 <!-- links:end -->
 
@@ -169,15 +170,29 @@ Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1,
 
 ## 4 · Leadership: is agentic AI working? (4 min)
 
-**Tab:** **Dashboards → Is Agentic AI Working? Find and Win (Colorado)**. It's built to answer Nina's question in one screen; everyone else in the room sees their part.
+**Tab:** **Dashboards → Is Agentic AI Working? Find and Win (Colorado)**. One screen for Nina, with Marcus's team view on the second row.
 
-| Nina's question | Show | Say |
+| Component | Show | Say |
 |---|---|---|
-| **Is it creating pipeline?** | **Coverage gauge**: green, **3.7x** vs the 3.0x target (was 2.1x); donut **Where the pipeline came from** | "Nina, Tom was at 2.1x coverage, the number Marcus gave us in discovery. He's now at **3.7x**, past the target, with no new hire. The donut shows why: **$315K** he already had, **$178K** Hunter found, and **$67.5K** Piper qualified after hours." |
-| **1 · What did Piper and Hunter find?** | **Pipeline sourced by Piper** ($67,500); **Dark locations Hunter uncovered** (171) | "Piper turned five 'single-location' signups into multi-location pipeline. Hunter found 171 locations that owners we already bill aren't advertising, and that's just Tom's top 40." |
-| **2 · Is the planning and outreach working?** | **Account plans built by Hunter** (40); **Owners who replied to outreach** (17); bar **Hunter outreach: 40 owners contacted** (9 meetings booked, 8 replied, 23 no reply yet) | "Hunter built 40 account plans Tom didn't have to research. **17 of 40 owners replied, 9 booked a meeting.** That's a 42% response rate on outreach that leads with what they already pay for." |
-| **3 · Is the data getting better?** | Bar **Field completeness: agents vs reps**: Piper **100%**, Hunter **100%**, rep-entered **25%** | "Dana, this is your field-completeness problem. Rep-entered opportunities are at 25%: no next step, stale close dates. Everything the agents create is complete, because they write it as they work. That's what Finance needs to forecast from the CRM." |
-| **4 · Are reps in front of more customers?** | Column **Customer meetings per week**: 3–4 a week before, then **8 → 10 → 11 → 13** after launch | "And the outcome Nina cares about: customer meetings went from three or four a week to **13**, without adding anyone. Tom's time went back to selling." |
+| **Pipeline sourced by Piper** | $67,500 | "Nina, Piper turned five 'single-location' signups into $67,500 of multi-location pipeline, qualified after hours." |
+| **Pipeline by source** | Donut: Rep $315K · Hunter $178K · Piper $67.5K | "Every opportunity carries where it came from, so you can see what the agents added on top of what Tom already had." |
+| **Pipeline coverage** | Gauge: green, **3.7x** vs the 3.0x target (was 2.1x) | "Tom was at 2.1x coverage, the number Marcus gave us in discovery. He's at **3.7x**, past the target, with no new hire." |
+| **Hunter account plans** | 40 | "Hunter built 40 account plans Tom didn't have to research by hand." |
+| **Hunter outreach effectiveness** | Bar: 9 meetings booked · 8 replied · 23 no reply yet | "**17 of 40 owners replied, 9 booked a meeting.** That's a 42% response rate on outreach that leads with what they already pay for." |
+| **Hunter usage and effectiveness by rep** | Stacked bar per rep: Tom 120 touches · Vince 90 · Vanessa 72 · Valerie 36, each split into meetings booked, replied, sent | "Marcus, this is your team view. Bar length is how much each rep is using Hunter; the colors are what it's producing. Tom and Vanessa get the most meetings per touch. Valerie is barely using it, which is a coaching conversation, not a guess." |
+
+**How the activity is attributed (say this for Dana and Nina):**
+> "Everything Hunter and Piper do lands in Sales Cloud as normal records: the emails, calls, tasks, meetings and opportunity updates. Agent-generated records carry an attribution stamp, so one report can separate agent work from rep work. In this org that's the Agent Source field: here's the activity report split by Piper, Hunter and rep. That's how you know the meetings and pipeline came from the agents, not from reps working harder. For multi-touch attribution across campaigns and channels, the same data goes into CRM Analytics or Tableau."
+
+Then click **Activity by Source: Agents vs Reps** (in the Yelp Find and Win report folder): 418 activities, with Hunter 376, Piper 14 and Rep 28.
+
+**Internal notes (don't read aloud):**
+- **Hunter is pre-beta.** Its built-in dashboards (conversion, pipeline sourced, revenue influenced; Agent Analytics and Command Center for meetings booked, positive reply rate and pipeline influenced) and the attribution stamp reflect the pilot design and could change before GA. Say "designed to", not "does".
+- **The real stamp's field name isn't confirmed yet.** In this org, `Agent_Source__c` stands in for it on Lead, Account, Opportunity, Task and Event. Don't name a Hunter field on screen. Confirm with Terrence Morrissey or the Zillow core team (#zillow-coreteam-fy27).
+- **Depth of reporting is rated "supporting"** in the requirements-fit canvas: agent activity is reportable, but agent-sourced pipeline needs attribution setup. That's why it's framed as one shared report plus CRM Analytics or Tableau for multi-touch.
+- **Manager visibility** comes from the sales agentic prospecting manager permission set and role.
+- **LinkedIn:** Hunter doesn't send LinkedIn messages itself. Sales Navigator (Advanced Plus) activity logs to Salesforce and can be reported by rep.
+- **Precedent:** the Zillow Hunter 30-day POC plan uses the same one-report approach. TMT STRAT's *Agentic Selling with Piper and Hunter* report tracks rep activity by hashtag, not by agent stamp.
 
 **If someone wants proof:** click any chart into its report, then into **Pikes Peak Food Co.** to show the Yelp Agent Signals and the brief on the record.
 
@@ -188,7 +203,7 @@ Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1,
 1. **Piper proves the pattern** on one owner, in conversation, at 10:15 PM, and hands him to Tom.
 2. **That record becomes the template.**
 3. **Hunter applies it across Tom's territory** over days.
-4. **Nina can see it's working**: coverage from 2.1x to 3.7x, 17 of 40 owners replying, complete data, and meetings up from 3–4 a week to 13.
+4. **Nina can see it's working, and that it was the agents**: coverage from 2.1x to 3.7x, pipeline split by Piper, Hunter and rep, 17 of 40 owners replying, and Hunter usage by rep for Marcus.
 
 **Value (Nina):**
 > Colorado alone surfaced 600 dark locations controlled by owners Yelp already bills, about $1.6M a year at Yelp's own average, with no added headcount. That's new paid locations and more spend from existing customers, the two levers you named, in one pilot state.
@@ -206,6 +221,7 @@ Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1,
 | *Dana:* "Will this eat our API limits?" | "The routing is a record-triggered Flow, on-platform. Hunter's reads are batched by the runtime. Neither is an external script hammering the API." |
 | *Dana:* "Where does Hunter's ownership data come from?" | "Three places: what's already in Salesforce (billing addresses, phones, contacts), data vendors through the Data Vendor Gateway, like D&B and ZoomInfo, with no extra contracts, and public web signals. It doesn't touch your billing system. If Yelp brings more of its own data in through Data 360, Hunter can use that too." |
 | *Priya:* "What happens to my SDR team?" | "Same 9 people, higher-value work. Piper handles first-touch qualification 24/7, and your SDRs take the meetings it books and own the call steps in Hunter's cadences. The territory AE gets visibility automatically, so nothing falls between SDR and AE." |
+| *Dana:* "How do we know the agents did it, and not the reps?" | "Agent-generated activity is stamped when it's created, so one report separates Hunter and Piper work from rep work, and the pipeline carries its source. Multi-touch attribution goes through CRM Analytics or Tableau." |
 | *Tom:* "Is this another tool I have to learn?" | "No. It's in Salesforce, where you already work. That's the point: fewer places to look, not one more." |
 | *Marcus:* "How do I scale what my top reps built?" | "Hunter learns from your won deals and best reps, and the result is a shared, governed workflow that any territory can run." |
 | *Marcus:* "What if Hunter's wrong about an owner?" | "Every prospect shows why Hunter picked it, with the source for each signal. The rep confirms on the first call." |
@@ -221,4 +237,4 @@ Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1,
 | **Prospecting (Hunter)** | Section 3: Tom's owner discovery from Salesforce data, Data Vendor Gateway enrichment and web signals |
 | **SDR Agent (Hunter)** | Section 3, Scene 1 steps 3–4: drafted cadences and Approve All |
 | **GTM Engineering (Flow)** | Section 2: `Yelp - Multi-Location Lead Routing` |
-| **Win** | Sections 4–5: leadership dashboard, pipeline, value |
+| **Win** | Sections 4–5: leadership dashboard, attribution, pipeline, value |

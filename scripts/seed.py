@@ -50,6 +50,7 @@ def reset(piper_only=False):
         code += (
             "delete [SELECT Id FROM Task WHERE Subject LIKE 'Hunter brief:%'];\n"
             "delete [SELECT Id FROM Event WHERE Subject LIKE 'Yelp customer meeting:%'];\n"
+            "delete [SELECT Id FROM Task WHERE Subject LIKE 'Hunter outreach:%'];\n"
             f"delete [SELECT Id FROM Campaign WHERE Name = '{CAMPAIGN}'];\n"
             "delete [SELECT Id FROM Account WHERE Yelp_Segment__c != null];\n"
         )
@@ -78,7 +79,7 @@ def import_plan(steps):
 
 def ids():
     users = {u["Alias"]: u["Id"] for u in query(
-        "SELECT Id, Alias FROM User WHERE Alias IN ('tjones','jreyes') AND IsActive = true")}
+        "SELECT Id, Alias FROM User WHERE Alias IN ('tjones','jreyes','vwest','vcent','veast') AND IsActive = true")}
     rts = {r["DeveloperName"]: r["Id"] for r in query(
         "SELECT Id, DeveloperName FROM RecordType WHERE DeveloperName IN "
         "('SDO_Account_Simple','SDO_Lead_Default','SimpleOpportunity')")}
@@ -127,7 +128,7 @@ def seed_hunter(data, users, rts):
         tasks.append(rec(
             "Task", f"T{r}", Subject=f"Hunter brief: {op['name']} ({op['location_count']} locations, "
                                    f"{op['dark']} dark)",
-            WhatId=f"@Op{r}", WhoId=f"@C{r}", OwnerId=owner, Priority="High" if r <= 10 else "Normal",
+            WhatId=f"@Op{r}", WhoId=f"@C{r}", OwnerId=owner, Priority="High" if r <= 10 else "Normal", Agent_Source__c="Hunter",
             Status="Not Started", ActivityDate=str(today + dt.timedelta(days=1 + r % 3)),
             Description=op["brief"]))
         members.append(rec("CampaignMember", f"M{r}", CampaignId="@Camp", ContactId=f"@C{r}", Status=outreach_status(r)))
@@ -177,15 +178,28 @@ def seed_hunter(data, users, rts):
         for k in range(count):
             day = week_start + dt.timedelta(days=k % 5)
             start = dt.datetime.combine(day, dt.time(9 + (k // 5) * 2, 0), tz).astimezone(dt.timezone.utc)
+            hunter_n, piper_n = data["meetings_by_agent"][w]
+            source = "Hunter" if k < hunter_n else "Piper" if k < hunter_n + piper_n else "Rep"
             meetings.append(rec("Event", f"E{w}_{k}", Subject=f"Yelp customer meeting: {names[(w * 13 + k) % len(names)]}",
+                                Agent_Source__c=source,
                                 OwnerId=tom if k % 3 else users["jreyes"],
                                 StartDateTime=start.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
                                 EndDateTime=(start + dt.timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%S.000Z")))
+    # Hunter outreach touches across Marcus's team, stamped as agent work with their outcome.
+    outreach = []
+    steps = ["Email 1", "Call 1", "Email 2", "Email 3", "Call 2"]
+    for alias, touches, replied, booked in data["team_outreach"]:
+        for k in range(touches):
+            result = "Meeting Booked" if k < booked else "Replied" if k < booked + replied else "Sent"
+            outreach.append(rec("Task", f"HO_{alias}_{k}", Subject=f"Hunter outreach: {steps[k % len(steps)]}",
+                                OwnerId=users[alias], Status="Completed", Priority="Normal",
+                                ActivityDate=str(today - dt.timedelta(days=1 + (k * 7) % 28)),
+                                Agent_Source__c="Hunter", Outreach_Result__c=result))
     statuses = [rec("CampaignMemberStatus", f"S{n}", CampaignId="@Camp", Label=label, HasResponded=True, SortOrder=10 + n)
                 for n, label in enumerate(["Replied", "Meeting Booked"])]
     import_plan([("Account", parents), ("Account", children), ("Contact", contacts), ("Campaign", campaign),
                  ("CampaignMemberStatus", statuses), ("CampaignMember", members), ("Opportunity", opps),
-                 ("Task", tasks), ("Event", meetings)])
+                 ("Task", tasks), ("Event", meetings), ("Task", outreach)])
 
 
 def seed_piper(data, users, rts):
@@ -209,7 +223,7 @@ def seed_piper(data, users, rts):
         "Event", "Ev1", Subject=f"Intro: {p['company']} - 12-location plan (booked by Piper, SDR call)",
         WhoId="@Piper1", OwnerId=users[p["rep_alias"]], StartDateTime=start.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         EndDateTime=(start + dt.timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-        Location="Zoom", Description=p["summary"])
+        Location="Zoom", Description=p["summary"], Agent_Source__c="Piper")
     invite = rec("EventRelation", "Inv1", EventId="@Ev1", RelationId=users[p["territory_lead_alias"]], IsInvitee=True)
     import_plan([("Lead", [lead]), ("Event", [event]), ("EventRelation", [invite])])
 

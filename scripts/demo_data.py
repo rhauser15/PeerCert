@@ -91,7 +91,12 @@ PIPER_OPPS = [
 
 # Customer meetings per week for the 8 weeks before today. Agents went live 4 weeks ago.
 MEETINGS_PER_WEEK = [3, 4, 3, 4, 8, 10, 11, 13]
+# Of each week's meetings, how many Hunter's outreach and Piper's inbound booked (the rest are rep-booked).
+MEETINGS_BY_AGENT = [(0, 0), (0, 0), (0, 0), (0, 0), (3, 2), (4, 2), (5, 3), (6, 3)]
 OUTREACH_RESULTS = {"Meeting Booked": 9, "Replied": 8}  # of the 40 Hunter owners; the rest stay "Sent"
+# Hunter outreach across Marcus's team over the last four weeks: (rep alias, touches, replied, meetings booked).
+# Uneven on purpose: usage and results vary by rep, which is what a manager looks for.
+TEAM_OUTREACH = [("tjones", 120, 26, 9), ("vwest", 90, 14, 5), ("vcent", 72, 13, 6), ("veast", 36, 3, 1)]
 
 BRANDS = [
     "Dave's Hot Chicken", "Jersey Mike's Subs", "Smoothie King", "Wingstop", "Crumbl Cookies",
@@ -218,7 +223,7 @@ def build():
         "unrealized_annual": sum(o["unrealized_annual"] for o in operators),
     }
     return {"org_url": ORG_URL, "rev_per_location": REV_PER_LOCATION, "quota": TOM_QUARTERLY_QUOTA, "baseline": BASELINE_PIPELINE, "piper_opps": PIPER_OPPS,
-            "meetings_per_week": MEETINGS_PER_WEEK, "outreach": OUTREACH_RESULTS, "territory": TERRITORY, "top40": top,
+            "meetings_per_week": MEETINGS_PER_WEEK, "meetings_by_agent": MEETINGS_BY_AGENT, "team_outreach": TEAM_OUTREACH, "outreach": OUTREACH_RESULTS, "territory": TERRITORY, "top40": top,
             "piper": PIPER_LEAD, "operators": operators}
 
 

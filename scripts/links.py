@@ -53,6 +53,8 @@ def build():
         ("Section 4 · Leadership", [
             rec_link("Is Agentic AI Working? dashboard", "Dashboard",
                      "SELECT Id FROM Dashboard WHERE DeveloperName = 'Find_and_Win_Leadership' LIMIT 1"),
+            rec_link("Activity by Source: Agents vs Reps (attribution report)", "Report",
+                     "SELECT Id FROM Report WHERE DeveloperName = 'Activity_by_Agent_Source' LIMIT 1"),
             rec_link("Pikes Peak Food Co. (#1 operator)", "Account",
                      "SELECT Id FROM Account WHERE Hunter_Rank__c = 1 LIMIT 1"),
             rec_link("Pikes Peak opportunity", "Opportunity",

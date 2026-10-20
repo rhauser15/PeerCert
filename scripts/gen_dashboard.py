@@ -16,11 +16,13 @@ def crit(col, op, val):
     return f"<criteriaItems><column>{col}</column><columnToColumn>false</columnToColumn><isUnlocked>true</isUnlocked><operator>{op}</operator><value>{val}</value></criteriaItems>"
 
 
-def report(name, label, rtype, cols, criteria, group, sort_by=None, date_col="CREATED_DATE", desc="", scope="organization", formulas=(), granularity="Day", params=()):
+def report(name, label, rtype, cols, criteria, group, sort_by=None, date_col="CREATED_DATE", desc="", scope="organization", formulas=(), granularity="Day", params=(), group2=None):
     columns = "".join(
         f"<columns>{''.join(f'<aggregateTypes>{a}</aggregateTypes>' for a in aggs)}<field>{c}</field></columns>"
         for c, aggs in cols)
     sort = f"<sortColumn>{sort_by}</sortColumn><sortOrder>Desc</sortOrder>" if sort_by else ""
+    g2 = (f"<groupingsDown><dateGranularity>Day</dateGranularity><field>{group2}</field><sortOrder>Asc</sortOrder></groupingsDown>"
+          if group2 else "")
     extra_params = "".join(f"<params><name>{k}</name><value>{v}</value></params>" for k, v in params)
     timeframe = (f"<timeFrameFilter><dateColumn>{date_col}</dateColumn><interval>INTERVAL_CUSTOM</interval></timeFrameFilter>"
                  if date_col else "")
@@ -35,7 +37,7 @@ def report(name, label, rtype, cols, criteria, group, sort_by=None, date_col="CR
     <description>{desc}</description>
     <filter>{''.join(crit(*c) for c in criteria)}</filter>
     <format>Summary</format>
-    <groupingsDown><dateGranularity>{granularity}</dateGranularity><field>{group}</field><sortOrder>Asc</sortOrder></groupingsDown>
+    <groupingsDown><dateGranularity>{granularity}</dateGranularity><field>{group}</field><sortOrder>Asc</sortOrder></groupingsDown>{g2}
     <name>{label}</name>
     <params><name>co</name><value>1</value></params>{extra_params}
     <reportType>{rtype}</reportType>
@@ -107,8 +109,23 @@ report("Data_Hygiene_by_Source", "Data Hygiene: Field Completeness", "Opportunit
 report("Customer_Meetings_per_Week", "Customer Meetings per Week", "Activity",
        [("SUBJECT", []), ("ASSIGNED", [])],
        [("SUBJECT", "startsWith", "Yelp customer meeting")], "DUE_DATE", date_col="DUE_DATE",
-       desc="Customer meetings held by the Colorado team, by week.", granularity="Week",
+       desc="Customer meetings held by the Colorado team, by week and by who booked them.", granularity="Week",
+       params=[("closed", "all"), ("type", "e")], group2="Activity.Agent_Source__c")
+report("Agent_Booked_Meetings", "Meetings Booked by Piper and Hunter", "Activity",
+       [("SUBJECT", []), ("ASSIGNED", [])],
+       [("SUBJECT", "startsWith", "Yelp customer meeting"), ("Activity.Agent_Source__c", "equals", "Piper,Hunter")],
+       "Activity.Agent_Source__c", date_col="DUE_DATE", desc="Customer meetings booked by agents.",
        params=[("closed", "all"), ("type", "e")])
+report("Hunter_Outreach_by_Rep", "Hunter Outreach by Rep", "Activity",
+       [("SUBJECT", []), ("DUE_DATE", [])],
+       [("SUBJECT", "startsWith", "Hunter outreach")], "ASSIGNED", date_col="DUE_DATE",
+       desc="Hunter outreach touches by rep (usage), split by outcome (effectiveness).",
+       params=[("closed", "all"), ("type", "t")], group2="Activity.Outreach_Result__c")
+report("Activity_by_Agent_Source", "Activity by Source: Agents vs Reps", "Activity",
+       [("SUBJECT", []), ("ASSIGNED", []), ("TASK", [])],
+       [("Activity.Agent_Source__c", "notEqual", "")], "Activity.Agent_Source__c", date_col="DUE_DATE",
+       desc="Tasks and meetings stamped with who created them: Piper, Hunter or a rep. One shared report that separates agent work from rep work.",
+       params=[("closed", "all"), ("type", "te")])
 
 write(os.path.join(BASE, "reports", f"{FOLDER}.reportFolder-meta.xml"), f"""
 <ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
@@ -149,28 +166,19 @@ GAUGE = ("<chartSummary><axisBinding>y</axisBinding><column>FORMULA1</column></c
          "<indicatorBreakpoint1>2.0</indicatorBreakpoint1><indicatorBreakpoint2>3.0</indicatorBreakpoint2>" + INDICATORS)
 ROWS = "<chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary>"
 comps = "".join([
-    # 1 · Find: what Piper and Hunter uncovered
-    comp("Metric", "Piper_Sourced_Pipeline", "Pipeline sourced by Piper", "1 · Find", 0, 0, 3, 4,
+    # Top row: pipeline
+    comp("Metric", "Piper_Sourced_Pipeline", "Pipeline sourced by Piper", "Pipeline from Piper", 0, 0, 4, 8,
          METRIC.format("AMOUNT") + GREEN),
-    comp("Metric", "Hunter_Book_Totals", "Dark locations Hunter uncovered", "1 · Find", 3, 0, 3, 4,
-         METRIC.format("Account.Dark_Locations__c") + GREEN),
-    # 2 · Plan and outreach
-    comp("Metric", "Hunter_Account_Plans", "Account plans built by Hunter", "2 · Account planning", 6, 0, 3, 4,
-         ROWS + GREEN),
-    comp("Metric", "Hunter_Outreach_Replies", "Owners who replied to outreach", "2 · Outreach", 9, 0, 3, 4,
-         ROWS + GREEN),
-    # Pipeline: the headline
-    comp("Gauge", "Tom_Pipeline_Coverage", "Coverage vs 3.0x target (was 2.1x)", "Pipeline coverage", 0, 4, 4, 8, GAUGE),
-    comp("Donut", "Pipeline_by_Agent_Source", "Where the pipeline came from", "Pipeline by source", 4, 4, 4, 8,
+    comp("Donut", "Pipeline_by_Agent_Source", "Where the pipeline came from", "Pipeline by source", 4, 0, 4, 8,
          CHART + METRIC.format("AMOUNT") + "<groupingColumn>Opportunity.Agent_Source__c</groupingColumn>"),
-    comp("Bar", "Hunter_Outreach_Results", "Hunter outreach: 40 owners contacted", "2 · Outreach effectiveness", 8, 4, 4, 8,
+    comp("Gauge", "Tom_Pipeline_Coverage", "Coverage vs 3.0x target (was 2.1x)", "Pipeline coverage", 8, 0, 4, 8, GAUGE),
+    # Second row: Hunter
+    comp("Metric", "Hunter_Account_Plans", "Account plans built by Hunter", "Hunter account plans", 0, 8, 3, 8,
+         ROWS + GREEN),
+    comp("Bar", "Hunter_Outreach_Results", "Hunter outreach: 40 owners contacted", "Hunter outreach effectiveness", 3, 8, 4, 8,
          CHART + ROWS + "<groupingColumn>MEMBER_STATUS</groupingColumn>"),
-    # 3 · Data hygiene and 4 · Meetings
-    comp("Bar", "Data_Hygiene_by_Source", "Field completeness: agents vs reps", "3 · Data hygiene", 0, 12, 6, 8,
-         CHART + "<chartSummary><aggregate>Average</aggregate><axisBinding>y</axisBinding><column>Opportunity.Field_Completeness__c</column></chartSummary>"
-         "<groupingColumn>Opportunity.Agent_Source__c</groupingColumn>"),
-    comp("Column", "Customer_Meetings_per_Week", "Customer meetings per week", "4 · Customer meetings", 6, 12, 6, 8,
-         CHART.replace("<sortBy>RowValueDescending</sortBy>", "<sortBy>RowLabelAscending</sortBy>") + ROWS + "<groupingColumn>DUE_DATE</groupingColumn>"),
+    comp("BarStacked", "Hunter_Outreach_by_Rep", "Outreach by rep: usage and results", "Hunter usage and effectiveness by rep", 7, 8, 5, 8,
+         CHART + ROWS + "<groupingColumn>ASSIGNED</groupingColumn><groupingColumn>Activity.Outreach_Result__c</groupingColumn>"),
 ])
 write(os.path.join(BASE, "dashboards", f"{FOLDER}_Dashboards", "Find_and_Win_Leadership.dashboard-meta.xml"), f"""
 <Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">

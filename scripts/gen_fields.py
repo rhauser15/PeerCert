@@ -98,6 +98,9 @@ for obj, fields in FIELDS.items():
 # --- Permission set: field access for everything above ---
 MD = os.path.join(ROOT, "..")
 perms = ["    <fieldPermissions><editable>true</editable><field>Lead.Territory_Lead__c</field><readable>true</readable></fieldPermissions>"]
+# Activity.Agent_Source__c is hand-written in force-app; FLS is granted on Task and Event.
+perms += [f"    <fieldPermissions><editable>true</editable><field>{o}.Agent_Source__c</field><readable>true</readable></fieldPermissions>" for o in ("Task", "Event")]
+perms += [f"    <fieldPermissions><editable>true</editable><field>{o}.Outreach_Result__c</field><readable>true</readable></fieldPermissions>" for o in ("Task", "Event")]
 for obj, fields in FIELDS.items():
     for name, (body, _, _) in fields.items():
         editable = "false" if "<formula>" in body else "true"

@@ -9,79 +9,19 @@
     <dashboardColorPalette>unity</dashboardColorPalette>
     <dashboardGridLayout>
         <dashboardGridComponents>
-            <colSpan>3</colSpan><columnIndex>0</columnIndex>
+            <colSpan>4</colSpan><columnIndex>0</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>AMOUNT</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
                 <componentType>Metric</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
-                <header>1 · Find</header>
+                <header>Pipeline from Piper</header>
                 <report>Yelp_Find_and_Win/Piper_Sourced_Pipeline</report>
                 <showRange>false</showRange>
                 <title>Pipeline sourced by Piper</title>
             </dashboardComponent>
-            <rowIndex>0</rowIndex><rowSpan>4</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>3</colSpan><columnIndex>3</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><aggregate>Sum</aggregate><axisBinding>y</axisBinding><column>Account.Dark_Locations__c</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
-                <componentType>Metric</componentType>
-                <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
-                <header>1 · Find</header>
-                <report>Yelp_Find_and_Win/Hunter_Book_Totals</report>
-                <showRange>false</showRange>
-                <title>Dark locations Hunter uncovered</title>
-            </dashboardComponent>
-            <rowIndex>0</rowIndex><rowSpan>4</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>3</colSpan><columnIndex>6</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
-                <componentType>Metric</componentType>
-                <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
-                <header>2 · Account planning</header>
-                <report>Yelp_Find_and_Win/Hunter_Account_Plans</report>
-                <showRange>false</showRange>
-                <title>Account plans built by Hunter</title>
-            </dashboardComponent>
-            <rowIndex>0</rowIndex><rowSpan>4</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>3</colSpan><columnIndex>9</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
-                <componentType>Metric</componentType>
-                <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
-                <header>2 · Outreach</header>
-                <report>Yelp_Find_and_Win/Hunter_Outreach_Replies</report>
-                <showRange>false</showRange>
-                <title>Owners who replied to outreach</title>
-            </dashboardComponent>
-            <rowIndex>0</rowIndex><rowSpan>4</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>4</colSpan><columnIndex>0</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary><axisBinding>y</axisBinding><column>FORMULA1</column></chartSummary><gaugeMax>4.0</gaugeMax><gaugeMin>0.0</gaugeMin><indicatorBreakpoint1>2.0</indicatorBreakpoint1><indicatorBreakpoint2>3.0</indicatorBreakpoint2><indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-                <componentType>Gauge</componentType>
-                <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
-                <header>Pipeline coverage</header>
-                <report>Yelp_Find_and_Win/Tom_Pipeline_Coverage</report>
-                <showRange>false</showRange>
-                <title>Coverage vs 3.0x target (was 2.1x)</title>
-            </dashboardComponent>
-            <rowIndex>4</rowIndex><rowSpan>8</rowSpan>
+            <rowIndex>0</rowIndex><rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
             <colSpan>4</colSpan><columnIndex>4</columnIndex>
@@ -96,52 +36,67 @@
                 <showRange>false</showRange>
                 <title>Where the pipeline came from</title>
             </dashboardComponent>
-            <rowIndex>4</rowIndex><rowSpan>8</rowSpan>
+            <rowIndex>0</rowIndex><rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
             <colSpan>4</colSpan><columnIndex>8</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartSummary><axisBinding>y</axisBinding><column>FORMULA1</column></chartSummary><gaugeMax>4.0</gaugeMax><gaugeMin>0.0</gaugeMin><indicatorBreakpoint1>2.0</indicatorBreakpoint1><indicatorBreakpoint2>3.0</indicatorBreakpoint2><indicatorHighColor>#54C254</indicatorHighColor><indicatorLowColor>#C25454</indicatorLowColor><indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+                <componentType>Gauge</componentType>
+                <displayUnits>Auto</displayUnits>
+                <groupingSortProperties/>
+                <header>Pipeline coverage</header>
+                <report>Yelp_Find_and_Win/Tom_Pipeline_Coverage</report>
+                <showRange>false</showRange>
+                <title>Coverage vs 3.0x target (was 2.1x)</title>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex><rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>3</colSpan><columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><indicatorBreakpoint1>1.0</indicatorBreakpoint1><indicatorBreakpoint2>2.0</indicatorBreakpoint2><indicatorHighColor>#04844B</indicatorHighColor><indicatorLowColor>#04844B</indicatorLowColor><indicatorMiddleColor>#04844B</indicatorMiddleColor>
+                <componentType>Metric</componentType>
+                <displayUnits>Auto</displayUnits>
+                <groupingSortProperties/>
+                <header>Hunter account plans</header>
+                <report>Yelp_Find_and_Win/Hunter_Account_Plans</report>
+                <showRange>false</showRange>
+                <title>Account plans built by Hunter</title>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex><rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan><columnIndex>3</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart><chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><groupingColumn>MEMBER_STATUS</groupingColumn>
                 <componentType>Bar</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
-                <header>2 · Outreach effectiveness</header>
+                <header>Hunter outreach effectiveness</header>
                 <report>Yelp_Find_and_Win/Hunter_Outreach_Results</report>
                 <showRange>false</showRange>
                 <title>Hunter outreach: 40 owners contacted</title>
             </dashboardComponent>
-            <rowIndex>4</rowIndex><rowSpan>8</rowSpan>
+            <rowIndex>8</rowIndex><rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>6</colSpan><columnIndex>0</columnIndex>
+            <colSpan>5</colSpan><columnIndex>7</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart><chartSummary><aggregate>Average</aggregate><axisBinding>y</axisBinding><column>Opportunity.Field_Completeness__c</column></chartSummary><groupingColumn>Opportunity.Agent_Source__c</groupingColumn>
-                <componentType>Bar</componentType>
+                <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowValueDescending</sortBy><useReportChart>false</useReportChart><chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><groupingColumn>ASSIGNED</groupingColumn><groupingColumn>Activity.Outreach_Result__c</groupingColumn>
+                <componentType>BarStacked</componentType>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
-                <header>3 · Data hygiene</header>
-                <report>Yelp_Find_and_Win/Data_Hygiene_by_Source</report>
+                <header>Hunter usage and effectiveness by rep</header>
+                <report>Yelp_Find_and_Win/Hunter_Outreach_by_Rep</report>
                 <showRange>false</showRange>
-                <title>Field completeness: agents vs reps</title>
+                <title>Outreach by rep: usage and results</title>
             </dashboardComponent>
-            <rowIndex>12</rowIndex><rowSpan>8</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>6</colSpan><columnIndex>6</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange><enableHover>true</enableHover><legendPosition>Bottom</legendPosition><showPercentage>false</showPercentage><showValues>true</showValues><sortBy>RowLabelAscending</sortBy><useReportChart>false</useReportChart><chartSummary><axisBinding>y</axisBinding><column>RowCount</column></chartSummary><groupingColumn>DUE_DATE</groupingColumn>
-                <componentType>Column</componentType>
-                <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
-                <header>4 · Customer meetings</header>
-                <report>Yelp_Find_and_Win/Customer_Meetings_per_Week</report>
-                <showRange>false</showRange>
-                <title>Customer meetings per week</title>
-            </dashboardComponent>
-            <rowIndex>12</rowIndex><rowSpan>8</rowSpan>
+            <rowIndex>8</rowIndex><rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <numberOfColumns>12</numberOfColumns>
         <rowHeight>36</rowHeight>
