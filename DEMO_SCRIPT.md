@@ -136,17 +136,20 @@
 
 Follows the *Hunter Demo Guide* and its prototype screen for screen: the seller home with a **Ready** weekly workflow, the workflow conversation (run history, Activity, the prospects table with Why this prospect? · Signal · Recommended Pitch), the cadence review ("Written in your voice", touch timeline, Details), **Approve All**, the drafted reply, then the opportunity and meeting prep. The admin scene is the guide's Arc 2. Only the scenario is Yelp's. Each → is one click by Tom; Hunter's work is already done or follows on its own.
 
-### Scene 1 · `hunter.html` · Steps 0–6 (Arcs 1 and 3)
+### Scene 1 · `hunter.html` · Steps 0–7 (Arcs 1 and 3)
+
+Click the element on screen (the workflow row, the expand icon, Kim's row, **Approve All**, **New chat**, the drafted reply, **Send**), or press →.
 
 | Step | Do | Say |
 |---|---|---|
 | 0 | Page loads | "Wednesday morning. Tom opens Salesforce and Hunter is right there. It isn't asking him what to do; it's showing him what it already did. At the top, the 12-location owner Piper qualified last night, already booked with Jordan for Thursday, with Tom invited. And under Hunter at work, a weekly workflow is ready: **Found multi-location owners in your book.**" |
-| 1 | → (open the workflow) | "Hunter ran this in the background, using owners like Whitaker Hospitality as the example. The activity shows what it did: started with what's already in Salesforce, accounts in different brands that share a billing address, phone or contact domain, then confirmed ownership with D&B, found the owner with ZoomInfo, and checked recent openings. **About 400 owners controlling 1,700 locations; 600 of those locations aren't advertising, about $1.6M a year.** It's prioritized the top 40." |
-| 2 | → (expand the table) | "Kim Alvarez at Pikes Peak Food Co. is a great fit, and I can see exactly why: 18 locations, 8 advertising on separate plans, 10 not advertising. Look at the Signal column: most of this wasn't in our CRM as one picture. Hunter enriched it through the **Data Vendor Gateway**, with D&B and ZoomInfo and web research built in, so Yelp doesn't need another data contract." |
-| 3 | → (open Kim's cadence) | "Hunter drafted a sequence for every prospect. Here's Kim's first email. It's written in Tom's voice: it leads with what she already pays for, then the 10 locations that aren't advertising. The Reasoning and Sources show why it was written this way." |
-| 4 | → (Approve All) | "Tom approves all 40 sequences, and they go to the configured outreach workflow. Next Monday, Hunter runs this again and adds new owners to his list." |
-| 5 | → (next morning: drafted reply) | "Next morning, Kim replied, and Hunter has already prepared Tom's next move: a reply proposing Thursday at 2:00 PM, with a location-by-location view and the two new stores she mentioned." |
-| 6 | → (Send) | "Tom sends it. Hunter updates the opportunity, now at Discovery with the meeting as the next step, so Tom doesn't touch the CRM, and writes the meeting prep so he walks in ready. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
+| 1 | Click the **Found multi-location owners** row | "Hunter ran this in the background, using owners like Whitaker Hospitality as the example. The activity shows what it did: started with what's already in Salesforce, accounts in different brands that share a billing address, phone or contact domain, then confirmed ownership with D&B, found the owner with ZoomInfo, and checked recent openings. **About 400 owners controlling 1,700 locations; 600 of those locations aren't advertising, about $1.6M a year.** It's prioritized the top 40." |
+| 2 | Click the **expand** icon | "Kim Alvarez at Pikes Peak Food Co. is a great fit, and I can see exactly why: 18 locations, 8 advertising on separate plans, 10 not advertising. Look at the Signal column: most of this wasn't in our CRM as one picture. Hunter enriched it through the **Data Vendor Gateway**, with D&B and ZoomInfo and web research built in, so Yelp doesn't need another data contract." |
+| 3 | Click **Kim's row** (the chevron) | "Hunter drafted a sequence for every prospect. Here's Kim's first email. It's written in Tom's voice: it leads with what she already pays for, then the 10 locations that aren't advertising. The Reasoning and Sources show why it was written this way." |
+| 4 | Click **Approve All** | "Tom approves all 40 sequences, and they go to the configured outreach workflow. Next Monday, Hunter runs this again and adds new owners to his list." |
+| 5 | Click **New chat** (next morning) | "Next morning, Tom's back on Hunter's home, and there's something ready: a drafted reply." |
+| 6 | Click **Drafted reply to Kim Alvarez** | "Kim replied, and Hunter has already prepared Tom's next move: a reply proposing Thursday at 2:00 PM, with a location-by-location view and the two new stores she mentioned." |
+| 7 | Click **Send** | "Tom sends it. Hunter updates the opportunity, now at Discovery with the meeting as the next step, so Tom doesn't touch the CRM, and writes the meeting prep so he walks in ready. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
 
 ### Scene 2 · `hunter-admin.html` · Steps 0–4 (Arc 2, optional, for Dana)
 
@@ -155,10 +158,10 @@ Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1,
 | Step | Do | Say |
 |---|---|---|
 | 0 | Page loads | "Dana, this is the admin view. When Hunter was turned on, it started setting itself up. It's drafted a plan." |
-| 1 | → (open the plan) | "It crawled the CRM and proposed learning from 430 closed-won multi-location deals from Marcus's top reps. Dana can point it at a different set of deals; this looks right." |
-| 2 | → (Approve & start) | "Hunter studies those deals: the opportunity history, emails, and Momentum call recordings." |
-| 3 | → (Knowledge) | "A couple of days later, here's what it learned: the ICP, the customer's problem, why now, use-cases, value props, and the team's voice. It's all reviewable, not a black box." |
-| 4 | → (open a learning) | "Here's the customer's problem in their own words, quoted from real calls. That's why Kim's email opened the way it did." |
+| 1 | Click **Drafted plan to setup Hunter** | "It crawled the CRM and proposed learning from 430 closed-won multi-location deals from Marcus's top reps. Dana can point it at a different set of deals; this looks right." |
+| 2 | Click **Approve & start** | "Hunter studies those deals: the opportunity history, emails, and Momentum call recordings." |
+| 3 | Click **Knowledge** | "A couple of days later, here's what it learned: the ICP, the customer's problem, why now, use-cases, value props, and the team's voice. It's all reviewable, not a black box." |
+| 4 | Click **Your Customer's Business Problem** | "Here's the customer's problem in their own words, quoted from real calls. That's why Kim's email opened the way it did." |
 
 **Lever callout (Tom):** one place to work instead of five tools, the repetitive research and first drafts done for him, and his best approach shared with the team instead of living in a private tool.
 
