@@ -3,6 +3,7 @@
 //   R: restart                                    H: show/hide presenter notes (hidden by default)
 //   B: toggle a fake browser bar with a realistic URL (or ?frame=1)
 //   ?step=N in the URL jumps to step N
+//   Pages can also call Presenter.onClick({ step: [elementIds] }) so clicking the real UI advances the demo
 window.Presenter = {
   init(steps, reset) {
     let i = 0, busy = false;
@@ -39,6 +40,8 @@ window.Presenter = {
     const q = new URLSearchParams(location.search).get("frame");
     this.frame(q != null ? q !== "0" : localStorage.getItem("demoFrame") === "1");
     this.next = next;
+    this.index = () => i;  // current step, so a page can advance when its target element is clicked
+    this.busy = () => busy;
     reset(); run(0, true); render();
     // ?step=N jumps straight to step N (for rehearsal).
     const jump = parseInt(new URLSearchParams(location.search).get("step"), 10);
@@ -56,6 +59,20 @@ window.Presenter = {
       await wait(ms);
     }
     await wait(200);
+  },
+  // Clicking a listed element advances to that step. Steps check Presenter.clicked() to skip their
+  // own simulated click when the presenter clicked for real.
+  onClick(targets) {
+    let real = false;
+    this.clicked = () => { const r = real; real = false; return r; };
+    document.addEventListener("click", e => {
+      if (this.busy()) return;
+      const want = targets[this.index() + 1];
+      if (want && want.some(id => e.target.closest("#" + id))) { real = true; this.next(); }
+    });
+    const css = document.createElement("style");
+    css.textContent = [...new Set(Object.values(targets).flat())].map(id => `#${id}`).join(",") + "{cursor:pointer}";
+    document.head.appendChild(css);
   },
   // Brief pressed state on a button, as if clicked.
   async press(el) {

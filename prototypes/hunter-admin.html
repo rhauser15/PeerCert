@@ -7,7 +7,7 @@
 <meta name="demo-url" content="yelp.lightning.force.com/lightning/page/home">
 <title>Home | Salesforce</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="shared.css?v=20261020g">
+<link rel="stylesheet" href="shared.css?v=20261020h">
 <style>
   /* Follows the Hunter prototype's admin view (Scene 2): setup plan, auto-learning, Knowledge. */
   :root { --brand: #0176d3; --link: #0b5cab; --line: #e5e5e5; --ink: #181818; --muted: #5c5c5c; --soft: #f3f3f3; --purple: #5a1ba9; --purple-soft: #f2ecfd; }
@@ -145,13 +145,13 @@
   </main>
 </div>
 <div class="presenter" id="presenter"></div>
-<script src="presenter.js?v=20261020g"></script>
+<script src="presenter.js?v=20261020h"></script>
 <script>
 const $ = id => document.getElementById(id), sleep = ms => new Promise(r => setTimeout(r, ms));
 const show = v => { ["v-home", "v-conv", "v-kn", "v-art"].forEach(x => $(x).classList.toggle("on", x === v)); $("main").scrollTop = 0;
   $("navHome").classList.toggle("on", v === "v-home" || v === "v-conv"); $("navKnowledge").classList.toggle("on", v === "v-kn" || v === "v-art"); };
 $("today").textContent = new Date().toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric" }).replace(",", "");
-async function click(el, instant) { if (!el || instant) return; await sleep(400); await Presenter.press(el); }
+async function click(el, instant) { if (!el || instant || Presenter.clicked()) return; await sleep(400); await Presenter.press(el); }
 function post(html, cls = "msg") { const d = document.createElement("div"); d.className = cls; d.innerHTML = html; $("thread").appendChild(d); return d; }
 
 const LEARNINGS = [
@@ -207,6 +207,8 @@ const steps = [
   }],
 ];
 Presenter.init(steps, () => { $("thread").innerHTML = ""; $("recentDot").style.display = ""; show("v-home"); });
+// Clicking the real UI advances the demo: step number -> element(s) to click.
+Presenter.onClick({ 1: ["wfPlan"], 2: ["approvePlan"], 3: ["navKnowledge"], 4: ["lc1"] });
 </script>
 </body>
 </html>
