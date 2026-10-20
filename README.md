@@ -8,7 +8,7 @@ Target org alias: `trailsignup-429cdf`
 | Path | What it is |
 |---|---|
 | [DEMO_SCRIPT.md](DEMO_SCRIPT.md) | 22–25 minute talk track, click path, limitations, Q&A, direct links |
-| `prototypes/` | Click-through mockups: `piper.html`, `hunter.html`, and `index.html` (launcher) |
+| `prototypes/` | Click-through mockups: `piper.html`, `hunter.html` (Scene 1), `hunter-admin.html` (Scene 2), and `index.html` (launcher) |
 | `force-app/` | Salesforce metadata: Lead and Account fields, routing Flow, permission set, list views, layout sections, leadership reports and dashboard |
 | `scripts/demo_data.py` | Single source of demo data. Run it to regenerate `prototypes/data.js` |
 | `scripts/seed.py` | Resets and loads demo records in the org |

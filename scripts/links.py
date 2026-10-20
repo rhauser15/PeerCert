@@ -39,7 +39,8 @@ def build():
         ("Mockups", [
             f"[Launcher]({SITE}/)",
             f"[Piper]({SITE}/piper.html)",
-            f"[Hunter]({SITE}/hunter.html)",
+            f"[Hunter: Scene 1, Tom]({SITE}/hunter.html)",
+            f"[Hunter: Scene 2, admin (Dana)]({SITE}/hunter-admin.html)",
         ]),
         ("Start here", [
             f"[Open the Sales for Tech app]({BASE}/lightning/app/{APP_ID}) (click first; the links below then open inside it)",

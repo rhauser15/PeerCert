@@ -1,7 +1,7 @@
 # Yelp · Find & Win: Demo Flow and Script
 
 **Segment:** Find → Win on the Agentic Revenue Lifecycle
-**Run time:** 22–25 minutes
+**Run time:** 23–27 minutes
 **Audience:** Nina (CRO), Dana (VP RevOps), Marcus (Sr Dir, Emerging & Multi-Location), Priya (Dir, Demand Gen), Alisha (VP Customer Success), Tom Jones (Sales Lead, Marcus's team, owns Colorado)
 **Demo users in the org:** Tom Jones (territory AE), Jordan Reyes (SDR on Priya's team)
 **Story in one line:** Piper finds the invisible owner at 10:15 PM and books him with an SDR, with Tom looped in. Tom asks Hunter to find every owner like him. Leadership sees all of it in Salesforce the next morning.
@@ -29,23 +29,24 @@
 **Mockups**
 - [Launcher](https://rhauser15.github.io/PeerCert/)
 - [Piper](https://rhauser15.github.io/PeerCert/piper.html)
-- [Hunter](https://rhauser15.github.io/PeerCert/hunter.html)
+- [Hunter: Scene 1, Tom](https://rhauser15.github.io/PeerCert/hunter.html)
+- [Hunter: Scene 2, admin (Dana)](https://rhauser15.github.io/PeerCert/hunter-admin.html)
 
 **Start here**
 - [Open the Sales for Tech app](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/app/06mg800000AlQvwAAF) (click first; the links below then open inside it)
 
 **Section 2 · Piper write-back**
-- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000I8FvZEAV/view)
+- [Sam Whitaker lead](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Lead/00Qg800000IAasfEAD/view)
 - [Routing Flow in Flow Builder](https://trailsignup-429cdfd78ec835.lightning.force.com/builder_platform_interaction/flowBuilder.app?flowId=301g8000012AduoAAC)
 - [Piper - Multi-Location Leads](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads)
 
 **Section 4 · Leadership**
 - [Is Agentic AI Working? dashboard](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Dashboard/01Zg8000004BuMLEA0/view)
-- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g8000014eJYzAAM/view)
-- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009wc6AAAQ/view)
+- [Pikes Peak Food Co. (#1 operator)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Account/001g8000014lXXBAA2/view)
+- [Pikes Peak opportunity](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Opportunity/006g8000009xhJtAAI/view)
 - [Hunter - Colorado Operators (Ranked)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Colorado_Operators)
 - [Hunter - Dark Locations (In Sequence)](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/o/Account/list?filterName=Hunter_Dark_Locations)
-- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g8000014eJifAAE/view)
+- [Dark location outreach campaign](https://trailsignup-429cdfd78ec835.lightning.force.com/lightning/r/Campaign/701g8000014lPD4AAM/view)
 
 <!-- links:end -->
 
@@ -65,6 +66,9 @@
    ```
    ```bash
    open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/hunter.html"
+   ```
+   ```bash
+   open -na "Google Chrome" --args --app="https://rhauser15.github.io/PeerCert/hunter-admin.html"
    ```
    Press **⌃⌘F** for full screen. Controls: **→ / Space / clicker** next, **←** back, **R** restart, **H** show or hide your presenter notes (hidden by default), `?step=N` to rehearse one beat. Optional: **B** toggles a simulated address bar (`biz.yelp.com/...`), but no address bar at all is the safer choice with a customer who's wary of mockups.
 4. **Queue these Salesforce tabs in order** (all in Sales for Tech):
@@ -128,19 +132,35 @@
 
 ---
 
-## 3 · Hunter: Tom finds all of them (6 min)
+## 3 · Hunter: Tom finds all of them (7 min, plus 2 min optional)
 
-**Tab:** `hunter.html` · **Steps 0–6** · Uses only what the *Hunter Demo Guide* shows: a proactive home screen, prospect research with enrichment through the Data Vendor Gateway, "why this prospect", emails drafted in the rep's voice, multi-step cadences, opportunity creation, and scheduled workflows. Each → is one action by Tom (a typed prompt or a click), and Hunter responds on its own.
+Follows the *Hunter Demo Guide* and its prototype screen for screen: the seller home, a workflow conversation with the prospects table (Why this prospect? · Signal · Recommended Pitch), the cadence review ("Written in your voice", touch timeline, Details, regenerate on feedback), **Approve All**, **Schedule it weekly**, the drafted reply, then the opportunity and meeting prep. The admin scene is the guide's Arc 2. Only the scenario is Yelp's. Each → is one action by Tom (a typed prompt or a click), and Hunter responds on its own.
+
+### Scene 1 · `hunter.html` · Steps 0–8 (Arcs 1 and 3)
 
 | Step | Do | Say |
 |---|---|---|
-| 0 | Page loads | "Wednesday morning. Tom opens Salesforce, not a second tool. Hunter shows him what came in overnight: a 12-location owner in his territory, already booked with Jordan for Thursday, with Tom invited. Tom doesn't have to chase it, so he can go find more." |
-| 1 | → (Tom types the objective; Hunter plans) | "Tom asks Hunter to **find more owners like him**: operators in his territory controlling three or more locations across different brands, ranked by what they're not yet spending. Hunter uses Sam's lead as the example and lays out a plan. It starts with what's already in Salesforce: accounts in different brands that share a billing address, a main phone, or a contact email domain. Then it confirms ownership and finds the owner through the **Data Vendor Gateway**, with D&B corporate family data and ZoomInfo contacts, no extra contracts. And it checks public signals like recent openings and franchise filings." |
-| 2 | → (Tom approves) | "Tom approves, and Hunter works in the background while he sells." |
-| 3 | → (next morning: "What did you find?") | "Colorado: **about 400 owners controlling 1,700 locations.** Around **1,100 of those locations already advertise**, each on its own self-serve account. **600 aren't advertising.** At Yelp's average revenue per location, that's **$1.6M of net-new annual revenue in one state**, from owners Yelp already works with." |
-| 4 | → ("Tell me more about Pikes Peak") | "Pikes Peak Food Co.: 18 locations, 2 brands, 10 not advertising. Here's **why this prospect**, with the source for each signal, plus the locations and Tom's brief. That's the day of manual research Marcus described, done before Tom asks." |
-| 5 | → ("Draft my first email to Kim") | "And the repetitive part is done too. Hunter drafts Tom's first touch to Kim, the owner, in the way Tom's won deals open: what she already advertises, then the 10 locations that aren't. It's a four-step cadence. Tom can approve it, edit it, or add context." |
-| 6 | → (Tom approves the cadence) | "Then Hunter works the rest: the **top 40 in Tom's book** with briefs and drafts, sequences for the other owners, 10 opportunities with next steps filled in, and it reruns every Monday. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
+| 0 | Page loads | "Wednesday morning. Tom opens Salesforce and Hunter is right there. It isn't asking him what to do; it's showing him what came in overnight and what it's already working on. At the top: the 12-location owner Piper qualified last night, already booked with Jordan for Thursday, with Tom invited." |
+| 1 | → (Tom asks; Hunter researches) | "Tom asks Hunter to find more owners like Whitaker Hospitality and draft outreach. Watch the activity: Hunter starts with what's already in Salesforce, accounts in different brands that share a billing address, phone or contact domain, then confirms ownership with D&B, finds the owner with ZoomInfo, and checks recent openings. **About 400 owners controlling 1,700 locations; 600 of those locations aren't advertising, about $1.6M a year.** It's prioritized the top 40." |
+| 2 | → (expand the table) | "Kim Alvarez at Pikes Peak Food Co. is a great fit, and I can see exactly why: 18 locations, 8 advertising on separate plans, 10 not advertising. Look at the Signal column: most of this wasn't in our CRM as one picture. Hunter enriched it through the **Data Vendor Gateway**, with D&B and ZoomInfo and web research built in, so Yelp doesn't need another data contract." |
+| 3 | → (open Kim's cadence) | "Hunter drafted a sequence for every prospect. Here's Kim's first email. It's written in Tom's voice: it leads with what she already pays for, then the 10 locations that aren't advertising. The Reasoning and Sources show why it was written this way." |
+| 4 | → (Tom adds context) | "Tom knows something Hunter should use: Kim's team asked support about combining billing last month. He tells Hunter, and the email is rewritten around it in seconds." |
+| 5 | → (Approve All) | "Tom approves all 40 sequences. They go to the configured outreach workflow." |
+| 6 | → (Schedule it weekly) | "And he has Hunter run this every Monday, so new owners land in his list automatically." |
+| 7 | → (next morning: drafted reply) | "Next morning, Kim replied, and Hunter has already prepared Tom's next move: a reply proposing Thursday at 2:00 PM, with a location-by-location view and the two new stores she mentioned." |
+| 8 | → (Send) | "Tom sends it. Hunter updates the opportunity, now at Discovery with the meeting as the next step, so Tom doesn't touch the CRM, and writes the meeting prep so he walks in ready. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
+
+### Scene 2 · `hunter-admin.html` · Steps 0–4 (Arc 2, optional, for Dana)
+
+Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1, step 3, then back.
+
+| Step | Do | Say |
+|---|---|---|
+| 0 | Page loads | "Dana, this is the admin view. When Hunter was turned on, it started setting itself up. It's drafted a plan." |
+| 1 | → (open the plan) | "It crawled the CRM and proposed learning from 430 closed-won multi-location deals from Marcus's top reps. Dana can point it at a different set of deals; this looks right." |
+| 2 | → (Approve & start) | "Hunter studies those deals: the opportunity history, emails, and Momentum call recordings." |
+| 3 | → (Knowledge) | "A couple of days later, here's what it learned: the ICP, the customer's problem, why now, use-cases, value props, and the team's voice. It's all reviewable, not a black box." |
+| 4 | → (open a learning) | "Here's the customer's problem in their own words, quoted from real calls. That's why Kim's email opened the way it did." |
 
 **Lever callout (Tom):** one place to work instead of five tools, the repetitive research and first drafts done for him, and his best approach shared with the team instead of living in a private tool.
 
@@ -198,6 +218,6 @@
 |---|---|
 | **Agentic Marketing (Piper)** | Section 1: after-hours qualification on Yelp for Business |
 | **Prospecting (Hunter)** | Section 3: Tom's owner discovery from Salesforce data, Data Vendor Gateway enrichment and web signals |
-| **SDR Agent (Hunter)** | Section 3, steps 6–7: first-touch drafts and sequences against 600 dark locations |
+| **SDR Agent (Hunter)** | Section 3, Scene 1 steps 3–6: drafted cadences, Approve All, weekly schedule |
 | **GTM Engineering (Flow)** | Section 2: `Yelp - Multi-Location Lead Routing` |
 | **Win** | Sections 4–5: leadership dashboard, pipeline, value |

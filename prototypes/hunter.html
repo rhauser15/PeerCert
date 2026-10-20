@@ -4,392 +4,442 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='17' rx='15' ry='10' fill='%2300a1e0'/%3E%3C/svg%3E">
-<meta name="demo-url" content="yelp.lightning.force.com/lightning/n/Hunter">
-<title>Hunter | Salesforce</title>
+<meta name="demo-url" content="yelp.lightning.force.com/lightning/page/home">
+<title>Home | Salesforce</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="shared.css?v=20261020d">
+<link rel="stylesheet" href="shared.css?v=20261020e">
 <style>
-  :root { --brand: #0176d3; --navy: #032d60; --bg: #f3f3f3; --line: #e5e5e5; --ink: #181818; --muted: #706e6b;
-          --agent: #5a1ba9; --agent-2: #8a3ffc; --ok: #2e844a; --warn: #a96404; --dark: #ba0517; }
+  /* Layout and components follow the Hunter prototype (Scene 1): seller home, workflow conversation,
+     prospects table, cadence review, drafted reply. Only the content is Yelp's. */
+  :root { --brand: #0176d3; --link: #0b5cab; --line: #e5e5e5; --ink: #181818; --muted: #5c5c5c; --soft: #f3f3f3;
+          --purple: #5a1ba9; --purple-soft: #f2ecfd; --hot: #fde2e1; --hot-ink: #b60554; }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: -apple-system, "Salesforce Sans", "Helvetica Neue", Arial, sans-serif; color: var(--ink); background: var(--bg); font-size: 14px; }
-  .gh { height: 50px; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 16px; gap: 16px; }
-  .cloud { width: 44px; height: 30px; background: #00a1e0; border-radius: 15px; color: #fff; font-weight: 800; font-size: 11px; display: grid; place-items: center; }
-  .search { flex: 0 1 560px; margin: 0 auto; height: 32px; border: 1px solid #c9c9c9; border-radius: 4px; display: flex; align-items: center; padding: 0 12px; color: var(--muted); }
-  .gh .icons { display: flex; gap: 14px; color: var(--muted); align-items: center; }
+  body { margin: 0; font-family: "Salesforce Sans", -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--ink); background: #fff; font-size: 14px; }
+  svg { display: block; }
+  .gh { height: 50px; display: flex; align-items: center; padding: 0 16px; gap: 14px; border-bottom: 1px solid var(--line); }
+  .gh .search { margin-left: auto; width: 400px; height: 32px; border: 1px solid #747474; border-radius: 6px; display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--muted); }
+  .gh .ask { height: 32px; border: 1px solid #747474; border-radius: 16px; padding: 0 14px; display: flex; align-items: center; gap: 6px; font-weight: 600; color: var(--link); margin-right: auto; }
+  .gh .icons { display: flex; gap: 14px; align-items: center; color: #444; }
   .me { width: 30px; height: 30px; border-radius: 50%; background: #3e3e3c; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
-  .nav { height: 40px; background: #fff; border-bottom: 3px solid var(--brand); display: flex; align-items: center; padding: 0 16px; gap: 22px; }
-  .nav .app { font-weight: 700; font-size: 16px; padding-right: 14px; border-right: 1px solid var(--line); }
-  .nav span.on { color: var(--brand); font-weight: 700; }
-  .shell { display: grid; grid-template-columns: 210px 1fr 340px; height: calc(100vh - 93px - var(--frame-h)); }
-  .side { background: #fff; border-right: 1px solid var(--line); padding: 14px 10px; overflow: auto; }
-  .side .it { padding: 8px 10px; border-radius: 6px; color: #3e3e3c; }
-  .side .it.on { background: #f0e9fb; color: var(--agent); font-weight: 600; }
-  .side h5 { margin: 18px 10px 6px; color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
-  .side .rc { display: flex; gap: 8px; align-items: center; padding: 6px 10px; font-size: 13px; color: #3e3e3c; }
-  .badge { width: 24px; height: 24px; border-radius: 6px; font-size: 10px; font-weight: 700; display: grid; place-items: center; color: #fff; background: #8e8e93; flex: none; }
-  .center { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
-  .feed { position: relative; flex: 1; min-height: 0; overflow-y: auto; padding: 26px 34px 20px; scroll-behavior: smooth; }
-  .composer { margin: 0 34px 18px; background: #fff; border: 1px solid #c9c9c9; border-radius: 12px; padding: 12px 14px; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
-  .composer textarea { width: 100%; border: 0; resize: none; font: inherit; height: 44px; outline: none; }
-  .composer .bar { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; }
-  .composer .send { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; background: var(--agent); color: #fff; display: grid; place-items: center; }
-  .pill { border: 1px solid var(--line); border-radius: 12px; padding: 2px 8px; }
-  .hello { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
-  .hunter-av { width: 44px; height: 44px; border-radius: 50%; background: conic-gradient(from 200deg, #5a1ba9, #0176d3, #8a3ffc, #5a1ba9); display: grid; place-items: center; color: #fff; font-weight: 800; flex: none; }
-  .hunter-av.sm { width: 28px; height: 28px; font-size: 12px; }
-  .hello h1 { font-size: 22px; margin: 0; }
-  .hello p { margin: 2px 0 0; color: var(--muted); }
-  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 12px 0; animation: rise .35s ease-out; }
-  .card h3 { margin: 0 0 8px; font-size: 15px; }
-  .card .k { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
-  .btn { border: 1px solid var(--brand); color: var(--brand); background: #fff; border-radius: 4px; padding: 6px 14px; font: inherit; font-weight: 600; cursor: pointer; }
-  .btn.primary { background: var(--agent); border-color: var(--agent); color: #fff; }
-  .msg { display: flex; gap: 10px; margin: 14px 0; animation: rise .3s ease-out; }
-  .msg.user { justify-content: flex-end; }
-  .msg.user .bub { background: #e8f1fb; border-radius: 14px 14px 4px 14px; padding: 10px 14px; max-width: 70%; }
-  .msg.agent .body { flex: 1; min-width: 0; }
-  .thinking { color: var(--muted); font-style: italic; display: flex; gap: 8px; align-items: center; }
-  .spinner { width: 14px; height: 14px; border: 2px solid #d8c8f3; border-top-color: var(--agent); border-radius: 50%; animation: spin .8s linear infinite; }
-  .tmpl { display: flex; gap: 12px; align-items: center; background: #fbf8ff; border: 1px dashed #c4a7f2; border-radius: 10px; padding: 10px 12px; margin: 10px 0; }
-  .tmpl .tag { background: var(--agent); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
-  .plan ol { margin: 6px 0 0; padding-left: 20px; }
-  .plan li { margin: 6px 0; }
-  .src { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; background: #eef4ff; color: #0b5cab; margin-left: 4px; font-weight: 600; }
-  .src.bill { background: #fff4e5; color: #8c4b02; }
-  .src.dvg { background: #f0e9fb; color: var(--agent); }
-  .guard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
-  .guard div { background: #f8f8f8; border-radius: 8px; padding: 8px 10px; font-size: 12.5px; }
-  .guard b { display: block; font-size: 12px; }
-  .run li { list-style: none; margin: 8px 0; display: flex; gap: 10px; align-items: center; }
-  .run ol { padding: 0; }
-  .dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #c9c9c9; flex: none; display: grid; place-items: center; font-size: 11px; color: #fff; }
-  .dot.done { background: var(--ok); border-color: var(--ok); }
-  .dot.live { border-color: var(--agent); border-top-color: transparent; animation: spin .8s linear infinite; }
-  .counter { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12.5px; }
-  .divider { text-align: center; color: var(--muted); font-size: 12px; margin: 22px 0 8px; display: flex; align-items: center; gap: 10px; }
-  .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 10px 0 14px; }
-  .kpi { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
-  .kpi .v { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .kpi .l { color: var(--muted); font-size: 12px; margin-top: 2px; }
-  .kpi.hero { background: linear-gradient(135deg, #5a1ba9, #0176d3); color: #fff; border: 0; }
-  .kpi.hero .l { color: #e6dcff; }
-  .sigbars .r { display: grid; grid-template-columns: 210px 1fr 40px; gap: 10px; align-items: center; margin: 5px 0; font-size: 12.5px; }
-  .sigbars .t { height: 10px; background: #f0f0f0; border-radius: 5px; overflow: hidden; }
-  .sigbars .t i { display: block; height: 100%; background: var(--agent-2); border-radius: 5px; width: 0; transition: width 1s ease-out; }
-  .sigbars .r.bill .t i { background: #dd7a01; }
-  table.rank { width: 100%; border-collapse: collapse; font-size: 13px; }
-  table.rank th { text-align: left; color: var(--muted); font-weight: 600; font-size: 12px; padding: 8px; border-bottom: 1px solid var(--line); background: #fafaf9; }
-  table.rank td { padding: 8px; border-bottom: 1px solid #f3f3f3; }
-  table.rank tr.row { cursor: pointer; } table.rank tr.row:hover td { background: #f7f3fe; }
-  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-  .conf { display: inline-block; min-width: 40px; text-align: center; font-weight: 600; font-size: 12px; border-radius: 10px; padding: 1px 6px; background: #ebf7e6; color: var(--ok); }
-  .brandchip { display: inline-block; font-size: 11px; background: #f3f3f3; border-radius: 10px; padding: 1px 7px; margin: 1px 2px 1px 0; }
-  .more { color: var(--brand); cursor: pointer; font-weight: 600; padding: 10px 8px; display: inline-block; }
-  .done-list li { margin: 8px 0; list-style: none; display: flex; gap: 10px; }
-  .done-list ul { padding: 0; margin: 6px 0; }
-  .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .links a { text-decoration: none; }
-  .right { background: #fff; border-left: 1px solid var(--line); padding: 14px; overflow: auto; }
-  .right h4 { margin: 0 0 4px; font-size: 15px; }
-  .right .date { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
-  .right h5 { margin: 14px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-  .wf { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 8px 0; animation: rise .3s; }
-  .wf .t { font-weight: 600; font-size: 13px; }
-  .wf .s { color: var(--muted); font-size: 12px; margin-top: 2px; }
-  .wf.ready { border-left: 3px solid var(--ok); } .wf.running { border-left: 3px solid var(--agent); } .wf.sched { border-left: 3px solid #c9c9c9; }
-  .prog { height: 4px; background: #eee; border-radius: 2px; margin-top: 8px; overflow: hidden; } .prog i { display: block; height: 100%; background: var(--agent); width: 0; transition: width .6s; }
-  .drawer { position: fixed; top: calc(93px + var(--frame-h)); right: 0; bottom: 0; width: 620px; background: #fff; border-left: 1px solid var(--line); box-shadow: -12px 0 30px rgba(0,0,0,.12); transform: translateX(105%); transition: transform .35s; overflow: auto; z-index: 20; padding: 20px 24px; }
-  .drawer.show { transform: none; }
-  .drawer .x { position: absolute; right: 18px; top: 14px; cursor: pointer; color: var(--muted); font-size: 20px; }
-  .drawer h2 { margin: 0; font-size: 20px; }
-  .ev li { margin: 7px 0; list-style: none; display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: start; }
-  .ev ul { padding: 0; }
-  .tree { font-size: 13px; }
-  .tree .op { font-weight: 700; }
-  .tree .br { margin: 6px 0 2px 14px; font-weight: 600; }
-  .tree .loc { margin-left: 30px; display: flex; gap: 8px; align-items: center; padding: 2px 0; }
-  .st { font-size: 11px; font-weight: 700; border-radius: 10px; padding: 0 7px; }
-  .st.pay { background: #ebf7e6; color: var(--ok); } .st.dark { background: #feded8; color: var(--dark); }
-  pre.brief { white-space: pre-wrap; font: 12.5px/1.45 -apple-system, Arial, sans-serif; background: #fafaf9; border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
-  @keyframes rise { from { transform: translateY(8px); opacity: 0 } to { transform: none; opacity: 1 } }
+  .nav { height: 40px; display: flex; align-items: flex-end; gap: 22px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+  .nav .waffle { align-self: center; color: #444; }
+  .nav .app { align-self: center; font-size: 18px; }
+  .nav .tab { padding: 0 10px 9px; border-bottom: 3px solid var(--brand); color: var(--link); font-weight: 600; }
+  .shell { display: grid; grid-template-columns: 250px 1fr; height: calc(100vh - 91px - var(--frame-h)); }
+  .side { border-right: 1px solid var(--line); padding: 10px 0; overflow: auto; display: flex; flex-direction: column; }
+  .side .collapse { align-self: flex-end; margin: 0 12px 6px; color: #444; }
+  .side .it { display: flex; gap: 12px; align-items: center; padding: 8px 18px; font-weight: 600; }
+  .side .it.on { background: #e5effa; box-shadow: inset 3px 0 0 var(--brand); }
+  .side .rc { padding: 7px 18px 7px 46px; display: flex; align-items: center; justify-content: space-between; color: #3e3e3c; }
+  .side .rc .dot { width: 7px; height: 7px; border-radius: 50%; background: #2e844a; }
+  .side .rc .spin { width: 12px; height: 12px; border: 2px solid #c9d8ef; border-top-color: var(--brand); border-radius: 50%; animation: spin 1s linear infinite; }
+  .side .foot { margin-top: auto; padding: 10px 18px; font-weight: 600; display: flex; gap: 12px; align-items: center; }
+  main { overflow-y: auto; position: relative; }
+  .view { display: none; } .view.on { display: block; }
+
+  /* ---- Seller home ---- */
+  .home { max-width: 760px; margin: 0 auto; padding: 52px 24px 40px; }
+  .home h1 { font-size: 30px; font-weight: 400; margin: 0 0 6px; }
+  .home .lede { font-size: 18px; color: #2e2e2e; margin: 0 0 22px; line-height: 1.4; }
+  .composer { border: 1px solid #c9c9c9; border-radius: 12px; padding: 14px 16px 10px; box-shadow: 0 1px 3px rgba(0,0,0,.06); background: #fff; }
+  .composer textarea { width: 100%; border: 0; outline: none; resize: none; font: inherit; font-size: 14px; height: 52px; background: transparent; }
+  .composer .bar { display: flex; align-items: center; gap: 14px; color: #444; }
+  .agentpick { display: flex; align-items: center; gap: 6px; border: 1px solid #c9c9c9; border-radius: 6px; padding: 3px 10px; font-size: 13px; }
+  .agentpick i { width: 18px; height: 18px; border-radius: 50%; background: conic-gradient(#5a1ba9, #0176d3, #5a1ba9); display: inline-block; }
+  .composer .send { margin-left: auto; color: #8a8a8a; }
+  .below { display: flex; justify-content: space-between; gap: 12px; font-size: 11.5px; color: var(--muted); margin: 8px 2px 0; }
+  .below a { color: var(--link); text-decoration: none; }
+  .preview { margin-top: 26px; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .preview p { margin: 0 0 10px; }
+  .preview .row { display: flex; gap: 6px; padding: 5px 0; }
+  .preview .row b { color: var(--link); }
+  .btns { display: flex; gap: 8px; margin-top: 12px; }
+  .btn { border: 1px solid #c9c9c9; background: #fff; color: var(--link); border-radius: 6px; padding: 6px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+  .btn.brand { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .btn[disabled] { opacity: .65; cursor: default; }
+  .work { margin-top: 26px; border: 1px solid var(--line); border-radius: 12px; background: #fafafa; padding: 14px 14px 6px; }
+  .work .hd { display: flex; align-items: baseline; gap: 10px; padding: 0 2px 8px; }
+  .work .hd b { font-size: 16px; } .work .hd span { color: var(--muted); font-size: 13px; } .work .hd .flt { margin-left: auto; font-weight: 600; font-size: 13px; color: #2e2e2e; }
+  .work h6 { margin: 8px 4px 6px; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .wf { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; display: grid; grid-template-columns: 14px 1fr; gap: 0 10px; }
+  .wf .st { margin-top: 5px; width: 8px; height: 8px; border-radius: 50%; background: #2e844a; }
+  .wf .st.run { width: 12px; height: 12px; border: 2px solid #c9d8ef; border-top-color: var(--brand); background: none; animation: spin 1s linear infinite; margin-top: 3px; }
+  .wf .st.idle { background: #c9c9c9; }
+  .wf .t { font-weight: 600; font-size: 14.5px; }
+  .wf .s { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+  .chips { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .chip { display: flex; align-items: center; gap: 5px; background: var(--soft); border-radius: 4px; padding: 2px 7px; font-size: 12px; color: #2e2e2e; }
+  .chip .doc { width: 9px; height: 11px; border-radius: 1.5px; }
+
+  /* ---- Workflow conversation ---- */
+  .conv { padding: 18px 24px 160px; }
+  .conv .title { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; margin-bottom: 22px; }
+  .conv .title .hist { margin-left: auto; color: #444; }
+  .thread { max-width: 980px; margin: 0 auto; }
+  .ask-bub { margin-left: auto; max-width: 560px; background: var(--soft); border-radius: 12px; padding: 10px 14px; margin-bottom: 16px; width: fit-content; }
+  .activity { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+  .activity .lbl { display: flex; gap: 6px; align-items: center; }
+  .activity .trace { margin: 8px 0 0 5px; padding-left: 14px; border-left: 2px solid var(--line); }
+  .activity .trace div { padding: 2px 0; animation: rise .3s; }
+  .activity.done .trace { display: none; }
+  .msg { margin: 0 0 14px; line-height: 1.5; font-size: 14.5px; animation: rise .3s; }
+  .tablewrap { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; animation: rise .35s; margin-bottom: 14px; }
+  .tscroll { overflow-x: auto; max-height: 410px; overflow-y: auto; }
+  .tablewrap.expanded .tscroll { max-height: none; }
+  table.pros { border-collapse: collapse; width: 1500px; font-size: 13px; }
+  table.pros th { position: sticky; top: 0; background: #f3f3f3; text-align: left; font-weight: 600; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+  table.pros td { vertical-align: top; padding: 10px 12px; border-bottom: 1px solid #efefef; border-right: 1px solid #efefef; line-height: 1.4; }
+  table.pros tr.focus td { background: #f7f3fe; }
+  .person { display: grid; grid-template-columns: 26px 1fr 24px; gap: 8px; }
+  .av { width: 24px; height: 24px; border-radius: 50%; background: #7526e3; color: #fff; display: grid; place-items: center; font-size: 10px; font-weight: 700; flex: none; }
+  .lk { color: var(--link); font-weight: 600; }
+  .sub { color: #3e3e3c; }
+  .lk2 { color: var(--link); }
+  .chev { width: 22px; height: 22px; border: 1px solid #c9c9c9; border-radius: 50%; display: grid; place-items: center; color: #444; margin-top: 10px; }
+  .co { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; }
+  .logo { width: 18px; height: 18px; border-radius: 4px; background: #d32f2f; color: #fff; font-size: 9px; font-weight: 800; display: grid; place-items: center; margin-top: 2px; }
+  .rate { font-size: 11.5px; font-weight: 600; border-radius: 4px; padding: 2px 7px; height: fit-content; white-space: nowrap; }
+  .rate.hot { background: var(--hot); color: var(--hot-ink); } .rate.solid { background: #e3f3e6; color: #2e6b3a; }
+  .sig ul { margin: 0; padding-left: 16px; } .sig li { margin: 0 0 4px; }
+  .srcs { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+  .src { font-size: 11px; border: 1px solid #d8d8d8; border-radius: 10px; padding: 0 7px; color: #3e3e3c; white-space: nowrap; }
+  .tfoot { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #fff; font-size: 13px; border-top: 1px solid var(--line); }
+  .tfoot .ex { margin-left: auto; color: var(--brand); }
+  .cad { border: 1px solid var(--line); border-radius: 10px; padding: 14px; animation: rise .35s; margin-bottom: 14px; }
+  .cad .pick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cad .pick label { font-size: 12.5px; font-weight: 600; display: block; margin-bottom: 4px; }
+  .sel { border: 1px solid #747474; border-radius: 6px; padding: 6px 10px; display: flex; align-items: center; gap: 8px; }
+  .sel .x { margin-left: auto; color: var(--link); }
+  .voice { margin: 12px 0; background: var(--purple-soft); border-radius: 6px; padding: 8px 12px; display: flex; gap: 8px; align-items: center; color: var(--purple); font-weight: 600; font-size: 13px; }
+  .voice a { margin-left: auto; color: #181818; text-decoration: underline; }
+  .touch { display: grid; grid-template-columns: 28px 1fr; gap: 10px; margin: 6px 0; }
+  .touch .ic { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: #e5effa; color: var(--link); }
+  .touch .ic.call { background: #fdecdc; color: #a96404; }
+  .touch .h { padding-top: 4px; } .touch .h b { font-size: 14px; } .touch .h span { color: var(--muted); font-size: 13px; }
+  .tcard { grid-column: 2; display: grid; grid-template-columns: 1.35fr 1fr; border: 1px solid var(--line); border-radius: 8px; margin: 6px 0 10px; }
+  .email { padding: 14px 16px; border-right: 1px solid var(--line); line-height: 1.55; font-size: 13.5px; }
+  .email .hl { color: var(--purple); text-decoration: underline dotted; text-underline-offset: 3px; }
+  .email.loading { color: var(--muted); font-style: italic; }
+  .det { padding: 10px 16px; font-size: 13px; }
+  .det .tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+  .det .tabs span { padding: 6px 2px; } .det .tabs span.on { border-bottom: 2px solid var(--brand); color: var(--link); font-weight: 600; }
+  .det b { display: block; margin-top: 8px; }
+  .approve { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin: 0 0 14px; animation: rise .35s; line-height: 1.5; }
+  .card .k { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+  .mailcard .from { color: var(--muted); font-size: 12.5px; margin: 4px 0 8px; }
+  .opp { display: flex; gap: 12px; align-items: center; }
+  .opp .oi { width: 30px; height: 30px; border-radius: 6px; background: #ff5d2d; display: grid; place-items: center; color: #fff; flex: none; }
+  .prep ul { margin: 6px 0 0; padding-left: 18px; } .prep li { margin: 4px 0; }
+  .followup { position: sticky; bottom: 0; background: linear-gradient(rgba(255,255,255,0), #fff 30%); padding: 20px 24px 14px; }
+  .followup .composer { max-width: 980px; margin: 0 auto; }
+  .followup textarea { height: 22px; }
+  .disc { max-width: 980px; margin: 6px auto 0; display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); }
   @keyframes spin { to { transform: rotate(360deg) } }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
 </style>
 </head>
 <body>
 <div class="gh">
-  <div class="cloud">SF</div>
-  <div class="search"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="9" r="5.5"/><path d="m13.5 13.5 3.5 3.5"/></svg>&nbsp; Search...</div>
-  <div class="icons"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m10 3 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2-4.2 2.2.8-4.7L3.2 8l4.7-.7z"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M8 8a2 2 0 1 1 2.5 1.9c-.4.2-.5.5-.5.9v.7M10 14h0"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="2.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4"/></svg><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 1.5h-13zM8 17a2 2 0 0 0 4 0"/></svg><div class="me">TJ</div></div>
+  <svg width="44" height="30" viewBox="0 0 44 30"><path d="M18 4a8 8 0 0 1 13 3 7 7 0 0 1 9 7 7 7 0 0 1-6 11H10a8 8 0 0 1-2-15 9 9 0 0 1 10-6z" fill="#00a1e0"/></svg>
+  <div class="search"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>Search...</div>
+  <div class="ask"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>Ask</div>
+  <div class="icons">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m10 3 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2-4.2 2.2.8-4.7L3.2 8l4.7-.7z"/></svg>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="8"/><path d="M10 6v8M6 10h8" stroke="#fff" stroke-width="1.8"/></svg>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="7"/><path d="M8 8a2 2 0 1 1 2.5 1.9c-.4.2-.5.5-.5.9v.7M10 14h0"/></svg>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="2.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4"/></svg>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 1.5h-13zM8 17a2 2 0 0 0 4 0"/></svg>
+    <div class="me">TJ</div>
+  </div>
 </div>
-<div class="nav"><span class="app">Sales</span><span>Home</span><span>Accounts</span><span>Leads</span><span>Opportunities</span><span class="on">Hunter</span></div>
+<div class="nav">
+  <svg class="waffle" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><circle cx="4" cy="4" r="2"/><circle cx="10" cy="4" r="2"/><circle cx="16" cy="4" r="2"/><circle cx="4" cy="10" r="2"/><circle cx="10" cy="10" r="2"/><circle cx="16" cy="10" r="2"/><circle cx="4" cy="16" r="2"/><circle cx="10" cy="16" r="2"/><circle cx="16" cy="16" r="2"/></svg>
+  <span class="app">Sales</span><span class="tab">Home</span>
+</div>
 
 <div class="shell">
   <aside class="side">
-    <div class="it on">New chat</div><div class="it">Scheduled</div><div class="it">Skills</div><div class="it">Knowledge</div>
-    <h5>Recents</h5>
-    <div class="rc"><span class="badge" style="background:#5a1ba9">CO</span>Colorado operator discovery</div>
-    <div class="rc"><span class="badge" style="background:#2e844a">NL</span>New leads in your territory</div>
-    <div class="rc"><span class="badge">FN</span>Found new prospects</div>
-    <div class="rc"><span class="badge">EB</span>Executive Brief</div>
-    <div class="rc"><span class="badge">PS</span>Pipeline Snapshot</div>
-    <h5>Connections</h5>
-    <div class="rc">Salesforce · Data Vendor Gateway · Momentum</div>
+    <svg class="collapse" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2v12M13 4 9 8l4 4M9 8h5"/></svg>
+    <div class="it on"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v12M2 8h12"/></svg>New chat</div>
+    <div class="it"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M2 6.5h12M5 1.5v3M11 1.5v3"/></svg>Scheduled</div>
+    <div class="it"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 2h7l3 3v9H3zM6 8h4M6 11h4"/></svg>Skills</div>
+    <div class="it"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 3h5v10H2zM9 3h5v10H9z"/></svg>Knowledge</div>
+    <div class="it"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg>Recents</div>
+    <div id="recents"></div>
+    <div class="foot"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M3.4 12.6l1.4-1.4M11.2 4.8l1.4-1.4"/></svg>Settings</div>
   </aside>
 
-  <section class="center">
-    <div class="feed" id="feed"></div>
-    <div class="composer">
-      <textarea id="composer" placeholder="Ask Hunter..." readonly></textarea>
-      <div class="bar"><span class="pill">Hunter ▾</span><span class="pill">＋ Skills</span><span>Salesforce · Data Vendor Gateway</span><span class="send" id="sendBtn"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 10h13M11 5l5 5-5 5"/></svg></span></div>
-    </div>
-  </section>
+  <main id="main">
+    <!-- Seller home -->
+    <section class="view on" id="v-home">
+      <div class="home">
+        <h1>Hi Tom - I'm Hunter, your sales agent.</h1>
+        <p class="lede">I'm here to help you hit your number, from researching accounts and prioritizing prospects to drafting outreach and planning your next move. What should we tackle?</p>
+        <div class="composer">
+          <textarea id="homeInput" placeholder="Ask Hunter, what are the top 3 things I need to know to hit my number?" readonly></textarea>
+          <div class="bar">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2v12M2 8h12"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 2h7l3 3v9H3z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+            <span class="agentpick"><i></i>Hunter <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m2 3.5 3 3 3-3"/></svg></span>
+            <span class="send" id="homeSend"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14 15 8 1 2l1.5 5L10 8l-7.5 1z"/></svg></span>
+          </div>
+        </div>
+        <div class="below"><span>Connections · Salesforce · Momentum · ZoomInfo · <a href="#">View all</a></span><span>Generative AI can produce inaccurate responses. Review responses carefully.</span><a href="#">Share Feedback</a></div>
 
-  <aside class="right">
-    <h4>Hunter at work</h4>
-    <div class="date" id="today"></div>
-    <div id="work"></div>
-  </aside>
+        <div class="preview" id="leadsPreview">
+          <p>These new leads in your territory came in overnight.</p>
+          <div id="leadRows"></div>
+          <div class="btns"><button class="btn">Set up a workflow</button><button class="btn">Review Leads</button></div>
+        </div>
+
+        <div class="work">
+          <div class="hd"><b>Hunter at work</b><span id="today"></span><span class="flt">Active</span></div>
+          <div id="work"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow conversation -->
+    <section class="view" id="v-conv">
+      <div class="conv">
+        <div class="title"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg><span id="convTitle"></span>
+          <svg class="hist" width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg></div>
+        <div class="thread" id="thread"></div>
+      </div>
+      <div class="followup">
+        <div class="composer">
+          <textarea id="followInput" placeholder="Ask Hunter a follow up..." readonly></textarea>
+          <div class="bar">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2v12M2 8h12"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 2h7l3 3v9H3z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+            <span class="agentpick"><i></i>Hunter <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m2 3.5 3 3 3-3"/></svg></span>
+            <span class="send" id="followSend"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 14 15 8 1 2l1.5 5L10 8l-7.5 1z"/></svg></span>
+          </div>
+        </div>
+        <div class="disc"><span>Connections · Salesforce · Momentum · ZoomInfo</span><span>Generative AI can produce inaccurate responses. Review responses carefully.</span></div>
+      </div>
+    </section>
+  </main>
 </div>
-
 <div class="presenter" id="presenter"></div>
 
-<script src="data.js?v=20261020d"></script>
-<script src="presenter.js?v=20261020d"></script>
+<script src="data.js?v=20261020e"></script>
+<script src="presenter.js?v=20261020e"></script>
 <script>
 const D = YELP_DATA, T = D.territory, OPS = D.operators, P = D.piper;
 const fmt = n => "$" + Math.round(n).toLocaleString();
-const fmtM = n => "$" + (n / 1e6).toFixed(2).replace(/0$/, "") + "M";
-const feed = document.getElementById("feed"), work = document.getElementById("work");
-const REPS = { tjones: "Tom Jones" };
+const fmtK = n => "$" + Math.round(n / 1000) + "K";
+const fmtM = n => "$" + (n / 1e6).toFixed(2) + "M";
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-const OBJECTIVE = "Find more owners like him. Identify operators in my Colorado territory controlling three or more paying locations across different brand names, and rank them by unrealized spend.";
-const SIGNALS = [
-  ["Same billing address or phone (Salesforce)", 298],
-  ["Shared contact email domain (Salesforce)", 214],
-  ["Corporate family match (D&B)", 256],
-  ["Recent openings and franchise filings (web)", 133],
-];
-const SOURCE = { crm: "Salesforce", vendor: "Data Vendor Gateway", web: "Web research" };
-const CHECK = '<svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="8" fill="#2e844a"/><path d="m4.5 8.2 2.3 2.3 4.7-4.8" fill="none" stroke="#fff" stroke-width="1.8"/></svg>';
-const link = (path, label, primary) => `<a class="btn ${primary ? "primary" : ""}" target="_blank" href="${D.org_url}${path}">${label}</a>`;  // opens in the current app; use Sales for Tech
-document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, { weekday: "short", month: "long", day: "numeric" });
+const $ = id => document.getElementById(id);
+const thread = $("thread"), main = $("main");
+const KIM = OPS[0];
+const PROMPT = "Find more owners like Whitaker Hospitality in my territory and draft outreach.";
+const today = new Date(), tomorrow = new Date(Date.now() + 864e5);
+const dayLabel = d => d.toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric" }).replace(",", "");
+const DOC = c => `<span class="doc" style="background:${c}"></span>`;
+const srcOf = s => s.type === "crm" ? "Salesforce" : s.type === "vendor" ? (s.label.includes("D&B") ? "D&B" : "ZoomInfo") : "Exa";
 
-function add(html, cls = "") {
-  const d = document.createElement("div"); d.className = cls; d.innerHTML = html; feed.appendChild(d);
-  feed.scrollTo({ top: Math.max(0, d.offsetTop - 70), behavior: "smooth" }); return d;
+// ---------- Seller home ----------
+function recents(list) {
+  $("recents").innerHTML = list.map(([t, st]) => `<div class="rc"><span>${t}</span>${st === "new" ? '<span class="dot"></span>' : st === "run" ? '<span class="spin"></span>' : ""}</div>`).join("");
 }
-function agent(html) {
-  return add(`<div class="hunter-av sm">H</div><div class="body">${html}</div>`, "msg agent");
+function work(groups) {
+  $("work").innerHTML = groups.map(([h, rows]) => `<h6>${h}</h6>` + rows.map(([st, t, s, chips, id]) =>
+    `<div class="wf" ${id ? `id="${id}"` : ""}><span class="st ${st}"></span><div><div class="t">${t}</div><div class="s">${s}</div>
+      ${chips ? `<div class="chips">${chips.map(([c, l]) => `<span class="chip">${DOC(c)}${l}</span>`).join("")}</div>` : ""}</div></div>`).join("")).join("");
 }
-function setWork(items) {
-  work.innerHTML = items.map(([sec, list]) => `<h5>${sec}</h5>` + list.map(([cls, t, s, pct]) =>
-    `<div class="wf ${cls}"><div class="t">${t}</div><div class="s">${s}</div>${pct != null ? `<div class="prog"><i style="width:${pct}%"></i></div>` : ""}</div>`).join("")).join("");
+const SCHEDULED = [
+  ["idle", "Executive Brief", "Weekly · Next run Friday at 5:00 AM", [["#2e844a", "Quarterly Deal Pulse"]]],
+  ["idle", "Meeting Next Steps", "Daily · Next run tomorrow at 9:00 AM", [["#dd7a01", "Action items"]]],
+  ["idle", "Pipeline Snapshot", "Daily · Next run tomorrow at 9:00 AM", [["#0176d3", "Pipeline snapshot"]]],
+];
+function showHome(state) {
+  $("v-home").classList.add("on"); $("v-conv").classList.remove("on"); main.scrollTop = 0;
+  Presenter.setUrl("yelp.lightning.force.com/lightning/page/home");
+  document.title = "Home | Salesforce";
+  if (state === "start") {
+    $("today").textContent = dayLabel(today);
+    $("leadsPreview").style.display = "";
+    $("leadRows").innerHTML = [
+      [P.company, `${P.locations} locations · SDR call Thu 10:00 AM, you're invited`],
+      [D.piper_opps[0][0], `${D.piper_opps[0][3]} locations · Qualified by Piper`],
+      [D.piper_opps[1][0], `${D.piper_opps[1][3]} locations · Qualified by Piper`],
+    ].map(([n, s]) => `<div class="row"><b>${n}</b><span>· ${s}</span></div>`).join("");
+    recents([["Executive Brief"], ["Meeting Next Steps"], ["Researching target accounts", "run"], ["Quota Health Check"], ["Pipeline Snapshot"]]);
+    work([["Running", [["run", "Researching target accounts", "4 of 5 steps · 12 min elapsed", [["#2e844a", "40 accounts"]]]]], ["Scheduled", SCHEDULED]]);
+  } else {
+    $("today").textContent = dayLabel(tomorrow);
+    $("leadsPreview").style.display = "none";
+    recents([[`Drafted reply to ${KIM.first} ${KIM.last}`, "new"], ["Multi-location owners like Whitaker"], ["Executive Brief"], ["Meeting Next Steps"], ["Researching target accounts"], ["Pipeline Snapshot"]]);
+    work([["Ready", [["", `Drafted reply to ${KIM.first} ${KIM.last}`, "Today · Just now", [["#0176d3", "1 reply"], ["#2e844a", "1 account"], ["#dd7a01", "1 opportunity"]], "wfReply"]]],
+      ["Running", [["run", "Outreach sequences", "40 sequences · Day 2", [["#0176d3", "40 prospects"]]]]],
+      ["Scheduled", [["idle", "Multi-location owners like Whitaker", "Weekly · Next run Monday at 7:00 AM", [["#2e844a", "New accounts"], ["#dd7a01", "Prospects"]]], ...SCHEDULED]]]);
+  }
 }
-const SCHEDULED = ["Scheduled", [["sched", "Pipeline Snapshot", "Daily · 7 AM"], ["sched", "Executive Brief", "Weekly · Fri"]]];
-async function think(text, ms, instant) {
+function openConv(title, url) {
+  $("v-home").classList.remove("on"); $("v-conv").classList.add("on");
+  $("convTitle").textContent = title; thread.innerHTML = ""; main.scrollTop = 0;
+  Presenter.setUrl(url); document.title = title + " | Salesforce";
+}
+function post(html, cls = "msg") {
+  const d = document.createElement("div"); d.className = cls; d.innerHTML = html; thread.appendChild(d);
+  main.scrollTo({ top: Math.max(0, d.offsetTop - 120), behavior: "smooth" }); return d;
+}
+
+// ---------- Tom's actions ----------
+async function type(inputId, sendId, text, instant) {
   if (instant) return;
-  const t = agent(`<div class="thinking"><span class="spinner"></span>${text}</div>`);
-  await sleep(ms); t.remove();
+  await sleep(300);
+  await Presenter.type($(inputId), text);
+  await Presenter.press($(sendId));
+  $(inputId).value = "";
 }
-// Tom types a prompt, presses send, and it posts to the chat.
-async function tom(text, instant) {
-  const c = document.getElementById("composer");
-  if (!instant) {
-    await sleep(300);
-    await Presenter.type(c, text);
-    await Presenter.press(document.getElementById("sendBtn"));
-    c.value = "";
-  }
-  add(`<div class="bub">${text}</div>`, "msg user");
-}
-// Tom clicks a button in Hunter's last card.
-async function click(id, instant) {
-  const b = document.getElementById(id);
-  if (!instant) { await sleep(400); await Presenter.press(b); }
-  if (b) { b.disabled = true; b.textContent = "✓ " + b.textContent.replace(/^✓ /, ""); }
-}
-async function count(el, to, ms, f = n => n.toLocaleString(), instant) {
-  if (instant) { el.textContent = f(to); return; }
-  const t0 = performance.now();
-  await new Promise(res => {
-    const tick = now => { const p = Math.min(1, (now - t0) / ms); el.textContent = f(Math.round(to * (1 - Math.pow(1 - p, 3)))); p < 1 ? requestAnimationFrame(tick) : res(); };
-    requestAnimationFrame(tick);
-  });
+async function click(el, instant) {
+  if (!el || instant) return;
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+  await sleep(450); await Presenter.press(el);
 }
 
-// ---------- step renderers ----------
-function home() {
-  add(`<div class="hello"><div class="hunter-av">H</div><div><h1>Good morning, Tom</h1><p>I'm Hunter, your sales agent. Here's what came in overnight in your Colorado territory.</p></div></div>`);
-  add(`<div class="card">
-    <div class="k">New multi-location lead in your territory · Tue 10:15 PM</div>
-    <h3 style="margin-top:6px">${P.company}: one owner, ${P.locations} locations, ${P.brands.length} brands</h3>
-    <div>${P.first_name} ${P.last_name} signed up for one ${P.signed_up_for} at ${fmt(P.monthly_spend)}/mo. In a conversation on the Yelp for Business site, he said he also runs ${P.brand_breakdown["Dave's Hot Chicken"]} Dave's Hot Chicken and ${P.brand_breakdown["Jersey Mike's Subs"]} Jersey Mike's, with one marketing budget and rights to ${P.future_locations} more.
-    Each store was set up as its own account, so none of them pointed back to him. Jordan (SDR) meets him Thursday at 10:00 AM, and you're invited.</div>
-    <div style="margin-top:10px;display:flex;gap:8px"><button class="btn primary">Find more owners like this</button><button class="btn">View lead</button></div>
-  </div>`);
-  setWork([["Ready", [["ready", "New lead in your territory", `${P.company} · ${P.locations} locations · SDR call Thu, you're invited`]]], SCHEDULED]);
+// ---------- Hunter's responses ----------
+const SPARK = '<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.6 4.8L14 8l-4.4 2.2L8 15l-1.6-4.8L2 8l4.4-2.2z"/></svg>';
+async function thinking(lines, instant) {
+  const a = post(`<div class="lbl">${SPARK}<span>Thinking…</span></div><div class="trace"></div>`, "activity");
+  const tr = a.querySelector(".trace");
+  for (const l of lines) { tr.insertAdjacentHTML("beforeend", `<div>${l}</div>`); if (!instant) await sleep(650); }
+  a.querySelector(".lbl span").textContent = "Activity";
+  a.classList.add("done");
 }
-
-
-
-async function plan(instant) {
-  await think("Reading Sam's lead and your Colorado accounts...", 1600, instant);
-  agent(`<div>I'll use Sam's lead as the example: one owner running several brands, with each store set up as a separate account. Here's my plan:</div>
-  <div class="tmpl"><span class="tag">EXAMPLE</span><div><b>${P.company}</b>: ${P.locations} locations across ${P.brands.length} brands, each store its own account, one owner behind all of them.</div></div>
-  <div class="card plan">
-    <div class="k">Plan · Colorado multi-brand owners</div>
-    <ol>
-      <li>Pull Colorado advertiser accounts and contacts <span class="src">Salesforce</span></li>
-      <li>Group accounts in different brands that share a <b>billing address, main phone or contact email domain</b> <span class="src">Salesforce</span></li>
-      <li>Confirm ownership with <b>corporate family</b> data <span class="src dvg">Data Vendor Gateway · D&amp;B</span></li>
-      <li>Find the <b>owner and decision-makers</b> <span class="src dvg">Data Vendor Gateway · ZoomInfo</span></li>
-      <li>Check <b>recent openings and franchise filings</b> <span class="src">Web research</span></li>
-      <li>Keep owners with <b>3+ locations across 2+ brands</b>; rank by locations not advertising × ${fmt(D.rev_per_location)}</li>
-      <li>Then work it: add the top 40 to your book with a brief and a first-touch email, and start sequences for the rest</li>
-    </ol>
-    <div style="margin-top:14px;display:flex;gap:8px"><button class="btn primary" id="approvePlan">Approve &amp; start</button><button class="btn">Edit plan</button></div>
-  </div>`);
-}
-
-const RUN_STEPS = [
-  ["Read Colorado advertiser accounts", T.selfserve_accounts_scanned],
-  ["Grouped accounts by billing address, phone and contact domain", 1312],
-  ["Matched corporate families (D&B)", 846],
-  ["Found owners and decision-makers (ZoomInfo)", T.operators],
-  ["Checked openings and franchise filings", T.operators],
-  ["Ranked owners by locations not advertising", T.operators],
-];
-async function running(instant) {
-  const card = agent(`<div class="card run"><div class="k">Running · Colorado operator discovery</div><ol>${RUN_STEPS.map(([t], n) =>
-    `<li><span class="dot" id="d${n}"></span>${t}<span class="counter" id="c${n}"></span></li>`).join("")}</ol></div>`);
-  setWork([["Running", [["running", "Colorado multi-brand owners", "Step 1 of 6", 8]]], ["Ready", [["ready", "New lead in your territory", P.company]]], SCHEDULED]);
-  for (let n = 0; n < RUN_STEPS.length; n++) {
-    const d = document.getElementById("d" + n);
-    d.className = "dot live";
-    if (n < 3 || instant) await count(document.getElementById("c" + n), RUN_STEPS[n][1], 900, undefined, instant);
-    else document.getElementById("c" + n).textContent = "queued";
-    if (n < 3 || instant) { d.className = "dot done"; d.textContent = "✓"; }
-    if (n >= 3 && !instant) break;
-    work.querySelector(".prog i").style.width = (n + 1) * 14 + "%";
-  }
-}
-
-async function results(instant) {
-  add(`<span>Next morning · Hunter finished overnight</span>`, "divider");
-  for (let n = 0; n < RUN_STEPS.length; n++) {
-    const d = document.getElementById("d" + n);
-    if (d) { d.className = "dot done"; d.textContent = "✓"; document.getElementById("c" + n).textContent = RUN_STEPS[n][1].toLocaleString(); }
-  }
-  await tom("What did you find?", instant);
-  await think("Summarizing results...", 900, instant);
-  const max = Math.max(...SIGNALS.map(s => s[1]));
-  const top10 = OPS.slice(0, 10);
-  agent(`<div>Done. In your Colorado territory I found <b>${T.operators} owners</b> who control <b>${T.locations.toLocaleString()} locations</b> under different brand names. ${T.paying_locations.toLocaleString()} of those locations already advertise, each on its own self-serve account. The other ${T.dark_locations} aren't advertising.</div>
-  <div class="kpis">
-    <div class="kpi"><div class="v" id="k1">0</div><div class="l">Owners found</div></div>
-    <div class="kpi"><div class="v" id="k2">0</div><div class="l">Locations they control</div></div>
-    <div class="kpi"><div class="v" id="k3">0</div><div class="l">Already paying (self-serve)</div></div>
-    <div class="kpi"><div class="v" id="k4">0</div><div class="l">Dark locations</div></div>
-    <div class="kpi hero"><div class="v" id="k5">$0</div><div class="l">Net-new annual revenue</div></div>
-  </div>
-  <div class="card"><div class="k">How owners were identified (an owner can match more than one)</div><div class="sigbars" style="margin-top:8px">
-    ${SIGNALS.map(([l, v]) => `<div class="r"><span>${l}</span><span class="t"><i data-w="${v / max * 100}%"></i></span><b>${v}</b></div>`).join("")}
-  </div></div>
-  <div class="card" style="padding:6px 6px 0"><div class="k" style="padding:10px 10px 4px">Ranked by unrealized spend · top 40 added to your book</div>
-  <table class="rank"><thead><tr><th>#</th><th>Operator</th><th>Brands</th><th class="num">Locations</th><th class="num">Paying</th><th class="num">Dark</th><th class="num">Unrealized / yr</th></tr></thead>
-  <tbody id="rankBody">${rows(top10)}</tbody></table>
-  <span class="more" onclick="document.getElementById('rankBody').innerHTML=rows(OPS);this.remove()">Show all 40 →</span></div>`);
-  const fx = [[1, T.operators], [2, T.locations], [3, T.paying_locations], [4, T.dark_locations]];
-  fx.forEach(([k, v]) => count(document.getElementById("k" + k), v, 1200, undefined, instant));
-  count(document.getElementById("k5"), T.unrealized_annual, 1400, fmtM, instant);
-  setTimeout(() => document.querySelectorAll(".sigbars i").forEach(i => i.style.width = i.dataset.w), instant ? 0 : 200);
-  setWork([["Ready", [["ready", "Colorado multi-brand owners", `${T.operators} owners · ${T.locations.toLocaleString()} locations · ${fmtM(T.unrealized_annual)}`]]], SCHEDULED]);
-}
+const why = o => `Owns ${o.location_count} locations across ${o.brands.length} brands (${o.brands.join(", ")}). ${o.paying} advertise on separate self-serve plans; ${o.dark} aren't advertising.`;
+const signals = o => `<ul>${o.signals.slice(0, 3).map(s => `<li>${s.detail}</li>`).join("")}</ul>
+    <div class="srcs">${[...new Set(o.signals.map(srcOf))].map(s => `<span class="src">${s}</span>`).join("")}</div>`;
+const pitch = o => `You already advertise ${o.paying} of your ${o.location_count} locations with Yelp, on ${o.paying} separate plans. One multi-location plan puts every store in one view and gets the other ${o.dark} in front of local searchers.`;
 function rows(list) {
-  return list.map(o => `<tr class="row" onclick="openOp(${o.rank})"><td>${o.rank}</td><td><b>${o.name}</b><div style="color:var(--muted);font-size:12px">${o.first} ${o.last}</div></td>
-    <td>${o.brands.map(b => `<span class="brandchip">${b}</span>`).join("")}</td><td class="num">${o.location_count}</td><td class="num">${o.paying}</td><td class="num"><b>${o.dark}</b></td>
-    <td class="num"><b>${fmt(o.unrealized_annual)}</b></td></tr>`).join("");
+  return list.map((o, n) => `<tr id="row${o.rank}">
+    <td><div class="person"><span class="av">${o.first[0]}${o.last[0]}</span><div><div class="lk">${o.first} ${o.last}</div><div class="sub">${o.title}</div><div class="lk2">${o.email}</div><div class="lk2">${o.phone}</div></div><span class="chev" id="chev${o.rank}"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m2 3.5 3 3 3-3"/></svg></span></div></td>
+    <td><div class="co"><span class="logo">${o.name.split(" ").map(w => w[0]).slice(0, 2).join("")}</span><div><div class="lk">${o.name}</div><div class="sub">${o.location_count} locations</div><div class="sub">Restaurants / Franchise</div><div class="sub">${o.city}, CO</div></div><span class="rate ${n < 5 ? "hot" : "solid"}">${n < 5 ? "Red Hot" : "Solid"}</span></div></td>
+    <td style="width:300px">${why(o)}</td>
+    <td style="width:340px" class="sig">${signals(o)}</td>
+    <td style="width:320px">${pitch(o)}</td></tr>`).join("");
+}
+function prospects() {
+  post(`I found <b>${T.operators} owners</b> in your territory who run 3+ locations across different brands. Together they control ${T.locations.toLocaleString()} locations, and ${T.dark_locations} of them aren't advertising, about ${fmtM(T.unrealized_annual)} a year at Yelp's average. I prioritized the top 40 for you and prepared personalized outreach for each one. They're ready for your review before sending.`);
+  post(`<div class="tscroll"><table class="pros"><thead><tr><th style="width:250px">Prospect</th><th style="width:290px">Company</th><th>Why this prospect?</th><th>Signal</th><th>Recommended Pitch</th></tr></thead>
+    <tbody>${rows(OPS.slice(0, 10))}</tbody></table></div>
+    <div class="tfoot"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="4" height="4"/><rect x="6" y="1" width="4" height="4"/><rect x="11" y="1" width="4" height="4"/><rect x="1" y="6" width="4" height="4"/><rect x="6" y="6" width="4" height="4"/><rect x="11" y="6" width="4" height="4"/><rect x="1" y="11" width="4" height="4"/><rect x="6" y="11" width="4" height="4"/><rect x="11" y="11" width="4" height="4"/></svg>
+      <div><b>Prospecting workflow completed</b><br><span class="sub">40 prospects · 40 accounts · 40 drafts</span></div>
+      <span class="ex" id="expand"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="8"/><path d="M6 10.5V12h1.5M12 7.5V6h-1.5M6 7.5V6h1.5M12 10.5V12h-1.5"/></svg></span></div>`, "tablewrap").id = "tw";
+}
+function emailHTML(o, revised) {
+  const darkBrands = [...new Set(o.locations.filter(l => l.status === "Dark").map(l => l.brand))].join(" and ");
+  return `<b>Subject:</b> ${revised ? `One bill for all ${o.location_count} locations` : `Your ${o.location_count} Colorado locations`}<br><br>Hi ${o.first},<br><br>
+    ${revised ? `Your ops team asked our support team last month about <span class="hl">combining billing across your stores</span>. That's exactly what a multi-location plan does.<br><br>` : ""}
+    You're already advertising <span class="hl">${o.paying} of your locations</span> with Yelp, each on its own self-serve plan, so you're looking at ${o.paying} sets of numbers instead of one.<br><br>
+    The other <span class="hl">${o.dark} (${darkBrands})</span> aren't in front of local searchers yet. Owners running several brands usually move to one multi-location plan: one dashboard, one bill, every store live.<br><br>
+    Worth 20 minutes next week to look at all ${o.location_count} side by side?`;
+}
+function detailsHTML(revised) {
+  return `<div class="tabs"><span class="on">Details</span><span>Feedback</span></div>
+    <b>Email Type</b>${revised ? "Warm outbound (revised)" : "Warm outbound"}
+    <b>Reasoning</b>${revised ? "Opens on the billing question her team already raised with support, then keeps the locations-not-advertising angle. The version to send now that there's a known need." : "Opens on what she already pays for, then the locations that aren't advertising. That's how the team's won multi-location deals usually start."}
+    <b>Sources</b><div class="srcs">${revised ? '<span class="src">Salesforce</span><span class="src">Service Cloud</span>' : '<span class="src">Salesforce</span><span class="src">D&B</span><span class="src">Momentum</span>'}</div>`;
+}
+const MAIL = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3" width="13" height="10" rx="1"/><path d="m2 4 6 5 6-5"/></svg>';
+const CALL = '<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1 6 4 4.5 5.5a8 8 0 0 0 6 6L12 10l3 2-1 3C7 15 1 9 1 2z"/></svg>';
+function cadence(o) {
+  const touches = [["Discovery", "Call 1", "Day 3", true], ["Nudge", "Email 2", "Day 6"], ["Location view", "Email 3", "Day 10"], ["Follow-up", "Call 2", "Day 14", true]];
+  post(`Here are the drafted sequences, one per prospect across email and call. Step through a prospect's touches below, or approve all 40 at once.`);
+  post(`<div class="pick"><div><label>Prospect</label><div class="sel"><span class="av">${o.first[0]}${o.last[0]}</span>${o.first} ${o.last}<span class="x">✕</span></div></div>
+      <div><label>Cadence</label><div class="sel">High Touch Prospects<span class="x">✕</span></div></div></div>
+    <div class="voice">${SPARK}Written in your voice.<a>View Knowledge</a></div>
+    <div class="touch"><span class="ic">${MAIL}</span><div class="h"><b>First touch</b> <span>• Email 1 • Day 1</span></div>
+      <div class="tcard"><div class="email" id="mail1">${emailHTML(o, false)}</div><div class="det" id="det1">${detailsHTML(false)}</div></div></div>
+    ${touches.map(([t, k, d, call]) => `<div class="touch"><span class="ic ${call ? "call" : ""}">${call ? CALL : MAIL}</span><div class="h"><b>${t}</b> <span>• ${k} • ${d}</span></div></div>`).join("")}
+    <div class="approve"><button class="btn">Approve</button><button class="btn brand" id="approveAll">Approve All</button></div>`, "cad").id = "cad";
 }
 
-function openOp(rank) {
-  const o = OPS.find(x => x.rank === rank);
-  const byBrand = {};
-  o.locations.forEach(l => (byBrand[l.brand] ||= []).push(l));
-  agent(`<div class="card">
-    <div class="k">#${o.rank} in your book</div>
-    <h3 style="margin:4px 0 2px;font-size:18px">${o.name}</h3>
-    <div style="color:var(--muted);margin-bottom:10px">${o.first} ${o.last}, ${o.title} · ${o.email}</div>
-    <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
-      <div class="kpi"><div class="v">${o.location_count}</div><div class="l">Locations</div></div>
-      <div class="kpi"><div class="v">${o.paying}</div><div class="l">Advertising today</div></div>
-      <div class="kpi"><div class="v">${o.dark}</div><div class="l">Not advertising</div></div>
-      <div class="kpi hero"><div class="v">${fmt(o.unrealized_annual)}</div><div class="l">Unrealized / yr</div></div>
-    </div>
-    <div class="k" style="margin-top:12px">Why this prospect</div>
-    <div class="ev"><ul>${o.signals.map(s => `<li><span class="src ${s.type === "vendor" ? "dvg" : ""}" style="margin:0;white-space:nowrap">${SOURCE[s.type]}</span><span><b>${s.label}.</b> ${s.detail}</span></li>`).join("")}</ul></div>
-    <div class="k" style="margin-top:12px">Locations</div>
-    <div class="tree">${Object.entries(byBrand).map(([b, ls]) => `<div class="br">${b} · ${ls.length}</div>` + ls.map(l =>
-        `<div class="loc">${l.name} <span class="st ${l.status === "Dark" ? "dark" : "pay"}">${l.status === "Dark" ? "Not advertising" : "Advertising · $" + l.monthly + "/mo"}</span></div>`).join("")).join("")}
-    </div>
-    <div class="k" style="margin-top:12px">Brief</div><pre class="brief">${o.brief}</pre>
-    <div class="links">${link("/lightning/o/Account/list?filterName=Hunter_Colorado_Operators", "Open in Salesforce", true)}</div>
-  </div>`);
-}
-
-async function firstTouch(instant) {
-  const o = OPS[0];
-  await think(`Drafting outreach to ${o.first} ${o.last}...`, 1000, instant);
-  agent(`<div>Here's the first touch for <b>${o.name}</b>. I wrote it the way your won deals open: lead with what they already pay for, then the dark locations.</div>
-  <div class="card">
-    <div class="k">Draft · Email 1 of 4 · to ${o.first} ${o.last} &lt;${o.email}&gt;</div>
-    <h3 style="margin-top:8px">Your ${o.location_count} Colorado locations, in one place</h3>
-    <div style="line-height:1.55">Hi ${o.first},<br><br>
-      You're already advertising <b>${o.paying} of your locations</b> with Yelp, but they're set up as ${o.paying} separate self-serve plans, so you're seeing ${o.paying} sets of numbers instead of one.<br><br>
-      The other <b>${o.dark}</b> (${[...new Set(o.locations.filter(l => l.status === "Dark").map(l => l.brand))].join(" and ")}) aren't showing up in Yelp ads at all. Owners running several brands usually move to one multi-location plan: one dashboard, one bill, every store live.<br><br>
-      Worth 20 minutes next week? I can show you all ${o.location_count} side by side.<br><br>
-      Tom Jones<br><span style="color:var(--muted)">Multi-Location Sales, Yelp</span></div>
-    <div style="margin-top:12px;font-size:12.5px;color:var(--muted)">Cadence: <b>Day 1</b> email · <b>Day 3</b> call task · <b>Day 6</b> email with a location-by-location view · <b>Day 10</b> call task</div>
-    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn primary" id="approveCadence">Approve cadence</button><button class="btn">Edit</button><button class="btn">Add context</button></div>
-  </div>`);
-}
-
-async function worked(instant) {
-  await think("Working the list...", 1100, instant);
-  const t40 = D.top40;
-  agent(`<div class="card"><div class="k">Done · written back to Salesforce</div>
-    <div class="done-list"><ul>
-      <li>${CHECK}<span><b>Top 40 in your book</b>, each with a brief and a first-touch email ready to approve: ${t40.dark} locations not advertising, ${fmt(t40.unrealized_annual)}/yr.</span></li>
-      <li>${CHECK}<span><b>Sequences</b> started for the other owners' ${T.dark_locations} locations that aren't advertising, in campaign <i>Hunter - Colorado Dark Location Outreach</i>.</span></li>
-      <li>${CHECK}<span><b>10 opportunities</b> created for the highest-value owners, with next steps filled in.</span></li>
-      <li>${CHECK}<span><b>Scheduled</b>: I'll rerun this every Monday and add new owners to your book.</span></li>
-    </ul></div>
-    <div class="links">
-      ${link("/lightning/o/Account/list?filterName=Hunter_Colorado_Operators", "Ranked operators", true)}
-      ${link("/lightning/o/Account/list?filterName=Hunter_Dark_Locations", "Dark locations")}
-      ${link("/lightning/o/Lead/list?filterName=Piper_Multi_Location_Leads", "Piper leads")}
-      ${link("/lightning/o/Campaign/home", "Campaign")}
-      ${link("/lightning/o/Opportunity/home", "Opportunities")}
-      ${link("/lightning/r/Dashboard/01Zg8000004BuMLEA0/view", "Dashboard")}
-    </div></div>
-    <div>Tom, you're working a ranked list of named owners instead of 10,000 undifferentiated pages, and none of it needed a second system.</div>`);
-  setWork([["Ready", [["ready", "Colorado multi-brand owners", `${T.operators} owners · ${fmtM(T.unrealized_annual)}`], ["ready", "Top 40 added to your book", "40 briefs · 40 drafts · 10 opportunities"]]],
-    ["Running", [["running", "Outreach sequences", `${T.dark_locations} locations · Day 1 of 21`, 5]]],
-    ["Scheduled", [["sched", "Colorado multi-brand owners", "Weekly · Mon"], ...SCHEDULED[1]]]]);
-}
-
-// One → = one action by Tom (a prompt or a click); Hunter answers on its own.
+// ---------- Steps: one → = one action by Tom; Hunter responds on its own ----------
 const steps = [
-  ["Tom opens Salesforce. Hunter shows the new multi-location lead in his territory.", async () => home()],
-  ["Tom asks Hunter to find more owners like Sam. Hunter drafts a plan.", async i => { await tom(OBJECTIVE, i); await plan(i); }],
-  ["Tom approves the plan. Hunter starts working in the background.", async i => { await click("approvePlan", i); await running(i); }],
-  ["Next morning: Tom asks what Hunter found.", results],
-  ["Tom asks about the #1 owner.", async i => { await tom("Tell me more about Pikes Peak Food Co.", i); await think("Pulling the account...", 800, i); openOp(1); }],
-  ["Tom asks for a first email to the owner.", async i => { await tom("Draft my first email to Kim.", i); await firstTouch(i); }],
-  ["Tom approves the cadence. Hunter works the rest of the list.", async i => { await click("approveCadence", i); await worked(i); }],
+  ["Tom's Hunter home: new leads in his territory, and what Hunter is working on.", async () => showHome("start")],
+  ["Tom asks Hunter to find more owners like Whitaker Hospitality.", async i => {
+    await type("homeInput", "homeSend", PROMPT, i);
+    openConv("Multi-location owners like Whitaker", "yelp.lightning.force.com/lightning/n/Hunter?c=multi-location-owners");
+    post(`<div class="ask-bub">${PROMPT}</div>`, "");
+    await thinking([
+      `Reading the ${P.company} lead: ${P.locations} locations, ${P.brands.length} brands, each store set up as its own account`,
+      "Grouping Colorado accounts that share a billing address, main phone or contact email domain",
+      "Matching corporate families with D&B",
+      "Finding owners and decision-makers with ZoomInfo",
+      "Checking recent openings and franchise filings with Exa",
+      "Ranking owners by locations not advertising",
+    ], i);
+    prospects();
+  }],
+  ["Tom expands the table: why this prospect, signals with sources, recommended pitch.", async i => {
+    await click($("expand"), i);
+    $("tw").classList.add("expanded");
+    $("row1").classList.add("focus");
+    // Bring Why this prospect, Signal and Recommended Pitch into view for Kim's row.
+    const sc = $("tw").querySelector(".tscroll");
+    if (i) sc.scrollLeft = 540; else { $("row1").scrollIntoView({ behavior: "smooth", block: "center" }); await sleep(500); sc.scrollTo({ left: 540, behavior: "smooth" }); }
+  }],
+  ["Tom opens Kim's drafted cadence, written in his voice.", async i => {
+    await click($("chev1"), i);
+    cadence(KIM);
+    if (!i) $("cad").scrollIntoView({ behavior: "smooth", block: "start" });
+  }],
+  ["Tom adds context; Hunter rewrites the first email.", async i => {
+    await type("followInput", "followSend", "Kim's ops team asked support last month about combining billing across stores. Work that in.", i);
+    const m = $("mail1");
+    if (!i) { m.classList.add("loading"); m.textContent = "Generating based on your feedback…"; await sleep(1600); m.classList.remove("loading"); }
+    m.innerHTML = emailHTML(KIM, true); $("det1").innerHTML = detailsHTML(true);
+    if (!i) m.scrollIntoView({ behavior: "smooth", block: "center" });
+  }],
+  ["Tom approves all 40 sequences.", async i => {
+    const b = $("approveAll");
+    await click(b, i);
+    b.textContent = "Approved"; b.disabled = true;
+    post(`<b>All 40 sequences approved.</b> The approved sequences will be released to the configured outreach workflow.`);
+    post(`Want me to run this every week and add new owners to your list?<div class="btns"><button class="btn brand" id="schedule">Schedule it weekly</button></div>`);
+  }],
+  ["Tom schedules it weekly.", async i => {
+    const b = $("schedule");
+    await click(b, i);
+    b.textContent = "Scheduled"; b.disabled = true;
+    post(`Done. I'll run this every <b>Monday at 7:00 AM</b> and add new owners to your list.`);
+  }],
+  ["Next morning: Kim replied. Tom opens the reply Hunter drafted.", async i => {
+    showHome("next");
+    if (!i) { await sleep(900); await Presenter.press($("wfReply")); }
+    openConv(`Drafted reply to ${KIM.first} ${KIM.last}`, "yelp.lightning.force.com/lightning/n/Hunter?c=reply-kim-alvarez");
+    post(`Here's the reply I drafted.`);
+    post(`<div class="k">Inbound reply</div><div class="from">${KIM.first} ${KIM.last} &lt;${KIM.email}&gt; · 7:42 AM</div>
+      Hi Tom, good timing. We've wanted one bill for a while, and we've got two more stores opening this spring. Could you do Thursday afternoon?`, "card mailcard");
+    post(`<div class="k">Reply · meeting ask</div><div class="from">To: ${KIM.first} ${KIM.last}</div>
+      Hi ${KIM.first},<br><br>Thursday at 2:00 PM works. I'll bring a location-by-location view of all ${KIM.location_count} stores, including the ${KIM.dark} that aren't advertising yet, and we can plan for the two new openings.<br><br>Invite on its way.<br><br>Tom
+      <div class="btns"><button class="btn brand" id="sendReply">Send</button><button class="btn">Edit</button></div>`, "card mailcard");
+  }],
+  ["Tom sends it. Hunter updates the opportunity and writes the meeting prep.", async i => {
+    const b = $("sendReply");
+    await click(b, i);
+    b.textContent = "Sent"; b.disabled = true;
+    post(`<div class="opp"><span class="oi"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l2 4 4 .6-3 3 .7 4.4L8 11l-3.7 2 .7-4.4-3-3L6 5z"/></svg></span>
+      <div><div class="k">Opportunity · ${fmtK(KIM.unrealized_annual)} · Discovery</div><div class="lk">${KIM.name} - Multi-Location Activation</div>
+      <div class="sub">Next step: discovery meeting Thu 2:00 PM · Contact: ${KIM.first} ${KIM.last}</div></div></div>`, "card");
+    post(`<div class="k">Meeting Prep · ${KIM.name} · Thu 2:00 PM</div>
+      <ul>
+        <li><b>Who:</b> ${KIM.first} ${KIM.last}, ${KIM.title}. Decides marketing for all ${KIM.location_count} locations.</li>
+        <li><b>Today:</b> ${KIM.paying} locations advertise on separate self-serve plans (${fmt(KIM.monthly_spend)}/mo combined); ${KIM.dark} don't advertise.</li>
+        <li><b>What she asked for:</b> one bill across stores; two openings this spring.</li>
+        <li><b>Bring:</b> a location-by-location view, and a multi-location plan covering all ${KIM.location_count} plus the new stores.</li>
+        <li><b>Ask:</b> who else signs off on marketing spend, and when the new stores open.</li>
+      </ul>`, "card prep");
+  }],
 ];
-Presenter.init(steps, () => { feed.innerHTML = ""; });
+Presenter.init(steps, () => { thread.innerHTML = ""; $("homeInput").value = ""; $("followInput").value = ""; showHome("start"); });
 </script>
 </body>
 </html>

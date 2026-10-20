@@ -8,7 +8,7 @@
   body { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; background: #0b1530; color: #fff; margin: 0; min-height: 100vh; display: grid; place-items: center; }
   main { width: min(920px, 92vw); }
   h1 { font-size: 34px; margin: 0 0 6px; } p { color: #b9c3dd; margin: 0 0 26px; }
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
   a.card { display: block; text-decoration: none; color: inherit; background: #15224a; border: 1px solid #263568; border-radius: 14px; padding: 18px; transition: .2s; }
   a.card:hover { transform: translateY(-2px); border-color: #8a3ffc; }
   .n { font-size: 12px; color: #a78bfa; font-weight: 700; letter-spacing: .08em; }
@@ -22,12 +22,13 @@
   <p>Piper finds the invisible owner. Hunter finds the rest of them. Salesforce keeps the record.</p>
   <div class="grid">
     <a class="card" href="piper.html"><div class="n">DEMO 1</div><h2>Piper: the invisible owner</h2><div class="d">Yelp for Business checkout at 10:15 PM. One question turns a $300 self-serve signup into a 12-location operator.</div></a>
-    <a class="card" href="hunter.html"><div class="n">DEMO 2</div><h2>Hunter: find all of them</h2><div class="d">Use Piper's record as the template. 400 operators, 600 dark locations, $1.62M in Colorado.</div></a>
+    <a class="card" href="hunter.html"><div class="n">DEMO 2 · SCENE 1</div><h2>Hunter: find all of them</h2><div class="d">Tom finds owners like Whitaker, reviews and approves outreach, and sends the reply.</div></a>
+    <a class="card" href="hunter-admin.html"><div class="n">DEMO 2 · SCENE 2</div><h2>Hunter: how it learns</h2><div class="d">Dana approves Hunter's setup plan and reviews what it learned from won deals.</div></a>
     <a class="card" id="sf" target="_blank"><div class="n">PROOF</div><h2>It's all in Salesforce</h2><div class="d">The real org: Piper lead routed by Flow, ranked operator hierarchy, briefs, campaign, opportunities.</div></a>
   </div>
   <div class="sf"><h3>Salesforce shortcuts</h3><div id="links"></div></div>
 </main>
-<script src="data.js?v=20261020d"></script>
+<script src="data.js?v=20261020e"></script>
 <script>
   const u = YELP_DATA.org_url, L = [
     ["Sales for Tech app", "/lightning/app/06mg800000AlQvwAAF"],

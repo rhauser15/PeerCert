@@ -135,9 +135,10 @@ def seed_hunter(data, users, rts):
             opps.append(rec(
                 "Opportunity", f"O{r}", Name=f"{op['name']} - Multi-Location Activation ({op['dark']} dark)",
                 AccountId=f"@Op{r}", OwnerId=owner, RecordTypeId=rts["SimpleOpportunity"],
-                StageName="Qualification", Amount=op["unrealized_annual"],
+                StageName="Discovery" if r == 1 else "Qualification", Amount=op["unrealized_annual"],
                 CloseDate=str(today + dt.timedelta(days=45 + r * 3)), Type="New Business",
-                NextStep="Hunter brief sent; book multi-location review", Agent_Source__c="Hunter",
+                NextStep="Discovery meeting Thu 2:00 PM" if r == 1 else "Hunter brief sent; book multi-location review",
+                Agent_Source__c="Hunter",
                 Description=f"Activate {op['dark']} dark locations and consolidate {op['paying']} "
                             f"self-serve accounts into one multi-location package."))
     campaign = [rec("Campaign", "Camp", Name=CAMPAIGN, Type="Email", Status="In Progress", IsActive=True,
