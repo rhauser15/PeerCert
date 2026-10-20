@@ -132,23 +132,21 @@
 
 ---
 
-## 3 · Hunter: Tom finds all of them (7 min, plus 2 min optional)
+## 3 · Hunter: Tom finds all of them (6 min, plus 2 min optional)
 
-Follows the *Hunter Demo Guide* and its prototype screen for screen: the seller home, a workflow conversation with the prospects table (Why this prospect? · Signal · Recommended Pitch), the cadence review ("Written in your voice", touch timeline, Details, regenerate on feedback), **Approve All**, **Schedule it weekly**, the drafted reply, then the opportunity and meeting prep. The admin scene is the guide's Arc 2. Only the scenario is Yelp's. Each → is one action by Tom (a typed prompt or a click), and Hunter responds on its own.
+Follows the *Hunter Demo Guide* and its prototype screen for screen: the seller home with a **Ready** weekly workflow, the workflow conversation (run history, Activity, the prospects table with Why this prospect? · Signal · Recommended Pitch), the cadence review ("Written in your voice", touch timeline, Details), **Approve All**, the drafted reply, then the opportunity and meeting prep. The admin scene is the guide's Arc 2. Only the scenario is Yelp's. Each → is one click by Tom; Hunter's work is already done or follows on its own.
 
-### Scene 1 · `hunter.html` · Steps 0–8 (Arcs 1 and 3)
+### Scene 1 · `hunter.html` · Steps 0–6 (Arcs 1 and 3)
 
 | Step | Do | Say |
 |---|---|---|
-| 0 | Page loads | "Wednesday morning. Tom opens Salesforce and Hunter is right there. It isn't asking him what to do; it's showing him what came in overnight and what it's already working on. At the top: the 12-location owner Piper qualified last night, already booked with Jordan for Thursday, with Tom invited." |
-| 1 | → (Tom asks; Hunter researches) | "Tom asks Hunter to find more owners like Whitaker Hospitality and draft outreach. Watch the activity: Hunter starts with what's already in Salesforce, accounts in different brands that share a billing address, phone or contact domain, then confirms ownership with D&B, finds the owner with ZoomInfo, and checks recent openings. **About 400 owners controlling 1,700 locations; 600 of those locations aren't advertising, about $1.6M a year.** It's prioritized the top 40." |
+| 0 | Page loads | "Wednesday morning. Tom opens Salesforce and Hunter is right there. It isn't asking him what to do; it's showing him what it already did. At the top, the 12-location owner Piper qualified last night, already booked with Jordan for Thursday, with Tom invited. And under Hunter at work, a weekly workflow is ready: **Found multi-location owners in your book.**" |
+| 1 | → (open the workflow) | "Hunter ran this in the background, using owners like Whitaker Hospitality as the example. The activity shows what it did: started with what's already in Salesforce, accounts in different brands that share a billing address, phone or contact domain, then confirmed ownership with D&B, found the owner with ZoomInfo, and checked recent openings. **About 400 owners controlling 1,700 locations; 600 of those locations aren't advertising, about $1.6M a year.** It's prioritized the top 40." |
 | 2 | → (expand the table) | "Kim Alvarez at Pikes Peak Food Co. is a great fit, and I can see exactly why: 18 locations, 8 advertising on separate plans, 10 not advertising. Look at the Signal column: most of this wasn't in our CRM as one picture. Hunter enriched it through the **Data Vendor Gateway**, with D&B and ZoomInfo and web research built in, so Yelp doesn't need another data contract." |
 | 3 | → (open Kim's cadence) | "Hunter drafted a sequence for every prospect. Here's Kim's first email. It's written in Tom's voice: it leads with what she already pays for, then the 10 locations that aren't advertising. The Reasoning and Sources show why it was written this way." |
-| 4 | → (Tom adds context) | "Tom knows something Hunter should use: Kim's team asked support about combining billing last month. He tells Hunter, and the email is rewritten around it in seconds." |
-| 5 | → (Approve All) | "Tom approves all 40 sequences. They go to the configured outreach workflow." |
-| 6 | → (Schedule it weekly) | "And he has Hunter run this every Monday, so new owners land in his list automatically." |
-| 7 | → (next morning: drafted reply) | "Next morning, Kim replied, and Hunter has already prepared Tom's next move: a reply proposing Thursday at 2:00 PM, with a location-by-location view and the two new stores she mentioned." |
-| 8 | → (Send) | "Tom sends it. Hunter updates the opportunity, now at Discovery with the meeting as the next step, so Tom doesn't touch the CRM, and writes the meeting prep so he walks in ready. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
+| 4 | → (Approve All) | "Tom approves all 40 sequences, and they go to the configured outreach workflow. Next Monday, Hunter runs this again and adds new owners to his list." |
+| 5 | → (next morning: drafted reply) | "Next morning, Kim replied, and Hunter has already prepared Tom's next move: a reply proposing Thursday at 2:00 PM, with a location-by-location view and the two new stores she mentioned." |
+| 6 | → (Send) | "Tom sends it. Hunter updates the opportunity, now at Discovery with the meeting as the next step, so Tom doesn't touch the CRM, and writes the meeting prep so he walks in ready. **Tom stops working 10,000 pages and starts working a ranked list of named owners.**" |
 
 ### Scene 2 · `hunter-admin.html` · Steps 0–4 (Arc 2, optional, for Dana)
 
@@ -218,6 +216,6 @@ Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1,
 |---|---|
 | **Agentic Marketing (Piper)** | Section 1: after-hours qualification on Yelp for Business |
 | **Prospecting (Hunter)** | Section 3: Tom's owner discovery from Salesforce data, Data Vendor Gateway enrichment and web signals |
-| **SDR Agent (Hunter)** | Section 3, Scene 1 steps 3–6: drafted cadences, Approve All, weekly schedule |
+| **SDR Agent (Hunter)** | Section 3, Scene 1 steps 3–4: drafted cadences and Approve All |
 | **GTM Engineering (Flow)** | Section 2: `Yelp - Multi-Location Lead Routing` |
 | **Win** | Sections 4–5: leadership dashboard, pipeline, value |

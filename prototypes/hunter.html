@@ -7,7 +7,7 @@
 <meta name="demo-url" content="yelp.lightning.force.com/lightning/page/home">
 <title>Home | Salesforce</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="shared.css?v=20261020f">
+<link rel="stylesheet" href="shared.css?v=20261020g">
 <style>
   /* Layout and components follow the Hunter prototype (Scene 1): seller home, workflow conversation,
      prospects table, cadence review, drafted reply. Only the content is Yelp's. */
@@ -86,7 +86,8 @@
   /* ---- Workflow conversation ---- */
   .conv { padding: 18px 24px 160px; }
   .conv .title { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; margin-bottom: 22px; }
-  .conv .title .hist { margin-left: auto; color: #444; }
+  .conv .title .runs { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: #2e2e2e; border: 1px solid #c9c9c9; border-radius: 6px; padding: 4px 10px; background: #fff; }
+  .wf.click { cursor: pointer; }
   .thread { max-width: 980px; margin: 0 auto; }
   .ask-bub { margin-left: auto; max-width: 560px; background: var(--soft); border-radius: 12px; padding: 10px 14px; margin-bottom: 16px; width: fit-content; }
   .activity { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
@@ -206,7 +207,7 @@
     <!-- Workflow conversation -->
     <section class="view" id="v-conv">
       <div class="conv">
-        <div class="title"><svg class="ico" width="18" height="18"><use href="assets/hunter/icons.svg#u-sparkles"/></svg><span id="convTitle"></span><svg class="ico hist" width="18" height="18"><use href="assets/hunter/icons.svg#u-clock"/></svg></div>
+        <div class="title"><svg class="ico" width="18" height="18"><use href="assets/hunter/icons.svg#u-sparkles"/></svg><span id="convTitle"></span><span class="runs" id="runs"><svg class="ico" width="14" height="14"><use href="assets/hunter/icons.svg#u-clock"/></svg><span id="runLbl"></span><svg class="ico" width="10" height="10"><use href="assets/hunter/icons.svg#u-chevrondown"/></svg></span></div>
         <div class="thread" id="thread"></div>
       </div>
       <div class="followup">
@@ -222,8 +223,8 @@
 </div>
 <div class="presenter" id="presenter"></div>
 
-<script src="data.js?v=20261020f"></script>
-<script src="presenter.js?v=20261020f"></script>
+<script src="data.js?v=20261020g"></script>
+<script src="presenter.js?v=20261020g"></script>
 <script>
 const D = YELP_DATA, T = D.territory, OPS = D.operators, P = D.piper;
 const fmt = n => "$" + Math.round(n).toLocaleString();
@@ -233,7 +234,6 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const $ = id => document.getElementById(id);
 const thread = $("thread"), main = $("main");
 const KIM = OPS[0];
-const PROMPT = "Find more owners like Whitaker Hospitality in my territory and draft outreach.";
 const today = new Date(), tomorrow = new Date(Date.now() + 864e5);
 const dayLabel = d => d.toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric" }).replace(",", "");
 const ICO = (n, sz = 16) => `<svg class="ico" width="${sz}" height="${sz}"><use href="assets/hunter/icons.svg#${n}"/></svg>`;
@@ -249,7 +249,7 @@ function recents(list) {
 }
 function work(groups) {
   $("work").innerHTML = groups.map(([h, rows]) => `<h6>${h}</h6>` + rows.map(([st, t, s, chips, id]) =>
-    `<div class="wf" ${id ? `id="${id}"` : ""}><span class="st ${st}"></span><div><div class="t">${t}</div><div class="s">${s}</div>
+    `<div class="wf ${id ? "click" : ""}" ${id ? `id="${id}"` : ""}><span class="st ${st}"></span><div><div class="t">${t}</div><div class="s">${s}</div>
       ${chips ? `<div class="chips">${chips.map(([c, l]) => `<span class="chip">${DOC(c)}${l}</span>`).join("")}</div>` : ""}</div></div>`).join("")).join("");
 }
 const SCHEDULED = [
@@ -269,20 +269,21 @@ function showHome(state) {
       [D.piper_opps[0][0], `${D.piper_opps[0][3]} locations · Qualified by Piper`],
       [D.piper_opps[1][0], `${D.piper_opps[1][3]} locations · Qualified by Piper`],
     ].map(([n, s]) => `<div class="row"><b>${n}</b><span>· ${s}</span></div>`).join("");
-    recents([["Executive Brief"], ["Meeting Next Steps"], ["Researching target accounts", "run"], ["Quota Health Check"], ["Pipeline Snapshot"]]);
-    work([["Running", [["run", "Researching target accounts", "4 of 5 steps · 12 min elapsed", [["#2e844a", "40 accounts"]]]]], ["Scheduled", SCHEDULED]]);
+    recents([["Found multi-location owners in your book", "new"], ["Executive Brief"], ["Meeting Next Steps"], ["Researching target accounts", "run"], ["Quota Health Check"], ["Pipeline Snapshot"]]);
+    work([["Ready", [["", "Found multi-location owners in your book", "Weekly · Next run Monday at 7:00 AM", [["#2e844a", "40 new accounts"], ["#dd7a01", "40 prospects"]], "wfOwners"]]],
+      ["Running", [["run", "Researching target accounts", "4 of 5 steps · 12 min elapsed", [["#2e844a", "12 accounts"]]]]], ["Scheduled", SCHEDULED]]);
   } else {
     $("today").textContent = dayLabel(tomorrow);
     $("leadsPreview").style.display = "none";
-    recents([[`Drafted reply to ${KIM.first} ${KIM.last}`, "new"], ["Multi-location owners like Whitaker"], ["Executive Brief"], ["Meeting Next Steps"], ["Researching target accounts"], ["Pipeline Snapshot"]]);
+    recents([[`Drafted reply to ${KIM.first} ${KIM.last}`, "new"], ["Found multi-location owners in your book"], ["Executive Brief"], ["Meeting Next Steps"], ["Researching target accounts"], ["Pipeline Snapshot"]]);
     work([["Ready", [["", `Drafted reply to ${KIM.first} ${KIM.last}`, "Today · Just now", [["#0176d3", "1 reply"], ["#2e844a", "1 account"], ["#dd7a01", "1 opportunity"]], "wfReply"]]],
       ["Running", [["run", "Outreach sequences", "40 sequences · Day 2", [["#0176d3", "40 prospects"]]]]],
-      ["Scheduled", [["idle", "Multi-location owners like Whitaker", "Weekly · Next run Monday at 7:00 AM", [["#2e844a", "New accounts"], ["#dd7a01", "Prospects"]]], ...SCHEDULED]]]);
+      ["Scheduled", [["idle", "Found multi-location owners in your book", "Weekly · Next run Monday at 7:00 AM", [["#2e844a", "New accounts"], ["#dd7a01", "Prospects"]]], ...SCHEDULED]]]);
   }
 }
-function openConv(title, url) {
+function openConv(title, url, run) {
   $("v-home").classList.remove("on"); $("v-conv").classList.add("on");
-  $("convTitle").textContent = title; thread.innerHTML = ""; main.scrollTop = 0;
+  $("convTitle").textContent = title; $("runLbl").textContent = run || ""; $("runs").style.display = run ? "" : "none"; thread.innerHTML = ""; main.scrollTop = 0;
   Presenter.setUrl(url); document.title = title + " | Salesforce";
 }
 function post(html, cls = "msg") {
@@ -306,12 +307,9 @@ async function click(el, instant) {
 
 // ---------- Hunter's responses ----------
 const SPARK = ICO("u-sparkles", 12);
-async function thinking(lines, instant) {
-  const a = post(`<div class="lbl">${SPARK}<span>Thinking…</span></div><div class="trace"></div>`, "activity");
-  const tr = a.querySelector(".trace");
-  for (const l of lines) { tr.insertAdjacentHTML("beforeend", `<div>${l}</div>`); if (!instant) await sleep(650); }
-  a.querySelector(".lbl span").textContent = "Activity";
-  a.classList.add("done");
+// Completed run: the activity log is collapsed, as in the prototype's workflow conversations.
+function activity(lines) {
+  post(`<div class="lbl">${SPARK}<span>Activity · ${lines.length} steps</span></div><div class="trace">${lines.map(l => `<div>${l}</div>`).join("")}</div>`, "activity done");
 }
 const why = o => `Owns ${o.location_count} locations across ${o.brands.length} brands (${o.brands.join(", ")}). ${o.paying} advertise on separate self-serve plans; ${o.dark} aren't advertising.`;
 const signals = o => `<ul>${o.signals.slice(0, 3).map(s => `<li>${s.detail}</li>`).join("")}</ul>
@@ -326,7 +324,7 @@ function rows(list) {
     <td style="width:320px">${pitch(o)}</td></tr>`).join("");
 }
 function prospects() {
-  post(`I found <b>${T.operators} owners</b> in your territory who run 3+ locations across different brands. Together they control ${T.locations.toLocaleString()} locations, and ${T.dark_locations} of them aren't advertising, about ${fmtM(T.unrealized_annual)} a year at Yelp's average. I prioritized the top 40 for you and prepared personalized outreach for each one. They're ready for your review before sending.`);
+  post(`This week I found <b>${T.operators} owners</b> in your territory who run 3+ locations across different brands, like ${P.company}. Together they control ${T.locations.toLocaleString()} locations, and ${T.dark_locations} of them aren't advertising, about ${fmtM(T.unrealized_annual)} a year at Yelp's average. I prioritized the top 40 for you and prepared personalized outreach for each one. They're ready for your review before sending.`);
   post(`<div class="tscroll"><table class="pros"><thead><tr><th style="width:250px">Prospect</th><th style="width:290px">Company</th><th>Why this prospect?</th><th>Signal</th><th>Recommended Pitch</th></tr></thead>
     <tbody>${rows(OPS.slice(0, 10))}</tbody></table></div>
     <div class="tfoot">${ICO("u-apps", 16)}
@@ -362,27 +360,28 @@ function cadence(o) {
 }
 
 // ---------- Steps: one → = one action by Tom; Hunter responds on its own ----------
+const RUN = (() => { const d = new Date(); const mon = new Date(d); mon.setDate(d.getDate() - ((d.getDay() + 6) % 7)); const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const f = x => x.toLocaleDateString("en-US", { month: "short", day: "numeric" }); return `This week: ${f(mon)} - ${f(sun)}`; })();
+// One → = one action by Tom (a click); Hunter's work is already done or follows on its own.
 const steps = [
-  ["Tom's Hunter home: new leads in his territory, and what Hunter is working on.", async () => showHome("start")],
-  ["Tom asks Hunter to find more owners like Whitaker Hospitality.", async i => {
-    await type("homeInput", "homeSend", PROMPT, i);
-    openConv("Multi-location owners like Whitaker", "yelp.lightning.force.com/lightning/n/Hunter?c=multi-location-owners");
-    post(`<div class="ask-bub">${PROMPT}</div>`, "");
-    await thinking([
-      `Reading the ${P.company} lead: ${P.locations} locations, ${P.brands.length} brands, each store set up as its own account`,
-      "Grouping Colorado accounts that share a billing address, main phone or contact email domain",
-      "Matching corporate families with D&B",
-      "Finding owners and decision-makers with ZoomInfo",
-      "Checking recent openings and franchise filings with Exa",
-      "Ranking owners by locations not advertising",
-    ], i);
+  ["Tom's Hunter home: a new lead, and a weekly workflow ready to review.", async () => showHome("start")],
+  ["Tom opens the workflow Hunter ran in the background.", async i => {
+    if (!i) { await sleep(300); await Presenter.press($("wfOwners")); }
+    openConv("Found multi-location owners in your book", "yelp.lightning.force.com/lightning/n/Hunter?c=multi-location-owners", RUN);
+    activity([
+      `Used the ${P.company} lead as the example: ${P.locations} locations, ${P.brands.length} brands, each store set up as its own account`,
+      "Grouped Colorado accounts that share a billing address, main phone or contact email domain",
+      "Matched corporate families with D&B",
+      "Found owners and decision-makers with ZoomInfo",
+      "Checked recent openings and franchise filings with Exa",
+      "Ranked owners by locations not advertising",
+    ]);
     prospects();
   }],
   ["Tom expands the table: why this prospect, signals with sources, recommended pitch.", async i => {
     await click($("expand"), i);
     $("tw").classList.add("expanded");
     $("row1").classList.add("focus");
-    // Bring Why this prospect, Signal and Recommended Pitch into view for Kim's row.
     const sc = $("tw").querySelector(".tscroll");
     if (i) sc.scrollLeft = 540; else { $("row1").scrollIntoView({ behavior: "smooth", block: "center" }); await sleep(500); sc.scrollTo({ left: 540, behavior: "smooth" }); }
   }],
@@ -391,25 +390,11 @@ const steps = [
     cadence(KIM);
     if (!i) $("cad").scrollIntoView({ behavior: "smooth", block: "start" });
   }],
-  ["Tom adds context; Hunter rewrites the first email.", async i => {
-    await type("followInput", "followSend", "Kim's ops team asked support last month about combining billing across stores. Work that in.", i);
-    const m = $("mail1");
-    if (!i) { m.classList.add("loading"); m.textContent = "Generating based on your feedback…"; await sleep(1600); m.classList.remove("loading"); }
-    m.innerHTML = emailHTML(KIM, true); $("det1").innerHTML = detailsHTML(true);
-    if (!i) m.scrollIntoView({ behavior: "smooth", block: "center" });
-  }],
   ["Tom approves all 40 sequences.", async i => {
     const b = $("approveAll");
     await click(b, i);
     b.textContent = "Approved"; b.disabled = true;
     post(`<b>All 40 sequences approved.</b> The approved sequences will be released to the configured outreach workflow.`);
-    post(`Want me to run this every week and add new owners to your list?<div class="btns"><button class="btn brand" id="schedule">Schedule it weekly</button></div>`);
-  }],
-  ["Tom schedules it weekly.", async i => {
-    const b = $("schedule");
-    await click(b, i);
-    b.textContent = "Scheduled"; b.disabled = true;
-    post(`Done. I'll run this every <b>Monday at 7:00 AM</b> and add new owners to your list.`);
   }],
   ["Next morning: Kim replied. Tom opens the reply Hunter drafted.", async i => {
     showHome("next");
@@ -439,7 +424,7 @@ const steps = [
       </ul>`, "card prep");
   }],
 ];
-Presenter.init(steps, () => { thread.innerHTML = ""; $("homeInput").value = ""; $("followInput").value = ""; showHome("start"); });
+Presenter.init(steps, () => { thread.innerHTML = ""; showHome("start"); });
 </script>
 </body>
 </html>
