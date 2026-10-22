@@ -158,11 +158,13 @@ Use this if Dana asks how Hunter knows what to write. Swipe to it after Scene 1,
 
 | Step | Do | Say |
 |---|---|---|
-| 0 | Page loads | "Dana, this is the admin view. When Hunter was turned on, it started setting itself up. It's drafted a plan." |
-| 1 | Click **Drafted plan to setup Hunter** | "It crawled the CRM and proposed learning from 430 closed-won multi-location deals from Marcus's top reps. Dana can point it at a different set of deals; this looks right." |
-| 2 | Click **Approve & start** | "Hunter studies those deals: the opportunity history, emails, and Momentum call recordings." |
-| 3 | Click **Knowledge** | "A couple of days later, here's what it learned: the ICP, the customer's problem, why now, use-cases, value props, and the team's voice. It's all reviewable, not a black box." |
-| 4 | Click **Your Customer's Business Problem** | "Here's the customer's problem in their own words, quoted from real calls. That's why Kim's email opened the way it did." |
+| 0 | Page loads | "Dana, this is the admin view. When Hunter was turned on, it started setting itself up, and it's drafted a plan for her to approve." |
+| 1 | Click **Drafted plan to setup Hunter** | "It's already ingested the CRM, email, meetings and Gong calls for your 416 users. It proposes learning from 430 recent multi-location deals from your strongest sellers and healthiest customers: org learning first, then a profile for each rep, then suggested workflows, including the one Tom used, Found multi-location owners in your book. And look at the governance: Hunter doesn't write to the CRM without a rep's approval and only drafts emails. Nothing starts until Dana approves." |
+| 2 | Click **Approve & start** | "Dana approves, and the plan is saved as the org's Hunter configuration. It runs in the background for a few hours, and Hunter DMs her when each phase finishes. She doesn't have to watch it." |
+| 3 | Click **Knowledge** | "A few hours later, here's what it learned: the ICP, the customer's problem, why now, use-cases, value props, and the team's voice, each with its sources. It's all reviewable, not a black box." |
+| 4 | Click **Your Customer's Business Problem** | "Here's the customer's problem in their own words, quoted from real Gong calls. That's why Kim's email opened the way it did." |
+
+**Internal note (Scene 2):** source volumes in the plan are illustrative, sized to about 416 users. Call recordings are shown from Gong, Yelp's current tool.
 
 **Lever callout (Tom):** one place to work instead of five tools, the repetitive research and first drafts done for him, and his best approach shared with the team instead of living in a private tool.
 
